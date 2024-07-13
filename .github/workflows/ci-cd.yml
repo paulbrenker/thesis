@@ -1,0 +1,39 @@
+name: CICD
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  PROJECT: "thesis"
+  PROJECT_NAME: "Bachelor Thesis Paul Brenker: Relevance of Linter Rules"
+  ACTION_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+jobs:
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+    timeout-minutes: 1
+    name: label
+    runs-on: ubuntu-latest
+    outputs:
+      labels: ${{ steps.read-labels.outputs.labels }}
+    steps:
+      - uses: actions/labeler/@v5
+
+      - name: Read current labels
+        id: read-labels
+        if: github.ref != 'refs/heads/main'
+        uses: snnaplab/get-labels-action@v1.0.1
+
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: tex/main.tex

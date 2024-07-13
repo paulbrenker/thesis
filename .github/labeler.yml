@@ -1,0 +1,21 @@
+github-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+          - ".gitignore"
+
+documentation-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "README.md"
+          - "*.md"
+
+text-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tex/**"
+
+diagram-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "diagram/**"
