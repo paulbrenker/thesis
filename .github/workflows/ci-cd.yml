@@ -29,6 +29,8 @@ jobs:
 
   build_latex:
     runs-on: ubuntu-latest
+    needs: labeler
+    if: github.ref == 'refs/head/main' || contains(needs.labeler.outputs.labels, 'latex-change')
     steps:
       - name: Check Out
         uses: actions/checkout@v4
