@@ -1,3 +1,6 @@
+## Out Folder for latex axiliary files
+tex/out/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
