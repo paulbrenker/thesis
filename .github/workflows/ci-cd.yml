@@ -36,5 +36,6 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: tex/main.tex
+          working_directory: tex
+          root_file: main.tex
           latexmk_use_xelatex: true
