@@ -24,3 +24,8 @@ analysis-change:
   - changed-files:
       - any-glob-to-any-file:
           - "analysis/**"
+
+tool-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tool/**"
