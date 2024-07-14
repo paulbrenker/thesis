@@ -5,6 +5,5 @@
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.docker.enabled": true,
   "latex-workshop.docker.image.latex": "ghcr.io/xu-cheng/texlive-full",
-
   "latex-workshop.latex.recipe.default": "latexmk (xelatex)"
 }
