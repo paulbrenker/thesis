@@ -28,6 +28,7 @@ jobs:
         uses: snnaplab/get-labels-action@v1.0.1
 
   build_latex:
+    name: Build LaTeX
     runs-on: ubuntu-latest
     needs: labeler
     if: github.ref == 'refs/head/main' || contains(needs.labeler.outputs.labels, 'latex-change')
@@ -43,6 +44,7 @@ jobs:
           latexmk_use_xelatex: true
 
   build_python:
+    name: Format, Lint, Test Python
     permissions:
       contents: read
     needs: labeler
@@ -79,4 +81,42 @@ jobs:
         working-directory: analysis
         run: |
           poetry run pytest --cache-clear --cov=src test/ --cov-fail-under=80 --cov-report term-missing
+
+  build_typescript:
+    name: Format, Lint, Test, Build TypeScript
+    needs: labeler
+    if: github.ref == 'refs/head/main' || contains(needs.labeler.outputs.labels, 'tool-change')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: tool/.node-version
+          cache-dependency-path: tool/package-lock.json
+          cache: npm
+
+      - name: Install Dependencies
+        working-directory: tool
+        run: npm ci
+
+      - name: Format Check
+        working-directory: tool
+        run: npm run format:check
+
+      - name: Lint
+        working-directory: tool
+        run: npm run lint
+
+      - name: Test
+        working-directory: tool
+        run: npm run test:cov
+
+      - name: Build
+        working-directory: tool
+        run: npm run build
         
