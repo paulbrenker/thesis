@@ -97,6 +97,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: tool/.node-version
+          cache-dependency-path: tool/package-lock.json
           cache: npm
 
       - name: Install Dependencies
