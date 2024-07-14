@@ -19,3 +19,8 @@ diagram-change:
   - changed-files:
       - any-glob-to-any-file:
           - "diagram/**"
+
+analysis-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "analysis/**"
