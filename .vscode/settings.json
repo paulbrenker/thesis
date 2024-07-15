@@ -6,6 +6,7 @@
   "latex-workshop.docker.enabled": true,
   "latex-workshop.docker.image.latex": "ghcr.io/xu-cheng/texlive-full",
   "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+  "ltex.language": "de-DE",
   "pylint.cwd": "${workspaceFolder}/analysis",
   "black-formatter.cwd": "${workspaceFolder}/analysis",
   "editor.defaultFormatter": "ms-python.black-formatter",
