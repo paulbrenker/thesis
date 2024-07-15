@@ -1,0 +1,21 @@
+\section{Forschungsstand}
+In diesem Kapitel wird der wissenschaftliche Kontext des Themas erläutert und eine Verbindung zu den relevanten Anwendungen in der Industrie aufgezeigt.
+
+\subsection{REST}
+Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architectural_2000}. In seiner Doktorarbeit definiert Roy Fielding die grundlegenden Prinzipien des Modells für verteilte Systeme. REST steht für \textit{Representational State Transfer}. Der Zustandsübergang (State Transfer) erfolgt durch Datentransfer, der den Folgezustand eines Systems repräsentiert. Fielding definiert sechs Prinzipien für REST.
+\begin{enumerate}
+  \item \textit{Client-Server}: Der Server stellt Ressourcen bereit und der Client ruft diese ab. Der Client ruft Daten mit Anfragen ab und kann diese manipulieren. Benutzer Interfaces müssen von Datensicherung getrennt werden.
+  \item \textit{Stateless}: Zwischen Requests des Clients wird dessen Zustand nicht im Server gespeichert. Jeder Client verfügt über alle nötigen Informationen, um Antworten des Servers zu erhalten und wird als eigenständig betrachtet. 
+  \item \textit{Cachable}: Server Antworten können als Cachable markiert werden, um Skalierbarkeit zu verbessern.
+  \item \textit{Uniform Interface}: Prinzip, das einfache Schnittstellen Nutzung garantiert. Besteht aus vier Eigenschaften:
+  \begin{enumerate}
+    \item \textit{Resource addressability}: Ein REST Service hat eine URI als eindeutige Adresse. Diese identifiziert eine Ressource. Das standardisiert den Zugriff auf den Service.
+    \item \textit{Manipulation of resources through representations}: Wenn der Client Zugriff auf eine Repräsentation einer Resource hat, kann er diese auch manipulieren. Dies geschieht, indem die manipulierte Repräsentation an den Server gesendet wird.
+    \item \textit{Self descriptive messages}: Anfragen und Antworten müssen selbsterklärend sein.
+    \item \textit{Hypermedia As The Engine Of Application State(HATEOAS)}: Server Antworten verfügen über Informationen zu möglichen Folgeoperationen als Hyperlink. Diese informieren den Client über Aktionen basierend auf dessen Zustand, was eine Navigation über die Schnittstelle selbst ermöglicht.
+  \end{enumerate}
+  \item \textit{Layered System}: Der Client weiß nicht, ob er mit dem Endserver oder mit einem Zwischenserver verbunden ist. Alle mittleren Schichten sind versteckt.
+  \item \textit{Code on demand}: Nur wenn angefragt schickt der Server dem Client ausführbaren Code.
+\end{enumerate}
+
+% Historisch erklären dass REST am beliebtesten ist.
