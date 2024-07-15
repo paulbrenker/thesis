@@ -16,3 +16,12 @@ As
 Hypermedia
 HATEOAS
 Layered
+OpenAPI
+Linter
+OAS
+Spectral
+Linterfehlern
+LeanIX
+Linting
+Rulebook
+Massé
