@@ -1,3 +1,4 @@
+<!-- LTeX: language=en -->
 # Relevanz von Linterregeln für die Qualität von OpenAPI Spezifikationen
 
 ## Table of Contents
