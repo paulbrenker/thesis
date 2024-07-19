@@ -1,4 +1,5 @@
 <!-- LTeX: language=en -->
+
 # Relevanz von Linterregeln für die Qualität von OpenAPI Spezifikationen
 
 ## Table of Contents
@@ -10,10 +11,10 @@
 
 This Repository contains multiple packages for different purposes:
 
-- `./analysis`: Python data analysis pipeline.
-- `./diagram`: Directory containing Drawio diagrams to document architecture and requirements
-- `./tex`: LaTeX package that contains the written part of the thesis. Documentation of using this can be found in [here](tex/README.md)
-- `./tool`: Typescript package containing main Software tool that is developed for the thesis
+- [**analysis:**](analysis/README.md) Python data analysis pipeline.
+- [**requirements:**](requirements/README.md) Directory containing requirements documentation for the developed software.
+- [**tex:**](tex/README.md) LaTeX package that contains the written part of the thesis. Documentation of using this can be found in
+- [**tool:**](tool/README.md) Typescript package containing main Software tool that is developed for the thesis
 
 ## Related Links
 

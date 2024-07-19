@@ -5,6 +5,9 @@
     "hediet.vscode-drawio",
     "ms-python.python",
     "ms-python.black-formatter",
-    "ms-python.pylint"
+    "ms-python.pylint",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "firsttris.vscode-jest-runner"
   ]
 }
