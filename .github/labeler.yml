@@ -15,10 +15,10 @@ text-change:
       - any-glob-to-any-file:
           - "tex/**"
 
-diagram-change:
+requirements-change:
   - changed-files:
       - any-glob-to-any-file:
-          - "diagram/**"
+          - "requirements/**"
 
 analysis-change:
   - changed-files:
