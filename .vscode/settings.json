@@ -1,6 +1,5 @@
 {
   "editor.formatOnSave": true,
-  "editor.wordWrap": "on",
   "latex-workshop.latex.outDir": "./out",
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.docker.enabled": true,
@@ -9,6 +8,9 @@
   "ltex.language": "de-DE",
   "pylint.cwd": "${workspaceFolder}/analysis",
   "black-formatter.cwd": "${workspaceFolder}/analysis",
+  "[latex]": {
+    "editor.wordWrap": "on"
+  },
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
