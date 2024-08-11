@@ -2,7 +2,7 @@
 In diesem Kapitel wird der wissenschaftliche Kontext des Themas erläutert und eine Verbindung zu den relevanten Anwendungen in der Industrie aufgezeigt.
 
 \subsection{REST}
-Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architectural_2000}. In seiner Doktorarbeit definiert Roy Fielding die grundlegenden Prinzipien des Modells für verteilte Systeme. REST steht für \textit{Representational State Transfer}. Der Zustandsübergang (State Transfer) erfolgt durch Datentransfer, der den Folgezustand eines Systems repräsentiert. Fielding definiert sechs Prinzipien für REST.
+Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architectural_2000}. In seiner Dissertation definiert Roy Fielding die grundlegenden Prinzipien des Modells für verteilte Systeme. REST steht für \textit{Representational State Transfer}. Der Zustandsübergang (State Transfer) erfolgt durch Datentransfer, der den Folgezustand eines Systems repräsentiert. Fielding definiert sechs Prinzipien für REST.
 \begin{enumerate}
   \item \textit{Client-Server}: Der Server stellt Ressourcen bereit und der Client ruft diese ab. Der Client ruft Daten mit Anfragen ab und kann diese manipulieren. Benutzer Interfaces müssen von Datensicherung getrennt werden.
   \item \textit{Stateless}: Zwischen Requests des Clients wird dessen Zustand nicht im Server gespeichert. Jeder Client verfügt über alle nötigen Informationen, um Antworten des Servers zu erhalten und wird als eigenständig betrachtet. 
@@ -17,5 +17,27 @@ Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architec
   \item \textit{Layered System}: Der Client weiß nicht, ob er mit dem Endserver oder mit einem Zwischenserver verbunden ist. Alle mittleren Schichten sind versteckt.
   \item \textit{Code on demand}: Nur wenn angefragt schickt der Server dem Client ausführbaren Code.
 \end{enumerate}
+Das REST Architekturmodell ist sehr populär und die Anwendungen, die REST verwenden werden immer diverser und komplexer \parencite{kotstein_which_2021}. Da REST kein technischer Standard ist, wird die Art der Umsetzung der Prinzipien in häufig in der Literatur behandelt u.a. in \parencite{richardson_restful_2007}\parencite{masse_rest_2011}\parencite{webber_rest_2010}\parencite{renzel_todays_2012}.
 
-% Historisch erklären dass REST am beliebtesten ist.
+\subsection{Qualitätskriterien}
+Für die korrekte Umsetzung der REST Prinzipien wurden viele Möglichkeiten der Sicherstellung der Qualität von REST APIs geschaffen. Dies reicht von Regeln, Qualitätsattributen, Best Practices zu Reifegradmodellen und automatischen Tests von Schnittstellen \parencite{kotstein_which_2021}. Der folgende Abschnitt beschäftigt sich mit diesen unterschiedlichen Arbeiten und versucht eine Einführung in das Thema zu bieten.
+
+Massé stellt im Buch \textit{REST API Design Rulebook} \parencite{masse_rest_2011} 82 Regeln auf, die für ein Design von REST Prinzipien konformen APIs eingehalten werden sollen. Diese Regeln sind viel zitiert und in weiterer Literatur verwendet u.a. in \parencite{kotstein_which_2021}. Die Regeln sind in fünf Kategorien unterteilt, die hier kurz erläutert werden.
+\begin{enumerate}
+  \item \textit{Identifier Design with URIs} (16 Regeln) Der Informationsgehalt und die Lesbarkeit von URIs sollen 
+  \item \textit{Interaction Design with HTTP} (29 Regeln)
+  \item \textit{Metadata Design} (15)
+  \item \textit{Representation Design} (13)
+  \item \textit{Client Concerns} (9) 
+\end{enumerate}
+
+% Regeln Massé Kategorien erklären.
+% Best Practices?
+% Reifegradmodell Richardson
+
+% Evaluierung von Regeln, Best Practices und so
+% OpenAPI
+% Automatische Tests von Schnittstellen
+% Linter Allgemein
+% Linter OpenAPI
+% Spectral
