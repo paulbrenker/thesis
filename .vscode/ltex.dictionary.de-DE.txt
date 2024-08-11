@@ -25,10 +25,13 @@ LeanIX
 Linting
 Rulebook
 Massé
+<<<<<<< HEAD
 with
 URIs
 Identifier
 Metadata
 Representation
 Concerns
+=======
+>>>>>>> main
 apis.guru
