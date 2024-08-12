@@ -3,7 +3,18 @@ import axios, { AxiosResponse } from 'axios'
 interface API {
   added: string
   preferred: string
-  versions: Record<string, unknown>
+  versions: Record<string, APIVersion>
+}
+
+interface APIVersion {
+  added: string
+  updated: string
+  swaggerUrl: string
+  swaggerYamlUrl: string
+  link: string
+  info: object
+  externalDocs: object
+  openapiVer: string
 }
 
 interface Metrics {
