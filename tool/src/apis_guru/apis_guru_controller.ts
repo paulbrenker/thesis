@@ -6,7 +6,7 @@ class APIFetcher {
   async getLinksToYamlSpecs(): Promise<string[]> {
     const apiList = await this.client.listAPIs()
     return Object.values(apiList.data).flatMap(api =>
-      Object.values(api.versions).flatMap(version => version.swaggerYamlUrl)
+      Object.values(api.versions).map(version => version.swaggerYamlUrl)
     )
   }
 }
