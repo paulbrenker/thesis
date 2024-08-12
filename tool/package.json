@@ -27,6 +27,7 @@
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
+    "axios-mock-adapter": "^2.0.0",
     "eslint": "^8.57.0",
     "jest": "^29.7.0",
     "prettier": "^3.3.3",
@@ -73,5 +74,8 @@
     "bracketSameLine": true,
     "arrowParens": "avoid",
     "proseWrap": "always"
+  },
+  "dependencies": {
+    "axios": "^1.7.3"
   }
 }
