@@ -1,4 +1,4 @@
-import APIClient from '../../src/apis_guru/APIClient'
+import APIClient from '../../src/apis_guru/apis_guru_client'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
