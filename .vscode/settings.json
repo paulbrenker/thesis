@@ -14,10 +14,12 @@
   },
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.wordWrap": "off",
     "editor.tabSize": 4
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "off",
     "editor.tabSize": 2
   }
 }
