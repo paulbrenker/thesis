@@ -10,6 +10,10 @@ describe('APIFetcher', () => {
     controller = new APIFetcher()
   })
 
+  afterEach(() => {
+    mock.reset
+  })
+
   it('should map apis to all available swagger links', async () => {
     const apiResponse = {
       api1: {
