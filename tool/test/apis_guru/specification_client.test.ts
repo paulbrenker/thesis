@@ -1,11 +1,6 @@
 import SwaggerClient from '../../src/apis_guru/specification_client'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import Enforcer from 'openapi-enforcer'
-import * as yaml from 'js-yaml'
-
-jest.mock('openapi-enforcer')
-jest.mock('js-yaml')
 
 describe('SwaggerClient', () => {
   let client: SwaggerClient
@@ -62,42 +57,9 @@ paths:
     expect(response).toEqual(openApiYaml)
   })
 
-  it('validates that the OpenAPI spec is correct', async () => {
-    const mockEnforcer = Enforcer as jest.Mocked<typeof Enforcer>
-    const mockYaml = yaml as jest.Mocked<typeof yaml>
-
-    const openApiSpec = 'openapi: 3.0.0'
-    mockEnforcer.mockResolvedValue([{}, undefined])
-    mockYaml.load.mockReturnValue({})
-
-    const result = await client.isValidOpenApiSpec(openApiSpec)
-
-    expect(mockYaml.load).toHaveBeenCalledWith(openApiSpec)
-    expect(result).toBe(true)
-  })
-
-  it('returns false when OpenAPI spec is not valid', async () => {
-    const mockEnforcer = Enforcer as jest.Mocked<typeof Enforcer>
-    const mockYaml = yaml as jest.Mocked<typeof yaml>
-
-    const openApiSpec = 'not a valid yaml'
-    mockEnforcer.mockResolvedValue([{}, Error('could not read OpenAPI')])
-    mockYaml.load.mockReturnValue({})
-
-    const result = await client.isValidOpenApiSpec(openApiSpec)
-    expect(mockYaml.load).toHaveBeenCalledWith(openApiSpec)
-    expect(result).toBe(false)
-  })
-
-  it('should return false if yaml.load throws an error', async () => {
-    const MockedYaml = yaml as jest.Mocked<typeof yaml>
-    MockedYaml.load.mockImplementation(() => {
-      throw new Error('Failed to parse YAML')
-    })
-
-    const openApiSpec = 'not a valid yaml'
-
-    const result = await client.isValidOpenApiSpec(openApiSpec)
-    expect(result).toBe(false)
+  it('should throw when called without .yaml extension', () => {
+    expect(client.getSwaggerSpec('https://example.com')).rejects.toThrow(
+      'OpenAPI url has no yaml file extension'
+    )
   })
 })

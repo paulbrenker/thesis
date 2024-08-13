@@ -77,8 +77,6 @@
     "proseWrap": "always"
   },
   "dependencies": {
-    "axios": "^1.7.3",
-    "js-yaml": "^4.1.0",
-    "openapi-enforcer": "^1.23.0"
+    "axios": "^1.7.3"
   }
 }
