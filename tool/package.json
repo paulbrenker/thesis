@@ -25,6 +25,7 @@
   "homepage": "https://github.com/paul-brenker-1/thesis#readme",
   "devDependencies": {
     "@types/jest": "^29.5.12",
+    "@types/js-yaml": "^4.0.9",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
     "axios-mock-adapter": "^2.0.0",
@@ -76,6 +77,8 @@
     "proseWrap": "always"
   },
   "dependencies": {
-    "axios": "^1.7.3"
+    "axios": "^1.7.3",
+    "js-yaml": "^4.1.0",
+    "openapi-enforcer": "^1.23.0"
   }
 }
