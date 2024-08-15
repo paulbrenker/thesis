@@ -28,7 +28,7 @@ jobs:
         uses: snnaplab/get-labels-action@v1.0.1
 
   build_thesis:
-    name: Build LaTeX Thesis
+    name: Build LaTeX
     runs-on: ubuntu-latest
     needs: labeler
     if: github.ref == 'refs/head/main' || contains(needs.labeler.outputs.labels, 'text-change')
