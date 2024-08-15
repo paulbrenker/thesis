@@ -27,8 +27,8 @@ jobs:
         if: github.ref != 'refs/heads/main'
         uses: snnaplab/get-labels-action@v1.0.1
 
-  build_latex:
-    name: Build LaTeX
+  build_thesis:
+    name: Build LaTeX Thesis
     runs-on: ubuntu-latest
     needs: labeler
     if: github.ref == 'refs/head/main' || contains(needs.labeler.outputs.labels, 'text-change')
@@ -40,7 +40,7 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           working_directory: tex
-          root_file: main.tex
+          root_file: thesis/main.tex
           latexmk_use_xelatex: true
 
   build_python:
@@ -119,4 +119,3 @@ jobs:
       - name: Build
         working-directory: tool
         run: npm run build
-        
