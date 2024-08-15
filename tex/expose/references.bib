@@ -1,0 +1,484 @@
+
+@book{starke_effektive_2020,
+	address = {München},
+	edition = {9., überarbeitete Auflage},
+	title = {Effektive {Softwarearchitekturen}: ein praktischer {Leitfaden}},
+	isbn = {9783446463769},
+	shorttitle = {Effektive {Softwarearchitekturen}},
+	abstract = {Software-Architekten müssen komplexe fachliche und technische Anforderungen an IT-Systeme umsetzen und diese Systeme durch nachvollziehbare Strukturen flexibel und erweiterbar gestalten. Dieser Praxisleitfaden zeigt Ihnen, wie Sie Software-Architekturen effektiv und systematisch entwickeln können. Der bekannte Software-Architekt Gernot Starke unterstützt Sie mit praktischen Tipps, Architekturmustern und seinen Erfahrungen. (Verlagstext)},
+	language = {ger},
+	publisher = {Hanser},
+	author = {Starke, Gernot},
+	year = {2020},
+}
+
+@inproceedings{serbout_apistic_2024,
+	title = {{APIstic}: {A} {Large} {Collection} of {OpenAPI} {Metrics}},
+	shorttitle = {{APIstic}},
+	url = {https://ieeexplore.ieee.org/abstract/document/10555845},
+	abstract = {In the rapidly evolving landscape of web services, the significance of eﬃciently designed and well-documented APIs is paramount. In this paper, we present APIstic an API analytics dataset and exploration tool to navigate and segment APIs based on an extensive set of pre-computed metrics extracted from OpenAPI specifications, sourced from GitHub, SwaggerHub, BigQuery and APIs.guru. These pre-computed metrics are categorized into structure, data model, natural language description, and security metrics. The extensive dataset of varied API metrics provides crucial insights into API design and documentation for both researchers and practitioners. Researchers can use APIstic as an empirical resource to extract refined samples, analyze API design trends, best practices, smells, and patterns. For API designers, it serves as a benchmarking tool to assess, compare, and improve API structures, data models, and documentation using metrics to select points of references among 1,275,568 valid OpenAPI specifications. The paper discusses potential use cases of the collected data and presents a descriptive analysis of selected API analytics metrics.The dataset available at: http://openapi.inf.usi.ch/},
+	urldate = {2024-07-08},
+	booktitle = {2024 {IEEE}/{ACM} 21st {International} {Conference} on {Mining} {Software} {Repositories} ({MSR})},
+	author = {Serbout, Souhaila and Pautasso, Cesare},
+	month = apr,
+	year = {2024},
+	note = {ISSN: 2574-3864},
+	keywords = {API Metrics, Analytical models, Dataset, Documentation, Market research, Measurement, OpenAPI, Particle measurements, Software, Web APIs, Web services},
+	pages = {265--277},
+}
+
+@inproceedings{kim_leveraging_2024,
+	address = {Lisbon Portugal},
+	title = {Leveraging {Large} {Language} {Models} to {Improve} {REST} {API} {Testing}},
+	isbn = {9798400705007},
+	url = {https://dl.acm.org/doi/10.1145/3639476.3639769},
+	doi = {10.1145/3639476.3639769},
+	language = {en},
+	booktitle = {Proceedings of the 2024 {ACM}/{IEEE} 44th {International} {Conference} on {Software} {Engineering}: {New} {Ideas} and {Emerging} {Results}},
+	publisher = {ACM},
+	author = {Kim, Myeongsoo and Stennett, Tyler and Shah, Dhruv and Sinha, Saurabh and Orso, Alessandro},
+	month = apr,
+	year = {2024},
+	pages = {37--41},
+}
+
+@article{bogner_restruler_2024,
+	title = {{RESTRuler}: {Towards} {Automatically} {Identifying} {Violations} of {RESTful} {Design} {Rules} in {Web} {APIs}},
+	copyright = {arXiv.org perpetual, non-exclusive license},
+	shorttitle = {{RESTRuler}},
+	url = {https://arxiv.org/abs/2402.13710},
+	doi = {10.48550/ARXIV.2402.13710},
+	abstract = {RESTful APIs based on HTTP are one of the most important ways to make data and functionality available to applications and software services. However, the quality of the API design strongly impacts API understandability and usability, and many rules have been specified for this. While we have evidence for the effectiveness of many design rules, it is still difficult for practitioners to identify rule violations in their design. We therefore present RESTRuler, a Java-based open-source tool that uses static analysis to detect design rule violations in OpenAPI descriptions. The current prototype supports 14 rules that go beyond simple syntactic checks and partly rely on natural language processing. The modular architecture also makes it easy to implement new rules. To evaluate RESTRuler, we conducted a benchmark with over 2,300 public OpenAPI descriptions and asked 7 API experts to construct 111 complicated rule violations. For robustness, RESTRuler successfully analyzed 99\% of the used real-world OpenAPI definitions, with some failing due to excessive size. For performance efficiency, the tool performed well for the majority of files and could analyze 84\% in less than 23 seconds with low CPU and RAM usage. Lastly, for effectiveness, RESTRuler achieved a precision of 91\% (ranging from 60\% to 100\% per rule) and recall of 68\% (ranging from 46\% to 100\%). Based on these variations between rule implementations, we identified several opportunities for improvements. While RESTRuler is still a research prototype, the evaluation suggests that the tool is quite robust to errors, resource-efficient for most APIs, and shows good precision and decent recall. Practitioners can use it to improve the quality of their API design.},
+	author = {Bogner, Justus and Kotstein, Sebastian and Abajirov, Daniel and Ernst, Timothy and Merkel, Manuel},
+	year = {2024},
+	keywords = {FOS: Computer and information sciences, Software Engineering (cs.SE), apis.guru},
+}
+
+@article{palma_semantic_2017,
+	title = {Semantic {Analysis} of {RESTful} {APIs} for the {Detection} of {Linguistic} {Patterns} and {Antipatterns}},
+	volume = {26},
+	issn = {0218-8430, 1793-6365},
+	url = {https://www.worldscientific.com/doi/abs/10.1142/S0218843017420011},
+	doi = {10.1142/S0218843017420011},
+	abstract = {Identifier lexicon may have a direct impact on software understandability and reusability and, thus, on the quality of the final software product. Understandability and reusability are two important characteristics of software quality. REpresentational State Transfer (REST) style is becoming a de facto standard adopted by software organizations to build their Web applications. Understandable and reusable Uniform Resource Identifers (URIs) are important to attract client developers of RESTful APIs because good URIs support the client developers to understand and reuse the APIs. Consequently, the use of proper lexicon in RESTful APIs has also a direct impact on the quality of Web applications that integrate these APIs. Linguistic antipatterns represent poor practices in the naming, documentation, and choice of identifiers in the APIs as opposed to linguistic patterns that represent the corresponding best practices. In this paper, we present the Semantic Analysis of RESTful APIs (SARA) approach that employs both syntactic and semantic analyses for the detection of linguistic patterns and antipatterns in RESTful APIs. We provide detailed definitions of 12 linguistic patterns and antipatterns and define and apply their detection algorithms on 18 widely-used RESTful APIs, including Facebook, Twitter, and Dropbox. Our detection results show that linguistic patterns and antipatterns do occur in major RESTful APIs in particular in the form of poor documentation practices. Those results also show that SARA can detect linguistic patterns and antipatterns with higher accuracy compared to its state-of-the-art approach — DOLAR.},
+	language = {en},
+	number = {02},
+	journal = {International Journal of Cooperative Information Systems},
+	author = {Palma, Francis and Gonzalez-Huerta, Javier and Founi, Mohamed and Moha, Naouel and Tremblay, Guy and Guéhéneuc, Yann-Gaël},
+	month = jun,
+	year = {2017},
+}
+
+@book{rupp_uml_2012,
+	title = {{UML} 2 glasklar},
+	isbn = {978-3-446-43057-0},
+	url = {https://doi.org/10.3139/9783446431973},
+	publisher = {Carl Hanser Verlag GmbH \& Co. KG},
+	author = {Rupp, Chris and Queins, Stefan},
+	year = {2012},
+	doi = {10.3139/9783446431973},
+}
+
+@incollection{rodriguez_rest_2016,
+	address = {Cham},
+	title = {{REST} {APIs}: {A} {Large}-{Scale} {Analysis} of {Compliance} with {Principles} and {Best} {Practices}},
+	volume = {9671},
+	isbn = {9783319387901 9783319387918},
+	shorttitle = {{REST} {APIs}},
+	url = {https://link.springer.com/10.1007/978-3-319-38791-8_2},
+	language = {en},
+	booktitle = {Web {Engineering}},
+	publisher = {Springer International Publishing},
+	author = {Rodríguez, Carlos and Baez, Marcos and Daniel, Florian and Casati, Fabio and Trabucco, Juan Carlos and Canali, Luigi and Percannella, Gianraffaele},
+	year = {2016},
+	doi = {10.1007/978-3-319-38791-8_2},
+	pages = {21--39},
+}
+
+@incollection{renzel_todays_2012,
+	address = {Berlin, Heidelberg},
+	title = {Today’s {Top} “{RESTful}” {Services} and {Why} {They} {Are} {Not} {RESTful}},
+	volume = {7651},
+	isbn = {9783642350627 9783642350634},
+	url = {http://link.springer.com/10.1007/978-3-642-35063-4_26},
+	booktitle = {Web {Information} {Systems} {Engineering} - {WISE} 2012},
+	publisher = {Springer Berlin Heidelberg},
+	author = {Renzel, Dominik and Schlebusch, Patrick and Klamma, Ralf},
+	year = {2012},
+	doi = {10.1007/978-3-642-35063-4_26},
+	pages = {354--367},
+}
+
+@inproceedings{petrillo_are_2016,
+	address = {Cham},
+	series = {Lecture {Notes} in {Computer} {Science}},
+	title = {Are {REST} {APIs} for {Cloud} {Computing} {Well}-{Designed}? {An} {Exploratory} {Study}},
+	isbn = {978-3-319-46295-0},
+	shorttitle = {Are {REST} {APIs} for {Cloud} {Computing} {Well}-{Designed}?},
+	doi = {10.1007/978-3-319-46295-0_10},
+	language = {en},
+	booktitle = {Service-{Oriented} {Computing}},
+	publisher = {Springer International Publishing},
+	author = {Petrillo, Fabio and Merle, Philippe and Moha, Naouel and Guéhéneuc, Yann-Gaël},
+	year = {2016},
+	keywords = {Cloud Computing, Cloud Platform, Cloud Provider, Cloud Service, Software Define Network},
+	pages = {157--170},
+}
+
+@incollection{pautasso_restful_2014,
+	address = {New York, NY},
+	title = {{RESTful} {Web} {Services}: {Principles}, {Patterns}, {Emerging} {Technologies}},
+	isbn = {9781461475170 9781461475187},
+	shorttitle = {{RESTful} {Web} {Services}},
+	url = {https://link.springer.com/10.1007/978-1-4614-7518-7_2},
+	language = {en},
+	booktitle = {Web {Services} {Foundations}},
+	publisher = {Springer New York},
+	author = {Pautasso, Cesare},
+	year = {2014},
+	doi = {10.1007/978-1-4614-7518-7_2},
+	pages = {31--51},
+}
+
+@incollection{palma_are_2015,
+	address = {Berlin, Heidelberg},
+	title = {Are {RESTful} {APIs} {Well}-{Designed}? {Detection} of their {Linguistic} ({Anti}){Patterns}},
+	volume = {9435},
+	isbn = {9783662486153 9783662486160},
+	shorttitle = {Are {RESTful} {APIs} {Well}-{Designed}?},
+	url = {http://link.springer.com/10.1007/978-3-662-48616-0_11},
+	language = {en},
+	booktitle = {Service-{Oriented} {Computing}},
+	publisher = {Springer Berlin Heidelberg},
+	author = {Palma, Francis and Gonzalez-Huerta, Javier and Moha, Naouel and Guéhéneuc, Yann-Gaël and Tremblay, Guy},
+	year = {2015},
+	doi = {10.1007/978-3-662-48616-0_11},
+	pages = {171--187},
+}
+
+@inproceedings{palma_detection_2014,
+	address = {Berlin, Heidelberg},
+	series = {Lecture {Notes} in {Computer} {Science}},
+	title = {Detection of {REST} {Patterns} and {Antipatterns}: {A} {Heuristics}-{Based} {Approach}},
+	isbn = {978-3-662-45391-9},
+	shorttitle = {Detection of {REST} {Patterns} and {Antipatterns}},
+	doi = {10.1007/978-3-662-45391-9_16},
+	language = {en},
+	booktitle = {Service-{Oriented} {Computing}},
+	publisher = {Springer},
+	author = {Palma, Francis and Dubois, Johann and Moha, Naouel and Guéhéneuc, Yann-Gaël},
+	year = {2014},
+	keywords = {Antipatterns, Design, Detection, Heuristics, Patterns, REST},
+	pages = {230--244},
+}
+
+@inproceedings{bermbach_benchmarking_2016,
+	address = {Cham},
+	title = {Benchmarking {Web} {API} {Quality}},
+	isbn = {978-3-319-38791-8},
+	doi = {10.1007/978-3-319-38791-8_11},
+	abstract = {Web APIs are increasingly becoming an integral part of web or mobile applications. As a consequence, performance characteristics and availability of the APIs used directly impact the user experience of end users. Still, quality of web APIs is largely ignored and simply assumed to be sufficiently good and stable. Especially considering geo-mobility of today’s client devices, this can lead to negative surprises at runtime.},
+	language = {en},
+	booktitle = {Web {Engineering}},
+	publisher = {Springer International Publishing},
+	author = {Bermbach, David and Wittern, Erik},
+	editor = {Pautasso, Cesare},
+	year = {2016},
+	keywords = {Client Device, Domain Name Service, Server Error, Transmission Control Protocol, Transmission Control Protocol Connection},
+	pages = {188--206},
+}
+
+@incollection{bogner_collecting_2020,
+	address = {Cham},
+	title = {Collecting {Service}-{Based} {Maintainability} {Metrics} from {RESTful} {API} {Descriptions}: {Static} {Analysis} and {Threshold} {Derivation}},
+	volume = {1269},
+	isbn = {9783030591540 9783030591557},
+	shorttitle = {Collecting {Service}-{Based} {Maintainability} {Metrics} from {RESTful} {API} {Descriptions}},
+	url = {http://link.springer.com/10.1007/978-3-030-59155-7_16},
+	language = {en},
+	urldate = {2024-07-04},
+	booktitle = {Software {Architecture}},
+	publisher = {Springer International Publishing},
+	author = {Bogner, Justus and Wagner, Stefan and Zimmermann, Alfred},
+	year = {2020},
+	doi = {10.1007/978-3-030-59155-7_16},
+	pages = {215--227},
+}
+
+@book{richardson_restful_2007,
+	address = {Farnham},
+	title = {{RESTful} web services},
+	isbn = {9780596529260},
+	publisher = {O'Reilly},
+	author = {Richardson, Leonard and Ruby, Sam},
+	year = {2007},
+	keywords = {Web services},
+}
+
+@book{bergsmann_requirements_2023,
+	title = {Requirements {Engineering} für die agile {Softwareentwicklung}, 3rd {Edition}},
+	isbn = {978-1-09-815713-5},
+	language = {ger},
+	publisher = {dpunkt},
+	author = {Bergsmann, Johannes},
+	year = {2023},
+}
+
+@inproceedings{vaziri_generating_2017,
+	address = {New York, NY, USA},
+	series = {Onward! 2017},
+	title = {Generating chat bots from web {API} specifications},
+	isbn = {978-1-4503-5530-8},
+	url = {https://dl.acm.org/doi/10.1145/3133850.3133864},
+	doi = {10.1145/3133850.3133864},
+	abstract = {Companies want to offer chat bots to their customers and employees which can answer questions, enable self-service, and showcase their products and services. Implementing and maintaining chat bots by hand costs time and money. Companies typically have web APIs for their services, which are often documented with an API specification. This paper presents a compiler that takes a web API specification written in Swagger and automatically generates a chat bot that helps the user make API calls. The generated bot is self-documenting, using descriptions from the API specification to answer help requests. Unfortunately, Swagger specifications are not always good enough to generate high-quality chat bots. This paper addresses this problem via a novel in-dialogue curation approach: the power user can improve the generated chat bot by interacting with it. The result is then saved back as an API specification. This paper reports on the design and implementation of the chat bot compiler, the in-dialogue curation, and working case studies.},
+	booktitle = {Proceedings of the 2017 {ACM} {SIGPLAN} {International} {Symposium} on {New} {Ideas}, {New} {Paradigms}, and {Reflections} on {Programming} and {Software}},
+	publisher = {Association for Computing Machinery},
+	author = {Vaziri, Mandana and Mandel, Louis and Shinnar, Avraham and Siméon, Jérôme and Hirzel, Martin},
+	year = {2017},
+	keywords = {Conversational agents, REST, cloud, compilers},
+	pages = {44--57},
+}
+
+@inproceedings{maleshkova_investigating_2010,
+	title = {Investigating {Web} {APIs} on the {World} {Wide} {Web}},
+	url = {https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5693251},
+	doi = {10.1109/ECOWS.2010.9},
+	booktitle = {2010 {Eighth} {IEEE} {European} {Conference} on {Web} {Services}},
+	author = {Maleshkova, Maria and Pedrinaci, Carlos and Domingue, John},
+	year = {2010},
+	keywords = {Authentication, Correlation, Documentation, Manuals, Mashups, RESTful services, Web APIs, Web services, XML},
+	pages = {107--114},
+}
+
+@misc{noauthor_spectral_2024,
+	title = {Spectral {OAS} {Ruleset}},
+	url = {https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules},
+	publisher = {Stoplight - A Smartbear Company},
+	year = {2024},
+}
+
+@phdthesis{eriksson_using_2023,
+	title = {Using {BERT} to measure objective quality of {REST}-{API} speciﬁcations},
+	url = {https://www.diva-portal.org/smash/get/diva2:1768777/FULLTEXT01.pdf},
+	language = {en},
+	school = {Faculty of Software Engineering, Blekinge Institute of Technology, 371 79 Karlskrona, Sweden},
+	author = {Eriksson, Fritz and Åkesson, Max},
+	year = {2023},
+}
+
+@article{palma_assessing_2022,
+	title = {Assessing the linguistic quality of {REST} {APIs} for {IoT} applications},
+	volume = {191},
+	issn = {0164-1212},
+	url = {https://pdf.sciencedirectassets.com/271629/1-s2.0-S0164121222X0006X/1-s2.0-S0164121222000954/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEMj%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIAgpIj%2FFNnxZbJHPohz9lL6aAjrq3YuNqOv2642%2BHeY4AiEAvBSOwE%2BQ0GoGmjrkiHmTFD5185VwxP6EpGre1niPQA8qvAUIwf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAFGgwwNTkwMDM1NDY4NjUiDCUwXYibS8NGNf3HaiqQBY6pZaTn8Xwn1a01BtR9CBmG%2B4OzB%2BCPxrI01QRHH9w5CUDlQx65TJ5OA16BIeHBZd2SJ66NbuVaBezppNNdMN6rOexXjafZUSGg5yAAAlHNRUUmAM1iGbOUmKCONQFHYrLj9Sya%2BCBrHXE3yCYAYJu%2FlYlPW7bHtiDi29VCXf4J%2Bn9wPls3C3MnBHuPa%2BbjbGDbB%2BepXqcRTm4nDrK6pXxUekyDDlNzAs9uOYrLKnBvQkbq7Sq9XThcpmmmQh%2FqgG9G4Aecw%2Fn9ejfIcSxCSWE%2BFAQ%2BBJbMMT1Ve8iGOrqibJnyc4LzvZDd08KnKoK2jIrFfPl8hMJmavD2DKrbZW%2FcEnRnNef5IP%2BCL13eF1t1pxldhqHF8WIS6pfYsw2nXnqNrzu9qWNinK72Hj5x6y2NCSfWAnA6txyjkig62UGcNJkrK0FVZMMA91l01nj4BMHrilgsCPH4kNxlOZ%2BJp50XFEXSuAGkl8uAJZE6qBf9QI2UNLgVVXgJ%2F9XTYrDlrddZLfg%2Fb0njT%2F%2BF5EKEiwd50NPEXqlq4YpBH6VaJIMFIV9ofvRVcHANiyZReNYLsBGVgUjbuzrES2s3qxOZTxD4DlCzLpJAr6drH0wz1RtTuytmQnh8cOVm1sVxMQzVMfILTLwKp61uXPBQVptzs%2FDgiHFaJDdYKwPQTkL7rO74ZuqhmhPiHEhgzYMeOg4FHmDY0WWEkrJ3Oup2AZx3gBPyKY6Q11%2FdZfNMSX%2FQxWqWFaYN5t0bEaBCXwLzApCn274ZxXmhrA47k4tAhjPeicExALVKCYtsO8NqIj%2FW3Yu5%2FQV57hVO8XjyG6P11iRIEpfXWyCUC4RW%2FFOPUoPgXVnay2BLgnOobMH%2Bs99XSjTTMPbCp68GOrEBY4U1KVXQ6GE9I2moNZ770XiBmhsgKhpvQe83bMlLMnEtAPlGnxhxahrRNcaiHgnz4F1kd2iYVI%2F3VHS%2FNxnyVKpC0sVpM4kyF%2BssY7OFTCiZdVR5bIMhkB8NXRb8IqpNG%2F32YR718MHO5xqEN0Q8gg%2F77AfCJbUrDC3S8IiNqIBpFL6%2FBhPCs%2FadEmB3hPFyymGae74SoBhRK93vLFeo1ODMA6%2FP%2ByMZbZdkbO7fAI3%2F&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240307T170956Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYYKSYE2HI%2F20240307%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=bf250a5b92053c1e5c9791c098382646bc80a293995f48f0229c1980d9e0c072&hash=bde3fa93df9a5c16441a90138b101ed6522b7efbf4eb565fce39048bb578e25b&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S0164121222000954&tid=spdf-59a8760d-8cd4-4aa9-abd9-2dc308edb879&sid=ef76f9873807084e449ac79715ee33f2d3c0gxrqb&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=00025a595e015d5c55&rr=860c32313b554d58&cc=de},
+	doi = {10.1016/j.jss.2022.111369},
+	abstract = {Internet of Things (IoT) is a growing technology that relies on connected ‘things’ that gather data from peer devices and send data to servers via APIs (Application Programming Interfaces). The design quality of those APIs has a direct impact on their understandability and reusability. This study focuses on the linguistic design quality of REST APIs for IoT applications and assesses their linguistic quality by performing the detection of linguistic patterns and antipatterns in REST APIs for IoT applications. Linguistic antipatterns are considered poor practices in the naming, documentation, and choice of identifiers. In contrast, linguistic patterns represent best practices to APIs design. The linguistic patterns and their corresponding antipatterns are hence contrasting pairs. We propose the SARAv2 (Semantic Analysis of REST APIs version two) approach to perform syntactic and semantic analyses of REST APIs for IoT applications. Based on the SARAv2 approach, we develop the REST-Ling tool and empirically validate the detection results of nine linguistic antipatterns. We analyse 19 REST APIs for IoT applications. Our detection results show that the linguistic antipatterns are prevalent and the REST-Ling tool can detect linguistic patterns and antipatterns in REST APIs for IoT applications with an average accuracy of over 80\%. Moreover, the tool performs the detection of linguistic antipatterns on average in the order of seconds, i.e., 8.396 s. We found that APIs generally follow good linguistic practices, although the prevalence of poor practices exists.},
+	journal = {Journal of Systems and Software},
+	author = {Palma, Francis and Olsson, Tobias and Wingkvist, Anna and Gonzalez-Huerta, Javier},
+	year = {2022},
+	keywords = {Antipattern, Detection, IoT applications, Linguistic quality, Pattern, REST APIs},
+	pages = {111369},
+}
+
+@article{neumann_analysis_2021,
+	title = {An {Analysis} of {Public} {REST} {Web} {Service} {APIs}},
+	volume = {14},
+	issn = {1939-1374},
+	url = {https://ieeexplore.ieee.org/abstract/document/8385157},
+	doi = {10.1109/TSC.2018.2847344},
+	abstract = {Businesses are increasingly deploying their services on the web, in the form of web applications, SOAP services, message-based services, and, more recently, REST services. Although the movement towards REST is widely recognized, there is not much concrete information regarding the technical features being used in the field, such as typical data formats, how HTTP verbs are being used, or typical URI structures, just to name a few. In this paper, we go through the Alexa.com top 4000 most popular sites to identify precisely 500 websites claiming to provide a REST web service API. We analyze these 500 APIs for key technical features, degree of compliance with REST architectural principles (e.g., resource addressability), and for adherence to best practices (e.g., API versioning). We observed several trends (e.g., widespread JSON support, software-generated documentation), but, at the same time, high diversity in services, including differences in adherence to best practices, with only 0.8 percent of services strictly complying with all REST principles. Our results can help practitioners evolve guidelines and standards for designing higher quality services and also understand deficiencies in currently deployed services. Researchers may also benefit from the identification of key research areas, contributing to the deployment of more reliable services.},
+	number = {4},
+	journal = {IEEE Transactions on Services Computing},
+	author = {Neumann, Andy and Laranjeiro, Nuno and Bernardino, Jorge},
+	year = {2021},
+	note = {Conference Name: IEEE Transactions on Services Computing},
+	keywords = {API, Analytical models, Best practices, Documentation, HTTP, REST, RESTful, Simple object access protocol, Standards, XML, web, web services, web services analysis},
+	pages = {957--970},
+}
+
+@inproceedings{casas_uses_2021,
+	title = {Uses and applications of the {OpenAPI}/{Swagger} specification: a systematic mapping of the literature},
+	shorttitle = {Uses and applications of the {OpenAPI}/{Swagger} specification},
+	url = {https://ieeexplore.ieee.org/document/9650408},
+	doi = {10.1109/SCCC54552.2021.9650408},
+	abstract = {The OpenAPI or Swagger specification has become the reference choice for describing web APIs (REST, RESTful, etc.). That is why this specification has been and is currently the center of many research articles. Several activities, tasks, and problems associated with software development can be improved, simplified, solved and/or automated with this specification. The purpose of this study is to synthesize the uses and applications of the OpenAPI/Swagger specification. The development activities in which it has been useful, the software artifacts (results) generated from it, and which domains have been covered, among others, are identified. The literature review that we analyzed had a total of 47 articles published between 2011 and 2020. The search corresponded with these parameters: a) mention of the development activities in which the specification has been useful, b) inclusion of the software artifacts (results) that it generates and their corresponding validation, and c) reference to the domains covered. Results show that the OpenAPI/Swagger specification has benefited various software development activities, being the improvement of the documentation the one that predominates (43\%). Similarly, 77\% of the articles provide solutions to the requirements and/or problems of the web API consumers. The automation of tasks, based on diverse tools, constitutes the most predominant result in 68\% of the manuscripts. Besides, 40\% of the works consulted cover a specific domain (IoT, Cloud, etc.).},
+	booktitle = {2021 40th {International} {Conference} of the {Chilean} {Computer} {Science} {Society} ({SCCC})},
+	author = {Casas, Sandra and Cruz, Diana and Vidal, Graciela and Constanzo, Marcela},
+	year = {2021},
+	note = {ISSN: 2691-0632},
+	keywords = {API Rest, API web, Automation, Bibliographies, Computer science, Documentation, OpenAPI, Servicios web, Software, Systematics, Task analysis},
+	pages = {1--8},
+}
+
+@article{tomasdottir_adoption_2018,
+	title = {The {Adoption} of {JavaScript} {Linters} in {Practice}: {A} {Case} {Study} on {ESLint}},
+	volume = {46},
+	copyright = {https://ieeexplore.ieee.org/Xplorehelp/downloads/license-information/IEEE.html},
+	issn = {0098-5589, 1939-3520, 2326-3881},
+	shorttitle = {The {Adoption} of {JavaScript} {Linters} in {Practice}},
+	url = {https://ieeexplore.ieee.org/document/8468105/},
+	doi = {10.1109/TSE.2018.2871058},
+	number = {8},
+	journal = {IEEE Transactions on Software Engineering},
+	author = {Tomasdottir, Kristin Fjola and Aniche, Mauricio and Van Deursen, Arie},
+	year = {2018},
+	pages = {863--891},
+}
+
+@inproceedings{haupt_framework_2017,
+	title = {A {Framework} for the {Structural} {Analysis} of {REST} {APIs}},
+	url = {https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7930199},
+	doi = {10.1109/ICSA.2017.40},
+	booktitle = {2017 {IEEE} {International} {Conference} on {Software} {Architecture} ({ICSA})},
+	author = {Haupt, Florian and Leymann, Frank and Scherer, Anton and Vukojevic-Haupt, Karolina},
+	year = {2017},
+	keywords = {Analytical models, Best practices, Cloud computing, Google, Measurement, Protocols, REST, Transforms, analysis, interface description language},
+	pages = {55--58},
+}
+
+@article{bogner_restful_2023,
+	title = {Do {RESTful} {API} design rules have an impact on the understandability of {Web} {APIs}?},
+	volume = {28},
+	issn = {1382-3256, 1573-7616},
+	url = {https://link.springer.com/10.1007/s10664-023-10367-y},
+	doi = {10.1007/s10664-023-10367-y},
+	abstract = {Abstract 
+             
+              Context 
+              Web APIs are one of the most used ways to expose application functionality on the Web, and their understandability is important for efficiently using the provided resources. While many API design rules exist, empirical evidence for the effectiveness of most rules is lacking. 
+             
+             
+              Objective 
+              We therefore wanted to study 1) the impact of RESTful API design rules on understandability, 2) if rule violations are also perceived as more difficult to understand, and 3) if demographic attributes like REST-related experience have an influence on this. 
+             
+             
+              Method 
+               
+                We conducted a controlled Web-based experiment with 105 participants, from both industry and academia and with different levels of experience. Based on a hybrid between a 
+                crossover 
+                and a 
+                between-subjects 
+                design, we studied 12 design rules using API snippets in two complementary versions: one that adhered to a 
+                rule 
+                and one that was a 
+                violation 
+                of this rule. Participants answered comprehension questions and rated the perceived difficulty. 
+               
+             
+             
+              Results 
+               
+                For 11 of the 12 rules, we found that 
+                violation 
+                performed significantly worse than 
+                rule 
+                for the comprehension tasks. Regarding the subjective ratings, we found significant differences for 9 of the 12 rules, meaning that most violations were subjectively rated as more difficult to understand. Demographics played no role in the comprehension performance for 
+                violation 
+                . 
+               
+             
+             
+              Conclusions 
+              Our results provide first empirical evidence for the importance of following design rules to improve the understandability of Web APIs, which is important for researchers, practitioners, and educators.},
+	language = {en},
+	number = {6},
+	journal = {Empirical Software Engineering},
+	author = {Bogner, Justus and Kotstein, Sebastian and Pfaff, Timo},
+	month = nov,
+	year = {2023},
+	pages = {132},
+}
+
+@misc{noauthor_spectral_2024-1,
+	title = {Spectral {API} {Linter}},
+	url = {https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview},
+	publisher = {Stoplight - A Smartbear Company},
+	year = {2024},
+}
+
+@book{weir_enterprise_2019,
+	address = {Birmingham},
+	edition = {1},
+	title = {Enterprise {API} {Management}: {Design} and deliver valuable business {APIs}},
+	isbn = {978-1-78728-561-3},
+	shorttitle = {Enterprise {API} {Management}},
+	language = {en},
+	publisher = {Packt Publishing Ltd},
+	author = {Weir, Luis},
+	year = {2019},
+	note = {Google-Books-ID: 0OikDwAAQBAJ},
+	keywords = {Computers / Business \& Productivity Software / General, Computers / Programming / General, Computers / Software Development \& Engineering / General, Computers / Software Development \& Engineering / Systems Analysis \& Design},
+}
+
+@misc{berners-lee_uniform_2005,
+	type = {Request for {Comments} ({RFC})},
+	title = {Uniform {Resource} {Identifier} ({URI}): {Generic} {Syntax}},
+	url = {https://www.rfc-editor.org/rfc/rfc3986.txt},
+	author = {Berners-Lee, Tim and Fielding, Roy and Masinter, L},
+	month = jan,
+	year = {2005},
+}
+
+@book{richardson_restful_2013,
+	address = {Beijing[u.a},
+	edition = {1. ed.},
+	title = {{RESTful} {Web} {APIs} [services for a changing world]},
+	isbn = {978-1-4493-5806-8},
+	url = {https://learning.oreilly.com/library/view/restful-web-apis/9781449359713/},
+	language = {eng},
+	publisher = {O'Reilly},
+	author = {Richardson, Leonard},
+	collaborator = {Amundsen, Mike},
+	year = {2013},
+}
+
+@phdthesis{fielding_architectural_2000,
+	title = {Architectural {Styles} and the {Design} of {Network}-based {Software} {Architectures}},
+	language = {en},
+	author = {Fielding, Roy Thomas},
+	year = {2000},
+}
+
+@book{masse_rest_2011,
+	address = {Place of publication not identified},
+	edition = {1st edition},
+	title = {{REST} {API} {Design} {Rulebook}},
+	isbn = {978-1-4493-1790-4},
+	language = {eng},
+	publisher = {O'Reilly Media Incorporated},
+	author = {Massé, Mark},
+	year = {2011},
+	keywords = {Computer Science, Engineering \& Applied Sciences},
+}
+
+@book{webber_rest_2010,
+	address = {Beijing Köln},
+	edition = {1. ed},
+	series = {Theory in practice},
+	title = {{REST} in practice: hypermedia and systems architecture},
+	isbn = {978-0-596-80582-1},
+	shorttitle = {{REST} in practice},
+	language = {eng},
+	publisher = {O'Reilly},
+	author = {Webber, Jim and Parastatidis, Savas and Robinson, Ian},
+	year = {2010},
+}
+
+@inproceedings{kotstein_which_2021,
+	address = {Cham},
+	series = {Communications in {Computer} and {Information} {Science}},
+	title = {Which {RESTful} {API} {Design} {Rules} {Are} {Important} and {How} {Do} {They} {Improve} {Software} {Quality}? {A} {Delphi} {Study} with {Industry} {Experts}},
+	isbn = {978-3-030-87568-8},
+	shorttitle = {Which {RESTful} {API} {Design} {Rules} {Are} {Important} and {How} {Do} {They} {Improve} {Software} {Quality}?},
+	doi = {10.1007/978-3-030-87568-8_10},
+	abstract = {Several studies analyzed existing Web APIs against the constraints of REST to estimate the degree of REST compliance among state-of-the-art APIs. These studies revealed that only a small number of Web APIs are truly RESTful. Moreover, identified mismatches between theoretical REST concepts and practical implementations lead us to believe that practitioners perceive many rules and best practices aligned with these REST concepts differently in terms of their importance and impact on software quality. We therefore conducted a Delphi study in which we confronted eight Web API experts from industry with a catalog of 82 REST API design rules. For each rule, we let them rate its importance and software quality impact. As consensus, our experts rated 28 rules with high, 17 with medium, and 37 with low importance. Moreover, they perceived usability, maintainability, and compatibility as the most impacted quality attributes. The detailed analysis revealed that the experts saw rules for reaching Richardson maturity level 2 as critical, while reaching level 3 was less important. As the acquired consensus data may serve as valuable input for designing a tool-supported approach for the automatic quality evaluation of RESTful APIs, we briefly discuss requirements for such an approach and comment on the applicability of the most important rules.},
+	language = {en},
+	booktitle = {Service-{Oriented} {Computing}},
+	publisher = {Springer International Publishing},
+	author = {Kotstein, Sebastian and Bogner, Justus},
+	editor = {Barzen, Johanna},
+	year = {2021},
+	keywords = {Delphi study, Design rules, REST APIs, Software quality},
+	pages = {154--173},
+}

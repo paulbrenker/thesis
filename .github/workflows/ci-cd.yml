@@ -27,11 +27,14 @@ jobs:
         if: github.ref != 'refs/heads/main'
         uses: snnaplab/get-labels-action@v1.0.1
 
-  build_latex:
-    name: Build LaTeX
+  build_thesis:
+    name: Build LaTeX Thesis
     runs-on: ubuntu-latest
     needs: labeler
     if: github.ref == 'refs/head/main' || contains(needs.labeler.outputs.labels, 'text-change')
+    strategy:
+      matrix:
+        directory: ["tex/thesis", "tex/expose"]
     steps:
       - name: Check Out
         uses: actions/checkout@v4
@@ -39,7 +42,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          working_directory: tex
+          working_directory: ${{ matrix.directory }}
           root_file: main.tex
           latexmk_use_xelatex: true
 
@@ -119,4 +122,3 @@ jobs:
       - name: Build
         working-directory: tool
         run: npm run build
-        
