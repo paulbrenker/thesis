@@ -17,14 +17,32 @@ Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architec
   \item \textit{Layered System}: Der Client weiß nicht, ob er mit dem Endserver oder mit einem Zwischenserver verbunden ist. Alle mittleren Schichten sind versteckt.
   \item \textit{Code on demand}: Nur wenn angefragt schickt der Server dem Client ausführbaren Code.
 \end{enumerate}
-Das REST Architekturmodell ist sehr populär und die Anwendungen, die REST verwenden werden immer diverser und komplexer \parencite{kotstein_which_2021}. Da REST kein technischer Standard ist, wird die Art der Umsetzung der Prinzipien in häufig in der Literatur behandelt u.a. in \parencite{richardson_restful_2007}\parencite{masse_rest_2011}\parencite{webber_rest_2010}\parencite{renzel_todays_2012}.
+Das REST Architekturmodell ist sehr populär und die Anwendungen, die REST verwenden werden immer diverser und komplexer \parencite{kotstein_which_2021}. Da REST kein technischer Standard ist, wird die Art der Umsetzung der Prinzipien häufig in der Literatur behandelt u.a. in \parencite{richardson_restful_2007}\parencite{masse_rest_2011}\parencite{webber_rest_2010}\parencite{renzel_todays_2012}.
 
 \subsection{Qualitätskriterien}
-Für die korrekte Umsetzung der REST Prinzipien wurden viele Möglichkeiten der Sicherstellung der Qualität von REST APIs geschaffen. Dies reicht von Regeln, Qualitätsattributen, Best Practices zu Reifegradmodellen und automatischen Tests von Schnittstellen \parencite{kotstein_which_2021}. Der folgende Abschnitt beschäftigt sich mit diesen unterschiedlichen Arbeiten und versucht eine Einführung in das Thema zu bieten.
+Für die korrekte Umsetzung der REST Prinzipien wurden Möglichkeiten der Qualitätssicherung von REST APIs geschaffen. Dies reicht von Regeln, Qualitätsattributen, Best Practices zu Reifegradmodellen und automatischen Tests von Schnittstellen \parencite{kotstein_which_2021}. Der folgende Abschnitt beschäftigt sich mit diesen unterschiedlichen Arbeiten und versucht eine Einführung in das Thema zu bieten.
+
+Ein Rahmenwerk um den Qualitätsgrad einer REST API zu beurteilen ist das Richardson Reifegradmodell \parencite{richardson_restful_2007}. Dieses Modell unterscheidet zwischen vier Stufen, die REST APIs erreichen können\footnote{Siehe auch die visuelle Beschreibung des Reifegradmodells auf dem Blog von Martin Fowler \href{https://martinfowler.com/articles/richardsonMaturityModel.html}{https://martinfowler.com/articles/richardsonMaturityModel.html}}:
+\begin{enumerate}
+  \item \textit{1.}
+  \item \textit{2.}
+  \item \textit{3.}
+  \item \textit{4.}
+\end{enumerate}
+
+
+Massé stellt im Buch \textit{REST API Design Rulebook} \parencite{masse_rest_2011} 82 Regeln auf, die für ein Design von REST Prinzipien konformen APIs eingehalten werden sollen. Diese Regeln sind in fünf Kategorien unterteilt:
+\begin{enumerate}
+  \item \textit{Identifier Design with URIs}
+  \item \textit{Interaction Design with HTTP}
+  \item \textit{Metadata Design}
+  \item \textit{Representation Design}
+  \item \textit{Client Concerns}
+\end{enumerate}
+Das Ziel dieses Regelwerkes ist REST APIs konsistent zu designen und offene Fragen zu den REST Prinzipien zu beantworten. Auch weitere wissenschaftliche Arbeiten beschäftigen sich mit dem Erstellen von Regeln für das Design von REST APIs.
+
+Regeln für konsistentes Design von REST APIs werden auch in der Industrie erstellt. Einige große Firmen stellen Ihre Regeln öffentlich zur Verfügung. % HERE FOOTNOTE
 
 % Hier die verschiedenen ersteller nur erwähnen und auf deren Kontributionen eingehen. Nicht aber die Tragweite der Kontributionen erläutern. Danach dann vom REST Ruler Paper von Kotstein und Bogner direkt überleiten zum Linting und Theorie und Praxis hinter dem Linting.
-
-Massé stellt im Buch \textit{REST API Design Rulebook} \parencite{masse_rest_2011} 82 Regeln auf, die für ein Design von REST Prinzipien konformen APIs eingehalten werden sollen. 
-
 
 
