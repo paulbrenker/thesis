@@ -12,6 +12,7 @@
 This Repository contains multiple packages for different purposes:
 
 - [**analysis:**](analysis/README.md) Python data analysis pipeline.
+- [**data:**](data/README.md) Data Sources for Project
 - [**requirements:**](requirements/README.md) Directory containing requirements documentation for the developed software.
 - [**tex:**](tex/README.md) LaTeX package that contains the written part of the thesis. Documentation of using this can be found in
 - [**tool:**](tool/README.md) Typescript package containing main Software tool that is developed for the thesis
