@@ -24,10 +24,10 @@ Für die korrekte Umsetzung der REST Prinzipien wurden Möglichkeiten der Qualit
 
 Ein Rahmenwerk um den Qualitätsgrad einer REST API zu beurteilen ist das Richardson Reifegradmodell \parencite{richardson_restful_2007}. Dieses Modell unterscheidet zwischen vier Stufen, die REST APIs erreichen können\footnote{Siehe auch die visuelle Beschreibung des Reifegradmodells auf dem Blog von Martin Fowler \href{https://martinfowler.com/articles/richardsonMaturityModel.html}{https://martinfowler.com/articles/richardsonMaturityModel.html}}:
 \begin{enumerate}
-  \item \textit{1.}
-  \item \textit{2.}
-  \item \textit{3.}
-  \item \textit{4.}
+  \item \textit{Level 0 The Swamp of Pox:} Das Hypertext Transfer Protokoll (HTTP) wird als Tunnelmechanismus für Methodenaufrufe auf dem Server genutzt (Remote Procedure Call - RPC). Mechanismen des Internets werden nicht berücksichtigt.
+  \item \textit{Level 1 Resources:} Anstelle von Methodenaufrufen an einen einzelnen Endpunkt ist das Design Ressourcenorientiert. 
+  \item \textit{Level 2 HTTP Verbs:} Ressourceninteraktionen (Create, Read, Update und Delete) werden auf die Http Methoden GET, POST, PUT, DELETE abgebildet.
+  \item \textit{Level 3 Hypermedia Controls:} Folgeoperationen sind in Form von Hyperlinks in API Responses eingebettet.(HATEOAS - Hypermedia as the engine of application state).
 \end{enumerate}
 
 
