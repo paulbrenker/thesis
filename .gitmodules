@@ -1,6 +1,3 @@
 [submodule "openapi-directory"]
 	path = data/openapi-directory
 	url = https://github.com/APIs-guru/openapi-directory
-[submodule "data/openapi-directory"]
-	path = data/openapi-directory
-	url = https://github.com/APIs-guru/openapi-directory
