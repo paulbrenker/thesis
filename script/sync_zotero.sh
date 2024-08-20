@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BIB_FILE="tex/references.bib"
+BIB_FILE="tex/thesis/references.bib"
 
 if [ -f "$BIB_FILE" ]
 then

@@ -2,37 +2,21 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Run Python tests",
+      "label": "Synchronize References from Zotero",
       "type": "shell",
-      "command": "poetry run pytest",
+      "command": "./script/sync_zotero.sh && echo Synced bibliography successfully",
       "options": {
-        "cwd": "${workspaceFolder}/analysis"
+        "cwd": "${workspaceFolder}"
       },
       "group": {
-        "kind": "test",
+        "kind": "none",
         "isDefault": true
       },
       "presentation": {
         "reveal": "always"
       },
       "problemMatcher": []
-    },
-    {
-      "label": "Run TypeScript tests",
-      "type": "shell",
-      "command": "npm test",
-      "options": {
-        "cwd": "${workspaceFolder}/tool"
-      },
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      },
-      "presentation": {
-        "reveal": "always"
-      },
-      "problemMatcher": []
-    },
+    }
     {
       "label": "Run all tests",
       "type": "shell",
