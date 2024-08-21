@@ -77,6 +77,8 @@
     "proseWrap": "always"
   },
   "dependencies": {
+    "@stoplight/spectral-core": "^1.18.3",
+    "@stoplight/spectral-rulesets": "^1.19.1",
     "axios": "^1.7.3"
   }
 }
