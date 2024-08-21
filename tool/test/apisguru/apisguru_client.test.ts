@@ -18,6 +18,7 @@ describe('Specification Client', () => {
     const mockFiles = ['file1.txt', 'subdir']
     const mockSubFiles = ['file2.txt']
 
+    ;(fs.existsSync as jest.Mock).mockReturnValue(true)
     ;(fs.readdirSync as jest.Mock).mockImplementation((dirPath: string) => {
       if (dirPath === mockDirPath) return mockFiles
       if (dirPath === path.join(mockDirPath, 'subdir')) return mockSubFiles
@@ -54,12 +55,14 @@ describe('Specification Client', () => {
     expect(result).toEqual([])
   })
 
-  it('should throw when path is not available', () => {
-    const nonExistingDirPath = '/non-existant'
-    Globals.openapiDir = nonExistingDirPath
+  it('should throw a specific message when submodule not initialized', () => {
+    const mockDirPath = '/empty-directory'
 
-    expect(() => {
-      specClient.getSpecificationPaths()
-    }).toThrow("Cannot read properties of undefined (reading 'forEach')")
+    ;(fs.existsSync as jest.Mock).mockReturnValue(false)
+    Globals.openapiDir = mockDirPath
+
+    expect(() => specClient.getSpecificationPaths()).toThrow(
+      'the git submodule at /empty-directory was not found'
+    )
   })
 })

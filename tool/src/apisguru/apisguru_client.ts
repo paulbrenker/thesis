@@ -4,6 +4,11 @@ import Globals from './globals'
 
 class SpecificationClient {
   getSpecificationPaths(): Array<string> {
+    if (!fs.existsSync(Globals.openapiDir)) {
+      throw new Error(
+        `the git submodule at ${Globals.openapiDir} was not found`
+      )
+    }
     return this.getAllFiles(Globals.openapiDir)
   }
 
