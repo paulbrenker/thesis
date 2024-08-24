@@ -1,4 +1,4 @@
-import SpectralResultHandler from '../../src/spectral/spectral_result_handler'
+import { SpectralResultHandler } from '../../src/spectral/spectral_result_handler'
 import SpectralExecutor from '../../src/spectral/spectral_executor'
 import { promises as fs } from 'fs'
 import { oas } from '@stoplight/spectral-rulesets'

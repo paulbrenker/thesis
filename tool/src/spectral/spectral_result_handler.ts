@@ -2,23 +2,19 @@ import { ISpectralDiagnostic } from '@stoplight/spectral-core'
 import { JsonPath } from '@stoplight/types'
 
 class SpectralResultHandler {
-  handleResults(results: ISpectralDiagnostic[], rules: string[]) {
-    const mappedResults: Map<string, SpectralCSVObject> = results.reduce(
-      (acc, result) => {
-        const spectralObject = new SpectralCSVObject(
-          result.code.toString(),
-          result.message,
-          result.severity.valueOf(),
-          result.path
-        )
-        acc.set(result.code.toString(), spectralObject)
-        return acc
-      },
-      new Map<string, SpectralCSVObject>()
-    )
-    const csvRow: (SpectralCSVObject | null | undefined)[] = rules.map(rule =>
-      mappedResults.has(rule) ? mappedResults.get(rule) : null
-    )
+  handleResults(
+    results: ISpectralDiagnostic[],
+    rules: string[]
+  ): (SpectralCSVObject[] | undefined)[] {
+    const mappedResults = results.map(result => new SpectralCSVObject(result))
+    const resultCodes = results.map(result => result.code)
+
+    const csvRow: (SpectralCSVObject[] | undefined)[] = rules.map(rule => {
+      if (resultCodes.includes(rule)) {
+        return mappedResults.filter(element => element.code === rule)
+      } else null
+    })
+    return csvRow
   }
 }
 
@@ -28,12 +24,12 @@ class SpectralCSVObject {
   severity: number
   path: JsonPath
 
-  constructor(code: string, message: string, severity: number, path: JsonPath) {
-    this.code = code
-    this.message = message
-    this.severity = severity
-    this.path = path
+  constructor(fromISpectralDiagnostic: ISpectralDiagnostic) {
+    this.code = fromISpectralDiagnostic.code.toString()
+    this.message = fromISpectralDiagnostic.message
+    this.severity = fromISpectralDiagnostic.severity.valueOf()
+    this.path = fromISpectralDiagnostic.path
   }
 }
 
-export default SpectralResultHandler
+export { SpectralCSVObject, SpectralResultHandler }
