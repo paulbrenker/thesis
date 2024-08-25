@@ -7,7 +7,7 @@ class SpectralCsvWriter {
   public stream: fs.WriteStream
   private isReady = false
 
-  constructor(fileName: string, headers: string[], directory?: string) {
+  constructor(fileName: string, directory?: string) {
     const dir = directory || '.'
     this.filePath = path.join(dir, fileName)
     this.stream = fs.createWriteStream(this.filePath, { flags: 'a' })
@@ -39,7 +39,7 @@ class SpectralCsvWriter {
     await this.writeToFile(line)
   }
 
-  private writeToFile(data: string): Promise<void> {
+  private async writeToFile(data: string): Promise<void> {
     return new Promise((resolve, reject) => {
       this.stream.write(data, err => {
         if (err) reject(err)

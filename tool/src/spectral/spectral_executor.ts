@@ -9,12 +9,19 @@ import { promises as fs } from 'fs'
 
 class SpectralExecutor {
   private spectralRunner = new Spectral({ resolver: httpAndFileResolver })
+  private counter: number
+
+  constructor() {
+    this.counter = 0
+  }
 
   async getSpectralMessages(path: string): Promise<ISpectralDiagnostic[]> {
     this.spectralRunner.setRuleset(oas as RulesetDefinition)
 
     const oasAsString = await fs.readFile(path, 'utf8')
     const messages = this.spectralRunner.run(oasAsString)
+
+    console.log(`Linting Specification number ${this.counter++}`)
 
     return messages
   }

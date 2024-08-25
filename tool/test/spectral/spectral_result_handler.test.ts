@@ -17,21 +17,21 @@ describe('SpectralResultHandler', () => {
       ],
       rules: ['test-rule', 'unmatched-rule'],
       expected: [
-        [
+        JSON.stringify([
           new SpectralCSVObject({
             code: 'test-rule',
             message: 'test message',
             severity: 1
-          } as ISpectralDiagnostic)
-        ],
-        undefined
+          } as ISpectralDiagnostic).toString()
+        ]),
+        ''
       ]
     },
     {
       description: 'multiple messages per rule',
       spectralMessages: [],
       rules: ['test-rule', 'unmatched-rule'],
-      expected: [undefined, undefined]
+      expected: ['', '']
     },
     {
       description: 'no message to undefined',
@@ -49,19 +49,19 @@ describe('SpectralResultHandler', () => {
       ],
       rules: ['test-rule', 'unmatched-rule'],
       expected: [
-        [
-          {
+        JSON.stringify([
+          new SpectralCSVObject({
             code: 'test-rule',
             message: 'first message',
             severity: 1
-          } as ISpectralDiagnostic,
-          {
+          } as ISpectralDiagnostic).toString(),
+          new SpectralCSVObject({
             code: 'test-rule',
             message: 'second message',
             severity: 1
-          } as ISpectralDiagnostic
-        ],
-        undefined
+          } as ISpectralDiagnostic).toString()
+        ]),
+        ''
       ]
     }
   ])('should map $description successfully', input => {

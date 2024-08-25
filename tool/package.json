@@ -11,7 +11,8 @@
     "test:cov": "jest --coverage",
     "lint": "npx eslint . -c package.json",
     "format:check": "prettier --check **/*.ts",
-    "build": "rm -rf dist && npx tsc --p ./tsconfig.json"
+    "build": "rm -rf dist && npx tsc --p ./tsconfig.json",
+    "build:run": "npm run build && node dist/src/index.js"
   },
   "repository": {
     "type": "git",
