@@ -1,27 +1,62 @@
 import * as fs from 'fs'
 import * as path from 'path'
+import { promisify } from 'util'
 
 class SpectralCsvWriter {
   private filePath: string
-  private stream: fs.WriteStream
+  public stream: fs.WriteStream
+  private isReady = false
 
   constructor(fileName: string, headers: string[], directory?: string) {
     const dir = directory || '.'
     this.filePath = path.join(dir, fileName)
     this.stream = fs.createWriteStream(this.filePath, { flags: 'a' })
+  }
 
-    if (fs.statSync(this.filePath).size === 0) {
-      this.writeLine(headers)
+  async init(headers: string[]): Promise<void> {
+    await this.waitForStreamOpen()
+
+    const fileStat = await this.getFileStats()
+    if (fileStat.size === 0) {
+      await this.writeLine(headers)
     }
+    this.isReady = true
   }
 
-  writeLine(data: string[]): void {
+  private waitForStreamOpen(): Promise<void> {
+    return new Promise(resolve => {
+      this.stream.once('open', () => resolve())
+    })
+  }
+
+  private getFileStats(): Promise<fs.Stats> {
+    const stat = promisify(fs.stat)
+    return stat(this.filePath)
+  }
+
+  async writeLine(data: string[]): Promise<void> {
     const line = data.join(';') + '\n'
-    this.stream.write(line)
+    await this.writeToFile(line)
   }
 
-  close(): void {
-    this.stream.end()
+  private writeToFile(data: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.stream.write(data, err => {
+        if (err) reject(err)
+        else resolve()
+      })
+    })
+  }
+
+  async close(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.stream.end(() => resolve())
+      this.stream.on('error', err => reject(err))
+    })
+  }
+
+  isFileReady(): boolean {
+    return this.isReady
   }
 }
 
