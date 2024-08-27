@@ -1,7 +1,7 @@
 import SpecificationClient from '../../src/apisguru/apisguru_client'
 import * as fs from 'fs'
 import * as path from 'path'
-import Globals from '../../src/apisguru/globals'
+import Globals from '../../src/globals'
 
 jest.mock('fs')
 jest.mock('path')

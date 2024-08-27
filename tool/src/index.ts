@@ -3,8 +3,9 @@ import SpecificationClient from './apisguru/apisguru_client'
 import SpectralExecutor from './spectral/spectral_executor'
 import { SpectralResultHandler } from './spectral/spectral_result_handler'
 import SpectralCsvWriter from './spectral/spectral_result_writer'
-import * as path from 'path'
-import * as fs from 'fs'
+import * as Progress from 'ts-progress'
+import { execSync } from 'child_process'
+import Globals from './globals'
 
 async function main() {
   const client = new SpecificationClient()
@@ -16,29 +17,40 @@ async function main() {
   const runner = new SpectralExecutor()
   const handler = new SpectralResultHandler()
 
-  const directory = path.join('../data/linter-results')
+  const directory = Globals.linterResults
 
-  if (!fs.existsSync(directory)) {
-    fs.mkdirSync(directory)
-  }
-  const writer = new SpectralCsvWriter('2024-08-25.csv', directory)
+  const gitCommitHash = execSync('git rev-parse HEAD').toString().trim()
+  const currentDate = new Date().toISOString().slice(0, 10)
+
+  const fileName = `${currentDate}@${gitCommitHash}.csv`
+
+  const writer = new SpectralCsvWriter(fileName, directory)
   await writer.init(firstLine)
 
+  const bar = Progress.create({
+    total: paths.length,
+    pattern:
+      'Progress: {bar}\
+      | Elapsed: {elapsed.red}, Remaining: {remaining.green}\
+      | Memory: {memory.yellow}\
+      | Linting Spec No.: {current}/{total},  {percent.magenta}'
+  })
+
   await Promise.all(
-    paths.map(
-      async path =>
+    paths
+      .filter(path => !Globals.unlintableSpecs.includes(path))
+      .map(async path => {
+        const spectralMessages = await runner.getSpectralMessages(path)
+        bar.update()
         await writer.writeLine([
           path,
-          ...handler.handleResults(
-            await runner.getSpectralMessages(path),
-            rules
-          )
+          ...handler.handleResults(spectralMessages, rules)
         ])
-    )
+      })
   )
+
+  bar.done()
   await writer.close()
 }
-
-export default main
 
 main()

@@ -21,8 +21,6 @@ class SpectralExecutor {
     const oasAsString = await fs.readFile(path, 'utf8')
     const messages = this.spectralRunner.run(oasAsString)
 
-    console.log(`Linting Specification number ${this.counter++}`)
-
     return messages
   }
 }
