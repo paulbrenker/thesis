@@ -1,5 +1,5 @@
 import SpecificationClient from '../../src/apisguru/apisguru_client'
-import Globals from '../../src/apisguru/globals'
+import Globals from '../../src/globals'
 
 describe('Specification Client', () => {
   let specClient: SpecificationClient

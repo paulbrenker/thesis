@@ -27,7 +27,7 @@ describe('SpectralCsvWriter', () => {
   })
 
   it('should create a file and write headers if the file is empty', async () => {
-    const writer = new SpectralCsvWriter(testFileName, headers, testDir)
+    const writer = new SpectralCsvWriter(testFileName, testDir)
     await writer.init(headers)
 
     const fileExists = fs.existsSync(testFilePath)
@@ -40,7 +40,7 @@ describe('SpectralCsvWriter', () => {
   })
 
   it('should write data to the file', async () => {
-    const writer = new SpectralCsvWriter(testFileName, headers, testDir)
+    const writer = new SpectralCsvWriter(testFileName, testDir)
     await writer.init(headers)
 
     const data = ['provider', 'violation', 'undefined']
@@ -57,7 +57,7 @@ describe('SpectralCsvWriter', () => {
   })
 
   it('should append data to an existing file', async () => {
-    const writer = new SpectralCsvWriter(testFileName, headers, testDir)
+    const writer = new SpectralCsvWriter(testFileName, testDir)
     await writer.init(headers)
 
     const data1 = ['provider-1', 'violation', 'undefined']
@@ -78,7 +78,7 @@ describe('SpectralCsvWriter', () => {
   })
 
   it('should indicate when the file is ready', async () => {
-    const writer = new SpectralCsvWriter(testFileName, headers, testDir)
+    const writer = new SpectralCsvWriter(testFileName, testDir)
     expect(writer.isFileReady()).toBeFalsy()
 
     await writer.init(headers)
@@ -89,7 +89,7 @@ describe('SpectralCsvWriter', () => {
   })
 
   it('should close the file properly', async () => {
-    const writer = new SpectralCsvWriter(testFileName, headers, testDir)
+    const writer = new SpectralCsvWriter(testFileName, testDir)
     await writer.init(headers)
     await writer.writeLine(['John Doe', '30', 'New York'])
 

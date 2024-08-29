@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import Globals from './globals'
+import Globals from '../globals'
 
 class SpecificationClient {
   getSpecificationPaths(): Array<string> {

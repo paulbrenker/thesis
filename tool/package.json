@@ -11,7 +11,8 @@
     "test:cov": "jest --coverage",
     "lint": "npx eslint . -c package.json",
     "format:check": "prettier --check **/*.ts",
-    "build": "rm -rf dist && npx tsc --p ./tsconfig.json"
+    "build": "rm -rf dist && npx tsc --p ./tsconfig.json",
+    "build:exec": "npm run build && node dist/src/index.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/paul-brenker-1/thesis#readme",
   "devDependencies": {
+    "@types/bluebird": "^3.5.42",
     "@types/jest": "^29.5.12",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^22.5.0",
@@ -54,7 +56,10 @@
         "lines": 80,
         "statements": 80
       }
-    }
+    },
+    "coveragePathIgnorePatterns": [
+      "index.ts"
+    ]
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
@@ -84,6 +89,8 @@
   "dependencies": {
     "@stoplight/spectral-core": "^1.18.3",
     "@stoplight/spectral-rulesets": "^1.19.1",
-    "axios": "^1.7.3"
+    "axios": "^1.7.3",
+    "bluebird": "^3.7.2",
+    "ts-progress": "^0.1.9"
   }
 }
