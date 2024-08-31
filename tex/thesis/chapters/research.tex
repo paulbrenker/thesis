@@ -1,19 +1,22 @@
 \section{Forschungsstand}
 In diesem Kapitel wird der wissenschaftliche Kontext des Themas erläutert und eine Verbindung zu den relevanten Anwendungen in der Industrie aufgezeigt.
+Das Thema, mit dem sich diese Abschlussarbeit beschäftigt, ist dem Themengebiet Softwarequalität zuzuordnen. Die Unmöglichkeit, anhand einer Spezifikation zu entscheiden, ob ein beliebiges Programm korrekt ist, ist eine Konsequenz des Halteproblems, das von Alan Turing in dem Paper \textit{On Computable Numbers, with an Application to the Entscheidungsproblem} \parencite{turing_computable_1937} bewiesen wurde. Eine Spezifikation dokumentiert Anforderungen, Funktionen, Einschränkungen und Designentscheidungen einer Software \parencite{sommerville_software_2018}. Es ist zwar möglich die Korrektheit eines Programms mithilfe formaler Methoden zur Spezifikation zu beweisen. Dies ist allerdings teuer und im modernen Softwareengineering eher selten der Fall \parencite{reisig_informatik_2006}. Um dennoch qualitative Software zu produzieren, wird im zeitgenössischen Softwareengineering häufig eine Strategie von spezifikationsbasierten Testmethoden verfolgt \parencite{goos_testing_2001}.
+
+Um die Funktion von Software in verteilten Systemen nutzbar zu machen sind standardisierte Schnittstellenspezifikationen hilfreich u.a. \parencite{steen_distributed_2023}. Für das im Internet weitverbreitete Architekturprinzip REST ist die OpenAPI Spezifikation eine standardisierte Schnittstellendokumentation, die von der Linux Foundation entwickelt und gewartet wird. Die Qualität dieser Spezifikationen und die Bestimmung der Qualität dieser ist Thema dieser Arbeit.
 
 \subsection{REST}
 Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architectural_2000}. In seiner Dissertation definiert Roy Fielding die grundlegenden Prinzipien des Modells für verteilte Systeme. REST steht für \textit{Representational State Transfer}. Der Zustandsübergang (State Transfer) erfolgt durch Datentransfer, der den Folgezustand eines Systems repräsentiert. Fielding definiert sechs Prinzipien für REST.
 \begin{enumerate}
   \item \textit{Client-Server}: Der Server stellt Ressourcen bereit und der Client ruft diese ab. Der Client ruft Daten mit Anfragen ab und kann diese manipulieren. Benutzer Interfaces müssen von Datensicherung getrennt werden.
-  \item \textit{Stateless}: Zwischen Requests des Clients wird dessen Zustand nicht im Server gespeichert. Jeder Client verfügt über alle nötigen Informationen, um Antworten des Servers zu erhalten und wird als eigenständig betrachtet. 
+  \item \textit{Stateless}: Zwischen Requests des Clients wird dessen Zustand nicht im Server gespeichert. Jeder Client verfügt über alle nötigen Informationen, um Antworten des Servers zu erhalten und wird als eigenständig betrachtet.
   \item \textit{Cachable}: Server Antworten können als Cachable markiert werden, um Skalierbarkeit zu verbessern.
   \item \textit{Uniform Interface}: Prinzip, das einfache Schnittstellen Nutzung garantiert. Besteht aus vier Eigenschaften:
-  \begin{enumerate}
-    \item \textit{Resource addressability}: Ein REST Service hat eine URI als eindeutige Adresse. Diese identifiziert eine Ressource. Das standardisiert den Zugriff auf den Service.
-    \item \textit{Manipulation of resources through representations}: Wenn der Client Zugriff auf eine Repräsentation einer Resource hat, kann er diese auch manipulieren. Dies geschieht, indem die manipulierte Repräsentation an den Server gesendet wird.
-    \item \textit{Self descriptive messages}: Anfragen und Antworten müssen selbsterklärend sein.
-    \item \textit{Hypermedia As The Engine Of Application State(HATEOAS)}: Server Antworten verfügen über Informationen zu möglichen Folgeoperationen als Hyperlink. Diese informieren den Client über Aktionen basierend auf dessen Zustand, was eine Navigation über die Schnittstelle selbst ermöglicht.
-  \end{enumerate}
+        \begin{enumerate}
+          \item \textit{Resource addressability}: Ein REST Service hat eine URI als eindeutige Adresse. Diese identifiziert eine Ressource. Das standardisiert den Zugriff auf den Service.
+          \item \textit{Manipulation of resources through representations}: Wenn der Client Zugriff auf eine Repräsentation einer Resource hat, kann er diese auch manipulieren. Dies geschieht, indem die manipulierte Repräsentation an den Server gesendet wird.
+          \item \textit{Self descriptive messages}: Anfragen und Antworten müssen selbsterklärend sein.
+          \item \textit{Hypermedia As The Engine Of Application State(HATEOAS)}: Server Antworten verfügen über Informationen zu möglichen Folgeoperationen als Hyperlink. Diese informieren den Client über Aktionen basierend auf dessen Zustand, was eine Navigation über die Schnittstelle selbst ermöglicht.
+        \end{enumerate}
   \item \textit{Layered System}: Der Client weiß nicht, ob er mit dem Endserver oder mit einem Zwischenserver verbunden ist. Alle mittleren Schichten sind versteckt.
   \item \textit{Code on demand}: Nur wenn angefragt schickt der Server dem Client ausführbaren Code.
 \end{enumerate}
@@ -24,14 +27,14 @@ Für die korrekte Umsetzung der REST Prinzipien wurden Möglichkeiten der Qualit
 
 Ein Rahmenwerk um den Qualitätsgrad einer REST API zu beurteilen ist das Richardson Reifegradmodell \parencite{richardson_restful_2007}. Dieses Modell unterscheidet zwischen vier Stufen, die REST APIs erreichen können\footnote{Siehe auch die visuelle Beschreibung des Reifegradmodells auf dem Blog von Martin Fowler \href{https://martinfowler.com/articles/richardsonMaturityModel.html}{https://martinfowler.com/articles/richardsonMaturityModel.html}}:
 \begin{enumerate}
-  \item \textit{Level 0 The Swamp of Pox:} Das Hypertext Transfer Protokoll (HTTP) wird als Tunnelmechanismus für Methodenaufrufe auf dem Server genutzt (Remote Procedure Call - RPC). Mechanismen des Internets werden nicht berücksichtigt.
-  \item \textit{Level 1 Resources:} Anstelle von Methodenaufrufen an einen einzelnen Endpunkt ist das Design Ressourcenorientiert. 
-  \item \textit{Level 2 HTTP Verbs:} Ressourceninteraktionen (Create, Read, Update und Delete) werden auf die Http Methoden GET, POST, PUT, DELETE abgebildet.
-  \item \textit{Level 3 Hypermedia Controls:} Folgeoperationen sind in Form von Hyperlinks in API Responses eingebettet.(HATEOAS - Hypermedia as the engine of application state).
+  \item \textit{0 The Swamp of Pox:} Das Hypertext Transfer Protokoll (HTTP) wird als Tunnelmechanismus für Methodenaufrufe auf dem Server genutzt (Remote Procedure Call - RPC). Mechanismen des Internets werden nicht berücksichtigt.
+  \item \textit{1 Resources:} Anstelle von Methodenaufrufen an einen einzelnen Endpunkt ist das Design Ressourcenorientiert.
+  \item \textit{2 HTTP Verbs:} Ressourceninteraktionen (Create, Read, Update und Delete) werden auf die Http Methoden GET, POST, PUT, DELETE abgebildet.
+  \item \textit{3 Hypermedia Controls:} Folgeoperationen sind in Form von Hyperlinks in API Responses eingebettet.(HATEOAS - Hypermedia as the engine of application state).
 \end{enumerate}
 
-
-Massé stellt im Buch \textit{REST API Design Rulebook} \parencite{masse_rest_2011} 82 Regeln auf, die für ein Design von REST Prinzipien konformen APIs eingehalten werden sollen. Diese Regeln sind in fünf Kategorien unterteilt:
+Konkrete Regeln, um diese abstrakten Levels zu erreichen, finden sich in dem Buch \textit{REST API Design Rulebook} \parencite{masse_rest_2011}.
+Massé stellt 82 Regeln auf, die für ein Design von REST Prinzipien konformen APIs eingehalten werden sollen. Diese Regeln sind in fünf Kategorien unterteilt:
 \begin{enumerate}
   \item \textit{Identifier Design with URIs}
   \item \textit{Interaction Design with HTTP}
@@ -39,10 +42,27 @@ Massé stellt im Buch \textit{REST API Design Rulebook} \parencite{masse_rest_20
   \item \textit{Representation Design}
   \item \textit{Client Concerns}
 \end{enumerate}
-Das Ziel dieses Regelwerkes ist REST APIs konsistent zu designen und offene Fragen zu den REST Prinzipien zu beantworten. Auch weitere wissenschaftliche Arbeiten beschäftigen sich mit dem Erstellen von Regeln für das Design von REST APIs.
 
-Regeln für konsistentes Design von REST APIs werden auch in der Industrie erstellt. Einige große Firmen stellen Ihre Regeln öffentlich zur Verfügung. % HERE FOOTNOTE
+Das Ziel dieses Regelwerkes ist REST APIs konsistent zu designen und offene Fragen zu den REST Prinzipien zu beantworten. Auch weitere wissenschaftliche Arbeiten beschäftigen sich mit dem Erstellen von Regeln für das Design von REST APIs. Zu diesen gehören unter anderem \parencite{pautasso_restful_2014}\parencite{petrillo_are_2016}\parencite{palma_detection_2014}\parencite{palma_semantic_2017}\parencite{richardson_restful_2007}\parencite{masse_rest_2011}\parencite{webber_rest_2010}\parencite{renzel_todays_2012}\parencite{rodriguez_rest_2016}\parencite{kotstein_which_2021}.
+Die tatsächliche Umsetzung solcher Richtlinien für REST Schnittstellen ist jedoch nicht konform mit allen aufgestellten Qualitätsrichtlinien und Best Practices
+\parencite{renzel_todays_2012}\parencite{palma_detection_2014}\parencite{rodriguez_rest_2016}\parencite{petrillo_are_2016}\parencite{palma_semantic_2017}\parencite{neumann_analysis_2021}.
+Die meisten RESTful Schnittstellen sind auf dem Richardson Reifegradmodell auf Level 2 von 4. Dies hat laut \parencite{kotstein_which_2021} den Grund, dass Level 2 (Ressourcen orientiertes Design) in der Industrie als ausreichend angesehen wird.
 
-% Hier die verschiedenen ersteller nur erwähnen und auf deren Kontributionen eingehen. Nicht aber die Tragweite der Kontributionen erläutern. Danach dann vom REST Ruler Paper von Kotstein und Bogner direkt überleiten zum Linting und Theorie und Praxis hinter dem Linting.
+Regeln für konsistentes Design von REST APIs werden auch in der Industrie erstellt. Einige große Firmen stellen Ihre Regeln öffentlich zur Verfügung \footnote{Eine Kollektion von solchen Regelwerken findet sich auf der Seite des Herstellers des API Linting Tools Spectral: \href{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview\#-real-world-rulesets}{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview\#-real-world-rulesets}}
+
+\subsection{OpenAPI Spezifikation}
+Eine API Spezifikation stellt Informationen über die Schnittstelle und deren Funktionalität zur Verfügung \parencite{sommerville_software_2018}. Die OpenAPI Spezifikation ist ein programmiersprachenunabhängiger Standard für die Beschreibung von HTTP Schnittstellen\footnote{OpenAPI Spezifikation: \href{https://spec.openapis.org/oas/latest.html}{https://spec.openapis.org/oas/latest.html}}. Die OpenAPI Initiative (OAI) wurde als Industriekonsortium unter der Schirmherrschaft der Linux Foundation angestoßen\footnote{https://www.openapis.org/about}. Der Standard OpenAPI beruht auf der Swagger Spezifikation. Die Spezifikation ist sowohl Menschen als auch Maschinenlesbar und ermöglicht eine Minimierung des Aufwands zum Implementieren von Clients, um auf die Schnittstelle zuzugreifen. Die OpenAPI Spezifikation wird als JSON Schema bereitgestellt. Implementierungen von OpenAPI dokumentierten Schnittstellen, stellen entweder eine JSON oder eine YAML Datei zur Verfügung, die dem Schema entspricht. Diese Datei kann Maschinen-generiert sein oder von menschlichen Akteuren geschrieben werden. OpenAPI ist als Dokumentationsstandard für REST APIs weit verbreitet. Abweichungen in der Qualität der Implementierung von REST APIs sind jedoch auch innerhalb der OpenAPI Spezifikation ersichtlich \parencite{vaziri_generating_2017}. Um diese Qualitätsabweichungen festzustellen, eignen sich Tools zur statischen Codeanalyse, die im Softwareengineering häufig Linter genannt werden \parencite{tomasdottir_adoption_2018}.
+
+\subsection{API Linter}
+Es gibt mehrere Tools zur statischen Codeanalyse, die für die Verwendung mit Implementierungen der OpenAPI Spezifikation ausgelegt sind. Zally wird von der Firma Zalando entwickelt und kommt mit einem eigenen Regelwerk, das die Zalando REST API Guidelines implementiert.
+
+\subsubsection{Spectral}
+
+
+
+\subsection{Vergleichbare Studien}
+
+
+
 
 
