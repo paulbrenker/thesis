@@ -89,7 +89,6 @@
   "dependencies": {
     "@stoplight/spectral-core": "^1.18.3",
     "@stoplight/spectral-rulesets": "^1.19.1",
-    "axios": "^1.7.3",
     "bluebird": "^3.7.2",
     "ts-progress": "^0.1.9"
   }
