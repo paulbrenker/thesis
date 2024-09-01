@@ -131,3 +131,28 @@ jobs:
       - name: Build
         working-directory: tool
         run: npm run build
+
+  release:
+    if: github.ref == 'refs/heads/main'
+    needs: build_thesis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: thesis
+          path: ./
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v0.${{ github.run_number }}
+          name: "Release v0.${{ github.run_number }}"
+          files: ./thesis/main.pdf
