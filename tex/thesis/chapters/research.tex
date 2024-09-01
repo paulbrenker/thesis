@@ -54,9 +54,15 @@ Regeln für konsistentes Design von REST APIs werden auch in der Industrie erste
 Eine API Spezifikation stellt Informationen über die Schnittstelle und deren Funktionalität zur Verfügung \parencite{sommerville_software_2018}. Die OpenAPI Spezifikation ist ein programmiersprachenunabhängiger Standard für die Beschreibung von HTTP Schnittstellen\footnote{OpenAPI Spezifikation: \href{https://spec.openapis.org/oas/latest.html}{https://spec.openapis.org/oas/latest.html}}. Die OpenAPI Initiative (OAI) wurde als Industriekonsortium unter der Schirmherrschaft der Linux Foundation angestoßen\footnote{https://www.openapis.org/about}. Der Standard OpenAPI beruht auf der Swagger Spezifikation. Die Spezifikation ist sowohl Menschen als auch Maschinenlesbar und ermöglicht eine Minimierung des Aufwands zum Implementieren von Clients, um auf die Schnittstelle zuzugreifen. Die OpenAPI Spezifikation wird als JSON Schema bereitgestellt. Implementierungen von OpenAPI dokumentierten Schnittstellen, stellen entweder eine JSON oder eine YAML Datei zur Verfügung, die dem Schema entspricht. Diese Datei kann Maschinen-generiert sein oder von menschlichen Akteuren geschrieben werden. OpenAPI ist als Dokumentationsstandard für REST APIs weit verbreitet. Abweichungen in der Qualität der Implementierung von REST APIs sind jedoch auch innerhalb der OpenAPI Spezifikation ersichtlich \parencite{vaziri_generating_2017}. Um diese Qualitätsabweichungen festzustellen, eignen sich Tools zur statischen Codeanalyse, die im Softwareengineering häufig Linter genannt werden \parencite{tomasdottir_adoption_2018}.
 
 \subsection{API Linter}
-Es gibt mehrere Tools zur statischen Codeanalyse, die für die Verwendung mit Implementierungen der OpenAPI Spezifikation ausgelegt sind. Zally wird von der Firma Zalando entwickelt und kommt mit einem eigenen Regelwerk, das die Zalando REST API Guidelines implementiert.
+Es gibt mehrere Tools zur statischen Codeanalyse, die für die Verwendung mit Implementierungen der OpenAPI Spezifikation ausgelegt sind.
+
+Zally ist ein Open-Source API Linter, der von der Firma Zalando entwickelt wird\footnote{Dokumentation des Tools :\href{http://opensource.zalando.com/zally/}{http://opensource.zalando.com/zally/}}. Es besteht aus einem in Kotlin implementierten Kommandozeilentool (CLI) und einem Webfrontend. Regelwerke lassen sich nicht zu Laufzeit parsen, sondern werden mit dem Tool kompiliert und ausgeführt.
+
+In dem Artikel \textit{RESTRuler: Towards automatically Identifying Violations of RESTful Design Rules in Web APIs} \parencite{bogner_restruler_2024} entwerfen die Autoren ein eigenes Tool zur statischen Codeanalyse. Auch dieses Tool besteht aus Regeln mit einer standardisierten Schnittstelle. Es liest OpenAPI Dateien im JSON oder YAML Format und gibt eine Liste an Violations zurück. Das Regelwerk dieses Tools ist speziell entwickelt, um ausgewählte REST Design Regeln von Massé \parencite{masse_rest_2011} zu implementieren. Dabei greifen die Regeln von Kotstein und Bogner auch auf \textit{Natural Language Processing} zurück, um linguistische Qualitätsattribute zu extrahieren.
+
 
 \subsubsection{Spectral}
+Spectral ist ein von der Softwarefirma Stoplight entworfener Open-Source API Linter, der sich großer Beliebtheit erfreut \parencite{bogner_restruler_2024}.
 
 
 
