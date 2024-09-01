@@ -63,3 +63,11 @@ Language
 Processing
 Ruleset
 Specification
+format
+severity
+programmiersprachenunabhängiger
+.x
+On
+Numbers
+Computable
+Richardson
