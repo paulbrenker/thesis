@@ -45,14 +45,14 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          working_directory:
+          working_directory: ${{ matrix.directory }}
           root_file: main.tex
           latexmk_use_xelatex: true
 
       - name: Upload PDF as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: thesis-pdf
+          name: pdf
           path: ${{ matrix.directory }}/main.pdf
 
   build_python:
