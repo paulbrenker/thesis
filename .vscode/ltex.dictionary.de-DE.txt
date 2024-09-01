@@ -25,15 +25,12 @@ LeanIX
 Linting
 Rulebook
 Massé
-<<<<<<< HEAD
 with
 URIs
 Identifier
 Metadata
 Representation
 Concerns
-=======
->>>>>>> main
 apis.guru
 Procedure
 RPC
@@ -48,11 +45,5 @@ state
 Responses
 as
 the
-On
-Computable
-Numbers
-Richardson
-RESTful
-programmiersprachenunabhängiger
-Swagger
 Zally
+Swagger
