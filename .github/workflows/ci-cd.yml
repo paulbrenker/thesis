@@ -70,7 +70,6 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          cache: poetry
           python-version-file: analysis/.python-version
 
       - name: Install dependencies
