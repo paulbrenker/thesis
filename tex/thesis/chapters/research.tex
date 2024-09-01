@@ -62,13 +62,12 @@ In dem Artikel \textit{RESTRuler: Towards automatically Identifying Violations o
 
 
 \subsubsection{Spectral}
-Spectral ist ein von der Softwarefirma Stoplight entworfener Open-Source API Linter, der sich großer Beliebtheit erfreut \parencite{bogner_restruler_2024}. Spectral wird für die Analysen in dieser Bachelorarbeit verwendet. Der Hauptgrund dafür ist, dass Stoplight neben dem Tool auch ein Regelwerk veröffentlicht, das unabhängig von Anwenderspezifischen REST Guidelines einen Qualitätsstandard für die Implementation von OpenAPI Dokumenten durchsetzt\footnote{Das OAS Ruleset von Spectral: \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}}.
+Spectral ist ein von der Softwarefirma Stoplight entworfener Open-Source API Linter, der sich großer Beliebtheit erfreut \parencite{bogner_restruler_2024}. Spectral wird für die Analysen in dieser Bachelorarbeit verwendet. Der Grund dafür ist, dass Stoplight neben dem Tool auch ein Regelwerk veröffentlicht, das unabhängig von anwenderspezifischen REST Guidelines einen Qualitätsstandard für die Implementation von OpenAPI Dokumenten durchsetzt\footnote{Das OAS Ruleset von Spectral: \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}}.
+
+Regeln für das Spectral Tool werden deklarativ in JSON, YAML oder JavaScript Syntax formuliert. Alternativ können Regeln auch als benutzerdefinierte JavaScript Funktionen angegeben werden \parencite{bogner_restruler_2024}. Regeln lassen sich mit dem \texttt{format} Tag auf eine Version der OpenAPI Spezifikation festlegen. Zudem gibt es einen Schweregrad für Regelverstöße, der über das \texttt{severity} Attribut gesetzt werden kann.
+
+Das Spectral Standard Regelwerk OAS Ruleset(OpenAPI Specification Ruleset) enthält Regeln für \texttt{2.x.x} und \texttt{3.x.x} Versionen der OpenAPI Spezifikation. Die genaue Zielsetzung der Regeln ist dabei nicht von Stoplight dokumentiert. Die Regeln beziehen sich jedoch nicht auf die Formale Korrektheit der OpenAPI Implementation, sondern auf inhaltliche Schwächen und Inkonsistenzen. Das Regelwerk enthält 28 allgemein gültige Regeln. Zusätzlich sind 13 Regeln ausschließlich für Spezifikationen der Versionen \texttt{2.x.x} und 14 Regeln für die Versionen \texttt{3.x.x} enthalten.
 
 
 
 \subsection{Vergleichbare Studien}
-
-
-
-
-
