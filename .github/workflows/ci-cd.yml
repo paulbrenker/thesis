@@ -1,6 +1,9 @@
 name: CICD
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
 
@@ -45,6 +48,12 @@ jobs:
           working_directory: ${{ matrix.directory }}
           root_file: main.tex
           latexmk_use_xelatex: true
+
+      - name: Upload PDF as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: thesis-pdf
+          path: tex/thesis/main.pdf
 
   build_python:
     name: Format, Lint, Test Python
