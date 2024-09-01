@@ -52,7 +52,7 @@ jobs:
       - name: Upload PDF as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pdf
+          name: ${{ matrix.directory == 'tex/thesis' && 'thesis' || 'expose' }}
           path: ${{ matrix.directory }}/main.pdf
 
   build_python:
