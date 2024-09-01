@@ -136,6 +136,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: build_thesis
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Repository
