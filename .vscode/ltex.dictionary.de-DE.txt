@@ -25,12 +25,15 @@ LeanIX
 Linting
 Rulebook
 Massé
+<<<<<<< HEAD
 with
 URIs
 Identifier
 Metadata
 Representation
 Concerns
+=======
+>>>>>>> main
 apis.guru
 Procedure
 RPC
@@ -47,3 +50,4 @@ as
 the
 Zally
 Swagger
+Stoplight
