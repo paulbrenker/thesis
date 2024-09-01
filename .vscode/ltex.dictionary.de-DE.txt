@@ -51,3 +51,13 @@ the
 Zally
 Swagger
 Stoplight
+RESTRuler
+Towards
+automatically
+Identifying
+Violations
+RESTful
+Rules
+Kotstein
+Language
+Processing
