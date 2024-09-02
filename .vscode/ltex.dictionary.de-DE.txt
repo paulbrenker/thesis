@@ -25,15 +25,12 @@ LeanIX
 Linting
 Rulebook
 Massé
-<<<<<<< HEAD
 with
 URIs
 Identifier
 Metadata
 Representation
 Concerns
-=======
->>>>>>> main
 apis.guru
 Procedure
 RPC
@@ -71,3 +68,20 @@ On
 Numbers
 Computable
 Richardson
+Important
+and
+are
+Which
+how
+Improve
+Quality
+they
+do
+Service-Oriented
+APIs.guru
+non
+Do
+have
+on
+Mismatches
+Semantic
