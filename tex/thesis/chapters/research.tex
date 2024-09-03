@@ -4,7 +4,9 @@
 % Bezug zu Softwarequalität nicht kompliziert über Alan Turing begründen sondern simpel über Bergmann und Gernot Starke
 
 In diesem Kapitel wird der wissenschaftliche Kontext des Themas erläutert und eine Verbindung zu den relevanten Anwendungen in der Industrie aufgezeigt.
-Das Thema, mit dem sich diese Abschlussarbeit beschäftigt, ist dem Themengebiet Softwarequalität zuzuordnen. Qualitative Softwareprodukte lassen sich nach \texttt{ISO 25010}\footnote{ISO Standard 25010: \href{https://iso25000.com/index.php/en/iso-25000-standards/iso-25010}{https://iso25000.com/index.php/en/iso-25000-standards/iso-25010}} nach den acht Punkten Funktionalität, Effizienz, Kompatibilität, Benutzbarkeit, Zuverlässigkeit, Security, Wartbarkeit und Portierbarkeit charakterisieren. Ein Unterkriterium des Qualitätskriteriums Wartbarkeit ist die Testbarkeit \parencite{bergsmann_requirements_2023}. Softwaretests können an vielen Stellen angewendet werden und sind selbst als Softwarespezifikation geeignet \parencite{reisig_informatik_2006}. Eine Möglichkeit Softwarequalität automatisiert zu testen ist die statische Codeanalyse, häufig auch als Linting bezeichnet \parencite{tomasdottir_adoption_2018}. Eine Spezifikation dokumentiert Anforderungen, Funktionen, Einschränkungen und Designentscheidungen einer Software \parencite{sommerville_software_2018}. 
+Das Thema, mit dem sich diese Abschlussarbeit beschäftigt, ist dem Themengebiet Softwarequalität zuzuordnen. Qualitative Softwareprodukte lassen sich nach \texttt{ISO 25010}\footnote{ISO Standard 25010: \href{https://iso25000.com/index.php/en/iso-25000-standards/iso-25010}{https://iso25000.com/index.php/en/iso-25000-standards/iso-25010}} nach den acht Punkten Funktionalität, Effizienz, Kompatibilität, Benutzbarkeit, Zuverlässigkeit, Security, Wartbarkeit und Portierbarkeit charakterisieren. Ein Unterkriterium des Qualitätskriteriums Wartbarkeit ist die Testbarkeit \parencite{bergsmann_requirements_2023}. 
+
+Softwaretests können an vielen Stellen angewendet werden und sind selbst als Softwarespezifikation geeignet \parencite{reisig_informatik_2006}. Eine Möglichkeit Softwarequalität automatisiert zu testen ist die statische Codeanalyse, häufig auch als Linting bezeichnet \parencite{tomasdottir_adoption_2018}. Eine Spezifikation dokumentiert Anforderungen, Funktionen, Einschränkungen und Designentscheidungen einer Software \parencite{sommerville_software_2018}. 
 
 Um die Funktion von Software in verteilten Systemen nutzbar zu machen sind standardisierte Schnittstellenspezifikationen hilfreich u.a. \parencite{steen_distributed_2023}. Schnittstellen sollten außerdem "einfach zu erlernen und benutzen sein" \parencite{starke_effektive_2020}. Zudem sollen Schnittstellen bestimmte Qualitätsgarantien an die Software geben darunter Durchsatz, Performance und Verfügbarkeit \parencite{starke_effektive_2020}. 
 
@@ -18,10 +20,10 @@ Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architec
   \item \textit{Cachable}: Server Antworten können als Cachable markiert werden, um Skalierbarkeit zu verbessern.
   \item \textit{Uniform Interface}: Prinzip, das einfache Schnittstellen Nutzung garantiert. Besteht aus vier Eigenschaften:
         \begin{enumerate}
-          \item \textit{Resource addressability}: Ein REST Service hat eine URI als eindeutige Adresse. Diese identifiziert eine Ressource. Das standardisiert den Zugriff auf den Service.
-          \item \textit{Manipulation of resources through representations}: Wenn der Client Zugriff auf eine Repräsentation einer Resource hat, kann er diese auch manipulieren. Dies geschieht, indem die manipulierte Repräsentation an den Server gesendet wird.
-          \item \textit{Self descriptive messages}: Anfragen und Antworten müssen selbsterklärend sein.
-          \item \textit{Hypermedia As The Engine Of Application State(HATEOAS)}: Server Antworten verfügen über Informationen zu möglichen Folgeoperationen als Hyperlink. Diese informieren den Client über Aktionen basierend auf dessen Zustand, was eine Navigation über die Schnittstelle selbst ermöglicht.
+          \item \textbf{Resource addressability}: Ein REST Service hat eine URI als eindeutige Adresse. Diese identifiziert eine Ressource. Das standardisiert den Zugriff auf den Service.
+          \item \textbf{Manipulation of resources through representations}: Wenn der Client Zugriff auf eine Repräsentation einer Resource hat, kann er diese auch manipulieren. Dies geschieht, indem die manipulierte Repräsentation an den Server gesendet wird.
+          \item \textbf{Self descriptive messages}: Anfragen und Antworten müssen selbsterklärend sein.
+          \item \textbf{Hypermedia As The Engine Of Application State(HATEOAS)}: Server Antworten verfügen über Informationen zu möglichen Folgeoperationen als Hyperlink. Diese informieren den Client über Aktionen basierend auf dessen Zustand, was eine Navigation über die Schnittstelle selbst ermöglicht.
         \end{enumerate}
   \item \textit{Layered System}: Der Client weiß nicht, ob er mit dem Endserver oder mit einem Zwischenserver verbunden ist. Alle mittleren Schichten sind versteckt.
   \item \textit{Code on demand}: Nur wenn angefragt schickt der Server dem Client ausführbaren Code.
@@ -33,31 +35,36 @@ Für die korrekte Umsetzung der REST Prinzipien wurden Möglichkeiten der Qualit
 
 Ein Rahmenwerk um den Qualitätsgrad einer REST API zu beurteilen ist das Richardson Reifegradmodell \parencite{richardson_restful_2007}. Dieses Modell unterscheidet zwischen vier Stufen, die REST APIs erreichen können\footnote{Siehe auch die visuelle Beschreibung des Reifegradmodells auf dem Blog von Martin Fowler \href{https://martinfowler.com/articles/richardsonMaturityModel.html}{https://martinfowler.com/articles/richardsonMaturityModel.html}}:
 \begin{enumerate}
-  \item \textit{0 The Swamp of Pox:} Das Hypertext Transfer Protokoll (HTTP) wird als Tunnelmechanismus für Methodenaufrufe auf dem Server genutzt (Remote Procedure Call - RPC). Mechanismen des Internets werden nicht berücksichtigt.
-  \item \textit{1 Resources:} Anstelle von Methodenaufrufen an einen einzelnen Endpunkt ist das Design Ressourcenorientiert.
-  \item \textit{2 HTTP Verbs:} Ressourceninteraktionen (Create, Read, Update und Delete) werden auf die Http Methoden GET, POST, PUT, DELETE abgebildet.
-  \item \textit{3 Hypermedia Controls:} Folgeoperationen sind in Form von Hyperlinks in API Responses eingebettet.(HATEOAS - Hypermedia as the engine of application state).
+  \item \textbf{The Swamp of Pox:} Das Hypertext Transfer Protokoll (HTTP) wird als Tunnelmechanismus für Methodenaufrufe auf dem Server genutzt (Remote Procedure Call - RPC). Mechanismen des Internets werden nicht berücksichtigt.
+  \item \textbf{Resources:} Anstelle von Methodenaufrufen an einen einzelnen Endpunkt ist das Design Ressourcenorientiert.
+  \item \textbf{HTTP Verbs:} Ressourceninteraktionen (Create, Read, Update und Delete) werden auf die Http Methoden GET, POST, PUT, DELETE abgebildet.
+  \item \textbf{Hypermedia Controls:} Folgeoperationen sind in Form von Hyperlinks in API Responses eingebettet.(HATEOAS - Hypermedia as the engine of application state).
 \end{enumerate}
 
 Konkrete Regeln, um diese abstrakten Levels zu erreichen, finden sich in dem Buch \textit{REST API Design Rulebook} \parencite{masse_rest_2011}.
 Massé stellt 82 Regeln auf, die für ein Design von REST Prinzipien konformen APIs eingehalten werden sollen. Diese Regeln sind in fünf Kategorien unterteilt:
 \begin{enumerate}
-  \item \textit{Identifier Design with URIs}
-  \item \textit{Interaction Design with HTTP}
-  \item \textit{Metadata Design}
-  \item \textit{Representation Design}
-  \item \textit{Client Concerns}
+  \item \textbf{Identifier Design with URIs}
+  \item \textbf{Interaction Design with HTTP}
+  \item \textbf{Metadata Design}
+  \item \textbf{Representation Design}
+  \item \textbf{Client Concerns}
 \end{enumerate}
 
 Das Ziel dieses Regelwerkes ist REST APIs konsistent zu designen und offene Fragen zu den REST Prinzipien zu beantworten. Auch weitere wissenschaftliche Arbeiten beschäftigen sich mit dem Erstellen von Regeln für das Design von REST APIs. Zu diesen gehören unter anderem \parencite{pautasso_restful_2014}\parencite{petrillo_are_2016}\parencite{palma_detection_2014}\parencite{palma_semantic_2017}\parencite{richardson_restful_2007}\parencite{masse_rest_2011}\parencite{webber_rest_2010}\parencite{renzel_todays_2012}\parencite{rodriguez_rest_2016}\parencite{kotstein_which_2021}.
+
 Die tatsächliche Umsetzung solcher Richtlinien für REST Schnittstellen ist jedoch nicht konform mit allen aufgestellten Qualitätsrichtlinien und Best Practices
 \parencite{renzel_todays_2012}\parencite{palma_detection_2014}\parencite{rodriguez_rest_2016}\parencite{petrillo_are_2016}\parencite{palma_semantic_2017}\parencite{neumann_analysis_2021}.
+
 Die meisten RESTful Schnittstellen sind auf dem Richardson Reifegradmodell auf Level 2 von 4. Dies hat laut \parencite{kotstein_which_2021} den Grund, dass Level 2 (Ressourcen orientiertes Design) in der Industrie als ausreichend angesehen wird.
 
 Regeln für konsistentes Design von REST APIs werden auch in der Industrie erstellt. Einige große Firmen stellen Ihre Regeln öffentlich zur Verfügung \footnote{Eine Kollektion von solchen Regelwerken findet sich auf der Seite des Herstellers des API Linting Tools Spectral: \href{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview\#-real-world-rulesets}{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview\#-real-world-rulesets}}
 
+
 \subsection{OpenAPI Spezifikation}
-Eine API Spezifikation stellt Informationen über die Schnittstelle und deren Funktionalität zur Verfügung \parencite{sommerville_software_2018}. Die OpenAPI Spezifikation ist ein programmiersprachenunabhängiger Standard für die Beschreibung von HTTP Schnittstellen\footnote{OpenAPI Spezifikation: \href{https://spec.openapis.org/oas/latest.html}{https://spec.openapis.org/oas/latest.html}}. Die OpenAPI Initiative wurde als Industriekonsortium unter der Schirmherrschaft der Linux Foundation angestoßen\footnote{https://www.openapis.org/about}. Der Standard OpenAPI beruht auf der Swagger Spezifikation. Die Spezifikation ist sowohl Menschen als auch Maschinenlesbar und ermöglicht eine Minimierung des Aufwands zum Implementieren von Clients, um auf die Schnittstelle zuzugreifen. Die OpenAPI Spezifikation wird als JSON Schema bereitgestellt. Implementierungen von OpenAPI dokumentierten Schnittstellen, stellen entweder eine JSON oder eine YAML Datei zur Verfügung, die dem Schema entspricht. Diese Datei kann Maschinen-generiert sein oder von menschlichen Akteuren geschrieben werden. OpenAPI ist als Dokumentationsstandard für REST APIs weit verbreitet. Abweichungen in der Qualität der Implementierung von REST APIs sind jedoch auch innerhalb der OpenAPI Spezifikation ersichtlich \parencite{vaziri_generating_2017}. Um diese Qualitätsabweichungen festzustellen, eignen sich Tools zur statischen Codeanalyse, die im Softwareengineering häufig Linter genannt werden \parencite{tomasdottir_adoption_2018}.
+Eine API Spezifikation stellt Informationen über die Schnittstelle und deren Funktionalität zur Verfügung \parencite{sommerville_software_2018}. Die OpenAPI Spezifikation ist ein programmiersprachenunabhängiger Standard für die Beschreibung von HTTP Schnittstellen\footnote{OpenAPI Spezifikation: \href{https://spec.openapis.org/oas/latest.html}{https://spec.openapis.org/oas/latest.html}}. Die OpenAPI Initiative wurde als Industriekonsortium unter der Schirmherrschaft der Linux Foundation angestoßen\footnote{https://www.openapis.org/about}. Der Standard OpenAPI beruht auf der Swagger Spezifikation. Die Spezifikation ist sowohl Menschen als auch Maschinenlesbar und ermöglicht eine Minimierung des Aufwands zum Implementieren von Clients, um auf die Schnittstelle zuzugreifen. 
+
+Die OpenAPI Spezifikation wird als JSON Schema bereitgestellt. Implementierungen von OpenAPI dokumentierten Schnittstellen, stellen entweder eine JSON oder eine YAML Datei zur Verfügung, die dem Schema entspricht. Diese Datei kann Maschinen-generiert sein oder von menschlichen Akteuren geschrieben werden. OpenAPI ist als Dokumentationsstandard für REST APIs weit verbreitet. Abweichungen in der Qualität der Implementierung von REST APIs sind jedoch auch innerhalb der OpenAPI Spezifikation ersichtlich \parencite{vaziri_generating_2017}. Um diese Qualitätsabweichungen festzustellen, eignen sich Tools zur statischen Codeanalyse, die im Softwareengineering häufig Linter genannt werden \parencite{tomasdottir_adoption_2018}.
 
 \subsection{API Linter}
 Es gibt mehrere Tools zur statischen Codeanalyse, die für die Verwendung mit Implementierungen der OpenAPI Spezifikation ausgelegt sind.
@@ -74,16 +81,81 @@ Regeln für das Spectral Tool werden deklarativ in JSON, YAML oder JavaScript Sy
 
 Das Spectral Standard Regelwerk OAS Ruleset(OpenAPI Specification Ruleset) enthält Regeln für \texttt{2.x.x} und \texttt{3.x.x} Versionen der OpenAPI Spezifikation. Die genaue Zielsetzung der Regeln ist dabei nicht von Stoplight dokumentiert. Die Regeln beziehen sich jedoch nicht auf die Formale Korrektheit der OpenAPI Implementation, sondern auf inhaltliche Schwächen und Inkonsistenzen. Das Regelwerk enthält 28 allgemein gültige Regeln. Zusätzlich sind 13 Regeln ausschließlich für Spezifikationen der Versionen \texttt{2.x.x} und 14 Regeln für die Versionen \texttt{3.x.x} enthalten.
 
+Die im Verlauf der Arbeit relevanten Regeln werden hier eingeführt\footnote{Regeln, die nur auf OpenAPI 2.x  oder OpenAPI Version größer gleich 3.1 angewendet werden können, sind im Rahmen dieser Arbeit nicht relevant, da im verwendeten Datensatz alle Spezifikationen dem Standard OpenAPI 3.0 entsprechen.}
+
+\begin{table}[h]
+  \centering
+  \caption{Spectral OAS Regeln}
+  \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Regel Name} & \textbf{Regel Beschreibung} \\ \hline
+    % general rules
+    contact-properties & xxx \\ \hline
+    duplicated-entry-in-enum & xxx \\ \hline
+    info-contact & xxx \\ \hline
+    info-description & xxx \\ \hline
+    info-licence & xxx \\ \hline
+    licence-url & xxx \\ \hline
+    no-\$ref-siblings & xxx \\ \hline
+    no-eval-in-markdown & xxx \\ \hline
+    no-script-tags-in-markdown & xxx \\ \hline
+    openapi-tags & xxx \\ \hline
+    openapi-tags-alphabetical & xxx \\ \hline
+    openapi-tags-uniqueness & xxx \\ \hline
+    operation-description & xxx \\ \hline
+    operation-operationId & xxx \\ \hline
+    operation-operationId-unique & xxx \\ \hline
+    operation-operationId-valid-in-url & xxx \\ \hline
+    operation-parameters & xxx \\ \hline
+    operation-singular-tag & xxx \\ \hline
+    operation-success-response & xxx \\ \hline
+    operation-tags & xxx \\ \hline
+    operation-tag-defined & xxx \\ \hline
+    path-declarations-must-exist & xxx \\ \hline
+    path-keys-no-trailing-slash & xxx \\ \hline
+    path-not-include-query & xxx \\ \hline
+    path-params & xxx \\ \hline
+    tag-description & xxx \\ \hline
+    typed-enum & xxx \\ \hline
+    array-items & xxx \\ \hline
+    % oas3 rules
+    oas3-api-servers & xxx \\ \hline
+    oas3-examples-value-or-externalValue & xxx \\ \hline
+    oas3-operation-security-defined & xxx \\ \hline
+    oas3-parameter-description & xxx \\ \hline
+    oas3-schema & xxx \\ \hline
+    oas3-server-not-example & xxx \\ \hline
+    oas3-server-trailing-slash & xxx \\ \hline
+    oas3-unused-component & xxx \\ \hline
+    oas3-valid-media-example & xxx \\ \hline
+    oas3-valid-schema-example & xxx \\ \hline
+    oas3-server-variables & xxx \\ \hline
+    oas3-callbacks-in-callbacks & xxx \\ \hline
+  \end{tabular}
+\end{table}
+
+%% TODO add here an overview of al the rules
+%% TODO Problemstellung um Severity mapping korrekt erweitern
+%% TODO Untersuchen, welche Regeln von bekannten Anbietern deaktiviert werden.,
+
 \subsection{APIs Guru}
 APIs Guru ist ein populäres Open-Source-Projekt, das eine kuratierte Sammlung an OpenAPI Spezifikationen zur Verfügung stellt\footnote{APIs.guru Internetseite: \href{https://apis.guru/}{https://apis.guru/}}. Die Daten stehen in einem Repository auf der Plattform GitHub bereit und können von Entwicklern und Wissenschaftlern frei verwendet werden \parencite{serbout_apistic_2024}. Wegen des kuratierten Inhalts enthält es Daten von hoher Qualität. Nach Angaben der Entwickler werden nicht verlässliche (\textit{non reliable}) Spezifikationen herausgefiltert. Zudem werden alle zur Verfügung stehenden Spezifikationen in das Format OpenAPI 3.0 konvertiert. Sollten die Spezifikationen syntaktische Fehler enthalten, werden diese korrigiert\footnote{Dies sind die Angaben der Entwickler der Seite apis.guru. Diese lassen sich nicht verifizieren. Aufgrund mehrerer Erwähnungen und Verwendungen des Repository von APIs.guru in wissenschaftlicher Fachliteratur (z.B.: \parencite{serbout_apistic_2024}, \parencite{bogner_restruler_2024}) kann trotzdem von hoher Qualität der Daten ausgegangen werden.}. Die letzten Commits in dem APIs.guru Repository stammen von März 2024. Davor wurden zu jedem Werktag relevante Änderungen vorgenommen. In den Meldungen auf der Internetseite von APIs.guru finden sich keine Hinweise zu den Wartungsstopps im GitHub Repository.
+
+%% TODO Hier noch schreiben, welche Spezifikationen so in APIS.guru vertreten sind und wie die Verteilung ist. Dazu entweder zitieren oder selbst berechnen.
 
 
 \subsection{Vergleichbare Studien}
 Mehrere Arbeiten untersuchen bereits die genannten Themen, Konzepten, Technologien und Daten.
 In \textit{Semantic Analysis of RESTful APIs} \parencite{palma_semantic_2017} entwickeln Palma et al. eine Methode um automatisiert linguistische Antipatterns in Web APIs zu detektieren. Diese Methode wird in \parencite{palma_specification_2014} mit dem Namen \textit{Service-Oriented Framework for Antipatterns (SOFA)} implementiert.
 
-In den drei Artikeln \textit{Which RESTful API Design Rules are Important and how do they Improve Software Quality} \parencite{kotstein_which_2021}, \textit{Do RESTful API Design Rules have an Impact on the Understandability of Web APIs?} \parencite{bogner_restful_2023} und \textit{RESTRuler: Towards Automatically Identifying Violations of RESTful Design Rules in Web APIs} \parencite{bogner_restruler_2024} untersucht Bogner systematisch die automatische Verifikation von REST Qualitätsregeln nach \parencite{masse_rest_2011}. Zuerst werden "Mismatches zwischen theoretischen REST Konzepten und praktischen Implementierungen" \parencite{kotstein_which_2021} identifiziert. Im Rahmen einer Delphi Studie werden Industrieexperten mit einschlägiger Erfahrung zur Relevanz der Regeln aus \parencite{masse_rest_2011} befragt. Das Ergebnis des Delphi Konsensus ist, das nur ein kleiner Teil dieses Regelwerks in der Praxis als relevant empfunden wird. In der zweiten Studie \parencite{bogner_restful_2023} wird untersucht, ob Verstöße gegen die zuvor identifizierten wichtigen Regeln zu missverständlichen Interpretationen der Softwarespezifikation führen. Das Ergebnis ist, dass sowohl subjektives als auch objektives Verständnis einer Spezifikation mit Regelverstößen statistisch signifikant geringer ist als, wenn die Regeln eingehalten worden. Die dritte Studie ist am ehesten vergleichbar mit dem Vorgehen in dieser Arbeit. In diesem Papier wird ein Tool \textit{RESTRuler} zur statischen Codeanalyse entworfen, das als Eingabe OpenAPI Spezifikationen akzeptiert und als Ausgabe Violations gegen selektierte RESTful Prinzipien produziert. Als Grund für die Entwicklung eines eigenen Tools wird angegeben, das bestehende Tools (Spectral und Zally) sich ausschließlich auf Syntaxanalyse fokussieren und das Anlegen eines Regelwerks, das auf die Einhaltung von RESTful Designprinzipien validiert deshalb nicht möglich sei \parencite{bogner_restruler_2024}. Diese Entscheidung ist angesichts der Mächtigkeit insbesondere von Spectral nicht ausreichend begründet\footnote{Spectral bietet über benutzerdefinierte JavaScript Funktionen die Möglichkeit innerhalb der Funktion auf den gesamten Kontext (OpenAPI Spezifikation und Regelwerk) zuzugreifen. Dies ermöglicht eine Analyse über syntaktische Kriterien hinaus.}. Im weiteren Verlauf wird ein Regelwerk mit 14 Regeln ausgewählt von denen in den vorangehenden Studien 10 mit hoher Wichtigkeit und 6 mit hoher Auswirkung auf das Verständnis identifiziert wurden. Im Verlauf der Studie werden die Regeln auf über 2300 öffentlich verfügbare OpenAPI Spezifikationen aus dem APIs.guru Datensatz angewendet. Die Ergebnisse werden auf die Effektivität der Regeln und die Korrektheit des Tools untersucht. Das Ergebnis zeigt, dass sich RESTful Designregeln gut an den OpenAPI Implementationen verifizieren lassen.
+In den drei Artikeln \textit{Which RESTful API Design Rules are Important and how do they Improve Software Quality} \parencite{kotstein_which_2021}, \textit{Do RESTful API Design Rules have an Impact on the Understandability of Web APIs?} \parencite{bogner_restful_2023} und \textit{RESTRuler: Towards Automatically Identifying Violations of RESTful Design Rules in Web APIs} \parencite{bogner_restruler_2024} untersucht Bogner systematisch die automatische Verifikation von REST Qualitätsregeln nach \parencite{masse_rest_2011}. 
+
+Zuerst werden "Mismatches zwischen theoretischen REST Konzepten und praktischen Implementierungen" \parencite{kotstein_which_2021} identifiziert. Im Rahmen einer Delphi Studie \parencite{kotstein_which_2021} werden Industrieexperten mit einschlägiger Erfahrung zur Relevanz der Regeln aus \parencite{masse_rest_2011} befragt. Das Ergebnis des Delphi Konsensus ist, das nur ein kleiner Teil dieses Regelwerks in der Praxis als relevant empfunden wird. 
+
+In der zweiten Studie \parencite{bogner_restful_2023} wird untersucht, ob Verstöße gegen die zuvor identifizierten wichtigen Regeln zu missverständlichen Interpretationen der Softwarespezifikation führen. Das Ergebnis ist, dass sowohl subjektives als auch objektives Verständnis einer Spezifikation mit Regelverstößen statistisch signifikant geringer ist als, wenn die Regeln eingehalten worden. 
+
+Die dritte Studie ist am ehesten vergleichbar mit dem Vorgehen in dieser Arbeit. In diesem Papier wird ein Tool zur statischen Codeanalyse entworfen, das als Eingabe OpenAPI Spezifikationen akzeptiert und als Ausgabe Violations gegen selektierte RESTful Prinzipien produziert. Als Grund für die Entwicklung eines eigenen Tools wird angegeben, das bestehende Tools (Spectral und Zally) sich ausschließlich auf Syntaxanalyse fokussieren und das Anlegen eines Regelwerks, das auf die Einhaltung von RESTful Designprinzipien validiert deshalb nicht möglich sei \parencite{bogner_restruler_2024}. Diese Entscheidung ist angesichts der Mächtigkeit insbesondere von Spectral nicht ausreichend begründet\footnote{Spectral bietet über benutzerdefinierte JavaScript Funktionen die Möglichkeit innerhalb der Funktion auf den gesamten Kontext (OpenAPI Spezifikation und Regelwerk) zuzugreifen. Dies ermöglicht eine Analyse über syntaktische Kriterien hinaus.}. Im weiteren Verlauf wird ein Regelwerk mit 14 Regeln entwickelt, die in den vorhergehenden Studien als relevant identifiziert wurden. Im Verlauf der Studie werden die Regeln auf öffentlich verfügbare OpenAPI Spezifikationen aus dem APIs.guru Datensatz angewendet. Die Ergebnisse werden auf die Effektivität der Regeln und die Korrektheit des Tools untersucht. Das Ergebnis zeigt, dass sich RESTful Designregeln gut an den OpenAPI Implementationen verifizieren lassen.
 
 Zuletzt soll für als Studie mit einem vergleichbaren Ansatz eine Bachelorarbeit genannt werden. In \textit{Using BERT to measure objective quality of REST-API specifications} stellt \parencite{eriksson_using_2023} ein Konzept vor, um die objektive Qualität von OpenAPI Spezifikationen zu bewerten. Dafür werden wird ein Spectral Regelwerk verwendet, deren Regeln auf drei REST Qualitätsattribute abgebildet werden. Die generierten Linterfehler werden dann genutzt, um Googles  Transformer Modell BERT zu trainieren und OpenAPI Spezifikationen einen objektiven Wert zuzuordnen.
 
-Die genannten Studien zeigen, dass sich wissenschaftliche Arbeiten immer häufiger mit der Analyse von OpenAPI und der Verifikation von REST Designmerkmalen anhand dieser Spezifikationen beschäftigen. Das OpenAPI Spezifikationen aber nicht eindeutig sind und auch für die gleiche Schnittstelle OpenAPI Spezifikation mit abweichenden Qualitätsattributen vorliegen kann wurde in keiner bisher bekannten Studie näher untersucht.
+Die genannten Studien zeigen, dass sich der OpenAPI Standard dazu eignet wissenschaftliche Studien zu aktuellen Softwareengineering Themen durchzuführen. Das OpenAPI Spezifikationen aber nicht eindeutig sind und auch für die gleiche Schnittstelle OpenAPI Spezifikation mit abweichenden Qualitätsattributen vorliegen kann wurde in keiner bisher bekannten Studie näher untersucht. Einige Regelwerke wurde bereits für solche Studien verwendet. Nicht aber das OAS Regelwerk, das das Standardregelwerk des populären Spectral API Linters ist.
