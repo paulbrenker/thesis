@@ -85,56 +85,56 @@ Die im Verlauf der Arbeit relevanten Regeln werden hier eingeführt\footnote{Reg
 
 \begin{table}[h]
   \centering
-  \caption{Spectral OAS Regeln}
-  \begin{tabular}{|l|l|}
+  \caption{Spectral OAS Regeln: \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}}
+  \begin{tabular}{|l|p{0.5\linewidth}|}
     \hline
     \textbf{Regel Name} & \textbf{Regel Beschreibung} \\ \hline
-    % general rules
-    contact-properties & xxx \\ \hline
-    duplicated-entry-in-enum & xxx \\ \hline
-    info-contact & xxx \\ \hline
-    info-description & xxx \\ \hline
-    info-licence & xxx \\ \hline
-    licence-url & xxx \\ \hline
-    no-\$ref-siblings & xxx \\ \hline
-    no-eval-in-markdown & xxx \\ \hline
-    no-script-tags-in-markdown & xxx \\ \hline
-    openapi-tags & xxx \\ \hline
-    openapi-tags-alphabetical & xxx \\ \hline
-    openapi-tags-uniqueness & xxx \\ \hline
-    operation-description & xxx \\ \hline
-    operation-operationId & xxx \\ \hline
-    operation-operationId-unique & xxx \\ \hline
-    operation-operationId-valid-in-url & xxx \\ \hline
-    operation-parameters & xxx \\ \hline
-    operation-singular-tag & xxx \\ \hline
-    operation-success-response & xxx \\ \hline
-    operation-tags & xxx \\ \hline
-    operation-tag-defined & xxx \\ \hline
-    path-declarations-must-exist & xxx \\ \hline
-    path-keys-no-trailing-slash & xxx \\ \hline
-    path-not-include-query & xxx \\ \hline
-    path-params & xxx \\ \hline
-    tag-description & xxx \\ \hline
-    typed-enum & xxx \\ \hline
-    array-items & xxx \\ \hline
-    % oas3 rules
-    oas3-api-servers & xxx \\ \hline
-    oas3-examples-value-or-externalValue & xxx \\ \hline
-    oas3-operation-security-defined & xxx \\ \hline
-    oas3-parameter-description & xxx \\ \hline
-    oas3-schema & xxx \\ \hline
-    oas3-server-not-example & xxx \\ \hline
-    oas3-server-trailing-slash & xxx \\ \hline
-    oas3-unused-component & xxx \\ \hline
-    oas3-valid-media-example & xxx \\ \hline
-    oas3-valid-schema-example & xxx \\ \hline
-    oas3-server-variables & xxx \\ \hline
-    oas3-callbacks-in-callbacks & xxx \\ \hline
+    % ---------- GENERAL RULES -----------
+    contact-properties & Die drei Subattribute \texttt{name}, \texttt{url}, \texttt{email} des \texttt{info.contact}  Attributes müssen existieren \\ \hline
+    duplicated-entry-in-enum & Alle Werte in \texttt{enum} Typen müssen distinkt sein \\ \hline
+    info-contact &  Existenz des \texttt{info.contact} Attributes \\ \hline
+    info-description & Existenz des \texttt{info.description} Attributes \\ \hline
+    info-licence & Das \texttt{info} Objekt sollte einen \texttt{licence} key haben \\ \hline
+    licence-url & Das \texttt{info.licence} Objekt sollte eine \texttt{url} definieren \\ \hline
+    no-\$ref-siblings & Wenn ein Objekt eine Referenz mit \texttt{\$ref} enthält, darf es keine anderen Attribute haben \\ \hline
+    no-eval-in-markdown & Markdown Beschreibungsfelder dürfen keine Code Injektionen mit \texttt{eval()} Statement beinhalten\\ \hline
+    no-script-tags-in-markdown & Markdown Beschreibungsfelder dürfen keine Code Injektionen mit \texttt{<script>} Statement beinhalten \\ \hline
+    openapi-tags & Ein nichtleeres \texttt{tags} Array muss vorhanden sein \\ \hline
+    openapi-tags-alphabetical & Das \texttt{tags} Array sollte alphabetisch sortiert sein \\ \hline
+    openapi-tags-uniqueness & Elemente im \texttt{tags} Array dürfen nicht dupliziert sein \\ \hline
+    operation-description & API Operationen müssen eine \texttt{description} haben \\ \hline
+    operation-operationId & API Operationen sollten eine \texttt{operationId} haben \\ \hline
+    operation-operationId-unique & Operation Ids müssen unique sein \\ \hline
+    operation-operationId-valid-in-url & Operation Ids dürfen keine Chars enthalten die für URLs nicht valide sind. \\ \hline
+    operation-parameters & Operation Parameter sind unique und dürfen nicht wiederholt werden. \\ \hline
+    operation-singular-tag & Eine API Operation sollte nur einem Tag zugewiesen werden \\ \hline
+    operation-success-response & Eine API Operation muss mindestens eine Success Response (2xx oder 3xx) zurückgeben \\ \hline
+    operation-tags & Eine API Operation sollte ein nichtleeres \texttt{tags} Array haben \\ \hline
+    operation-tag-defined & Tags die in API Operation \texttt{tags} zugewiesen werden müssen in globalen \texttt{tags} definiert sein \\ \hline
+    path-declarations-must-exist & Pfad Parameter Variablen dürfen nicht leer (\texttt{{}}) sein \\ \hline
+    path-keys-no-trailing-slash & Pfad Deklarationen dürfen nicht mit einem Slash \texttt{/} enden \\ \hline
+    path-not-include-query & Pfad Deklarationen dürfen keine Query Parameter Deklarationen enthalten \\ \hline
+    path-params & Pfad Parameter müssen korrekt und valide sein \\ \hline
+    tag-description & Tags sollten eine \texttt{description} haben \\ \hline
+    typed-enum & Enum Typen müssen dem spezifiziertem \texttt{type} entsprechen \\ \hline
+    array-items & Schemas mit einem \texttt{type: array} Feld benötigen auch ein \texttt{item} Feld \\ \hline
+    % ---------- OAS 3 RULES -----------
+    oas3-api-servers & Das \texttt{servers} Objekt muss vorhanden sein \\ \hline
+    oas3-examples-value-or-externalValue & Beispiele für \texttt{requestBody} oder Response Beispiele können einen \texttt{externalValue} oder einen \texttt{value} haben aber nicht beide \\ \hline
+    oas3-operation-security-defined & Die API Operation \texttt{security} Werte müssen mit denen, die in \texttt{components.securitySchemes} definiert sind übereinstimmen \\ \hline
+    oas3-parameter-description & Parameter Objekte sollten eine \texttt{description haben} \\ \hline
+    oas3-schema & Schema Validierung nach OAS 3.0 JSON Schema \\ \hline
+    oas3-server-not-example & Die Server URL sollte nicht \texttt{example.com heißen} \\ \hline
+    oas3-server-trailing-slash & Die Server URL sollte keinen Slash \texttt{/} am Ende haben \\ \hline
+    oas3-unused-component & Potenziell ungenutzte, wiederverwendbare Components Einträge \\ \hline
+    oas3-valid-media-example & Definierte Beispiele müssen anhand der definierten Schemas valide sein \\ \hline
+    oas3-valid-schema-example & Definierte Beispiele in Schema Deklarationen müssen valide sein \\ \hline
+    oas3-server-variables & Server Variablen müssen, wenn definiert existent sein \\ \hline
+    oas3-callbacks-in-callbacks & Callbacks dürfen nicht verschachtelt werden \\ \hline
   \end{tabular}
 \end{table}
 
-%% TODO add here an overview of al the rules
+%% TODO Alle Regeln mit recommended und Severity versehen
 %% TODO Problemstellung um Severity mapping korrekt erweitern
 %% TODO Untersuchen, welche Regeln von bekannten Anbietern deaktiviert werden.,
 
