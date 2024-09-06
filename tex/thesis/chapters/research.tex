@@ -83,10 +83,10 @@ Das Spectral Standard Regelwerk OAS Ruleset(OpenAPI Specification Ruleset) enth�
 
 Die im Verlauf der Arbeit relevanten Regeln werden hier eingeführt\footnote{Regeln, die nur auf OpenAPI 2.x  oder OpenAPI Version größer gleich 3.1 angewendet werden können, sind im Rahmen dieser Arbeit nicht relevant, da im verwendeten Datensatz alle Spezifikationen dem Standard OpenAPI 3.0 entsprechen.}
 
-\begin{table}[h]
-  \centering
-  \caption{Spectral OAS Regeln: \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}}
-  \begin{tabular}{|l|p{0.5\linewidth}|}
+  \begin{longtable}{|l|p{0.5\linewidth}|}
+    \caption{ \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{Spectral OAS Regeln:}}
+    \endfirsthead
+    \endhead
     \hline
     \textbf{Regel Name} & \textbf{Regel Beschreibung} \\ \hline
     % ---------- GENERAL RULES -----------
@@ -131,8 +131,7 @@ Die im Verlauf der Arbeit relevanten Regeln werden hier eingeführt\footnote{Reg
     oas3-valid-schema-example & Definierte Beispiele in Schema Deklarationen müssen valide sein \\ \hline
     oas3-server-variables & Server Variablen müssen, wenn definiert existent sein \\ \hline
     oas3-callbacks-in-callbacks & Callbacks dürfen nicht verschachtelt werden \\ \hline
-  \end{tabular}
-\end{table}
+  \end{longtable}
 
 %% TODO Alle Regeln mit recommended und Severity versehen
 %% TODO Problemstellung um Severity mapping korrekt erweitern
