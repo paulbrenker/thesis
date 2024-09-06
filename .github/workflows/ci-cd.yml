@@ -134,7 +134,10 @@ jobs:
 
   release:
     if: github.ref == 'refs/heads/main'
-    needs: build_thesis
+    needs:
+      - build_thesis
+      - build_typescript
+      - build_python
     runs-on: ubuntu-latest
     permissions:
       contents: write
