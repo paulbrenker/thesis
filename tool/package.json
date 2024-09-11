@@ -88,6 +88,8 @@
     "@stoplight/spectral-core": "^1.18.3",
     "@stoplight/spectral-rulesets": "^1.19.1",
     "bluebird": "^3.7.2",
-    "ts-progress": "^0.1.9"
+    "jsonpath-plus": "^9.0.0",
+    "ts-progress": "^0.1.9",
+    "yaml": "^2.5.1"
   }
 }
