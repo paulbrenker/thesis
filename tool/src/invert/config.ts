@@ -31,8 +31,16 @@ export interface RuleMeta {
   message?: string
   recommended: boolean
   severity: string | number
-  given: string | string[]
-  triggers?: number
+  given: string[]
+  triggers: number
+  status: InverseStatus
+}
+
+export enum InverseStatus {
+  A = 'OPENAPI_2_X',
+  B = 'SINGLE_TRIGGER',
+  C = 'MULTI_TRIGGER',
+  D = 'MULTI_MESSAGE'
 }
 
 export const uncompiledRules: Record<string, RuleMeta> = {
@@ -41,7 +49,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     severity: 2,
     description: 'Operation must have at least one "2xx" or "3xx" response.',
     recommended: true,
-    given: '$.paths[*][get,put,post,delete,options,head,patch,trace]',
+    given: ['$.paths[*][get,put,post,delete,options,head,patch,trace]'],
     triggers: 2
   },
   'oas2-operation-formData-consume-check': {
@@ -50,7 +58,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     recommended: true,
     severity: 2,
     formats: ['oas2'],
-    given: '$.paths[*][get,put,post,delete,options,head,patch,trace]',
+    given: ['$.paths[*][get,put,post,delete,options,head,patch,trace]'],
     triggers: 2
   },
   'operation-operationId-unique': {
@@ -58,7 +66,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     description: 'Every operation must have unique "operationId".',
     recommended: true,
     severity: 0,
-    given: '$.paths',
+    given: ['$.paths'],
     triggers: -1 // depends on how many operations are in the api spec. worst case 50% are non unique so n/2
   },
   'operation-parameters': {
@@ -67,8 +75,9 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     message: '{{error}}',
     recommended: true,
     severity: 2,
-    given:
-      '$.paths[*][get,put,post,delete,options,head,patch,trace].parameters',
+    given: [
+      '$.paths[*][get,put,post,delete,options,head,patch,trace].parameters'
+    ],
     triggers: -3 //depends on number of params in total
   },
   'operation-tag-defined': {
@@ -76,7 +85,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     description: 'Operation tags must be defined in global tags.',
     severity: 2,
     recommended: true,
-    given: '$'
+    given: ['$']
   },
   'path-params': {
     formats: [],
@@ -84,14 +93,14 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     message: '{{error}}',
     severity: 0,
     recommended: true,
-    given: '$.paths'
+    given: ['$.paths']
   },
   'contact-properties': {
     formats: [],
     description: 'Contact object must have "name", "url" and "email".',
     recommended: false,
     severity: 2,
-    given: '$.info.contact'
+    given: ['$.info.contact']
   },
   'duplicated-entry-in-enum': {
     formats: [],
@@ -106,49 +115,49 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     description: 'Info object must have "contact" object.',
     severity: 2,
     recommended: true,
-    given: '$'
+    given: ['$']
   },
   'info-description': {
     formats: [],
     description: 'Info "description" must be present and non-empty string.',
     severity: 2,
     recommended: true,
-    given: '$'
+    given: ['$']
   },
   'info-license': {
     formats: [],
     description: 'Info object must have "license" object.',
     severity: 2,
     recommended: false,
-    given: '$'
+    given: ['$']
   },
   'license-url': {
     formats: [],
     description: 'License object must include "url".',
     severity: 2,
     recommended: false,
-    given: '$'
+    given: ['$']
   },
   'no-eval-in-markdown': {
     formats: [],
     description: 'Markdown descriptions must not have "eval(".',
     severity: 2,
     recommended: true,
-    given: '$..[description,title]'
+    given: ['$..[description,title]']
   },
   'no-script-tags-in-markdown': {
     formats: [],
     description: 'Markdown descriptions must not have "<script>" tags.',
     severity: 2,
     recommended: true,
-    given: '$..[description,title]'
+    given: ['$..[description,title]']
   },
   'openapi-tags-alphabetical': {
     formats: [],
     description: 'OpenAPI object must have alphabetical "tags".',
     severity: 2,
     recommended: false,
-    given: '$'
+    given: ['$']
   },
   'openapi-tags-uniqueness': {
     formats: [],
@@ -156,14 +165,14 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     message: '{{error}}',
     severity: 3,
     recommended: true,
-    given: '$.tags'
+    given: ['$.tags']
   },
   'openapi-tags': {
     formats: [],
     description: 'OpenAPI object must have non-empty "tags" array.',
     severity: 2,
     recommended: false,
-    given: '$'
+    given: ['$']
   },
   'operation-description': {
     formats: [],
@@ -171,14 +180,14 @@ export const uncompiledRules: Record<string, RuleMeta> = {
       'Operation "description" must be present and non-empty string.',
     severity: 2,
     recommended: true,
-    given: '$.paths[*][get,put,post,delete,options,head,patch,trace]'
+    given: ['$.paths[*][get,put,post,delete,options,head,patch,trace]']
   },
   'operation-operationId': {
     formats: [],
     description: 'Operation must have "operationId".',
     severity: 2,
     recommended: true,
-    given: '$.paths[*][get,put,post,delete,options,head,patch,trace]'
+    given: ['$.paths[*][get,put,post,delete,options,head,patch,trace]']
   },
   'operation-operationId-valid-in-url': {
     formats: [],
@@ -188,21 +197,21 @@ export const uncompiledRules: Record<string, RuleMeta> = {
       'operationId must not characters that are invalid when used in URL.',
     severity: 2,
     recommended: true,
-    given: '$.paths[*][get,put,post,delete,options,head,patch,trace]'
+    given: ['$.paths[*][get,put,post,delete,options,head,patch,trace]']
   },
   'operation-singular-tag': {
     formats: [],
     description: 'Operation must not have more than a single tag.',
     severity: 2,
     recommended: false,
-    given: '$.paths[*][get,put,post,delete,options,head,patch,trace]'
+    given: ['$.paths[*][get,put,post,delete,options,head,patch,trace]']
   },
   'operation-tags': {
     formats: [],
     description: 'Operation must have non-empty "tags" array.',
     severity: 2,
     recommended: true,
-    given: '$.paths[*][get,put,post,delete,options,head,patch,trace]'
+    given: ['$.paths[*][get,put,post,delete,options,head,patch,trace]']
   },
   'path-declarations-must-exist': {
     formats: [],
@@ -212,7 +221,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
       'Path parameter declarations must not be empty, ex."/given/{}" is invalid.',
     severity: 2,
     recommended: true,
-    given: '$.paths'
+    given: ['$.paths']
   },
   'path-keys-no-trailing-slash': {
     formats: [],
@@ -220,21 +229,21 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     message: 'Path must not end with slash.',
     severity: 2,
     recommended: true,
-    given: '$.paths'
+    given: ['$.paths']
   },
   'path-not-include-query': {
     formats: [],
     description: 'Path must not include query string.',
     severity: 2,
     recommended: true,
-    given: '$.paths'
+    given: ['$.paths']
   },
   'tag-description': {
     formats: [],
     description: 'Tag object must have "description".',
     severity: 2,
     recommended: false,
-    given: '$.tags[*]'
+    given: ['$.tags[*]']
   },
   'no-$ref-siblings': {
     formats: ['oas2', 'oas3_0'],
@@ -242,7 +251,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     message: '{{error}}',
     severity: 0,
     recommended: true,
-    given: "$..[?(@property === '$ref')]"
+    given: ["$..[?(@property === '$ref')]"]
   },
   'array-items': {
     formats: [],
@@ -250,7 +259,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     message: 'Schemas with "type: array", require a sibling "items" field',
     severity: 0,
     recommended: true,
-    given: '$..[?(@ && @.type=="array")]'
+    given: ['$..[?(@ && @.type=="array")]']
   },
   'typed-enum': {
     formats: [],
@@ -258,21 +267,21 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     message: '{{error}}',
     severity: 2,
     recommended: true,
-    given: '$..[?(@ && @.enum && @.type)]'
+    given: ['$..[?(@ && @.enum && @.type)]']
   },
   'oas2-api-host': {
     description: 'OpenAPI "host" must be present and non-empty string.',
     recommended: true,
     severity: 2,
     formats: ['oas2'],
-    given: '$'
+    given: ['$']
   },
   'oas2-api-schemes': {
     description: 'OpenAPI host "schemes" must be present and non-empty array.',
     recommended: true,
     severity: 2,
     formats: ['oas2'],
-    given: '$'
+    given: ['$']
   },
   'oas2-discriminator': {
     description: 'discriminator property must be defined and required',
@@ -280,7 +289,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     formats: ['oas2'],
     severity: 0,
     message: '{{error}}',
-    given: '$.definitions[?(@.discriminator)]'
+    given: ['$.definitions[?(@.discriminator)]']
   },
   'oas2-host-not-example': {
     description: 'Host URL must not point at example.com.',
@@ -294,14 +303,14 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     recommended: true,
     severity: 2,
     formats: ['oas2'],
-    given: '$'
+    given: ['$']
   },
   'oas2-parameter-description': {
     description: 'Parameter objects must have "description".',
     recommended: false,
     severity: 2,
     formats: ['oas2'],
-    given: '$..parameters[?(@ && @.in)]'
+    given: ['$..parameters[?(@ && @.in)]']
   },
   'oas2-operation-security-defined': {
     description:
@@ -333,7 +342,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     recommended: true,
     formats: ['oas2'],
     severity: 0,
-    given: '$..responses..[?(@ && @.schema && @.examples)]'
+    given: ['$..responses..[?(@ && @.schema && @.examples)]']
   },
   'oas2-anyOf': {
     message: '"anyOf" keyword must not be used in OpenAPI v2 document.',
@@ -342,7 +351,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     recommended: true,
     severity: 2,
     formats: ['oas2'],
-    given: '$..anyOf'
+    given: ['$..anyOf']
   },
   'oas2-oneOf': {
     message: '"oneOf" keyword must not be used in OpenAPI v2 document.',
@@ -351,7 +360,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     recommended: true,
     severity: 2,
     formats: ['oas2'],
-    given: '$..oneOf'
+    given: ['$..oneOf']
   },
   'oas2-schema': {
     description: 'Validate structure of OpenAPI v2 specification.',
@@ -359,21 +368,21 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     recommended: true,
     formats: ['oas2'],
     severity: 0,
-    given: '$'
+    given: ['$']
   },
   'oas2-unused-definition': {
     description: 'Potentially unused definition has been detected.',
     recommended: true,
     formats: ['oas2'],
     severity: 2,
-    given: '$.definitions'
+    given: ['$.definitions']
   },
   'oas3-api-servers': {
     description: 'OpenAPI "servers" must be present and non-empty array.',
     recommended: true,
     severity: 2,
     formats: ['oas3'],
-    given: '$'
+    given: ['$']
   },
   'oas3-examples-value-or-externalValue': {
     description: 'Examples must have either "value" or "externalValue" field.',
@@ -417,14 +426,14 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     recommended: false,
     severity: 2,
     formats: ['oas3'],
-    given: '$.servers[*].url'
+    given: ['$.servers[*].url']
   },
   'oas3-server-trailing-slash': {
     description: 'Server URL must not have trailing slash.',
     recommended: true,
     severity: 2,
     formats: ['oas3'],
-    given: '$.servers[*].url'
+    given: ['$.servers[*].url']
   },
   'oas3-valid-media-example': {
     description: 'Examples must be valid against their defined schema.',
@@ -457,7 +466,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     severity: 0,
     formats: ['oas3'],
     recommended: true,
-    given: '$'
+    given: ['$']
   },
   'oas3-unused-component': {
     description: 'Potentially unused component has been detected.',
@@ -465,7 +474,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     severity: 2,
     recommended: true,
     formats: ['oas3'],
-    given: '$'
+    given: ['$']
   },
   'oas3-server-variables': {
     formats: ['oas3'],

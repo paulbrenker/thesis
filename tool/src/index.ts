@@ -11,7 +11,7 @@ async function main() {
   const client = new SpecificationClient()
   const paths = client.getSpecificationPaths()
 
-  const rules = Object.keys(oas.rules)
+  const rules = Object.keys(oas.rules).slice(1, 3)
   const firstLine = ['specs', ...rules]
 
   const runner = new SpectralExecutor()
@@ -41,6 +41,7 @@ async function main() {
       .filter(path => !Globals.unlintableSpecs.includes(path))
       .map(async path => {
         const spectralMessages = await runner.getSpectralMessages(path)
+
         bar.update()
         await writer.writeLine([
           path,
