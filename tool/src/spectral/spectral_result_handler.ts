@@ -1,19 +1,10 @@
 import { ISpectralDiagnostic } from '@stoplight/spectral-core'
 import { JsonPath } from '@stoplight/types'
+import { Inversion } from 'src/invert/invert'
 
 class SpectralResultHandler {
-  handleResults(results: ISpectralDiagnostic[], rules: string[]): string[] {
-    const mappedResults = results.map(result => new SpectralCSVObject(result))
-    const resultCodes = results.map(result => result.code)
-    return rules.map(rule =>
-      resultCodes.includes(rule)
-        ? JSON.stringify(
-            mappedResults
-              .filter(element => element.code === rule)
-              .map(element => element.toString())
-          )
-        : ''
-    )
+  handleResults(results: Inversion[]): string[] {
+    return results.map(it => it.toString())
   }
 }
 

@@ -356,7 +356,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     recommended: false,
     severity: 2,
     formats: ['oas2'],
-    given: '$',
+    given: ['$'],
     triggers: -1,
     status: InverseStatus.OPENAPI_2_X
   },
