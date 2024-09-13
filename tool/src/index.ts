@@ -10,7 +10,7 @@ import { invert } from './invert/invert'
 
 async function main() {
   const client = new SpecificationClient()
-  const paths = client.getSpecificationPaths().slice(1, 3)
+  const paths = client.getSpecificationPaths()
 
   const rules = Object.keys(oas.rules)
   const firstLine = ['specs', ...rules]
