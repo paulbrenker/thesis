@@ -6,8 +6,10 @@ authors = ["Paul Brenker <paul.brenker@leanix.net>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12.5"
+python = "^3.12.3"
 pytest-coverage = "^0.0"
+pandas = "^2.2.2"
+ipykernel = "^6.29.5"
 
 [tool.poetry.dev-dependencies]
 pylint = "^3.2.5"
