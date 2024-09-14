@@ -14,3 +14,7 @@
 **Recommendation:**
 
 Install the recommended VSCode Extensions for Python formatting, linting and testing
+
+**Run a Jupyter Kernel**
+
+Run the following command `poetry run python -m ipykernel install --user --name thesis`
