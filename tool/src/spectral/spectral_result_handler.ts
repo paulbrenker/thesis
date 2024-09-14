@@ -4,7 +4,7 @@ import { Inversion } from 'src/invert/invert'
 
 class SpectralResultHandler {
   handleResults(results: Inversion[]): string[] {
-    return results.map(it => it.toString())
+    return results.map(it => it.toString().replace(';', ','))
   }
 }
 
