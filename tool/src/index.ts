@@ -6,6 +6,7 @@ import SpectralCsvWriter from './spectral/spectral_result_writer'
 import * as Progress from 'ts-progress'
 import { execSync } from 'child_process'
 import Globals from './globals'
+import { invert } from './invert/invert'
 
 async function main() {
   const client = new SpecificationClient()
@@ -41,10 +42,11 @@ async function main() {
       .filter(path => !Globals.unlintableSpecs.includes(path))
       .map(async path => {
         const spectralMessages = await runner.getSpectralMessages(path)
+        const invertedMessages = invert(spectralMessages, path)
         bar.update()
         await writer.writeLine([
           path,
-          ...handler.handleResults(spectralMessages, rules)
+          ...handler.handleResults(invertedMessages)
         ])
       })
   )
