@@ -93,3 +93,17 @@ quality
 specifications
 Transformer
 Linters
+linten
+Linten
+unlintbar
+UC
+Invertierungsdaten
+Invertierungsprozess
+arc
+Hruschka
+Arc
+.yaml
+Whiteboxes
+linter-results
+data
+Lintings
