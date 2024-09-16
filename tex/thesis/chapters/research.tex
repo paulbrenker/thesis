@@ -77,77 +77,97 @@ Spectral ist ein von der Softwarefirma Stoplight entworfener Open-Source API Lin
 
 Regeln für das Spectral Tool werden deklarativ in JSON, YAML oder JavaScript Syntax formuliert. Alternativ können Regeln auch als benutzerdefinierte JavaScript Funktionen angegeben werden \parencite{bogner_restruler_2024}. Regeln lassen sich mit dem \texttt{format} Tag auf eine Version der OpenAPI Spezifikation festlegen. Zudem gibt es einen Schweregrad für Regelverstöße, der über das \texttt{severity} Attribut gesetzt werden kann.
 
+\subsubsection{OAS Regelwerk}
+
 Das Spectral Standard Regelwerk OAS Ruleset(OpenAPI Specification Ruleset) enthält Regeln für \texttt{2.x.x} und \texttt{3.x.x} Versionen der OpenAPI Spezifikation. Die genaue Zielsetzung der Regeln ist dabei nicht von Stoplight dokumentiert. Die Regeln beziehen sich jedoch nicht auf die Formale Korrektheit der OpenAPI Implementation, sondern auf inhaltliche Schwächen und Inkonsistenzen. Das Regelwerk enthält 28 allgemein gültige Regeln. Zusätzlich sind 13 Regeln ausschließlich für Spezifikationen der Versionen \texttt{2.x.x} und 14 Regeln für die Versionen \texttt{3.x.x} enthalten.
 
 Die im Verlauf der Arbeit relevanten Regeln werden hier eingeführt\footnote{Regeln, die nur auf OpenAPI 2.x  oder OpenAPI Version größer gleich 3.1 angewendet werden können, sind im Rahmen dieser Arbeit nicht relevant, da im verwendeten Datensatz alle Spezifikationen dem Standard OpenAPI 3.0 entsprechen.}
-
-  \begin{longtable}{|l|p{0.5\linewidth}|}
+{\footnotesize 
+  \begin{longtable}{|l|p{0.3\linewidth}|c|c|}
     \caption{ \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{Spectral OAS Regeln:}}
+    \label{tab:OASRules}
     \endfirsthead
     \endhead
     \hline
-    \textbf{Regel Name} & \textbf{Regel Beschreibung} \\ \hline
+    \textbf{Regel Name} & \textbf{Regel Beschreibung} & \textbf{Schweregrad} & \ \textbf{Empfohlen}\\ \hline \hline
     % ---------- GENERAL RULES -----------
-    contact-properties & Die drei Subattribute \texttt{name}, \texttt{url}, \texttt{email} des \texttt{info.contact}  Attributes müssen existieren \\ \hline
-    duplicated-entry-in-enum & Alle Werte in \texttt{enum} Typen müssen distinkt sein \\ \hline
-    info-contact &  Existenz des \texttt{info.contact} Attributes \\ \hline
-    info-description & Existenz des \texttt{info.description} Attributes \\ \hline
-    info-licence & Das \texttt{info} Objekt sollte einen \texttt{licence} key haben \\ \hline
-    licence-url & Das \texttt{info.licence} Objekt sollte eine \texttt{url} definieren \\ \hline
-    no-\$ref-siblings & Wenn ein Objekt eine Referenz mit \texttt{\$ref} enthält, darf es keine anderen Attribute haben \\ \hline
-    no-eval-in-markdown & Markdown Beschreibungsfelder dürfen keine Code Injektionen mit \texttt{eval()} Statement beinhalten\\ \hline
-    no-script-tags-in-markdown & Markdown Beschreibungsfelder dürfen keine Code Injektionen mit \texttt{<script>} Statement beinhalten \\ \hline
-    openapi-tags & Ein nichtleeres \texttt{tags} Array muss vorhanden sein \\ \hline
-    openapi-tags-alphabetical & Das \texttt{tags} Array sollte alphabetisch sortiert sein \\ \hline
-    openapi-tags-uniqueness & Elemente im \texttt{tags} Array dürfen nicht dupliziert sein \\ \hline
-    operation-description & API Operationen müssen eine \texttt{description} haben \\ \hline
-    operation-operationId & API Operationen sollten eine \texttt{operationId} haben \\ \hline
-    operation-operationId-unique & Operation Ids müssen unique sein \\ \hline
-    operation-operationId-valid-in-url & Operation Ids dürfen keine Chars enthalten die für URLs nicht valide sind. \\ \hline
-    operation-parameters & Operation Parameter sind unique und dürfen nicht wiederholt werden. \\ \hline
-    operation-singular-tag & Eine API Operation sollte nur einem Tag zugewiesen werden \\ \hline
-    operation-success-response & Eine API Operation muss mindestens eine Success Response (2xx oder 3xx) zurückgeben \\ \hline
-    operation-tags & Eine API Operation sollte ein nichtleeres \texttt{tags} Array haben \\ \hline
-    operation-tag-defined & Tags die in API Operation \texttt{tags} zugewiesen werden müssen in globalen \texttt{tags} definiert sein \\ \hline
-    path-declarations-must-exist & Pfad Parameter Variablen dürfen nicht leer (\texttt{{}}) sein \\ \hline
-    path-keys-no-trailing-slash & Pfad Deklarationen dürfen nicht mit einem Slash \texttt{/} enden \\ \hline
-    path-not-include-query & Pfad Deklarationen dürfen keine Query Parameter Deklarationen enthalten \\ \hline
-    path-params & Pfad Parameter müssen korrekt und valide sein \\ \hline
-    tag-description & Tags sollten eine \texttt{description} haben \\ \hline
-    typed-enum & Enum Typen müssen dem spezifiziertem \texttt{type} entsprechen \\ \hline
-    array-items & Schemas mit einem \texttt{type: array} Feld benötigen auch ein \texttt{item} Feld \\ \hline
+    contact-properties & Die drei Subattribute \texttt{name}, \texttt{url}, \texttt{email} des \texttt{info.contact}  Attributes müssen existieren & \texttt{warn} & Nein \\ \hline
+    duplicated-entry-in-enum & Alle Werte in \texttt{enum} Typen müssen distinkt sein & \texttt{warn} & Ja \\ \hline
+    info-contact &  Existenz des \texttt{info.contact} Attributes & \texttt{warn} & Ja \\ \hline
+    info-description & Existenz des \texttt{info.description} Attributes & \texttt{warn} & Ja \\ \hline
+    info-licence & Das \texttt{info} Objekt sollte einen \texttt{licence} key haben & \texttt{warn} & Ja \\ \hline
+    licence-url & Das \texttt{info.licence} Objekt sollte eine \texttt{url} definieren & \texttt{warn} & Nein \\ \hline
+    no-\$ref-siblings & Wenn ein Objekt eine Referenz mit \texttt{\$ref} enthält, darf es keine anderen Attribute haben & \texttt{hint} & Ja \\ \hline
+    no-eval-in-markdown & Markdown Beschreibungsfelder dürfen keine Code Injektionen mit \texttt{eval()} Statement beinhalten & \texttt{warn} & Ja \\ \hline
+    no-script-tags-in-markdown & Markdown Beschreibungsfelder dürfen keine Code Injektionen mit \texttt{<script>} Statement beinhalten & \texttt{warn} & Ja \\ \hline
+    openapi-tags & Ein nichtleeres \texttt{tags} Array muss vorhanden sein & \texttt{warn} & Nein \\ \hline
+    openapi-tags-alphabetical & Das \texttt{tags} Array sollte alphabetisch sortiert sein & \texttt{warn} & Nein \\ \hline
+    openapi-tags-uniqueness & Elemente im \texttt{tags} Array dürfen nicht dupliziert sein & \texttt{error} & Ja \\ \hline
+    operation-description & API Operationen müssen eine \texttt{description} haben & \texttt{warn} & Ja \\ \hline
+    operation-operationId & API Operationen sollten eine \texttt{operationId} haben & \texttt{warn} & Ja \\ \hline
+    operation-operationId-unique & Operation Ids müssen unique sein & \texttt{hint} & Ja\\ \hline
+    operation-operationId-valid-in-url & Operation Ids dürfen keine Chars enthalten die für URLs nicht valide sind. & \texttt{warn} & Ja \\ \hline
+    operation-parameters & Operation Parameter sind unique und dürfen nicht wiederholt werden. & \texttt{warn} & Ja \\ \hline
+    operation-singular-tag & Eine API Operation sollte nur einem Tag zugewiesen werden & \texttt{warn} & Nein \\ \hline
+    operation-success-response & Eine API Operation muss mindestens eine Success Response (2xx oder 3xx) zurückgeben & \texttt{warn} & Ja \\ \hline
+    operation-tags & Eine API Operation sollte ein nichtleeres \texttt{tags} Array haben & \texttt{warn} & Ja \\ \hline
+    operation-tag-defined & Tags die in API Operation \texttt{tags} zugewiesen werden müssen in globalen \texttt{tags} definiert sein & \texttt{warn} & Ja \\ \hline
+    path-declarations-must-exist & Pfad Parameter Variablen dürfen nicht leer (\texttt{{}}) sein & \texttt{warn} & Ja \\ \hline
+    path-keys-no-trailing-slash & Pfad Deklarationen dürfen nicht mit einem Slash \texttt{/} enden & \texttt{warn} & Ja \\ \hline
+    path-not-include-query & Pfad Deklarationen dürfen keine Query Parameter Deklarationen enthalten & \texttt{warn} & Ja \\ \hline
+    path-params & Pfad Parameter müssen korrekt und valide sein & \texttt{hint} & Ja \\ \hline
+    tag-description & Tags sollten eine \texttt{description} haben & \texttt{warn} & Nein \\ \hline
+    typed-enum & Enum Typen müssen dem spezifiziertem \texttt{type} entsprechen & \texttt{warn} & Ja \\ \hline
+    array-items & Schemas mit einem \texttt{type: array} Feld benötigen auch ein \texttt{item} Feld & \texttt{hint} & Ja \\ \hline
     % ---------- OAS 3 RULES -----------
-    oas3-api-servers & Das \texttt{servers} Objekt muss vorhanden sein \\ \hline
-    oas3-examples-value-or-externalValue & Beispiele für \texttt{requestBody} oder Response Beispiele können einen \texttt{externalValue} oder einen \texttt{value} haben aber nicht beide \\ \hline
-    oas3-operation-security-defined & Die API Operation \texttt{security} Werte müssen mit denen, die in \texttt{components.securitySchemes} definiert sind übereinstimmen \\ \hline
-    oas3-parameter-description & Parameter Objekte sollten eine \texttt{description haben} \\ \hline
-    oas3-schema & Schema Validierung nach OAS 3.0 JSON Schema \\ \hline
-    oas3-server-not-example & Die Server URL sollte nicht \texttt{example.com heißen} \\ \hline
-    oas3-server-trailing-slash & Die Server URL sollte keinen Slash \texttt{/} am Ende haben \\ \hline
-    oas3-unused-component & Potenziell ungenutzte, wiederverwendbare Components Einträge \\ \hline
-    oas3-valid-media-example & Definierte Beispiele müssen anhand der definierten Schemas valide sein \\ \hline
-    oas3-valid-schema-example & Definierte Beispiele in Schema Deklarationen müssen valide sein \\ \hline
-    oas3-server-variables & Server Variablen müssen, wenn definiert existent sein \\ \hline
-    oas3-callbacks-in-callbacks & Callbacks dürfen nicht verschachtelt werden \\ \hline
+    oas3-api-servers & Das \texttt{servers} Objekt muss vorhanden sein & \texttt{warn} & Ja \\ \hline
+    oas3-examples-value-or-externalValue & Beispiele für \texttt{requestBody} oder Response Beispiele können einen \texttt{externalValue} oder einen \texttt{value} haben aber nicht beide & \texttt{warn} & Ja \\ \hline
+    oas3-operation-security-defined & Die API Operation \texttt{security} Werte müssen mit denen, die in \texttt{components.securitySchemes} definiert sind übereinstimmen & \texttt{warn} & Ja \\ \hline
+    oas3-parameter-description & Parameter Objekte sollten eine \texttt{description haben} & \texttt{warn} & Nein\\ \hline
+    oas3-schema & Schema Validierung nach OAS 3.0 JSON Schema & \texttt{hint} & Ja \\ \hline
+    oas3-server-not-example & Die Server URL sollte nicht \texttt{example.com heißen} & \texttt{warn} & Nein \\ \hline
+    oas3-server-trailing-slash & Die Server URL sollte keinen Slash \texttt{/} am Ende haben & \texttt{warn} & Ja \\ \hline
+    oas3-unused-component & Potenziell ungenutzte, wiederverwendbare Components Einträge & \texttt{warn} & Ja \\ \hline
+    oas3-valid-media-example & Definierte Beispiele müssen anhand der definierten Schemas valide sein & \texttt{hint} & Ja \\ \hline
+    oas3-valid-schema-example & Definierte Beispiele in Schema Deklarationen müssen valide sein & \texttt{hint} & Ja \\ \hline
+    oas3-server-variables & Server Variablen müssen, wenn definiert existent sein & \texttt{hint} & Ja \\ \hline
+    oas3-callbacks-in-callbacks & Callbacks dürfen nicht verschachtelt werden & \texttt{warn} & Ja\\ \hline
+  \end{longtable}
+}
+Die in Tabelle \ref{tab:OASRules} vorgestellten Attribute Schweregrad (\textit{severity}) und Empfohlen (\textit{recommended}) sind Teil des Spectral OAS Regelwerks. Die Ausgabe des Regelwerks lässt sich so konfigurieren, dass nur Linterfehler ab einem bestimmten Schweregrad zur Laufzeit einen Fehler werfen. Für die Abbildung der Regeln auf ihre Relevanz kann es interessant sein die Ergebnisse mit den vorkonfigurierten Schweregraden der Regeln zu vergleichen. Mit dem Empfohlen Attribut können einige Regeln für den Linting Prozess von vorneherein ausgeschlossen werden\footnote{Siehe dazu hier: \href{https://docs.stoplight.io/docs/spectral/0a73453054745-recommended-or-all}{https://docs.stoplight.io/docs/spectral/0a73453054745-recommended-or-all}}. Auch dies kann helfen, um  in der Analyse Schlüsse über die Relevanz von Regeln zu ziehen.
+
+Von Stoplight Referenzierte industriell genutzte Spectral Regelwerke verwenden auch das Spectral OAS Regelwerk\footnote{Real World Spectral Regelwerke: \href{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview\#-real-world-rulesets}{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview\#-real-world-rulesets}}. Dabei deaktivieren Entwickler dort Regeln. Deaktivierte Regeln in Linter Regelwerken können darauf hinweisen, dass Regeln von Entwicklern als nicht wichtig empfunden werden \parencite{tomasdottir_adoption_2018}. In \ref{tab:DeactivatedRules}
+  \begin{longtable}{|l|l|l|}
+    \caption{ \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{Deaktivierte OAS Regeln:}}
+    \label{tab:DeactivatedRules}
+    \endfirsthead
+    \endhead
+    \hline
+    \textbf{Adidas} & \textbf{Azure} & \textbf{Box} \\ \hline \hline
+    operation-tags & operation-tags & tag-description \\ \hline
+    operation-operationId & no-\$ref-siblings & example-value-or-externalValue \\ \hline
+    operation-2xx-response & openapi-tags &  oas3-unused-components-schema \\ \hline
+    & operation-description &  oas3-valid-oas-content-example \\ \hline
+    & info-contact & \\ \hline
+    & operation-tag-defined & \\ \hline
   \end{longtable}
 
-%% TODO Alle Regeln mit recommended und Severity versehen
-%% TODO Problemstellung um Severity mapping korrekt erweitern
-%% TODO Untersuchen, welche Regeln von bekannten Anbietern deaktiviert werden.,
 
 \subsection{APIs Guru}
 APIs Guru ist ein populäres Open-Source-Projekt, das eine kuratierte Sammlung an OpenAPI Spezifikationen zur Verfügung stellt\footnote{APIs.guru Internetseite: \href{https://apis.guru/}{https://apis.guru/}}. Die Daten stehen in einem Repository auf der Plattform GitHub bereit und können von Entwicklern und Wissenschaftlern frei verwendet werden \parencite{serbout_apistic_2024}. Wegen des kuratierten Inhalts enthält es Daten von hoher Qualität. Nach Angaben der Entwickler werden nicht verlässliche (\textit{non reliable}) Spezifikationen herausgefiltert. Zudem werden alle zur Verfügung stehenden Spezifikationen in das Format OpenAPI 3.0 konvertiert. Sollten die Spezifikationen syntaktische Fehler enthalten, werden diese korrigiert\footnote{Dies sind die Angaben der Entwickler der Seite apis.guru. Diese lassen sich nicht verifizieren. Aufgrund mehrerer Erwähnungen und Verwendungen des Repository von APIs.guru in wissenschaftlicher Fachliteratur (z.B.: \parencite{serbout_apistic_2024}, \parencite{bogner_restruler_2024}) kann trotzdem von hoher Qualität der Daten ausgegangen werden.}. Die letzten Commits in dem APIs.guru Repository stammen von März 2024. Davor wurden zu jedem Werktag relevante Änderungen vorgenommen. In den Meldungen auf der Internetseite von APIs.guru finden sich keine Hinweise zu den Wartungsstopps im GitHub Repository.
 
+Im OpenAPI Directory sind insgesamt 4136 OpenAPI Spezifikationen von 700 Anbietern hinterlegt. Dabei  haben Anbieter unterschiedlich viele Spezifikationen hinterlegt. Die meisten Spezifikationen stammen von Microsoft Azure, Google und Amazon (siehe: \ref{fig:Specifications}).
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=1\linewidth]{img/specificationsperdomainpie.png}
+  \includegraphics[width=0.9\linewidth]{img/specificationsperdomainpie.png}
   \caption{Spezifikationen pro Anbieter im OpenAPI Directory}
   \label{fig:Specifications}
 \end{figure}
 
+Die Größe einer Spezifikation lässt sich durch die beschriebenen API Operationen beschreiben. Spezifikationen im OpenAPI Directory variieren stark (siehe: \ref{fig:Operations}) in ihrer Größe. Die größte Spezifikation ist die \texttt{microsoft.com/graph} Spezifikation mit 11422 Operationen. Die kleinste ist die \texttt{1forge.com} Spezifikation mit 2 Operationen.
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=1\linewidth]{img/operationsperspecificationpie.png}
+  \includegraphics[width=0.9\linewidth]{img/operationsperspecificationpie.png}
   \caption{API Operationen pro Spezifikation im OpenAPI Directory}
   \label{fig:Operations}
 \end{figure}
