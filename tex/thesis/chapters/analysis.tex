@@ -1,5 +1,12 @@
 \section{Ergebnisse und Analyse}
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\linewidth]{img/totalspecthrownbarplot.png}
+  \caption{Absolute Anzahl, wie viele Spezifikationen eine Linterregel ausgelöst haben}
+  \label{fig:totalspecthrownbarplot}
+\end{figure}
+
 \begin{longtable}{|l|p{0.23\linewidth}|}
   \caption{Arithmetisches Mittel der Regeln, die höchstens ein Mal pro Spezifikation ausgelöst werden können.}
   \endfirsthead
@@ -21,5 +28,13 @@
   \includegraphics[width=1\linewidth]{img/multitriggerbarplot.png}
   \caption{Säulendiagramm
    zeigt arithmetische Mittel der tatsächlich geworfenen Linterfehler und möglicher Linterfehler pro Multi Trigger Regel.}
-  \label{fig:Laufzeitsicht}
+  \label{fig:multitriggerbarplot}
 \end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\linewidth]{img/hierarchicalclusteronbinary.png}
+  \caption{Dendrogram zeigt Dendrogram der Tanimoto Distanzmatrix zwischen Binärmatrix über Spezifikationen und Regeln. Hat eine Spezifikation eine Regel ausgelöst.}
+  \label{fig:hierarchicalclusteronbinary}
+\end{figure}
+
