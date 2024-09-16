@@ -42,6 +42,12 @@ jobs:
       - name: Check Out
         uses: actions/checkout@v4
 
+      - name: Install Snap
+        run: sudo apt-get update && sudo apt-get install -y snapd
+
+      - name: Install Drawio
+        run: sudo snap install drawio
+
       - name: Export Diagrams
         run: ./script/export_diagrams.sh
 
