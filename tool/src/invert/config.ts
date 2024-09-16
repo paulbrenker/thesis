@@ -77,7 +77,7 @@ export const uncompiledRules: Record<string, RuleMeta> = {
     description: 'Operation parameters are unique and non-repeating.',
     message: '{{error}}',
     recommended: true,
-    severity: -1,
+    severity: 2,
     given: [
       '$.paths[*][get,put,post,delete,options,head,patch,trace].parameters'
     ],

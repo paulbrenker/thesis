@@ -11,6 +11,7 @@ pytest-coverage = "^0.0"
 pandas = "^2.2.2"
 ipykernel = "^6.29.5"
 matplotlib = "^3.9.2"
+scipy = "^1.14.1"
 
 [tool.poetry.dev-dependencies]
 pylint = "^3.2.5"

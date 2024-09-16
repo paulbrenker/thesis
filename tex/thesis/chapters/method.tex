@@ -140,7 +140,7 @@ Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den i
 Zusätzlich zu den vorgeschriebenen Interaktionen wird eine Menge an Anforderungen für das System formuliert. Die Formulierung von Anforderungen hilft dabei, alle relevanten Aspekte zu berücksichtigen \parencite{bergsmann_requirements_2023}.
 Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanforderungen und Einschränkungen. Anforderungen werden textuell formuliert nach dem Vorbild der Anforderungsschablonen aus dem SOPHIST Regelwerk \parencite{rupp_requirements-engineering_2014}.
 
-\textbf{Funktionale Anforderungen}
+\subsubsection{Funktionale Anforderungen}
 \begin{itemize}
   \item \textbf{FR1} Die Software sollte eine Kommandozeilen basierte Interaktion für das Triggern des Tools und der Datenanalysepipeline bereitstellen
   \item \textbf{FR2} Die Software muss den Spectral API Linter und das Spectral OAS Tool verwenden, um den APIs.guru Datensatz zu linten
@@ -148,7 +148,7 @@ Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanfo
   \item \textbf{FR4} Die Software muss Dateien im CSV Format nach \texttt{data/linter-results} speichern.
 
 \end{itemize}
-\textbf{Qualitätsanforderungen}
+\subsubsection{Qualitätsanforderungen}
 \begin{itemize}
   \item \textbf{QR1} Das Softwaretool sollte während des Lintings und der Invertierung einen Fortschrittsbalken anzeigen (Benutzerfreundlichkeit)
   \item \textbf{QR2} Alle Systemteile müssen bei mehrmaliger Ausführung immer die gleichen Ergebnisse erzeugen
@@ -157,7 +157,7 @@ Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanfo
   \item \textbf{QR5} Alle Systemteile sollten mit Unit-Tests versehen werden. Die Testabdeckung sollte dabei nicht geringer als 80 \% sein.
 \end{itemize}
 
-\textbf{Einschränkungen}
+\subsubsection{Einschränkungen}
 \begin{itemize}
   \item \textbf{C1} Die Software für den Linting und Invertierungsprozess muss in JavaScript oder TypeScript entwickelt werden, um die volle Funktionalität der Spectral Bibliotheken und die gleiche Implementierung von JSONPath zu verwenden.
   \item \textbf{C2} Die Software sollte ausschließlich mit \texttt{.yaml} Dateien operieren können. Das schließt Fehler mit falsch gelesenen Dateien aus.

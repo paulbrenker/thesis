@@ -42,6 +42,18 @@ jobs:
       - name: Check Out
         uses: actions/checkout@v4
 
+      - name: Install Snap
+        run: sudo apt-get update && sudo apt-get install -y snapd
+
+      - name: Install Drawio
+        run: |
+          sudo snap install drawio
+          sudo apt-get install -y xvfb
+
+      - name: Export Diagrams
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./script/export_diagrams.sh
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
