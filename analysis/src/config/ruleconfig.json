@@ -425,8 +425,8 @@
       "$.paths[*][*]..headers[*].examples[*]",
       "$.components.headers[*].examples[*]"
     ],
-    "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "triggers": 1,
+    "status": "MULTI_MESSAGE"
   },
   "oas3-operation-security-defined": {
     "description": "Operation \"security\" values must match a scheme defined in the \"components.securitySchemes\" object.",
