@@ -24,6 +24,7 @@ Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunde
   oas3-server-not-example.com & 0.000000 \\ \hline
 \end{longtable}
 
+\subsection{Auswertung der Invertierung}
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/multitriggerbarplot.png}
@@ -32,7 +33,28 @@ Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunde
   \label{fig:multitriggerbarplot}
 \end{figure}
 
-\subsection{Cluster Analyse}
+
+\subsection{Priorisierung}
+Um die Linterregeln zu priorisieren, werden zwei Verfahren angewendet, um ein Scoring zu berechnen. Die Werte sollen am Ende gewichtet verrechnet werden, um eine Gesamtpriorisierung zu erhalten. Die Gesamtpriorisierung wird dann anschließend mit Datengetriebenen Methoden in mehrere Gruppen aufgeteilt.
+
+\subsubsection{Inverses Frequenz Scoring}
+Diese Methode um die Relevanz einer Regel zu bewerten beruht auf Detektion von Anomalien und Defektvorhersagen. Selten auftretende Ereignisse implizieren Einzigartigkeit und sind deswegen mit höherer Relevanz zu versehen. Die Berechnungsformel für die verwendete Metrik lautet:
+\[
+\text{Importance}(r) = \frac{1}{\text{occurences of rule } r}
+\]
+\[
+\text{occurrence of rule }r = 
+\begin{cases} 
+1 & \text{wenn die Regel ausgelöst wurde}, \\
+0 & \text{sonst}.
+\end{cases}
+\]
+Es wird angenommen, dass alle Regeln auf allen Spezifikationen ausgelöst werden können. Da Anzahlen der geworfenen Linterfehler pro Regel nicht in Betracht gezogen werden, braucht es keine Normalisierung dieses Scores.
+\subsubsection{Diversität der Trigger}
+Die zweite Score soll ausschließen, dass Spezifikationen mit niedriger Qualität die Qualität der Ergebnisse des Inversen Frequenz Scorings beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität viele Fehler auslösen. Damit beeinflussen diese die Importance des Inversen Frequenz Scoring. Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Dazu wird die \textit{Jaccard Similarity} Ähnlichkeitsmetrik verwendet. Die Wichtigkeit der Regeln wird mit der folgenden Formel berechnet:
+\[
+\text{Importance}(r) = 1-(\frac{1}{n} \sum_{i=1}^{n} Jaccard(r, r_i))
+\]
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/hierarchicalclusteronbinary.png}
@@ -40,3 +62,4 @@ Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunde
   \label{fig:hierarchicalclusteronbinary}
 \end{figure}
 
+\subsection{Gruppierung}
