@@ -4,3 +4,4 @@
 """
 
 from hello_world import *
+from communication import *
