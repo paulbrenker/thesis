@@ -72,7 +72,7 @@ class DataFrameMappers:
         result_object = json.loads(inversion)
         thrown_messages = result_object["thrownMessages"]
         possible_messages = result_object["possibleMessages"]
-        if possible_messages > thrown_messages:
+        if possible_messages < thrown_messages:
             code = result_object["spectralMessages"][0]["code"]
             raise ValueError(
                 f"possibleMessages can't be larger than thrown Messages: {code}"
