@@ -33,7 +33,7 @@ class TestSavePlotToThesisDir(unittest.TestCase):
         communication.save_plot_to_thesis_dir(filename, mock_fig)
 
         expected_thesis_img_dir = os.path.join(
-            "..", "..", "tex", "thesis", "img", "test_plot.png"
+            "..", "tex", "thesis", "img", "test_plot.png"
         )
         mock_fig.savefig.assert_called_once_with(expected_thesis_img_dir, dpi=600)
         mock_close.assert_called_once_with("all")

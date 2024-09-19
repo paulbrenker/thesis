@@ -12,8 +12,9 @@ def get_linter_results(column_limiter: list = None, cell_mapper: callable = None
     retrieve latest Linter Results CSV as a pandas  DataFrame
     """
     file_path = (
-        "../../data/linter-results/2024-09-14@81c1e820ca6c67f61e69525e4e35cb3cf1f0778b.csv",
+        "../data/linter-results/2024-09-14@81c1e820ca6c67f61e69525e4e35cb3cf1f0778b.csv"
     )
+
     df = pd.read_csv(file_path, delimiter=";", index_col="specs")
     if column_limiter is not None:
         df = df[column_limiter]
