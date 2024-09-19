@@ -51,8 +51,7 @@ class DataFrameMappers:
         thrown_messages = json.loads(inversion)["thrownMessages"]
         if thrown_messages > 0:
             return 1
-        else:
-            return 0
+        return 0
 
     @classmethod
     def map_to_was_possible(cls, inversion: str) -> int:
@@ -93,7 +92,7 @@ class ColumnLimiters:
         Return only single trigger rule names
         """
 
-        with open("config/ruleconfig.json", "r", encoding="utf-8") as file:
+        with open("src/config/ruleconfig.json", "r", encoding="utf-8") as file:
             ruleconfig = json.load(file)
 
         return [
@@ -108,7 +107,7 @@ class ColumnLimiters:
         Return only single trigger rule names
         """
 
-        with open("config/ruleconfig.json", "r", encoding="utf-8") as file:
+        with open("src/config/ruleconfig.json", "r", encoding="utf-8") as file:
             ruleconfig = json.load(file)
 
         return [
@@ -123,7 +122,7 @@ class ColumnLimiters:
         Return only single trigger rule names
         """
 
-        with open("config/ruleconfig.json", "r", encoding="utf-8") as file:
+        with open("src/config/ruleconfig.json", "r", encoding="utf-8") as file:
             ruleconfig = json.load(file)
 
         return [
