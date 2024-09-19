@@ -4,7 +4,6 @@
 """
 
 from collections import Counter
-import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from communication import save_plot_to_thesis_dir, get_linter_results, DataFrameMappers
