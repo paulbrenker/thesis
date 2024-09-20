@@ -1,0 +1,40 @@
+2024-09-20 17:13:40 - INFO - Plot saved to ../tex/thesis/img/specificationsperdomainpie
+2024-09-20 17:13:43 - INFO - Plot saved to ../tex/thesis/img/operationsperspecificationpie
+2024-09-20 17:13:46 - INFO - Mean of Single Trigger Rules: <bound method Series.to_string of contact-properties             0.000000
+info-contact                   0.570358
+info-description               0.117021
+info-license                   0.000000
+license-url                    0.000000
+openapi-tags-alphabetical      0.000000
+oas3-api-servers               0.010880
+oas3-server-not-example.com    0.000000
+dtype: float64>
+2024-09-20 17:13:52 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-09-20 17:14:00 - INFO - Plot saved to ../tex/thesis/img/totalspecthrownbarplot
+2024-09-20 17:14:08 - INFO - Plot saved to ../tex/thesis/img/hierarchicalclusteronbinary
+2024-09-20 17:14:11 - INFO - Mean of Properly inverted rules: contact-properties                    0.000000e+00
+info-contact                          5.703578e-01
+info-description                      1.170213e-01
+info-license                          0.000000e+00
+license-url                           0.000000e+00
+openapi-tags-alphabetical             0.000000e+00
+oas3-api-servers                      1.088008e-02
+oas3-server-not-example.com           0.000000e+00
+operation-success-response            3.902038e-03
+operation-operationId-unique          0.000000e+00
+duplicated-entry-in-enum              2.701972e-04
+no-eval-in-markdown                   2.429945e-07
+no-script-tags-in-markdown            1.723440e-06
+openapi-tags-uniqueness               0.000000e+00
+openapi-tags                          0.000000e+00
+operation-operationId-valid-in-url    6.856338e-03
+operation-singular-tag                0.000000e+00
+operation-tags                        1.981391e-01
+path-declarations-must-exist          0.000000e+00
+tag-description                       0.000000e+00
+array-items                           5.914474e-04
+oas3-parameter-description            0.000000e+00
+oas3-server-trailing-slash            1.232050e-01
+dtype: float64
+2024-09-20 17:14:24 - INFO - total thrown errors over all rules: 919574
+2024-09-20 17:14:24 - INFO - total possible errors over all rules: 7113580

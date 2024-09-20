@@ -16,7 +16,23 @@
         "reveal": "always"
       },
       "problemMatcher": []
-    }
+    },
+    {
+      "label": "Export Drawio",
+      "type": "shell",
+      "command": "./script/export_diagrams.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "none",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always"
+      },
+      "problemMatcher": []
+    },
     {
       "label": "Run all tests",
       "type": "shell",
