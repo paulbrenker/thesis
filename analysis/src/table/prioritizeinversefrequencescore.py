@@ -16,14 +16,21 @@ def create_report():
     """
     create a report of prioritized results with inverse frequence method
     """
+    df_divided = create_inverse_frequence_score()
+    df_sorted = df_divided.sort_values(ascending=False)
+    logger.info(
+        "Inverse Frequency Prioritized Rules Sorted:\n%s", df_sorted.to_string()
+    )
+
+
+def create_inverse_frequence_score():
+    """
+    create a prioritization set using inverse frequency score
+    """
     df = get_linter_results(cell_mapper=DataFrameMappers.map_to_was_thrown)
 
     df_sum = df.sum()
     for key, value in df_sum.items():
         if value == 0:
             df_sum[key] = 1
-    df_divided = 1 / df_sum
-    df_sorted = df_divided.sort_values(ascending=False)
-    logger.info(
-        "Inverse Frequency Prioritized Rules Sorted:\n%s", df_sorted.to_string()
-    )
+    return 1 / df_sum

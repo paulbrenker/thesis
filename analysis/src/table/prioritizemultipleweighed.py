@@ -4,8 +4,8 @@
 """
 
 import logging
-from communication import get_linter_results, DataFrameMappers
 from table.prioritizeruletriggerdiversity import create_jaccard_inverted_score
+from table.prioritizeinversefrequencescore import create_inverse_frequence_score
 
 logger = logging.getLogger(__name__)
 
@@ -14,13 +14,8 @@ def create_report():
     """
     create report that weighes multiple prioritization methods and combines them to a single
     """
-    df = get_linter_results(cell_mapper=DataFrameMappers.map_to_was_thrown)
 
-    df_sum = df.sum()
-    for key, value in df_sum.items():
-        if value == 0:
-            df_sum[key] = 1
-    df_ifs = 1 / df_sum
+    df_ifs = create_inverse_frequence_score()
 
     inverted_df = create_jaccard_inverted_score()
 
