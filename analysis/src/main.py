@@ -19,6 +19,7 @@ from table import (
     inversionmultitrigger,
     describetotalnumbers,
     prioritizeinversefrequencescore,
+    prioritizeruletriggerdiversity,
 )
 
 logging.basicConfig(
@@ -38,3 +39,4 @@ rulesimilaritydendrogram.create_plot()
 inversionmultitrigger.create_report()
 describetotalnumbers.create_report()
 prioritizeinversefrequencescore.create_report()
+prioritizeruletriggerdiversity.create_report()
