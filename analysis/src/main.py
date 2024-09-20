@@ -17,7 +17,7 @@ from plot import (
 from table import singletriggermean, inversionmultitrigger, describetotalnumbers
 
 logging.basicConfig(
-    filename=f"../data/analysis-results/{get_current_iso_date()}@{get_current_commit_hash()}.log",
+    filename=f"../data/analysis-results/{get_current_iso_date()}@{get_current_commit_hash()}.txt",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
