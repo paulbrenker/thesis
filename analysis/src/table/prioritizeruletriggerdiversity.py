@@ -26,4 +26,4 @@ def create_report():
     sorted_inverted_df = (1 - pd.DataFrame.mean(jaccard_df)).sort_values(
         ascending=False
     )
-    logger.info("Diversity ranked prioritization: %s", sorted_inverted_df.to_string())
+    logger.info("Diversity ranked prioritization:\n%s", sorted_inverted_df.to_string())

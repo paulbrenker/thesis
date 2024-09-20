@@ -23,6 +23,7 @@ def create_report():
         if value == 0:
             df_sum[key] = 1
     df_divided = 1 / df_sum
+    df_sorted = df_divided.sort_values(ascending=False)
     logger.info(
-        "Inverse Frequency Prioritized Rules Sorted: %s", df_divided.to_string()
+        "Inverse Frequency Prioritized Rules Sorted:\n%s", df_sorted.to_string()
     )

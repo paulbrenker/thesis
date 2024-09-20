@@ -29,4 +29,4 @@ def create_report():
     df_relatable = get_linter_results(
         column_limiter=relatable_columns, cell_mapper=DataFrameMappers.map_to_inverse
     )
-    logger.info("Mean of Properly inverted rules: %s", pd.DataFrame.mean(df_relatable))
+    logger.info("Mean of Properly inverted rules:\n%s", pd.DataFrame.mean(df_relatable))
