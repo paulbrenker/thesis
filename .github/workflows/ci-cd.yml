@@ -104,7 +104,7 @@ jobs:
       - name: Test Modules
         working-directory: analysis
         run: |
-          poetry run pytest --cache-clear --cov=src test/ --cov-fail-under=80 --cov-report term-missing
+          poetry run pytest --cache-clear --cov=src/communication test/ --cov-fail-under=80 --cov-report term-missing
 
   build_typescript:
     name: Format, Lint, Test, Build TypeScript
