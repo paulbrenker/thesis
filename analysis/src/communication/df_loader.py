@@ -14,8 +14,16 @@ def get_linter_results(column_limiter: list = None, cell_mapper: callable = None
     file_path = (
         "../data/linter-results/2024-09-14@81c1e820ca6c67f61e69525e4e35cb3cf1f0778b.csv"
     )
+    with open("src/config/ruleconfig.json", "r") as file:
+        ruleconfig = json.load(file)
 
-    df = pd.read_csv(file_path, delimiter=";", index_col="specs")
+    no_oas2_rules = [
+        rule
+        for rule in ruleconfig.keys()
+        if ruleconfig[rule]["status"] != "OPENAPI_2_X"
+    ]
+
+    df = pd.read_csv(file_path, delimiter=";", index_col="specs")[no_oas2_rules]
     if column_limiter is not None:
         df = df[column_limiter]
     if cell_mapper is not None:
