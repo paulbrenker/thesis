@@ -23,7 +23,6 @@ def create_report():
     jaccard_df = pd.DataFrame(
         jaccard_distance_matrix, index=df.columns, columns=df.columns
     )
-    sorted_inverted_df = (1 - pd.DataFrame.mean(jaccard_df)).sort_values(
-        ascending=False
-    )
-    logger.info("Diversity ranked prioritization:\n%s", sorted_inverted_df.to_string())
+    inverted_df = 1 - pd.DataFrame.mean(jaccard_df)
+    sorted_df = inverted_df.sort_values(ascending=False)
+    logger.info("Diversity ranked prioritization:\n%s", sorted_df.to_string())
