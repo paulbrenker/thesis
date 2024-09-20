@@ -156,4 +156,6 @@ class ColumnLimiters:
             "oas3-schema",
             "oas3-callbacks-in-callbacks",
             "no-$ref-siblings",
+            "operation-description",
+            "operation-operationId",
         ]

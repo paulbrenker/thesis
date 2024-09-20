@@ -14,7 +14,12 @@ from plot import (
     totalspecsthatthrow,
     rulesimilaritydendrogram,
 )
-from table import singletriggermean, inversionmultitrigger, describetotalnumbers
+from table import (
+    singletriggermean,
+    inversionmultitrigger,
+    describetotalnumbers,
+    prioritizeinversefrequencescore,
+)
 
 logging.basicConfig(
     filename=f"../data/analysis-results/{get_current_iso_date()}@{get_current_commit_hash()}.txt",
@@ -32,3 +37,4 @@ totalspecsthatthrow.create_plot()
 rulesimilaritydendrogram.create_plot()
 inversionmultitrigger.create_report()
 describetotalnumbers.create_report()
+prioritizeinversefrequencescore.create_report()
