@@ -23,21 +23,7 @@ def create_report():
         for rule in (
             ColumnLimiters.get_single_trigger() + ColumnLimiters.get_multi_trigger()
         )
-        if rule
-        not in [
-            "operation-tag-defined",
-            "path-keys-no-trailing-slash",
-            "typed-enum",
-            "oas3-unused-component",
-            "path-not-include-query",
-            "oas3-valid-media-example",
-            "oas3-valid-schema-example",
-            "oas3-schema",
-            "oas3-callbacks-in-callbacks",
-            "no-$ref-siblings",
-            "operation-description",
-            "operation-operationId",
-        ]
+        if rule not in ColumnLimiters.get_problematic()
     ]
 
     df_relatable = get_linter_results(
