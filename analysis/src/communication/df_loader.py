@@ -14,7 +14,7 @@ def get_linter_results(column_limiter: list = None, cell_mapper: callable = None
     file_path = (
         "../data/linter-results/2024-09-14@81c1e820ca6c67f61e69525e4e35cb3cf1f0778b.csv"
     )
-    with open("src/config/ruleconfig.json", "r") as file:
+    with open("src/config/ruleconfig.json", "r", encoding="utf-8") as file:
         ruleconfig = json.load(file)
 
     no_oas2_rules = [

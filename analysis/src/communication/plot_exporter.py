@@ -3,9 +3,12 @@
 =====================
 """
 
+import logging
 import os
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
+
+logger = logging.getLogger(__name__)
 
 
 def save_plot_to_thesis_dir(filename: str, fig: Figure):
@@ -22,4 +25,4 @@ def save_plot_to_thesis_dir(filename: str, fig: Figure):
 
     fig.savefig(file_path, dpi=600)
     plt.close("all")
-    print(f"Plot saved to {file_path}")
+    logger.info("Plot saved to %s", file_path)

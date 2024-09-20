@@ -3,9 +3,32 @@
 =======================
 """
 
-from plot import specificationsperdomain, operationsperspec
-from table import singletriggermean
+import logging
+
+from communication import get_current_commit_hash, get_current_iso_date
+
+from plot import (
+    specificationsperdomain,
+    operationsperspec,
+    multitriggerthrownvspossible,
+    totalspecsthatthrow,
+    rulesimilaritydendrogram,
+)
+from table import singletriggermean, inversionmultitrigger, describetotalnumbers
+
+logging.basicConfig(
+    filename=f"../data/analysis-results/{get_current_iso_date()}@{get_current_commit_hash()}.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+
 
 specificationsperdomain.create_plot()
 operationsperspec.create_plot()
 singletriggermean.create_report()
+multitriggerthrownvspossible.create_plot()
+totalspecsthatthrow.create_plot()
+rulesimilaritydendrogram.create_plot()
+inversionmultitrigger.create_report()
+describetotalnumbers.create_report()

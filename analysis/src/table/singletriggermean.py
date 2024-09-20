@@ -3,12 +3,15 @@
 =====================
 """
 
+import logging
 import pandas as pd
 from communication import (
     get_linter_results,
     DataFrameMappers,
     ColumnLimiters,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def create_report():
@@ -20,4 +23,6 @@ def create_report():
         cell_mapper=DataFrameMappers.map_to_thrown,
     )
 
-    print(pd.DataFrame.mean(df_only_single))
+    logger.info(
+        "Mean of Single Trigger Rules: %s", pd.DataFrame.mean(df_only_single).to_string
+    )
