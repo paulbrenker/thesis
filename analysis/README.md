@@ -18,3 +18,7 @@ Install the recommended VSCode Extensions for Python formatting, linting and tes
 **Run a Jupyter Kernel**
 
 Run the following command `poetry run python -m ipykernel install --user --name thesis`
+
+**Execute Data Analysis**
+
+From the `analysis` directory run the command `poetry shell && python3 src/main.py`
