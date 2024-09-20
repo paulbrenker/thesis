@@ -20,6 +20,7 @@ from table import (
     describetotalnumbers,
     prioritizeinversefrequencescore,
     prioritizeruletriggerdiversity,
+    prioritizemultipleweighed,
 )
 
 logging.basicConfig(
@@ -40,3 +41,4 @@ inversionmultitrigger.create_report()
 describetotalnumbers.create_report()
 prioritizeinversefrequencescore.create_report()
 prioritizeruletriggerdiversity.create_report()
+prioritizemultipleweighed.create_report()

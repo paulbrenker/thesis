@@ -24,5 +24,5 @@ def create_report():
     )
 
     logger.info(
-        "Mean of Single Trigger Rules: %s", pd.DataFrame.mean(df_only_single).to_string
+        "Mean of Single Trigger Rules:\n%s", pd.DataFrame.mean(df_only_single).to_string
     )

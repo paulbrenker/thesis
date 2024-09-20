@@ -2,6 +2,8 @@
 
 # Relevanz von Linterregeln für die Qualität von OpenAPI Spezifikationen
 
+![Cover](tex/thesis/img/cover.jpeg)
+
 ## Table of Contents
 
 1. [Repository Structure](#repository-structure)
