@@ -4,10 +4,8 @@
 """
 
 import logging
-import pandas as pd
-
-from scipy.spatial.distance import pdist, squareform
 from communication import get_linter_results, DataFrameMappers
+from table.prioritizeruletriggerdiversity import create_jaccard_inverted_score
 
 logger = logging.getLogger(__name__)
 
@@ -24,13 +22,7 @@ def create_report():
             df_sum[key] = 1
     df_ifs = 1 / df_sum
 
-    df = get_linter_results(cell_mapper=DataFrameMappers.map_to_was_thrown)
-    jaccard_distances = pdist(df.T, metric="jaccard")
-    jaccard_distance_matrix = squareform(jaccard_distances)
-    jaccard_df = pd.DataFrame(
-        jaccard_distance_matrix, index=df.columns, columns=df.columns
-    )
-    inverted_df = 1 - pd.DataFrame.mean(jaccard_df)
+    inverted_df = create_jaccard_inverted_score()
 
     alpha = 0.9
     beta = 0.1
