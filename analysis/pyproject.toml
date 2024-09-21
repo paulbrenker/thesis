@@ -14,6 +14,7 @@ matplotlib = "^3.9.2"
 scipy = "^1.14.1"
 seaborn = "^0.13.2"
 logging = "^0.4.9.6"
+scikit-learn = "^1.5.2"
 
 [tool.poetry.dev-dependencies]
 pylint = "^3.2.5"
