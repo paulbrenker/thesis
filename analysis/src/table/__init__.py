@@ -9,3 +9,4 @@ from .inversionmultitrigger import *
 from .prioritizeinversefrequencescore import *
 from .prioritizemultipleweighed import *
 from .prioritizeruletriggerdiversity import *
+from .groupedprioritizedrules import *

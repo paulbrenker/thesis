@@ -14,17 +14,22 @@ def create_report():
     """
     create report that weighes multiple prioritization methods and combines them to a single
     """
+    df_combined = get_combined()
 
+    logger.info(
+        "Weighed Combination of Prioritization Methods:\n%s",
+        df_combined.sort_values(ascending=False).to_string(),
+    )
+
+
+def get_combined():
+    """
+    get a linear combination of weighed prioritization methods
+    """
     df_ifs = create_inverse_frequence_score()
-
     inverted_df = create_jaccard_inverted_score()
 
     alpha = 0.9
     beta = 0.1
 
-    logger.info(
-        "Weighed Combination of Prioritization Methods:\n%s",
-        ((alpha * df_ifs) + (beta * inverted_df))
-        .sort_values(ascending=False)
-        .to_string(),
-    )
+    return (alpha * df_ifs) + (beta * inverted_df)
