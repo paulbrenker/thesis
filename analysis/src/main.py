@@ -21,6 +21,7 @@ from table import (
     prioritizeinversefrequencescore,
     prioritizeruletriggerdiversity,
     prioritizemultipleweighed,
+    groupedprioritizedrules,
 )
 
 logging.basicConfig(
@@ -29,7 +30,6 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-
 
 specificationsperdomain.create_plot()
 operationsperspec.create_plot()
@@ -42,3 +42,4 @@ describetotalnumbers.create_report()
 prioritizeinversefrequencescore.create_report()
 prioritizeruletriggerdiversity.create_report()
 prioritizemultipleweighed.create_report()
+groupedprioritizedrules.create_report()
