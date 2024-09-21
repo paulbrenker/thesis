@@ -3,9 +3,12 @@
 =========================================
 """
 
+import logging
 from sklearn.cluster import KMeans
 import pandas as pd
 from table import get_combined
+
+logger = logging.getLogger(__name__)
 
 
 def create_report():
@@ -24,4 +27,7 @@ def create_report():
     df_combined = ser_combined.to_frame()
     df_grouped = df_combined.assign(group=grouping)
 
-    print(df_grouped.sort_values(ascending=False, by=0))
+    logger.info(
+        "Kmeans Clustered Rules according to prio:\n%s",
+        df_grouped.sort_values(ascending=False, by=0).to_string(),
+    )
