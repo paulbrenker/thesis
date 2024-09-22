@@ -21,12 +21,10 @@ This Repository contains multiple packages for different purposes:
 
 ## Releases
 
-The latest release of all documents in this Bachelorthesis can be found in the github [releases](https://github.com/paulbrenker/thesis/releases).
+The latest release of all documents in this Bachelorthesis can be found in the GitHub [releases](https://github.com/paulbrenker/thesis/releases).
 
-There the artifacts
+There artifacts are listed as downloadable PDFs including the source code of the whole project as a .zip file including:
 
 - Exposé
 - Thesis
 - Defense
-
-are listed as downloadable PDFs including the source code of the whole project as a .zip file.
