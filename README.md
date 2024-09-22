@@ -7,7 +7,7 @@
 ## Table of Contents
 
 1. [Repository Structure](#repository-structure)
-2. [Related Links](#releases)
+2. [Releases](#releases)
 
 ## Repository Structure
 
