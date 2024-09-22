@@ -107,3 +107,6 @@ Whiteboxes
 linter-results
 data
 Lintings
+Centroiden
+Priorisierungsmaße
+Relevanzklassen
