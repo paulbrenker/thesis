@@ -2,4 +2,4 @@
 
 # Managing Requirements Documents
 
-In the subfolders requirements are documented using multiple formats. Management of the requirements is done in the [Trello Requirements Board](https://trello.com/b/eWWTYilg/requirements)
+In the subfolders requirements are documented as drawio diagrams. Exporting the diagrams as .png files is automatically done in the latex build process in the CI/CD. This step can be manually done for the local repo by executing: `$ ./script/export_diagrams.sh`
