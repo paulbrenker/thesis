@@ -1,6 +1,0 @@
-2024-09-25 18:42:56 - INFO - Plot saved to ../tex/thesis/img/azurespecthrownbarplot
-2024-09-25 18:53:32 - INFO - Plot saved to ../tex/thesis/img/azurespecthrownbarplot
-2024-09-25 18:59:06 - INFO - Plot saved to ../tex/thesis/img/azurespecthrownbarplot
-2024-09-25 19:01:13 - INFO - Plot saved to ../tex/thesis/img/azurespecthrownbarplot
-2024-09-25 19:04:11 - INFO - Plot saved to ../tex/thesis/img/azurespecthrownbarplot
-2024-09-25 19:05:21 - INFO - Plot saved to ../tex/thesis/img/azurespecthrownbarplot
