@@ -14,6 +14,7 @@ from plot import (
     totalspecsthatthrow,
     rulesimilaritydendrogram,
     clusterprioritizedscatter,
+    violationsonazureexcluded,
 )
 from table import (
     singletriggermean,
@@ -32,16 +33,17 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-specificationsperdomain.create_plot()
-operationsperspec.create_plot()
-singletriggermean.create_report()
-multitriggerthrownvspossible.create_plot()
-totalspecsthatthrow.create_plot()
-rulesimilaritydendrogram.create_plot()
-inversionmultitrigger.create_report()
-describetotalnumbers.create_report()
-prioritizeinversefrequencescore.create_report()
-prioritizeruletriggerdiversity.create_report()
-prioritizemultipleweighed.create_report()
-groupedprioritizedrules.create_report()
-clusterprioritizedscatter.create_plot()
+# specificationsperdomain.create_plot()
+# operationsperspec.create_plot()
+# singletriggermean.create_report()
+# multitriggerthrownvspossible.create_plot()
+# totalspecsthatthrow.create_plot()
+# rulesimilaritydendrogram.create_plot()
+# inversionmultitrigger.create_report()
+# describetotalnumbers.create_report()
+# prioritizeinversefrequencescore.create_report()
+# prioritizeruletriggerdiversity.create_report()
+# prioritizemultipleweighed.create_report()
+# groupedprioritizedrules.create_report()
+# clusterprioritizedscatter.create_plot()
+violationsonazureexcluded.create_plot()
