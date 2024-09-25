@@ -142,7 +142,7 @@ Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanfo
 
 \subsubsection{Funktionale Anforderungen}
 \begin{itemize}
-  \item \textbf{FR1} Die Software sollte eine Kommandozeilen basierte Interaktion für das Triggern des Tools und der Datenanalysepipeline bereitstellen
+  \item \textbf{FR1} Die Software sollte eine kommandozeilenbasierte Interaktion für das Triggern des Tools und der Datenanalysepipeline bereitstellen
   \item \textbf{FR2} Die Software muss den Spectral API Linter und das Spectral OAS Tool verwenden, um den APIs.guru Datensatz zu linten
   \item \textbf{FR3} Die Software muss die JSONPath+ Bibliothek verwenden, um Invertierungen zu berechnen.
   \item \textbf{FR4} Die Software muss Dateien im CSV Format nach \texttt{data/linter-results} speichern.
@@ -165,7 +165,7 @@ Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanfo
 \end{itemize}
 
 \subsection{Software Architektur}
-In diesem Abschnitt wird der Entwurfsprozess und die Entwurfsentscheidungen für die im Rahmen dieser Arbeit entwickelte Software dokumentiert. In diesem Prozess wurden die vorgegebenen Interaktionen und Anforderungen berücksichtigt. Die gezeigten vier Sichten nach \parencite{starke_effektive_2020} sollen die Softwarearchitektur effektiv und bedarfsgerecht beschreiben. Die Dokumentation enthält damit auch die Kernelemente der Architekturdokumentation nach der arc42 Vorlage\footnote{arc42 ist eine Vorlage (Template) mit einer strukturierten Methode für die Dokumentation von Software und Systemarchitekturen. arc42 wurde von P. Hruschka und G. Starke entwickelt und steht unter \href{https://www.arc42.de/}{https://www.arc42.de/} online zur Verfügung.}.
+In diesem Abschnitt wird der Entwurfsprozess und die Entwurfsentscheidungen für die im Rahmen dieser Arbeit entwickelte Software dokumentiert. In diesem Prozess wurden die vorgegebenen Interaktionen und Anforderungen berücksichtigt. Die gezeigten vier Sichten nach \parencite{starke_effektive_2020} sollen die Softwarearchitektur effektiv und bedarfsgerecht beschreiben. Die Dokumentation enthält damit auch die Kernelemente der Architekturdokumentation nach der arc42 Vorlage\footnote{Arc42 ist eine Vorlage (Template) mit einer strukturierten Methode für die Dokumentation von Software und Systemarchitekturen. Arc42 wurde von P. Hruschka und G. Starke entwickelt und steht unter \href{https://www.arc42.de/}{https://www.arc42.de/} online zur Verfügung.}.
 
 \subsubsection{Kontextsicht}
 Die Kontextsicht zeigt, wie ein System in seine Umgebung eingebettet ist und welche Schnittstellen zu Nachbarsystemen vorhanden sind \parencite{starke_effektive_2020}. Für das hier entwickelte Softwaresystem ist wichtigste Schnittstelle nach außen die Verwendung des OpenAPI Directory von APIs.guru. Eine weitere Schnittstelle, die für die Funktionalität des Systems wichtig ist, ist die Verwendung des Spectral API Linters und des Spectral OAS Regelwerks, die hier als Software Bibliothek eingebunden werden können.
@@ -203,4 +203,64 @@ Die Verteilungssicht beschreibt die Laufzeitumgebung des Systems und deren Hardw
   \label{fig:Verteilungssicht}
 \end{figure}
 
-\subsection{Komponenten}
+\subsection{Datenanalyse}
+Die Datenanalyse ist Teil der Software die im Rahmen dieser Arbeit entwickelt wird. Das Ziel der Datenanalyse ist es, eine datengetriebene Antwort auf die Forschungsfragen zu geben. Dazu werden statistische Methoden und Methoden des maschinellen Lernens verwendet.
+
+In einer explorativen Analyse werden die Hauptcharakteristiken des Datensatzes aufgezeigt \parencite{tukey_exploratory_1977}. Hier können folgende Fragen beantwortet werden:
+\begin{itemize}
+  \item Wie viele Linterfehler wurden insgesamt ausgelöst?
+  \item Wie viele Stellen gibt es, an denen Linterfehler ausgelöst werden können?
+  \item Gab es Regeln, die nie Linterfehler verursacht haben?
+  \item Gibt es Spezifikationen, die alle Regeln eingehalten haben?
+  \item Wie ist die Verteilung der Linterfehler und Regeln?
+  \item Verursacht die große Menge an \texttt{azure.com} Spezifikationen einen Bias in den Linterfehlern?
+  \item Was sind die charakteristischen Werte der Regeln arithmetisches Mittel, Standardabweichung, Varianz?
+  \item Wie verhalten sich die Anzahl der geworfenen Regeln zur Größe der Spezifikation?
+\end{itemize}
+
+In einem weiteren Schritt soll die Invertierung der Regeln ausgewertet werden. Hierbei werden die Daten der geworfenen Linterfehler und der möglichen Linterfehler pro Regel verglichen. Für geeignete Regeln wird ein Boxplot über die Häufigkeit der geworfenen Regeln gezeigt.
+
+\subsubsection{Priorisierung}
+Es werden mehrere Maße verwendet, um aus den geworfenen Linterfehlern Hinweise zu einer möglichen Gewichtung der Regeln abzuleiten. Diese Verfahren ergeben jeweils ein Scoring, zwischen 0 und 1. 1 bedeutet unabhängig vom verwendeten Maß die höchste Priorisierung (Relevanz) und 0 die niedrigste.  Am Ende werden die Werte gewichtet verrechnet, um eine Gesamtpriorisierung zu erhalten. Die Gesamtpriorisierung wird dann anschließend mit Datengetriebenen Methoden in mehrere Gruppen aufgeteilt. Dieser Abschnitt beantwortet \textbf{RQ-1}: Wie können die Linterregeln priorisiert werden.
+
+Die erste Methode beruht auf der Gewichtung von Relevanz aufgrund der \textit{Document Frequency}. Der berechnete Score basiert auf der Annahme, dass je häufiger eine Regel auf dem APIs.guru Datensatz ausgelöst wurde, desto weniger beeinflusst das Einhalten dieser Regel die Qualität der OpenAPI Spezifikation\footnote{Grundlage hierfür ist die angenommene hohe Qualität des APIs.guru Datensatzes.}. Zum Messen dieses Wertes eignet sich die \textit{inverse document frequency} \parencite{manning_introduction_2008}. Die \textit{Document Frequency} ist definiert durch die Anzahl an Dokumenten in einer Kollektion, die einen Term enthalten \parencite{manning_introduction_2008}. Um hier die eine Abbildung auf die Priorisierung zu erzielen, wird eine Form der \textit{inverse document frequency (idf)} verwendet:
+\[
+\text{Importance}_\text{Frequency}(r) = 
+\begin{cases}
+1 & \text{, wenn occurences of rule } r = 0 \\
+\frac{1}{\text{occurences of rule } r} & \text{, sonst}.
+\end{cases}
+\]
+
+\[
+\text{occurrence of rule }r = 
+\begin{cases} 
+1 & \text{, wenn die Regel ausgelöst wurde}, \\
+0 & \text{, sonst}.
+\end{cases}
+\]
+Ein weitverbreiteter Score für die Bewertung von Relevanz von Worten in Texten im Feld des  \textit{Natural Language Processing (NLP)} ist die \textit{tf-idf} Gewichtung \parencite{manning_introduction_2008}. Angewandt auf die Linterfehler, kann die tf-idf Gewichtung dabei die Relevanz einer bestimmten Regel für eine Spezifikation zu finden. Um allgemein gültige Aussagen zur Relevanz der Regeln zu machen, eignet sich diese Gewichtung nicht. 
+
+Das zweite Maß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Ergebnisse beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität über alle Regeln hinweg viele Fehler auslösen. Damit beeinflussen diese die Relevanz des Inversen Frequenz Scoring.
+Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Die Spalten des Datensatzes, die das Vorkommen (\textit{occurences}) der Regeln dokumentieren können als Binärvektoren interpretiert werden. Zur Bestimmung der Ähnlichkeit von Binärvektoren kann das \textit{Jaccards} Ähnlichkeitsmaß verwendet werden \parencite{mehrotra_anomaly_2017}.
+
+\[
+Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
+\]
+Je weniger das Auslösemuster einer Regel dem der anderen Ähnelt, desto höher wird die Regel priorisiert. Die gemittelte Ähnlichkeit einer Regel zu allen anderen Regeln ist der finale Wert.
+\[
+\text{Importance}_\text{Diversity}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
+\]
+
+\subsubsection{Kombination der Priorisierungen}
+Um die Werte der beiden Priorisierungsmaße zu vereinigen wird eine gewichtete Summe verwendet. Es wird davon ausgegangen, dass die Einordnung der Regeln in Schweregrade \texttt{HINT}, \texttt{WARN} und \texttt{ERROR} eine Entwicklereinschätzung der Relevanz der Regeln abbildet. Um diese Einschätzung zu berücksichtigen, wird versucht die Koeffizienten $\alpha$ und $\beta$ so zu setzen, dass Regeln, die im Spectral OAS Regelwerk den Schweregrad \texttt{ERROR} haben eine hohe Priorisierung (nahe 1) und jene mit dem Schweregrad \texttt{HINT} eine niedrige Priorisierung (nahe 0) haben.
+
+\[
+\text{Importance}_\text{total} = \alpha * \text{Importance}_\text{Frequency} + \beta  * \text{Importance}_\text{Diversity}
+\]
+
+Die berechneten Werte geben Antwort auf \textbf{RQ-2} (Wie können relevante Linterregeln priorisiert werden).
+
+
+\subsubsection{Gruppierung}
+Spectral verwendet drei Schweregrad Level für die Regeln des Spectral OAS Datensatzes (\texttt{HINT}, \texttt{WARN}, \texttt{ERROR}) siehe auch Abbildung \ref{tab:OASRules}. Zur Beantwortung von \textbf{RQ-3} (Welche Linterregeln können empfohlen werden) soll eine Gruppierung der Regeln in drei Relevanzklassen erfolgen, die den Schweregraden des Spectral Linters entsprechen. Die Regeln sollen anhand ihrer Priorisierung in drei Partitionen eingeteilt werden. Dafür eignet sich der kmeans Clustering Algorithmus \parencite{bishop_pattern_2006}. Hierfür wird die mit Koeffizienten gewichteten priorisierten Werte als Vektoren verwendet. Die zwei verwendeten Priorisierungsmaße sind Dimensionen für die Gruppenidentifizierung. Für die Implementierung des Algorithmus wird die Pythonbibliothek \texttt{sklearn} verwendet. Für die zufällige Initialisierung der drei Cluster Centroiden wird ein Festgeschriebener random state spezifiziert, um Reproduzierbarkeit zu garantieren.
