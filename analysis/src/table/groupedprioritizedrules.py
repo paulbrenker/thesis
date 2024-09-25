@@ -5,13 +5,10 @@
 
 import logging
 from sklearn.cluster import KMeans
-import pandas as pd
 from table import (
-    get_combined,
     create_inverse_frequence_score,
     create_jaccard_inverted_score,
 )
-import matplotlib.pyplot as plt
 
 logger = logging.getLogger(__name__)
 
