@@ -35,56 +35,24 @@ Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunde
 
 
 \subsection{Priorisierung}
-Um die Linterregeln zu priorisieren, werden zwei Verfahren angewendet, um ein Scoring zu berechnen. Die Werte sollen am Ende gewichtet verrechnet werden, um eine Gesamtpriorisierung zu erhalten. Die Gesamtpriorisierung wird dann anschließend mit Datengetriebenen Methoden in mehrere Gruppen aufgeteilt.
 
 \subsubsection{Inverses Frequenz Scoring}
-Die erste Methode Beruht auf der Gewichtung von Relevanz aufgrund der \textit{Document Frequency}. Der Berechnete Score beruht auf der Annahme, dass je häufiger eine Regel auf dem APIs.guru Datensatz ausgelöst wurde, desto weniger beeinflusst das Einhalten dieser Regel die Qualität der OpenAPI Spezifikation\footnote{Grundlage hierfür ist die angenommene hohe Qualität des APIs.guru Datensatzes.}. Zum Messen dises Wertes eignet sich die \textit{inverse document frequency} \parencite{manning_introduction_2008}. Die \textit{document frequency} ist definiert durch die Anzahl an Dokumenten in einer Kollektion, die einen Term enthalten \parencite{manning_introduction_2008}. Um hier die eine Abbildung auf die Priorisierung zu erzielen, wird eine Form der \textit{inverse document frequency (idf)} verwendet:
-\[
-\text{Importance}_\text{Frequency}(r) = \frac{1}{\text{occurences of rule } r}
-\]
-\[
-\text{occurrence of rule }r = 
-\begin{cases} 
-1 & \text{wenn die Regel ausgelöst wurde}, \\
-0 & \text{sonst}.
-\end{cases}
-\]
-Ein weitverbreiteter Score für die Bewertung von Relevanz von Worten in Texten ist die \textit{tf-idf} Gewichtung \parencite{manning_introduction_2008}. Aufgrund der nicht verifizierbaren Ergebnisse der Invertierung und der Linterergebnisse, können keine normalisierten Angaben zur Term Frequenz für alle Regeln gemacht werden.
-
-Es wird angenommen, dass alle Regeln auf allen Spezifikationen ausgelöst werden können. Da Anzahlen der geworfenen Linterfehler pro Regel nicht in Betracht gezogen werden, braucht es keine Normalisierung dieses Maßes. Die Priorisierung der Regeln nach der \textit{inverse document frequency} sieht wie folgt aus.
-
 
 \subsubsection{Diversität der Trigger}
-Das zweite Maß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Qualität der Ergebnisse des Inversen Frequenz Scorings beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität viele Fehler auslösen. Damit beeinflussen diese die Relevanz des Inversen Frequenz Scoring. 
-Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Die Spalten des Datensatzes, die das Vorkommen (\textit{occurences}) der Regeln dokumentieren können als Binärvektoren interpretiert werden. Zur Bestimmung der Ähnlichkeit von Binärvektoren kann das \textit{Jaccards} Ähnlichkeitsmaß verwendet werden \parencite{mehrotra_anomaly_2017}.
-\[
-Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
-\]
-Je weniger das Auslösemuster einer Regel dem der anderen Ähnelt, desto höher wird die Regel priorisiert. Die gemittelte Ähnlichkeit einer Regel zu allen anderen Regeln ist der finale Wert:
-\[
-\text{Importance}_\text{Diversity}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
-\]
-Eine Visualisierung der jeweils minimalen Jaccard Distanzen und ein Hierarchisches Clustering der Regeln ist in Abbildung \ref{fig:hierarchicalclusteronbinary} dargestellt. 
+Eine Visualisierung der jeweils minimalen Jaccards Distanzen und ein Hierarchisches Clustering der Regeln ist in Abbildung \ref{fig:hierarchicalclusteronbinary} dargestellt. 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/hierarchicalclusteronbinary.png}
-  \caption{Dendrogram zeigt hierarchisches Cluster der Tanimoto Distanzmatrix zwischen Binärmatrix über Spezifikationen und Regeln. Hat eine Spezifikation eine Regel ausgelöst.}
+  \caption{Dendrogramm zeigt hierarchisches Cluster der Jaccards Distanzmatrix zwischen Binärmatrix über Spezifikationen und Regeln. Hat eine Spezifikation eine Regel ausgelöst.}
   \label{fig:hierarchicalclusteronbinary}
 \end{figure}
 
 \subsubsection{Kombination der Verfahren}
-Um die Werte der beiden Priorisierungsmaße zu vereinigen wird eine gewichtete Summe verwendet.
-\[
-\text{Importance}_\text{total} = \alpha * \text{Importance}_\text{Frequency} + \beta  * \text{Importance}_\text{Diversity}
-\]
-\[
-\alpha = 0.9, \beta = 0.1
-\]
-Die berechneten Werte geben Antwort auf \textbf{RQ-2} (Wie können relevante Linterregeln priorisiert werden):
+
 
 
 \subsection{Gruppierung}
-Spectral verwendet drei Schweregrad Level für die Regeln des Spectral OAS Datensatzes (\texttt{HINT}, \texttt{WARN}, \texttt{ERROR}) siehe auch Abbildung \ref{tab:OASRules}. Zur Beantwortung von \textbf{RQ-3} (Welche Linterregeln können empfohlen werden) soll eine Gruppierung der Regeln in drei Relevanzklassen erfolgen, die den Schweregraden des Spectral Linters entsprechen. Die Regeln sollen anhand ihrer Priorisierung in drei Partitionen eingeteilt werden. Dafür eignet sich der kmeans Clustering Algorithmus \parencite{bishop_pattern_2006}. Hierfür muss nicht die gewichtete Kombination der Regeln verwendet werden. Die zwei verwendeten Priorisierungsmaße werden als Dimensionen für die Gruppenidentifizierung verwendet. Für die Implementierung des Algorithmus wird die Pythonbibliothek \texttt{sklearn} verwendet. Für die zufällige Initialisierung der drei Cluster Centroiden wird ein Festgeschriebener random state spezifiziert, um Reproduzierbarkeit zu garantieren.
+
 
 Nach der Berechnung der Cluster kann man folgende Zuordnung der Regeln zu Spectral Schweregraden machen:
 
