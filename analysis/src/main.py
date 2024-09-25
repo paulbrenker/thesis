@@ -13,6 +13,7 @@ from plot import (
     multitriggerthrownvspossible,
     totalspecsthatthrow,
     rulesimilaritydendrogram,
+    clusterprioritizedscatter,
 )
 from table import (
     singletriggermean,
@@ -43,3 +44,4 @@ prioritizeinversefrequencescore.create_report()
 prioritizeruletriggerdiversity.create_report()
 prioritizemultipleweighed.create_report()
 groupedprioritizedrules.create_report()
+clusterprioritizedscatter.create_plot()
