@@ -80,13 +80,10 @@ Um die Werte der beiden Priorisierungsmaße zu vereinigen wird eine gewichtete S
 \[
 \alpha = 0.9, \beta = 0.1
 \]
-Die so berechneten Werte geben Antwort auf \textbf{RQ-2} (Wie können relevante Linterregeln priorisiert werden):
+Die berechneten Werte geben Antwort auf \textbf{RQ-2} (Wie können relevante Linterregeln priorisiert werden):
 
 
 \subsection{Gruppierung}
-Spectral verwendet drei Schweregrad Level für die Regeln des Spectral OAS Datensatzes (\texttt{HINT}, \texttt{WARN}, \texttt{ERROR}) siehe auch \ref{tab:OASRules}. Zur Beantwortung von \textbf{RQ-3} (Welche Linterregeln können empfohlen werden) soll eine Gruppierung der Regeln in drei Relevanzklassen erfolgen, die den Schweregraden des Spectral Linters entsprechen. Die Regeln sollen anhand ihrer Priorisierung in drei Partitionen eingeteilt werden. Dafür eignet sich der kmeans Clustering Algorithmus \parencite{bishop_pattern_2006}. Hierfür muss nicht die gewichtete Kombination der Regeln verwendet werden. Die zwei verwendeten Priorisierungsmaße werden als Dimensionen für die Gruppenidentifizierung verwendet. Für die Implementierung des Algorithmus wird die Pythonbibliothek \texttt{sklearn} verwendet. Für die zufällige Initialisierung der drei Cluster Centroiden wird ein Festgeschriebener random state spezifiziert, um Reproduzierbarkeit zu garantieren.
+Spectral verwendet drei Schweregrad Level für die Regeln des Spectral OAS Datensatzes (\texttt{HINT}, \texttt{WARN}, \texttt{ERROR}) siehe auch Abbildung \ref{tab:OASRules}. Zur Beantwortung von \textbf{RQ-3} (Welche Linterregeln können empfohlen werden) soll eine Gruppierung der Regeln in drei Relevanzklassen erfolgen, die den Schweregraden des Spectral Linters entsprechen. Die Regeln sollen anhand ihrer Priorisierung in drei Partitionen eingeteilt werden. Dafür eignet sich der kmeans Clustering Algorithmus \parencite{bishop_pattern_2006}. Hierfür muss nicht die gewichtete Kombination der Regeln verwendet werden. Die zwei verwendeten Priorisierungsmaße werden als Dimensionen für die Gruppenidentifizierung verwendet. Für die Implementierung des Algorithmus wird die Pythonbibliothek \texttt{sklearn} verwendet. Für die zufällige Initialisierung der drei Cluster Centroiden wird ein Festgeschriebener random state spezifiziert, um Reproduzierbarkeit zu garantieren.
 
 Nach der Berechnung der Cluster kann man folgende Zuordnung der Regeln zu Spectral Schweregraden machen:
-
-% INSERT HERE TABLE with results
-% maybe do a scatterplot that show prios.
