@@ -7,7 +7,12 @@ import json
 import pandas as pd
 
 
-def get_linter_results(column_limiter: list = None, cell_mapper: callable = None):
+def get_linter_results(
+    column_limiter: list = None,
+    cell_mapper: callable = None,
+    index_limiter=None,
+    cell_value_exclude: tuple = None,
+):
     """
     retrieve latest Linter Results CSV as a pandas  DataFrame
     """
@@ -28,7 +33,23 @@ def get_linter_results(column_limiter: list = None, cell_mapper: callable = None
         df = df[column_limiter]
     if cell_mapper is not None:
         df = pd.DataFrame.map(df, cell_mapper)
+    if cell_value_exclude is not None:
+        df = df.loc[df[cell_value_exclude[0]] != cell_value_exclude[1]]
+    if index_limiter is not None:
+        df = df.loc[
+            df.index.to_series().apply(
+                lambda index: domain_name_matcher(index, index_limiter)
+            )
+        ]
     return df
+
+
+def domain_name_matcher(file_path: str, matcher: str) -> str:
+    """
+    Match if the domain name is a given value
+    """
+    domain = file_path.split("/")[4]
+    return domain == matcher
 
 
 class DataFrameMappers:

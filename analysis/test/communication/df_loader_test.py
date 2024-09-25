@@ -5,13 +5,37 @@
 
 import json
 import unittest
-from communication.df_loader import DataFrameMappers, ColumnLimiters
+from communication.df_loader import (
+    domain_name_matcher,
+    DataFrameMappers,
+    ColumnLimiters,
+)
 
 
 class TestImportDataFrame(unittest.TestCase):
     """
     Test importing the dataframe and mapping it
     """
+
+    def test_domain_name_matcher_success(self):
+        """
+        test matching of domain names
+        """
+        spec_name = "../data/openapi-directory/APIs/1forge.com/0.0.1/swagger.yaml"
+        matcher = "1forge.com"
+
+        result = domain_name_matcher(spec_name, matcher)
+        self.assertTrue(result)
+
+    def test_domain_name_matcher_fail(self):
+        """
+        test matching of domain names
+        """
+        spec_name = "../data/openapi-directory/APIs/1forge.com/0.0.1/swagger.yaml"
+        matcher = "azure.com"
+
+        result = domain_name_matcher(spec_name, matcher)
+        self.assertFalse(result)
 
     def test_map_to_thrown(self):
         """

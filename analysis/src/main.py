@@ -14,6 +14,7 @@ from plot import (
     totalspecsthatthrow,
     rulesimilaritydendrogram,
     clusterprioritizedscatter,
+    violationsonazureexcluded,
 )
 from table import (
     singletriggermean,
@@ -45,3 +46,4 @@ prioritizeruletriggerdiversity.create_report()
 prioritizemultipleweighed.create_report()
 groupedprioritizedrules.create_report()
 clusterprioritizedscatter.create_plot()
+violationsonazureexcluded.create_plot()
