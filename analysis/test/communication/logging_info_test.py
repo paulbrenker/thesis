@@ -4,7 +4,7 @@
 """
 
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 import subprocess
 from datetime import datetime
 import communication
@@ -15,8 +15,8 @@ class TestLoggingInfo(unittest.TestCase):
     Test the logger helper class
     """
 
-    @patch("subprocess.check_output")
-    def test_get_current_commit_hash_success(self, mock_check_output):
+    @patch("communication.logging_info.subprocess.check_output")
+    def test_get_current_commit_hash_success(self, mock_check_output: MagicMock):
         """
         test get the current commit hash returns successfully
         """
@@ -28,8 +28,8 @@ class TestLoggingInfo(unittest.TestCase):
 
         mock_check_output.assert_called_once_with(["git", "rev-parse", "HEAD"])
 
-    @patch("subprocess.check_output")
-    def test_get_current_commit_hash_failure(self, mock_check_output):
+    @patch("communication.logging_info.subprocess.check_output")
+    def test_get_current_commit_hash_failure(self, mock_check_output: MagicMock):
         """
         Simulate a CalledProcessError with a specific error message
         """
@@ -40,9 +40,10 @@ class TestLoggingInfo(unittest.TestCase):
         result = communication.get_current_commit_hash()
 
         self.assertEqual(result, "Error: error message")
+        mock_check_output.assert_called_once()
 
-    @patch("datetime.datetime")
-    def test_get_current_iso_date(self, mock_datetime):
+    @patch("communication.logging_info.datetime")
+    def test_get_current_iso_date(self, mock_datetime: MagicMock):
         """
         Mock the current date/time
         """
@@ -51,6 +52,7 @@ class TestLoggingInfo(unittest.TestCase):
         result = communication.get_current_iso_date()
 
         self.assertEqual(result, "2024-09-25")
+        mock_datetime.now.assert_called_once()
 
 
 if __name__ == "__main__":
