@@ -1,26 +1,47 @@
 <mxfile host="65bd71144e">
     <diagram id="eEBw4gRtr2ro-RiO-oLE" name="Page-1">
-        <mxGraphModel dx="1286" dy="575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="994" dy="629" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
+                <mxCell id="19" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="110" y="190" width="790" height="490" as="geometry"/>
+                </mxCell>
                 <mxCell id="3" value="&lt;b&gt;Lokale Entwicklungsumgebung: Ubuntu 24.04,&amp;nbsp;&lt;br&gt;Intel i7, 16GB memory (Hardware Node)&lt;/b&gt;" style="verticalAlign=top;align=left;shape=cube;size=10;direction=south;fontStyle=0;html=1;boundedLbl=1;spacingLeft=5;" parent="1" vertex="1">
-                    <mxGeometry x="130" y="210" width="640" height="390" as="geometry"/>
+                    <mxGeometry x="130" y="210" width="360" height="450" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="tool (Software Component)" style="shape=folder;fontStyle=1;tabWidth=190;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
-                    <mxGeometry x="150" y="320" width="280" height="240" as="geometry"/>
+                    <mxGeometry x="150" y="280" width="240" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="&lt;ul&gt;&lt;li&gt;runs: node 20.17&lt;/li&gt;&lt;li&gt;purpose: lint data&lt;i&gt;&lt;br&gt;&lt;/i&gt;&lt;/li&gt;&lt;li&gt;Reads from:&amp;nbsp;&lt;i&gt;data/openapi-directory&lt;/i&gt;&lt;/li&gt;&lt;li&gt;Writes to:&amp;nbsp;&lt;i&gt;data/linter-results&lt;/i&gt;&lt;/li&gt;&lt;/ul&gt;" style="html=1;strokeColor=none;resizeWidth=1;resizeHeight=1;fillColor=none;part=1;connectable=0;allowArrows=0;deletable=0;align=left;" parent="4" vertex="1">
-                    <mxGeometry width="280" height="168" relative="1" as="geometry">
+                    <mxGeometry width="240" height="112" relative="1" as="geometry">
                         <mxPoint y="30" as="offset"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="8" value="analysis (Software Component)" style="shape=folder;fontStyle=1;tabWidth=200;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
-                    <mxGeometry x="460" y="320" width="280" height="240" as="geometry"/>
+                    <mxGeometry x="150" y="470" width="270" height="160" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="&lt;ul&gt;&lt;li&gt;runs: python 3.12&lt;/li&gt;&lt;li&gt;purpose: analyze data&lt;/li&gt;&lt;li&gt;Reads from: &lt;i&gt;data/linter-results&lt;/i&gt;&lt;/li&gt;&lt;li&gt;Writes to: &lt;i&gt;tex/thesis/img&lt;/i&gt;&lt;/li&gt;&lt;/ul&gt;" style="html=1;strokeColor=none;resizeWidth=1;resizeHeight=1;fillColor=none;part=1;connectable=0;allowArrows=0;deletable=0;align=left;" parent="8" vertex="1">
-                    <mxGeometry width="280.00000000000006" height="168" relative="1" as="geometry">
+                    <mxGeometry width="270.00000000000006" height="112" relative="1" as="geometry">
                         <mxPoint y="30" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="&lt;b&gt;Remote GitHub Repository:&amp;nbsp;&lt;br&gt;https://github.com/APIs-guru/openapi-directory&lt;/b&gt;" style="verticalAlign=top;align=left;shape=cube;size=10;direction=south;fontStyle=0;html=1;boundedLbl=1;spacingLeft=5;" vertex="1" parent="1">
+                    <mxGeometry x="520" y="210" width="360" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="APIs" style="shape=folder;fontStyle=1;tabWidth=190;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+                    <mxGeometry x="550" y="280" width="240" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;purpose: stores OpenAPI Data&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;" style="html=1;strokeColor=none;resizeWidth=1;resizeHeight=1;fillColor=none;part=1;connectable=0;allowArrows=0;deletable=0;align=left;" vertex="1" parent="13">
+                    <mxGeometry width="240" height="112" relative="1" as="geometry">
+                        <mxPoint y="30" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="17" value="&amp;lt;&amp;lt;referenced as git submodule&amp;gt;&amp;gt;" style="endArrow=classic;html=1;exitX=0;exitY=0;exitDx=240.00000000000003;exitDy=95;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=95;entryPerimeter=0;dashed=1;" edge="1" parent="1" source="4" target="13">
+                    <mxGeometry y="-15" width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="470" y="450" as="sourcePoint"/>
+                        <mxPoint x="520" y="400" as="targetPoint"/>
+                        <mxPoint as="offset"/>
                     </mxGeometry>
                 </mxCell>
             </root>
