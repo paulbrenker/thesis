@@ -16,8 +16,6 @@ def create_plot():
     """
     create barplot about azure handling of their own guidelines
     """
-    # with open("src/config/ruleconfig.json", "r", encoding="utf-8") as file:
-    #     ruleconfig = json.load(file)
 
     azure_excluded_rules = [
         "operation-tags",
@@ -27,13 +25,6 @@ def create_plot():
         "info-contact",
         "operation-tag-defined",
     ]
-
-    # limiter = [
-    #     rule
-    #     for rule in ruleconfig.keys()
-    #     if (ruleconfig[rule] not in azure_excluded_rules)
-    #     and (ruleconfig[rule]["status"] != "OPENAPI_2_X")
-    # ]
 
     df_azure = get_linter_results(
         column_limiter=azure_excluded_rules,

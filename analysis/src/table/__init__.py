@@ -10,3 +10,4 @@ from .prioritizeinversefrequencescore import *
 from .prioritizemultipleweighed import *
 from .prioritizeruletriggerdiversity import *
 from .groupedprioritizedrules import *
+from .violationpartitionazure import *
