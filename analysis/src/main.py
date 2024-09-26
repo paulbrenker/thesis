@@ -15,6 +15,7 @@ from plot import (
     rulesimilaritydendrogram,
     clusterprioritizedscatter,
     violationsonazureexcluded,
+    multitriggerboxplot,
 )
 from table import (
     singletriggermean,
@@ -49,3 +50,4 @@ groupedprioritizedrules.create_report()
 clusterprioritizedscatter.create_plot()
 violationsonazureexcluded.create_plot()
 violationpartitionazure.create_report()
+multitriggerboxplot.create_plot()
