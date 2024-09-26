@@ -24,6 +24,7 @@ from table import (
     prioritizeruletriggerdiversity,
     prioritizemultipleweighed,
     groupedprioritizedrules,
+    violationpartitionazure,
 )
 
 logging.basicConfig(
@@ -47,3 +48,4 @@ prioritizemultipleweighed.create_report()
 groupedprioritizedrules.create_report()
 clusterprioritizedscatter.create_plot()
 violationsonazureexcluded.create_plot()
+violationpartitionazure.create_report()

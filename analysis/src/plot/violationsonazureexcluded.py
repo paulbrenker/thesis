@@ -9,6 +9,7 @@ from communication import (
     save_plot_to_thesis_dir,
     get_linter_results,
     DataFrameMappers,
+    ColumnLimiters,
 )
 
 
@@ -16,33 +17,15 @@ def create_plot():
     """
     create barplot about azure handling of their own guidelines
     """
-    # with open("src/config/ruleconfig.json", "r", encoding="utf-8") as file:
-    #     ruleconfig = json.load(file)
-
-    azure_excluded_rules = [
-        "operation-tags",
-        "no-$ref-siblings",
-        "openapi-tags",
-        "operation-description",
-        "info-contact",
-        "operation-tag-defined",
-    ]
-
-    # limiter = [
-    #     rule
-    #     for rule in ruleconfig.keys()
-    #     if (ruleconfig[rule] not in azure_excluded_rules)
-    #     and (ruleconfig[rule]["status"] != "OPENAPI_2_X")
-    # ]
 
     df_azure = get_linter_results(
-        column_limiter=azure_excluded_rules,
+        column_limiter=ColumnLimiters.get_azure_excluded(),
         cell_mapper=DataFrameMappers.map_to_thrown,
         index_limiter="azure.com",
     )
 
     df_else = get_linter_results(
-        column_limiter=azure_excluded_rules,
+        column_limiter=ColumnLimiters.get_azure_excluded(),
         cell_mapper=DataFrameMappers.map_to_thrown,
     )
 

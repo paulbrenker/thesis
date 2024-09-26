@@ -180,3 +180,17 @@ class ColumnLimiters:
             "operation-description",
             "operation-operationId",
         ]
+
+    @classmethod
+    def get_azure_excluded(cls) -> list:
+        """
+        get rules that are excluded in azure ruleset
+        """
+        return [
+            "operation-tags",
+            "no-$ref-siblings",
+            "openapi-tags",
+            "operation-description",
+            "info-contact",
+            "operation-tag-defined",
+        ]
