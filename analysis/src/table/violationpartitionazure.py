@@ -5,7 +5,7 @@
 
 import logging
 import json
-from communication import get_linter_results, DataFrameMappers
+from communication import get_linter_results, DataFrameMappers, ColumnLimiters
 
 logger = logging.getLogger(__name__)
 
@@ -17,19 +17,10 @@ def create_report():
     with open("src/config/ruleconfig.json", "r", encoding="utf-8") as file:
         ruleconfig = json.load(file)
 
-    azure_excluded_rules = [
-        "operation-tags",
-        "no-$ref-siblings",
-        "openapi-tags",
-        "operation-description",
-        "info-contact",
-        "operation-tag-defined",
-    ]
-
     limiter = [
         rule
         for rule in ruleconfig.keys()
-        if (ruleconfig[rule] not in azure_excluded_rules)
+        if (ruleconfig[rule] not in ColumnLimiters.get_azure_excluded())
         and (ruleconfig[rule]["status"] != "OPENAPI_2_X")
     ]
 
