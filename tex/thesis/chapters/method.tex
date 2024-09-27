@@ -116,11 +116,18 @@ Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den i
   \textbf{Standardszenario} & 
   \vspace{-0.7cm}
   \begin{enumerate}
-    \item Deskriptive Datenanalyse des APIs.guru OpenAPI Directory. Wie viele Spezifikationen sind im Datensatz enthalten. Welche Anbieter stellen OpenAPI Spezifikationen über APIs.guru zur Verfügung. Welche Größe haben die Spezifikationen, die dort hinterlegt sind.
-    \item Deskriptive Datenanalyse der Linterfehler und der Invertierungen. Erstellen eines Boxplots über die Verteilung der Regeln.
+    \item Die Daten werden auf das benötigte Format abgebildet.
+    \item Je nach Spezifikation der Analyse wird eine tabellarische Übersicht (1) oder ein Plot (2) erstellt
+    \item Erstellte Übersichten werden abgespeichert. Plots werden im Ordner \texttt{text/thesis/img} abgespeichert, Tabellen im Ordner \texttt{data/analysis-results}
   \end{enumerate}
   \\ \hline
-
+  \textbf{Erweiterungsszenario} & 
+  \vspace{-0.7cm}
+  \begin{enumerate}
+    \item Aggregiere die Daten zu einer Tabelle mit Linterregeln in der ersten Spalte.
+    \item Aggregiere die Daten und erstelle einen Plot mit Linterregeln auf der x-Achse.
+  \end{enumerate}
+  \\ \hline
   \textbf{Risiko} & mittel \\ \hline
   \textbf{Qualitätsanforderungen} & 
   \vspace{-0.7cm}
@@ -171,6 +178,8 @@ Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanfo
   \label{req:qr5}
   \item \textbf{QR-5} Alle Systemteile sollten mit Unit-Tests versehen werden. Die Testabdeckung sollte dabei nicht geringer als 80 \% sein.
 \end{itemize}
+  \label{req:qr6}
+  \item \textbf{QR-6} Alle Plots müssen mit einem Grid, Labels und Beschriftungen für x- und y-Achse versehen werden. 
 
 \subsubsection{Einschränkungen}
 \begin{itemize}
