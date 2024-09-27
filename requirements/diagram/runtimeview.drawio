@@ -1,14 +1,14 @@
 <mxfile host="65bd71144e">
     <diagram id="FkPxATng6r7EXgsdxxFw" name="Page-1">
-        <mxGraphModel dx="2136" dy="657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1546" dy="440" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="51" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-100" y="50" width="1030" height="470" as="geometry"/>
+                    <mxGeometry x="-10" y="50" width="870" height="470" as="geometry"/>
                 </mxCell>
                 <mxCell id="45" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="-50" y="250" width="930" height="180" as="geometry"/>
+                    <mxGeometry x="10" y="250" width="830" height="180" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="&lt;u&gt;:SpectralExecutor&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="300" y="110" width="120" height="60" as="geometry"/>
@@ -204,10 +204,10 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="46" value="&lt;b&gt;loop&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" parent="1" vertex="1">
-                    <mxGeometry x="-50" y="250" width="40" height="20" as="geometry"/>
+                    <mxGeometry x="10" y="250" width="40" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" value="&lt;b&gt;[all Specs&lt;/b&gt;]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-                    <mxGeometry x="-10" y="250" width="70" height="20" as="geometry"/>
+                <mxCell id="47" value="&lt;b&gt;[Specs&lt;/b&gt;]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="5" y="275" width="70" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

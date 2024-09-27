@@ -125,3 +125,6 @@ HINT
 ERROR
 kmeans
 Priorisierungswerte
+tex
+thesis
+img
