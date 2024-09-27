@@ -128,3 +128,7 @@ Priorisierungswerte
 tex
 thesis
 img
+Cloudanbieter
+Priorisierungsmaß
+Components
+Regierungs
