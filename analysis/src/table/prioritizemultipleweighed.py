@@ -29,7 +29,7 @@ def get_combined():
     df_ifs = create_inverse_frequence_score()
     inverted_df = create_jaccard_inverted_score()
 
-    alpha = 0.9
-    beta = 0.1
+    alpha = 0.8
+    beta = 0.2
 
     return (alpha * df_ifs) + (beta * inverted_df)
