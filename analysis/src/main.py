@@ -26,6 +26,7 @@ from table import (
     prioritizemultipleweighed,
     groupedprioritizedrules,
     violationpartitionazure,
+    findnoviolations,
 )
 
 logging.basicConfig(
@@ -51,3 +52,4 @@ clusterprioritizedscatter.create_plot()
 violationsonazureexcluded.create_plot()
 violationpartitionazure.create_report()
 multitriggerboxplot.create_plot()
+findnoviolations.create_report()
