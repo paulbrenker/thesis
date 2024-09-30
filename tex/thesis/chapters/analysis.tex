@@ -1,5 +1,7 @@
 \section{Ergebnisse und Analyse}
-Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. In diesem Kapitel werden die Ergebnisse vorgestellt und der Versuch einer datengetriebenen Priorisierung der Regeln wird unternommen.
+Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst.
+In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestellt und der Versuch einer datengetriebenen Priorisierung der Regeln wird unternommen.
+
 \subsection{Explorative Analyse}
 \begin{figure}[htbp]
   \centering
@@ -79,7 +81,7 @@ Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:c
   \hline
   \textbf{Regel} & \textbf{$\text{I}_\text{Frequenz}$} & \textbf{$\text{I}_\text{Diversität}$} & \ \textbf{Kombiniert} & \textbf{OAS} & \textbf{Cluster} \\ \hline \hline
 
-  operation-operationId-unique         & 1 &  0.375 & 0.875 & hint & error \\ 
+  operation-operationId-unique & 1 &  0.375 & 0.875 & hint & error \\ 
   operation-parameters & 1 &  0.375 & 0.875 & warn & error \\ 
   contact-properties & 1 &  0.375 & 0.875 & warn & error \\ 
   openapi-tags & 1 &  0.375 & 0.875 & warn & error \\ 
@@ -89,7 +91,8 @@ Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:c
   info-license & 1 &  0.375 & 0.875 & warn & error \\ 
   oas3-server-not-example.com &  1 &  0.375 & 0.875 & warn & error \\ 
   oas3-operation-security-defined &  1 &  0.375 & 0.875 & warn & error \\ 
-  oas3-parameter-description & 1 &  0.375 & 0.875 & warn & error \\ 
+  oas3-parameter-description & 1 & 
+  0.375 & 0.875 & warn & error \\ 
   oas3-callbacks-in-callbacks &  1 &  0.375 & 0.875 & warn & error \\ 
   path-declarations-must-exist & 1 &  0.375 & 0.875 & warn & error \\ 
   operation-singular-tag & 1 &  0.375 & 0.875 & warn & error \\ 
