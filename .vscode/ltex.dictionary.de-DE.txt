@@ -128,3 +128,7 @@ Priorisierungswerte
 tex
 thesis
 img
+analysis-results
+Scatterplot
+IDF
+Priorisierungsverfahren

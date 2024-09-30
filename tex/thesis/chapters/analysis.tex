@@ -27,10 +27,10 @@ Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunde
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/azurespecthrownbarplot.png}
-  \caption{Anteil der von Azure Spezifikationen ausgelösten Fehler an gesamt Fehler. Auschließlich Regeln die im Azure SPectral Regelwerk ignoriert werden.}
+  \caption{Anteil der von Azure Spezifikationen ausgelösten Fehler an allen Linterfehlern. Ausschließlich Regeln die im Azure Spectral Regelwerk ignoriert werden.}
   \label{fig:azurespecthrownbarplot}
 \end{figure}
-Das liefert keine Indikation, dass die Azure SPezifikationen einen Bias für den Datensatz liefern.
+Das liefert keine Indikation, dass die Azure Spezifikationen einen Bias für den Datensatz liefern.
 
 
 \subsection{Auswertung der Invertierung}
@@ -64,8 +64,63 @@ Eine Visualisierung der jeweils minimalen Jaccards Distanzen und ein Hierarchisc
 \end{figure}
 
 \subsubsection{Kombination der Verfahren}
+Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:combinedweighedprioritized} verdeutlicht. Die Koeffizienten $\alpha$ und $\beta$ wurde wie folgt gewählt:
 
+\[
+\alpha = 0,8 ; \beta = 0,2
+\]
 
+{\footnotesize
+\begin{longtable}{lccccc}
+  \caption{}
+  \label{tab:combinedweighedprioritized}
+  \endfirsthead
+  \endhead
+  \hline
+  \textbf{Regel} & \textbf{$\text{I}_\text{Frequenz}$} & \textbf{$\text{I}_\text{Diversität}$} & \ \textbf{Kombiniert} & \textbf{OAS} & \textbf{Cluster} \\ \hline \hline
+
+  operation-operationId-unique         & 1 &  0.375 & 0.875 & hint & error \\ 
+  operation-parameters & 1 &  0.375 & 0.875 & warn & error \\ 
+  contact-properties & 1 &  0.375 & 0.875 & warn & error \\ 
+  openapi-tags & 1 &  0.375 & 0.875 & warn & error \\ 
+  openapi-tags-alphabetical &  1 &  0.375 & 0.875 & warn & error \\ 
+  openapi-tags-uniqueness &  1 &  0.375 & 0.875 & error & error \\ 
+  license-url &  1 &  0.375 & 0.875 & warn & error \\ 
+  info-license & 1 &  0.375 & 0.875 & warn & error \\ 
+  oas3-server-not-example.com &  1 &  0.375 & 0.875 & warn & error \\ 
+  oas3-operation-security-defined &  1 &  0.375 & 0.875 & warn & error \\ 
+  oas3-parameter-description & 1 &  0.375 & 0.875 & warn & error \\ 
+  oas3-callbacks-in-callbacks &  1 &  0.375 & 0.875 & warn & error \\ 
+  path-declarations-must-exist & 1 &  0.375 & 0.875 & warn & error \\ 
+  operation-singular-tag & 1 &  0.375 & 0.875 & warn & error \\ 
+  tag-description &  1 &  0.375 & 0.875 & warn & error \\ 
+  no-eval-in-markdown &  1 &  0.025194 & 0.805039 & warn & error \\ \hline
+  no-script-tags-in-markdown & 0.333333 &  0.026171 & 0.271901 & warn &  warn \\ 
+  duplicated-entry-in-enum & 0.166667 &  0.028361 & 0.139006 & warn &  warn \\ 
+  oas3-schema &  0.142857 &  0.029349 & 0.120156 & hint &  warn \\ 
+  array-items &  0.111111 &  0.029397 & 0.094768 & hint &  warn \\ 
+  path-not-include-query & 0.090909 &  0.034471 & 0.079621 & warn &  warn \\ 
+  oas3-server-variables &  0.090909 &  0.027007 & 0.078129 & hint &  warn \\ 
+  oas3-examples-value-or-externalValue & 0.083333 &  0.032167 & 0.073100 & warn &  warn \\ \hline
+  operation-operationId-valid-in-url & 0.024390 &  0.035357 & 0.026584 & warn &  hint \\ 
+  typed-enum & 0.022222 &  0.036551 & 0.025088 & warn &  hint \\ 
+  oas3-api-servers & 0.022222 &  0.031494 & 0.024077 & warn &  hint \\ 
+  operation-success-response & 0.017241 &  0.038016 & 0.021396 & warn &  hint \\ 
+  path-params &  0.012658 &  0.040815 & 0.018290 & hint &  hint \\ 
+  info-contact & 0.000424 &  0.074276 & 0.015194 & warn &  hint \\ 
+  operation-tag-defined &  0.000435 &  0.073718 & 0.015092 & warn &  hint \\ 
+  oas3-valid-media-example & 0.006289 &  0.049300 & 0.014892 & hint &  hint \\ 
+  no-\$ref-siblings & 0.000457 &  0.067871 & 0.013940 & hint &  hint \\ 
+  path-keys-no-trailing-slash &  0.006536 &  0.042196 & 0.013668 & warn &  hint \\ 
+  operation-description &  0.001669 &  0.059269 & 0.013189 & warn &  hint \\ 
+  oas3-valid-schema-example &  0.002347 &  0.054599 & 0.012798 & hint &  hint \\ 
+  oas3-unused-component &  0.000992 &  0.059835 & 0.012761 & warn &  hint \\ 
+  operation-operationId &  0.002632 &  0.052863 & 0.012678 & warn &  hint \\ 
+  info-description & 0.002066 &  0.049029 & 0.011459 & warn &  hint \\ 
+  operation-tags & 0.001096 &  0.046861 & 0.010249 & warn &  hint \\ 
+  oas3-server-trailing-slash & 0.001927 &  0.043539 & 0.010249 & warn &  hint \\ \hline
+\end{longtable}
+}
 
 \subsection{Gruppierung}
 

@@ -22,7 +22,7 @@ def create_report():
 
     logger.info(
         "Kmeans Clustered Rules according to prio:\n%s",
-        df_clustered.sort_values(ascending=False, by="group").to_string(),
+        df_clustered.sort_values(ascending=False, by="weighed").to_string(),
     )
 
 
@@ -33,21 +33,34 @@ def create_clustering():
     alpha = 0.8
     beta = 0.2
 
-    inverse_frequence_series = create_inverse_frequence_score() * alpha
-    trigger_diversity_series = create_jaccard_inverted_score() * beta
+    inverse_frequence_series = create_inverse_frequence_score()
+    trigger_diversity_series = create_jaccard_inverted_score()
 
     df_prioritization = inverse_frequence_series.to_frame().assign(
         diversity=trigger_diversity_series.values
     )
     df_prioritization_renamed = df_prioritization.rename(columns={0: "idf"})
 
+    df_prioritization_renamed_weighed = df_prioritization_renamed["idf"].apply(
+        lambda x: alpha * x
+    )
+
+    df_prioritization_renamed_weighed = (
+        df_prioritization_renamed_weighed.to_frame().assign(
+            diversity=df_prioritization_renamed["diversity"].apply(lambda x: beta * x)
+        )
+    )
+
     kmeans = KMeans(n_clusters=3, random_state=0)
     severity_mapping = {0: "error", 1: "warn", 2: "hint"}
     grouping = [
         severity_mapping[group]
-        for group in kmeans.fit_predict(df_prioritization_renamed)
+        for group in kmeans.fit_predict(df_prioritization_renamed_weighed)
     ]
 
-    df_clustered = df_prioritization_renamed.assign(group=grouping)
+    df_clustered = df_prioritization_renamed.assign(
+        weighed=df_prioritization_renamed_weighed["idf"]
+        + df_prioritization_renamed_weighed["diversity"]
+    ).assign(group=grouping)
 
     return df_clustered
