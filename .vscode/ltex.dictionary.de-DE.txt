@@ -136,3 +136,4 @@ loop
 Priorisierungsmaße
 Relevanzklassen
 Centroiden
+Priorisierungsmaß

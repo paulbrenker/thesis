@@ -315,3 +315,12 @@ Spectral verwendet drei Schweregrad Level für die Regeln des Spectral OAS Daten
 
 \subsection{Validität}
 In diesem Kapitel wurde die Methode vorgestellt, mit der die Forschungsfragen dieser Arbeit beantwortet werden. Abschließend wird hier erläutert, welche Einschränkungen die Anwendung dieser Methode hat.
+
+Die Methodik zur Beantwortung der Forschungsfragen in dieser Arbeit geht von einer hohen Qualität der Daten im OpenAPI Directory von APIs.guru aus. Diese Annahme kann aufgrund der Verwendung des OpenAPI Directory in mehreren wissenschaftlichen Quellen \parencite{bogner_restruler_2024} \parencite{serbout_apistic_2024} gemacht werden. Die Qualität des OpenAPI Directory wird dort spezifisch erwähnt. "Aufgrund des kuratierten Inhalts enthält es hochqualitative, valide und einzigartige Spezifikationen, da nicht verlässliche Quellen herausgefiltert werden"\footnote{Übersetzt aus dem Englischen} \parencite{serbout_apistic_2024}. "Diese Definitionen variierten stark in der Größe und deckten eine große Anzahl an Themen ab. Von offiziellen Cloudanbieter APIs von Firmen wie Amazon und Microsoft bis zu Museums und Regierungs APIs. Nur in wenigen Fällen lagen mehrere Versionen der gleichen API vor, was zur Variation beiträgt. Die Dokumente nutzen OpenAPI Konzepte wie Components oder Responses sehr unterschiedlich, was sie sehr verschieden macht. Dies qualifiziert sie als ideale Testbasis für unsere Implementierung ..."\footnote{Übersetzt aus dem Englischen} \parencite{bogner_restruler_2024}.
+
+Die Inverse Document Frequency wird als Priorisierungsmaß verwendet, da Linterregeln, die auf Spezifikationen hoher Qualität häufig ausgelöst werden keinen Einfluss auf die Qualität des Dokumentes haben.
+Mit Daten schlechter Qualität kann ist diese Bedingung für die Nutzung von IDF als Priorisierung nicht mehr gegeben.
+
+Um dieses Risiko abzumildern wird mit der Diversität der triggernden Spezifikationen ein zweites Priorisierungsmaß eingeführt. Dies soll den Effekt von Spezifikationen schlechter Qualität auf die Gesamtpriorisierung abmildern.
+
+Um Risiken durch in der Funktionalität fehlerhafte Software zu minimieren wird der Code, der im Rahmen dieser Arbeit entwickelt wurde getestet. Dennoch kann so die Korrektheit des Programmcodes nicht nachgewiesen werden. "Das Testen von Programmen kann die Existenz von Fehlern zeigen, aber niemals deren Nichtvorhandensein" \parencite{dijkstra_notes_1970}.
