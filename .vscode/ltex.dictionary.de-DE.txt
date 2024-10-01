@@ -137,3 +137,6 @@ Priorisierungsmaße
 Relevanzklassen
 Centroiden
 Priorisierungsmaß
+Cloudanbieter
+Regierungs
+Components

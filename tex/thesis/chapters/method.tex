@@ -267,9 +267,10 @@ In einer explorativen Analyse werden die Hauptcharakteristiken des Datensatzes a
 
 In einem weiteren Schritt soll die Invertierung der Regeln ausgewertet werden. Hierbei werden die Daten der geworfenen Linterfehler und der möglichen Linterfehler pro Regel verglichen. Für geeignete Regeln wird ein Boxplot über die Häufigkeit der geworfenen Regeln gezeigt.
 
-\subsubsection{Priorisierung}
+\subsection{Priorisierung}
 Es werden mehrere Maße verwendet, um aus den geworfenen Linterfehlern Hinweise zu einer möglichen Gewichtung der Regeln abzuleiten. Diese Verfahren ergeben jeweils ein Scoring, zwischen 0 und 1. 1 bedeutet unabhängig vom verwendeten Maß die höchste Priorisierung (Relevanz) und 0 die niedrigste.  Am Ende werden die Werte gewichtet verrechnet, um eine Gesamtpriorisierung zu erhalten. Die Gesamtpriorisierung wird dann anschließend mit Datengetriebenen Methoden in mehrere Gruppen aufgeteilt. Dieser Abschnitt beantwortet \textbf{RQ-1}: Wie können die Linterregeln priorisiert werden.
 
+\subsubsection{Inverse Document Frequency}
 Die erste Methode beruht auf der Gewichtung von Relevanz aufgrund der \textit{Document Frequency}. Der berechnete Score basiert auf der Annahme, dass je häufiger eine Regel auf dem APIs.guru Datensatz ausgelöst wurde, desto weniger beeinflusst das Einhalten dieser Regel die Qualität der OpenAPI Spezifikation\footnote{Grundlage hierfür ist die angenommene hohe Qualität des APIs.guru Datensatzes.}. Zum Messen dieses Wertes eignet sich die \textit{inverse document frequency} \parencite{manning_introduction_2008}. Die \textit{Document Frequency} ist definiert durch die Anzahl an Dokumenten in einer Kollektion, die einen Term enthalten \parencite{manning_introduction_2008}. Um hier die eine Abbildung auf die Priorisierung zu erzielen, wird eine Form der \textit{inverse document frequency (idf)} verwendet:
 \[
 \text{Importance}_\text{Frequency}(r) = 
@@ -282,12 +283,14 @@ Die erste Methode beruht auf der Gewichtung von Relevanz aufgrund der \textit{Do
 \[
 \text{occurrence of rule }r = 
 \begin{cases} 
-1 & \text{, wenn die Regel ausgelöst wurde}, \\
-0 & \text{, sonst}.
+1 &\text{, wenn die Regel ausgelöst wurde}, \\
+0 &\text{, sonst}.
 \end{cases}
 \]
 Ein weitverbreiteter Score für die Bewertung von Relevanz von Worten in Texten im Feld des  \textit{Natural Language Processing (NLP)} ist die \textit{tf-idf} Gewichtung \parencite{manning_introduction_2008}. Angewandt auf die Linterfehler, kann die tf-idf Gewichtung dabei die Relevanz einer bestimmten Regel für eine Spezifikation zu finden. Um allgemein gültige Aussagen zur Relevanz der Regeln zu machen, eignet sich diese Gewichtung nicht. 
 
+
+\subsubsection{Diversitäts Scoring}
 Das zweite Maß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Ergebnisse beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität über alle Regeln hinweg viele Fehler auslösen. Damit beeinflussen diese die Relevanz des Inversen Frequenz Scoring.
 Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Die Spalten des Datensatzes, die das Vorkommen (\textit{occurences}) der Regeln dokumentieren können als Binärvektoren interpretiert werden. Zur Bestimmung der Ähnlichkeit von Binärvektoren kann das \textit{Jaccards} Ähnlichkeitsmaß verwendet werden \parencite{mehrotra_anomaly_2017}.
 
