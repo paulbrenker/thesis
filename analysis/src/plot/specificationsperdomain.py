@@ -40,7 +40,7 @@ def create_plot():
     spec_counts_by_name["2 - 9 Specifications"] = spec_counts_2_to_9
     spec_counts_by_name["10 - 100 Specifications"] = spec_counts_10_to_100
 
-    fig, ax = plt.subplots(figsize=(10, 7))
+    fig, ax = plt.subplots(figsize=(10, 6))
     ax.pie(
         x=spec_counts_by_name.values(),
         labels=spec_counts_by_name.keys(),

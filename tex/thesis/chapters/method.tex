@@ -7,19 +7,19 @@ Diese Interaktionen können nach \parencite{bergsmann_requirements_2023} wie fol
 \subsubsection{Linting}
 Den APIs.guru Datensatz mit dem Spectral OAS Datensatz zu linten, ist die erste Benutzer Interaktion mit dem System.
 
-\begin{longtable}{|l|p{0.5\linewidth}|}
+\begin{longtable}{lp{0.5\linewidth}}
   \caption{Use Case 1: Linting textuell.}
   \endfirsthead
   \endhead
   \hline
-  \textbf{Use Case ID} & UC1 \\ \hline
-  \textbf{Use Case Name} & Linting \\ \hline
-  \textbf{Ziel (Kundennutzen)} & Ermitteln der Linterfehler die auf allen OpenAPI Spezifikationen in im OpenAPI Directory von APIs.guru geworfen werden. \\ \hline
-  \textbf{Kategorien} & Interaktion mit externen Systemen,  \\ \hline
-  \textbf{Vorbedingung} & Benutzer startet den Linting Prozess über das Terminal \\ \hline
-  \textbf{Nachbedingung} & Linterfehler zu allen OpenAPI Spezifikationen des OpenAPI Directories sind lokal gespeichert \\ \hline
-  \textbf{Akteure} & USER \\ \hline
-  \textbf{Trigger} & User Befehl \\ \hline
+  \textbf{Use Case} & UC1 \\ \hline\hline
+  \textbf{Use Case Name} & Linting \\
+  \textbf{Ziel (Kundennutzen)} & Ermitteln der Linterfehler die auf allen OpenAPI Spezifikationen in im OpenAPI Directory von APIs.guru geworfen werden. \\
+  \textbf{Kategorien} & Interaktion mit externen Systemen,  \\
+  \textbf{Vorbedingung} & Benutzer startet den Linting Prozess über das Terminal \\
+  \textbf{Nachbedingung} & Linterfehler zu allen OpenAPI Spezifikationen des OpenAPI Directories sind lokal gespeichert \\
+  \textbf{Akteure} & USER \\
+  \textbf{Trigger} & User Befehl \\
   \textbf{Standardszenario} & 
   \vspace{-0.7cm}
   \begin{enumerate}
@@ -28,14 +28,14 @@ Den APIs.guru Datensatz mit dem Spectral OAS Datensatz zu linten, ist die erste 
     \item Die Linterfehler werden auf ein Speicherbares Format abgebildet.
     \item Die Linterfehler von allen Spezifikationen werden im CSV Datenformat physisch gespeichert. 
   \end{enumerate}
-  \\ \hline
+  \\
   \textbf{Erweiterungsszenario} & 
   \vspace{-0.7cm}
   \begin{itemize}
     \item Falls eine Spezifikation in manuell als unlintbar markiert wurde, wird diese vom Linten ausgeschlossen.
   \end{itemize}
-  \\ \hline
-  \textbf{Risiko} & gering \\ \hline
+  \\
+  \textbf{Risiko} & gering \\
   \textbf{Qualitätsanforderungen} & 
   \vspace{-0.7cm}
   \begin{itemize}
@@ -52,27 +52,33 @@ Den APIs.guru Datensatz mit dem Spectral OAS Datensatz zu linten, ist die erste 
 \end{figure}
 
 \subsubsection{Invertierung}
-Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig eine Regel geworfen werden könnte. Das Inverse definieren wir als die relative Anzahl der Fälle, in denen eine Regel eingehalten wurde. Es ist wichtig diese Werte zu berechnen, um Aussagen über die Relevanz treffen zu können.
+Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig eine Regel geworfen werden könnte. Das Inverse definieren wir als die relative Anzahl der Fälle, in denen eine Regel eingehalten wurde. Es ist wichtig diese Werte zu berechnen, um Aussagen über die Relevanz treffen zu können. In diesem Use Case wird zwischen vier Klassen von Linterregeln unterschieden. Diese sollen die Größenordnung der möglichen Linterfehler anzeigen. Um die Linterregeln des OAS Regelwerks zu klassifizieren, wird eine Analyse des Quellcodes des Regelwerkes vorgenommen.
+\begin{enumerate}
+  \item \textbf{Inkompatibel:} Eine Regel ist dann inkompatibel, wenn sie für OAS Versionen spezifiziert ist, die im OpenAPI Directory von APIs.guru nicht vorkommen. Im Datensatz werden alle Spezifikationen auf OAS 3.0 konvertiert. Folglich sind alle Versionen $v$ mit $v \neq 3.0$ inkompatibel.
+  \item \textbf{Single Trigger:} Als Single Trigger gelten Regeln, die pro Spezifikation maximal ein Mal ausgelöst werden können.
+  \item \textbf{Multi Trigger:} Diese Regeln können mehrmals in einer Spezifikation geworfen werden.
+  \item \textbf{Multi Message:} Multi Message Regeln können mehrmals pro Spezifikation geworfen werden. Für jede gelintete Stelle können mehrere Arten von Linterfehlern geworfen werden.
+\end{enumerate} 
 
-\begin{longtable}{|l|p{0.5\linewidth}|}
+\begin{longtable}{lp{0.5\linewidth}}
   \caption{Use Case 2: Invertierung textuell.}
   \endfirsthead
   \endhead
   \hline
-  \textbf{Use Case ID} & UC2 \\ \hline
-  \textbf{Use Case Name} & Invertierung \\ \hline
-  \textbf{Ziel (Kundennutzen)} & Ermitteln der Anzahl der Linterfehler, die pro Linterregel auf einer Spezifikation ausgelöst werden könnten. \\ \hline
-  \textbf{Kategorien} & Erstellen von Metadaten \\ \hline
-  \textbf{Vorbedingung} & Mögliche Linterfehler für die OpenAPI Spezifikationen wurden ermittelt \\ \hline
-  \textbf{Nachbedingung} & Metadaten zu den Inversen Liegen in Form einer CSV Datei vor. \\ \hline
-  \textbf{Akteure} & USER \\ \hline
-  \textbf{Trigger} & User Befehl \\ \hline
+  \textbf{Use Case} & UC2 \\ \hline\hline
+  \textbf{Use Case Name} & Invertierung \\
+  \textbf{Ziel (Kundennutzen)} & Ermitteln der Anzahl der Linterfehler, die pro Linterregel auf einer Spezifikation ausgelöst werden könnten. \\
+  \textbf{Kategorien} & Erstellen von Metadaten \\
+  \textbf{Vorbedingung} & Mögliche Linterfehler für die OpenAPI Spezifikationen wurden ermittelt \\
+  \textbf{Nachbedingung} & Metadaten zu den Inversen Liegen in Form einer CSV Datei vor. \\
+  \textbf{Akteure} & USER \\
+  \textbf{Trigger} & User Befehl \\
   \textbf{Standardszenario} & 
   \vspace{-0.7cm}
   \begin{itemize}
     \item Rufe für Jede OpenAPI Spezifikation und für jede Regel die Invertierung auf.
   \end{itemize}
-  \\ \hline
+  \\
   \textbf{Erweiterungsszenario} & 
   \vspace{-0.7cm}
   \begin{enumerate}
@@ -81,8 +87,8 @@ Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig 
     \item Wenn eine Regel mehrmals pro Datensatz ausgelöst werden kann, gib die Anzahl der möglichen Auslösungen zurück.
     \item Wenn eine Regel mehrmals pro Datensatz ausgelöst werden kann und bei jeder Auslösung verschiedene Nachrichten geworfen werden können, gebe die Anzahl der möglichen Auslösungen multipliziert mit der Anzahl der verschiedenen Nachrichten zurück.
   \end{enumerate}
-  \\ \hline
-  \textbf{Risiko} & hoch \\ \hline
+  \\
+  \textbf{Risiko} & hoch \\
   \textbf{Qualitätsanforderungen} & 
   \vspace{-0.7cm}
   \begin{itemize}
@@ -100,19 +106,19 @@ Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig 
 \subsubsection{Analyse}
 Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den in UC1 und UC2 beschriebenen Interaktionen statt. Zweck dieser Interaktion ist es, die ermittelten Linterfehler und die Metadaten in ein Menschenlesbares Format zu bringen und sie zu beschreiben (Deskriptive Datenanalyse). 
 
-\begin{longtable}{|l|p{0.5\linewidth}|}
+\begin{longtable}{lp{0.5\linewidth}}
   \caption{Use Case 3: Analyse textuell.}
   \endfirsthead
   \endhead
   \hline
-  \textbf{Use Case ID} & UC3 \\ \hline
-  \textbf{Use Case Name} & Analyse \\ \hline
-  \textbf{Ziel (Kundennutzen)} & Deskriptive und Clusteranalyse der Linter- und Invertierungsdaten. \\ \hline
-  \textbf{Kategorien} & Datenvisualisierung \\ \hline
-  \textbf{Vorbedingung} & Interaktionen UC1 und UC2 abgeschlossen \\ \hline
-  \textbf{Nachbedingung} & Visualisierungen und Tabellenartige Darstellung von Daten liegt vor. \\ \hline
-  \textbf{Akteure} & USER \\ \hline
-  \textbf{Trigger} & User Befehl \\ \hline
+  \textbf{Use Case} & UC3 \\ \hline\hline
+  \textbf{Use Case Name} & Analyse \\
+  \textbf{Ziel (Kundennutzen)} & Deskriptive und Clusteranalyse der Linter- und Invertierungsdaten. \\
+  \textbf{Kategorien} & Datenvisualisierung \\
+  \textbf{Vorbedingung} & Interaktionen UC1 und UC2 abgeschlossen \\
+  \textbf{Nachbedingung} & Visualisierungen und Tabellenartige Darstellung von Daten liegt vor. \\
+  \textbf{Akteure} & USER \\
+  \textbf{Trigger} & User Befehl \\
   \textbf{Standardszenario} & 
   \vspace{-0.7cm}
   \begin{enumerate}
@@ -120,15 +126,15 @@ Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den i
     \item Je nach Spezifikation der Analyse wird eine tabellarische Übersicht (1) oder ein Plot (2) erstellt
     \item Erstellte Übersichten werden abgespeichert. Plots werden im Ordner \texttt{text/thesis/img} abgespeichert, Tabellen im Ordner \texttt{data/analysis-results}
   \end{enumerate}
-  \\ \hline
+  \\
   \textbf{Erweiterungsszenario} & 
   \vspace{-0.7cm}
   \begin{enumerate}
     \item Aggregiere die Daten zu einer Tabelle mit Linterregeln in der ersten Spalte.
     \item Aggregiere die Daten und erstelle einen Plot mit Linterregeln auf der x-Achse.
   \end{enumerate}
-  \\ \hline
-  \textbf{Risiko} & mittel \\ \hline
+  \\
+  \textbf{Risiko} & mittel \\
   \textbf{Qualitätsanforderungen} & 
   \vspace{-0.7cm}
   \begin{itemize}
