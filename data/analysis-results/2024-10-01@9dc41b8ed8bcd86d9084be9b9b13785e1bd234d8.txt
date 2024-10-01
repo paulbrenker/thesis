@@ -1,0 +1,12 @@
+2024-10-01 12:43:49 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 12:48:44 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 12:52:57 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 12:54:19 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 12:55:40 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 12:56:27 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 12:57:30 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 13:06:28 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 13:09:52 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 13:11:56 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 13:14:33 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-01 13:14:55 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
