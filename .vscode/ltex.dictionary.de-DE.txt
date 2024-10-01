@@ -133,3 +133,6 @@ Scatterplot
 IDF
 Priorisierungsverfahren
 loop
+Priorisierungsmaße
+Relevanzklassen
+Centroiden
