@@ -267,9 +267,10 @@ In einer explorativen Analyse werden die Hauptcharakteristiken des Datensatzes a
 
 In einem weiteren Schritt soll die Invertierung der Regeln ausgewertet werden. Hierbei werden die Daten der geworfenen Linterfehler und der möglichen Linterfehler pro Regel verglichen. Für geeignete Regeln wird ein Boxplot über die Häufigkeit der geworfenen Regeln gezeigt.
 
-\subsubsection{Priorisierung}
+\subsection{Priorisierung}
 Es werden mehrere Maße verwendet, um aus den geworfenen Linterfehlern Hinweise zu einer möglichen Gewichtung der Regeln abzuleiten. Diese Verfahren ergeben jeweils ein Scoring, zwischen 0 und 1. 1 bedeutet unabhängig vom verwendeten Maß die höchste Priorisierung (Relevanz) und 0 die niedrigste.  Am Ende werden die Werte gewichtet verrechnet, um eine Gesamtpriorisierung zu erhalten. Die Gesamtpriorisierung wird dann anschließend mit Datengetriebenen Methoden in mehrere Gruppen aufgeteilt. Dieser Abschnitt beantwortet \textbf{RQ-1}: Wie können die Linterregeln priorisiert werden.
 
+\subsubsection{Inverse Document Frequency}
 Die erste Methode beruht auf der Gewichtung von Relevanz aufgrund der \textit{Document Frequency}. Der berechnete Score basiert auf der Annahme, dass je häufiger eine Regel auf dem APIs.guru Datensatz ausgelöst wurde, desto weniger beeinflusst das Einhalten dieser Regel die Qualität der OpenAPI Spezifikation\footnote{Grundlage hierfür ist die angenommene hohe Qualität des APIs.guru Datensatzes.}. Zum Messen dieses Wertes eignet sich die \textit{inverse document frequency} \parencite{manning_introduction_2008}. Die \textit{Document Frequency} ist definiert durch die Anzahl an Dokumenten in einer Kollektion, die einen Term enthalten \parencite{manning_introduction_2008}. Um hier die eine Abbildung auf die Priorisierung zu erzielen, wird eine Form der \textit{inverse document frequency (idf)} verwendet:
 \[
 \text{Importance}_\text{Frequency}(r) = 
@@ -282,12 +283,14 @@ Die erste Methode beruht auf der Gewichtung von Relevanz aufgrund der \textit{Do
 \[
 \text{occurrence of rule }r = 
 \begin{cases} 
-1 & \text{, wenn die Regel ausgelöst wurde}, \\
-0 & \text{, sonst}.
+1 &\text{, wenn die Regel ausgelöst wurde}, \\
+0 &\text{, sonst}.
 \end{cases}
 \]
 Ein weitverbreiteter Score für die Bewertung von Relevanz von Worten in Texten im Feld des  \textit{Natural Language Processing (NLP)} ist die \textit{tf-idf} Gewichtung \parencite{manning_introduction_2008}. Angewandt auf die Linterfehler, kann die tf-idf Gewichtung dabei die Relevanz einer bestimmten Regel für eine Spezifikation zu finden. Um allgemein gültige Aussagen zur Relevanz der Regeln zu machen, eignet sich diese Gewichtung nicht. 
 
+
+\subsubsection{Diversitäts Scoring}
 Das zweite Maß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Ergebnisse beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität über alle Regeln hinweg viele Fehler auslösen. Damit beeinflussen diese die Relevanz des Inversen Frequenz Scoring.
 Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Die Spalten des Datensatzes, die das Vorkommen (\textit{occurences}) der Regeln dokumentieren können als Binärvektoren interpretiert werden. Zur Bestimmung der Ähnlichkeit von Binärvektoren kann das \textit{Jaccards} Ähnlichkeitsmaß verwendet werden \parencite{mehrotra_anomaly_2017}.
 
@@ -309,5 +312,18 @@ Um die Werte der beiden Priorisierungsmaße zu vereinigen wird eine gewichtete S
 Die berechneten Werte geben Antwort auf \textbf{RQ-2} (Wie können relevante Linterregeln priorisiert werden).
 
 
-\subsubsection{Gruppierung}
-Spectral verwendet drei Schweregrad Level für die Regeln des Spectral OAS Datensatzes (\texttt{HINT}, \texttt{WARN}, \texttt{ERROR}) siehe auch Abbildung \ref{tab:OASRules}. Zur Beantwortung von \textbf{RQ-3} (Welche Linterregeln können empfohlen werden) soll eine Gruppierung der Regeln in drei Relevanzklassen erfolgen, die den Schweregraden des Spectral Linters entsprechen. Die Regeln sollen anhand ihrer Priorisierung in drei Partitionen eingeteilt werden. Dafür eignet sich der kmeans Clustering Algorithmus \parencite{bishop_pattern_2006}. Hierfür wird die mit Koeffizienten gewichteten priorisierten Werte als Vektoren verwendet. Die zwei verwendeten Priorisierungsmaße sind Dimensionen für die Gruppenidentifizierung. Für die Implementierung des Algorithmus wird die Pythonbibliothek \texttt{sklearn} verwendet. Für die zufällige Initialisierung der drei Cluster Centroiden wird ein Festgeschriebener random state spezifiziert, um Reproduzierbarkeit zu garantieren.
+\subsubsection{Clustering}
+Spectral verwendet drei Schweregrad Level für die Regeln des Spectral OAS Datensatzes (\texttt{HINT}, \texttt{WARN}, \texttt{ERROR}) siehe auch Abbildung \ref{tab:OASRules}. Zur Beantwortung von \textbf{RQ-3} (Welche Linterregeln können empfohlen werden) soll ein Clustering der Regeln in drei Relevanzklassen erfolgen, die den Schweregraden des Spectral Linters entsprechen. Die Regeln sollen anhand ihrer Priorisierung in drei Partitionen eingeteilt werden. Dafür eignet sich der kmeans Clustering Algorithmus \parencite{bishop_pattern_2006}. Hierfür wird die mit Koeffizienten gewichteten priorisierten Werte als Vektoren verwendet. Die zwei verwendeten Priorisierungsmaße sind Dimensionen für die Gruppenidentifizierung. Für die Implementierung des Algorithmus wird die Pythonbibliothek \texttt{sklearn} verwendet. Für die zufällige Initialisierung der drei Cluster Centroiden wird ein Festgeschriebener random state spezifiziert, um Reproduzierbarkeit zu garantieren.
+
+
+\subsection{Validität der Methode}
+In diesem Kapitel wurde die Methode vorgestellt, mit der die Forschungsfragen dieser Arbeit beantwortet werden. Abschließend wird hier erläutert, welche Einschränkungen die Anwendung dieser Methode hat.
+
+Die Methodik zur Beantwortung der Forschungsfragen in dieser Arbeit geht von einer hohen Qualität der Daten im OpenAPI Directory von APIs.guru aus. Diese Annahme kann aufgrund der Verwendung des OpenAPI Directory in mehreren wissenschaftlichen Quellen \parencite{bogner_restruler_2024} \parencite{serbout_apistic_2024} gemacht werden. Die Qualität des OpenAPI Directory wird dort spezifisch erwähnt. "Aufgrund des kuratierten Inhalts enthält es hochqualitative, valide und einzigartige Spezifikationen, da nicht verlässliche Quellen herausgefiltert werden"\footnote{Übersetzt aus dem Englischen} \parencite{serbout_apistic_2024}. "Diese Definitionen variierten stark in der Größe und deckten eine große Anzahl an Themen ab. Von offiziellen Cloudanbieter APIs von Firmen wie Amazon und Microsoft bis zu Museums und Regierungs APIs. Nur in wenigen Fällen lagen mehrere Versionen der gleichen API vor, was zur Variation beiträgt. Die Dokumente nutzen OpenAPI Konzepte wie Components oder Responses sehr unterschiedlich, was sie sehr verschieden macht. Dies qualifiziert sie als ideale Testbasis für unsere Implementierung ..."\footnote{Übersetzt aus dem Englischen} \parencite{bogner_restruler_2024}.
+
+Die Inverse Document Frequency wird als Priorisierungsmaß verwendet, da Linterregeln, die auf Spezifikationen hoher Qualität häufig ausgelöst werden keinen Einfluss auf die Qualität des Dokumentes haben.
+Mit Daten schlechter Qualität kann ist diese Bedingung für die Nutzung von IDF als Priorisierung nicht mehr gegeben.
+
+Um dieses Risiko abzumildern wird mit der Diversität der triggernden Spezifikationen ein zweites Priorisierungsmaß eingeführt. Dies soll den Effekt von Spezifikationen schlechter Qualität auf die Gesamtpriorisierung abmildern.
+
+Um Risiken durch in der Funktionalität fehlerhafte Software zu minimieren wird der Code, der im Rahmen dieser Arbeit entwickelt wurde getestet. Dennoch kann so die Korrektheit des Programmcodes nicht nachgewiesen werden. "Das Testen von Programmen kann die Existenz von Fehlern zeigen, aber niemals deren Nichtvorhandensein" \parencite{dijkstra_notes_1970}.

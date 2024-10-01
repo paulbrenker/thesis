@@ -133,3 +133,10 @@ Scatterplot
 IDF
 Priorisierungsverfahren
 loop
+Priorisierungsmaße
+Relevanzklassen
+Centroiden
+Priorisierungsmaß
+Cloudanbieter
+Regierungs
+Components
