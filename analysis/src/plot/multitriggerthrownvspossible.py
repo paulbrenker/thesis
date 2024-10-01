@@ -35,16 +35,20 @@ def create_plot():
     index = np.arange(len(df_possible.columns))
 
     ax.bar(
-        index - bar_width / 2,
-        pd.DataFrame.mean(df_thrown).values,
-        bar_width - 0.05,
+        x=index - bar_width / 2,
+        height=pd.DataFrame.mean(df_thrown).values,
+        width=bar_width - 0.05,
+        yerr=pd.DataFrame.std(df_thrown).values,
         label="geworfene Linterfehler",
+        error_kw={"elinewidth": 0.8, "capsize": 5},
     )
     ax.bar(
-        index + bar_width / 2,
-        pd.DataFrame.mean(df_possible).values,
-        bar_width - 0.05,
+        x=index + bar_width / 2,
+        height=pd.DataFrame.mean(df_possible).values,
+        width=bar_width - 0.05,
+        yerr=pd.DataFrame.std(df_possible).values,
         label="mögliche Linterfehler",
+        error_kw={"elinewidth": 0.8, "capsize": 5},
     )
     ax.set_xticks(index)
     ax.set_xticklabels(df_thrown.columns, rotation=45, ha="right")
