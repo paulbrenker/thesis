@@ -132,3 +132,4 @@ analysis-results
 Scatterplot
 IDF
 Priorisierungsverfahren
+gelintete

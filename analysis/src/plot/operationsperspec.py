@@ -40,7 +40,7 @@ def create_plot():
     operation_pie["101 - 500 Operationen"] = operation_counts_101_to_500
     operation_pie["mehr als 501 Operationen"] = operation_counts_larger_500
 
-    fig, ax = plt.subplots(figsize=(10, 7))
+    fig, ax = plt.subplots(figsize=(10, 6))
     ax.pie(
         x=operation_pie.values(),
         labels=operation_pie.keys(),
