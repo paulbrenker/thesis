@@ -211,11 +211,11 @@ Die Kontextsicht zeigt, wie ein System in seine Umgebung eingebettet ist und wel
 \end{figure}
 
 \subsubsection{Bausteinsicht}
-Die Bausteinsicht zeigt, wie ein System intern aufgebaut ist und wie das Code Repository strukturiert ist, \parencite{starke_effektive_2020}. Es wird Top Down dokumentiert, welche Bausteine auf den verschiedenen Levels zum Einsatz kommen. Die einzelnen Bausteine werden als Whiteboxes gezeigt, die die darunterliegende Struktur und damit auch die Paketzerlegung des Quellcodes verdeutlichen. Die Bausteine zeigen den Teil des Code Repositorys, der die funktionalen Anforderungen implementiert. In den Levels werden Bausteine des Systems aufgebrochen und im Detail beschrieben. Die Technologien, auf denen die Komponenten Lintertool und Datenanalyse aufbauen sind sichtbar. In der untersten Schicht sind Kern Dependencies erwähnt, die für Einhaltung der Anforderungen notwendig sind.
+Die Bausteinsicht zeigt, wie ein System intern aufgebaut ist und wie das Code Repository strukturiert ist, \parencite{starke_effektive_2020}. Es wird Top Down dokumentiert, welche Bausteine auf den verschiedenen Levels zum Einsatz kommen. Die einzelnen Bausteine werden als Whiteboxes gezeigt, die die darunterliegende Struktur und damit auch die Paketzerlegung des Quellcodes verdeutlichen. Die Bausteine zeigen den Teil des Code Repositorys, der die funktionalen Anforderungen implementiert. In den Levels werden Bausteine des Systems aufgebrochen und im Detail beschrieben. Die Technologien, auf denen die Komponenten Lintertool und Datenanalyse aufbauen sind sichtbar. In der untersten Schicht sind Kern Abhängigkeiten erwähnt, die für Einhaltung der Anforderungen notwendig sind.
 
-Das Lintertool läuft in einer NodeJS Umgebung und ist in TypeScript implementiert. Der Code wird mit dem \texttt{tsc} Compiler kompiliert und Module werden mit dem \texttt{node package manager (npm)} verwaltet. 
+Das Lintertool läuft in einer Node.js Umgebung und ist in TypeScript implementiert. Der Code wird mit dem tsc Compiler kompiliert und Module werden mit dem node package manager (npm) verwaltet. 
 
-Die Datenanalysepipeline läuft in einer python3 Umgebung. Die eingebundenen Module werden mit dem Tool \texttt{poetry} verwaltet.
+Die Datenanalysepipeline läuft in einer python3 Umgebung. Die eingebundenen Module werden mit dem Tool poetry verwaltet.
 
 \begin{figure}[htbp]
   \centering
@@ -239,7 +239,7 @@ Eine Laufzeitsicht für die Datenanalyse liefert hier nur wenig Erkenntnisgewinn
 \subsubsection{Verteilungssicht}
 Die Verteilungssicht beschreibt die Laufzeitumgebung des Systems und deren Hardwarekomponenten \parencite{starke_effektive_2020}. Zudem werden hier die Laufzeitumgebungen der Software Komponenten dokumentiert, sowie Datenquellen und Datensenken definiert. 
 
-Die Software, die in dieser Arbeit entwickelt wird, wird zu einem Großteil auch in der lokalen Entwicklungsumgebung ausgeführt. Als Ausnahme hier zählt die unabhängige Datenquelle von APIs.guru, die als Git Submodul\footnote{Software Dokumentation zu Git Sumodulen: \href{https://git-scm.com/book/en/v2/Git-Tools-Submodules}{https://git-scm.com/book/en/v2/Git-Tools-Submodules}} eingebunden ist.
+Die Software, die in dieser Arbeit entwickelt wird, wird zu einem Großteil auch in der lokalen Entwicklungsumgebung ausgeführt. Als Ausnahme hier zählt die unabhängige Datenquelle von APIs.guru, die als Git Submodul\footnote{Software Dokumentation zu Git Submodulen: \href{https://git-scm.com/book/en/v2/Git-Tools-Submodules}{https://git-scm.com/book/en/v2/Git-Tools-Submodules}} eingebunden ist.
 
 Software Tests und Qualitätsprüfungen wie Linter und Format Checks werden zudem in einer Integrationspipeline mithilfe von GitHub Actions\footnote{GitHub Actions: \href{https://github.com/features/actions}{https://github.com/features/actions}} auf einem Remote Server ausgeführt. Da dies keinen Einfluss auf die Funktionalität der Software hat, ist dieser Schritt nicht in der Verteilungssicht abgebildet.
 
@@ -271,42 +271,44 @@ In einem weiteren Schritt soll die Invertierung der Regeln ausgewertet werden. H
 Es werden mehrere Maße verwendet, um aus den geworfenen Linterfehlern Hinweise zu einer möglichen Gewichtung der Regeln abzuleiten. Diese Verfahren ergeben jeweils ein Scoring, zwischen 0 und 1. 1 bedeutet unabhängig vom verwendeten Maß die höchste Priorisierung (Relevanz) und 0 die niedrigste.  Am Ende werden die Werte gewichtet verrechnet, um eine Gesamtpriorisierung zu erhalten. Die Gesamtpriorisierung wird dann anschließend mit Datengetriebenen Methoden in mehrere Gruppen aufgeteilt. Dieser Abschnitt beantwortet \textbf{RQ-1}: Wie können die Linterregeln priorisiert werden.
 
 \subsubsection{Inverse Document Frequency}
-Die erste Methode beruht auf der Gewichtung von Relevanz aufgrund der \textit{Document Frequency}. Der berechnete Score basiert auf der Annahme, dass je häufiger eine Regel auf dem APIs.guru Datensatz ausgelöst wurde, desto weniger beeinflusst das Einhalten dieser Regel die Qualität der OpenAPI Spezifikation\footnote{Grundlage hierfür ist die angenommene hohe Qualität des APIs.guru Datensatzes.}. Zum Messen dieses Wertes eignet sich die \textit{inverse document frequency} \parencite{manning_introduction_2008}. Die \textit{Document Frequency} ist definiert durch die Anzahl an Dokumenten in einer Kollektion, die einen Term enthalten \parencite{manning_introduction_2008}. Um hier die eine Abbildung auf die Priorisierung zu erzielen, wird eine Form der \textit{inverse document frequency (idf)} verwendet:
+Im Rahmen des Information Retrievals und des Natural Language Processing (NLP) ist die \textit{tf-idf} Gewichtung ein verbreiteter Score \parencite{manning_introduction_2008}. Das Maß kombiniert die Term Frequenz und die Inverse Document Frequency. Angewandt auf die Linterfehler, kann die tf-idf Gewichtung dabei die Relevanz einer bestimmten Regel für eine Spezifikation zu finden. Um allgemein gültige Aussagen zur Relevanz der Regeln zu machen, eignet sich das kombinierte Maß nicht. Die Inverse Document Frequency eignet sich alleinstehend als Priorisierungsmaß für Linterfehler. Wir definieren für unseren Datensatz ein Dokument als Menge an Fehlern, die zu einer Spezifikation geworfen wurden oder auch eine Zeile in der \textit{linter-results} CSV Datei. Der berechnete Score basiert auf der Annahme, dass je häufiger eine Regel auf dem APIs.guru Datensatz ausgelöst wurde, desto weniger beeinflusst das Einhalten dieser Regel die Qualität der OpenAPI Spezifikation\footnote{Grundlage hierfür ist die angenommene hohe Qualität des APIs.guru Datensatzes.}. Die Inverse Document Frequency ist definiert durch die Anzahl an Dokumenten in einer Kollektion, die einen Term enthalten \parencite{manning_introduction_2008}. Um hier die eine Abbildung auf die Priorisierung zu erzielen, wird die Relevanz basierend auf der Inverse Document Frequency definiert:
 \[
-\text{Importance}_\text{Frequency}(r) = 
+\text{Relevanz}_\text{Frequenz}(r) = 
 \begin{cases}
-1 & \text{, wenn occurences of rule } r = 0 \\
-\frac{1}{\text{occurences of rule } r} & \text{, sonst}.
+1&\text{, wenn Vorkommen der Regel } r = 0 \\
+\frac{1}{\text{Vorkommen der Regel } r}&\text{, sonst}.
 \end{cases}
 \]
 
 \[
-\text{occurrence of rule }r = 
+\text{Vorkommen der Regel }r = 
 \begin{cases} 
-1 &\text{, wenn die Regel ausgelöst wurde}, \\
-0 &\text{, sonst}.
+1&\text{, wenn die Regel ausgelöst wurde}, \\
+0&\text{, sonst}.
 \end{cases}
 \]
-Ein weitverbreiteter Score für die Bewertung von Relevanz von Worten in Texten im Feld des  \textit{Natural Language Processing (NLP)} ist die \textit{tf-idf} Gewichtung \parencite{manning_introduction_2008}. Angewandt auf die Linterfehler, kann die tf-idf Gewichtung dabei die Relevanz einer bestimmten Regel für eine Spezifikation zu finden. Um allgemein gültige Aussagen zur Relevanz der Regeln zu machen, eignet sich diese Gewichtung nicht. 
 
 
-\subsubsection{Diversitäts Scoring}
-Das zweite Maß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Ergebnisse beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität über alle Regeln hinweg viele Fehler auslösen. Damit beeinflussen diese die Relevanz des Inversen Frequenz Scoring.
+
+\subsubsection{Diversitäts-Scoring}
+Das zweite Priosierungsmaß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Ergebnisse beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität über alle Regeln hinweg viele Fehler auslösen. Damit beeinflussen diese die Relevanz des Inversen Frequenz Scoring.
 Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Die Spalten des Datensatzes, die das Vorkommen (\textit{occurences}) der Regeln dokumentieren können als Binärvektoren interpretiert werden. Zur Bestimmung der Ähnlichkeit von Binärvektoren kann das \textit{Jaccards} Ähnlichkeitsmaß verwendet werden \parencite{mehrotra_anomaly_2017}.
 
 \[
 Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
 \]
-Je weniger das Auslösemuster einer Regel dem der anderen Ähnelt, desto höher wird die Regel priorisiert. Die gemittelte Ähnlichkeit einer Regel zu allen anderen Regeln ist der finale Wert.
+
+Je weniger das Auslösemuster einer Regel dem der anderen Ähnelt, desto höher wird die Regel priorisiert. Die gemittelte Ähnlichkeit einer Regel zu allen anderen Regeln ist der finale Wert. Es wird die Relevanz basierend auf der Triggerdiversität definiert:
+
 \[
-\text{Importance}_\text{Diversity}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
+\text{Relevanz}_\text{Diversität}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
 \]
 
 \subsubsection{Kombination der Priorisierungen}
-Um die Werte der beiden Priorisierungsmaße zu vereinigen wird eine gewichtete Summe verwendet. Es wird davon ausgegangen, dass die Einordnung der Regeln in Schweregrade \texttt{HINT}, \texttt{WARN} und \texttt{ERROR} eine Entwicklereinschätzung der Relevanz der Regeln abbildet. Um diese Einschätzung zu berücksichtigen, wird versucht die Koeffizienten $\alpha$ und $\beta$ so zu setzen, dass Regeln, die im Spectral OAS Regelwerk den Schweregrad \texttt{ERROR} haben eine hohe Priorisierung (nahe 1) und jene mit dem Schweregrad \texttt{HINT} eine niedrige Priorisierung (nahe 0) haben.
+Um die Werte der beiden Priorisierungsmaße zu vereinigen wird eine gewichtete Summe verwendet. Es wird davon ausgegangen, dass die Einordnung der Regeln in Schweregrade \texttt{hint}, \texttt{warn} und \texttt{error} eine Entwicklereinschätzung der Relevanz der Regeln abbildet. Um diese Einschätzung zu berücksichtigen, wird versucht die Koeffizienten $\alpha$ und $\beta$ so zu setzen, dass Regeln, die im Spectral OAS Regelwerk den Schweregrad \texttt{ERROR} haben eine hohe Priorisierung (nahe 1) und jene mit dem Schweregrad \texttt{HINT} eine niedrige Priorisierung (nahe 0) haben.
 
 \[
-\text{Importance}_\text{total} = \alpha * \text{Importance}_\text{Frequency} + \beta  * \text{Importance}_\text{Diversity}
+\text{Relevanz}_\text{total} = \alpha * \text{Relevanz}_\text{Frequenz} + \beta  * \text{Relevanz}_\text{Diversität}
 \]
 
 Die berechneten Werte geben Antwort auf \textbf{RQ-2} (Wie können relevante Linterregeln priorisiert werden).
