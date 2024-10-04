@@ -1,6 +1,25 @@
 \section{Evaluation}
+
+Das folgende Kapitel widmet sich der Interpretation der gewonnenen Erkenntnisse. Dabei sollen diese eingeordnet werden und die Gültigkeit kritisch hinterfragt werden. Ziel ist es, die Bedeutung der Resultate für die Forschungsfragen herauszuarbeiten. Außerdem widmet sich dieses Kapitel möglichen Limitationen der Arbeit und auch möglichen Implikationen für zukünftige Forschungsfragen. 
+
 \subsection{Interpretation der Ergebnisse}
+Das Ziel der Explorativen Datenanalyse ist es, die Daten zugänglich zu machen und deren Charakteristiken zu zeigen. In Abbildung \ref{fig:totalspecthrownbarplot} wird sichtbar, dass für verschiedene Regeln die Größenordnung der Anzahl der geworfenen Linterregeln stark variiert. Es existieren Regeln die nie geworfen werden und Regeln, von denen über 100.000 Linterfehler aufgezeichnet wurden. Diese Differenzen machen es schwer, die Regeln zu vergleichen.
+
+Wir können zudem beobachten, dass der Datensatz deutlich durch die OpenAPI Spezifikationen von azure.com beeinflusst ist. Bei den Regeln, die im azure.com Datensatz nicht ignoriert wurden, ist der Anteil von ausgelösten Fehlern von azure.com OpenAPI Spezifikationen deutlich geringer. Dies bedeutet, dass die Linterfehler einen Bias zu den Azure OpenAPI Richtlinien hat.
+
+Der Ansatz zur Invertierung der Linterergebnisse war nur bedingt erfolgreich. Da der implementierte Code nur für Single Trigger und Multi Trigger Regeln gültig ist, lässt sich kein Priorisierungsmaß von den Invertierungen ableiten. Trotzdem konnte die Linterergebnisse mit den Invertierungen näher beleuchtet werden.
+
+Die Priorisierungsmaße verwenden beide ausschließlich die Wahrheitswerte hat eine Spezifikation eine Regel ausgelöst? Trotz dieser Limitation konnten aussagekräftige Ergebnisse erzeugt werden. In Tabelle \ref{tab:combinedweighedprioritized} lassen sich diese Ergebnisse ablesen. An der Neuverteilung der Schweregrade lässt sich  erkennen, dass die große Mehrheit der Regeln sich um ein Level verschoben hat. So sind die meisten Regeln, nicht mehr auf dem Schweregrad \texttt{warn}.
+
+Es lassen sich dennoch subjektive Unterschiede der Relevanz innerhalb der Regeln eines Schweregrads feststellen, die nicht durch eine Datengetriebene Analyse gefunden werden können. Hierzu ist die Einschätzung der Nutzer eines Lintertools nicht ersetzbar. Einige Beispiele für solche Differenzen sind:
+\begin{itemize}
+  \item no-eval-tag-in-markdown und no-script-tag-in-markdown sollen beide verhindern, das ausführbarer Code in Markdown Feldern der OpenAPI Spezifikation eingefügt ist. Trotzdem werden die Regeln unterschiedlichen Schweregraden zugeordnet. Die subjektive Logik wäre hier, dass semantisch ähnliche Regeln auch dem gleichen Schweregrad zugeordnet werden.
+  \item 15 der 16 Regeln im Schweregrad error werden nie ausgelöst. Der Grund, dass eine Regel nie ausgelöst wird, liegt auch nach subjektiver Ansicht entweder daran, dass die Regel sehr relevant ist oder aber einen extrem seltene Randbedingung beschreibt. Ein Beispiel hier wäre die Diskrepanz zwischen der Regel oas3-server-not -example.com und oas3-callbacks-in-callbacks. Die erste Regel soll verhindern, dass die Base URL der HttpAPI kein Default Wert sein darf. Ohne diese Information ließe sich keiner der Endpunkte erreichen und die Spezifikation verliert viel an Qualität. Die Regel oas3-callbacks-in-callbacks stellt sicher, dass ein Callback nicht innerhalb eines Callbacks definiert wird. Callbacks werden hauptsächlich für Asynchrone Events wie z.B. in Webhooks und Server Sent Events eingesetzt. Im Rahmen von OpenAPI SPezifikationen wird davon ausgegangen, dass es sich bei Verletzungen dieser Regel um sehr seltene Fälle handelt. Für implementierte Callbacks innerhalb von Callbacks ist dies wahrscheinlich intendiert.
+\end{itemize}
+
 \subsection{Abgleich mit Methode}
+
+
 \subsection{Validität des Verfahrens}
   Trotz des sorgsamen Entwurfs der Methodik dieser Arbeit, gibt es Risiken, die die Validität des Verfahrens potenziell einschränken.
 
@@ -11,3 +30,17 @@
   Die Koeffizienten der Kombination der Priorisierungsmaße sind nicht optimiert. Sie sind aufgrund der gezeigten Ungleichgewichte im Datensatz manuell ausgewählt und stellen eine Einschätzung des Autors dar. In der Zukunft wäre es möglich diese Koeffizienten besser zu gewichten.
 
   Die Qualitätsanforderungen an die Software \textbf{QR-1} - \textbf{QR-6} wurden in der Entwicklung des Softwaretools implementiert. Dies trägt im Nachhinein zur Konfidenz in das Tool und der Funktionalitäten bei.
+
+\subsection{Zusammenfassung}
+  Die Ausführungen dieser Arbeit machen den Versuch einer datengetriebenen Priorisierung und Klassifikation von Linterregeln. Die so gewonnenen Informationen können Anwendern dabei helfen, eine Praxis für das Linten von OpenAPI Spezifikationen zu etablieren. Es konnte gezeigt werden, dass die meisten Spezifikationen aus dem APIs.guru OpenAPI Directory gegen Linterregeln aus dem Spectral OAS Regelwerk verstoßen. Mithilfe der Methodik zum Priorisieren der Regeln wurde eine passendere Belegung der Schweregrade auf die Regeln ermittelt. Das Anwenden der Regeln mit dieser Belegung ermöglicht einen Qualitätsstandard nach Vorbild von vielen großen Technolotgie Firmen wie Microsoft und Amazon. Die Methodik und die Ergebnisse dieser Arbeit lösen das Thema jedoch nicht abschließend sondern geben auch Anreize für weitere Studien und Untersuchungen.
+
+\subsection{Ausblick}
+  Die datengetriebene Untersuchung von Linterregeln hat sich als vielversprechend erwiesen. An einigen Punkten hinterlässt diese Arbeit auch offene Enden.
+
+  Zunächst ist die Invertierung aller Regeln ein Problem, das hier noch nicht gelöst wurde. Der Ansatz die Regeln aufgrund der JSONPath Objekte zu invertieren war nicht überall erfolgreich. Das Lösen dieses Problems für alle Regeln würde bedeuten, dass nicht nur das Auftreten von Linterfehlern, sondern auch die Anzahl der Linterfehler objektiv eingeordnet werden könnte.
+
+  Eine andere Möglichkeit die Anzahl der Linterfehler einzuordnen, wäre diese an Größenkennziffern der OpenAPI Spezifikation zu messen. Größenkennziffern können zum Beispiel Pfad Objekte oder API Operationen sein (Ein Pfad Objekt enthält bis zu 6 API Operationen entsprechend der Http Methoden, die auf ein Pfad Objekt angewandt werden können). In Abbildung \ref{fig:Operations} werden API Operationen als Referenzgröße verwendet. Dies wäre eine Möglichkeit, zufünftige Studien zu verfeinern.
+
+  Weitere Möglichkeiten der Verbesserung der Ergebnisse, wäre es, den Bias im OpenAPI Directory durch die Große Anzahl von Azure.com OpenAPI Spezifikationen zu reduzieren. Eine Strategie könnte das Verwenden von Stichprobensets der häufig vertretenen Anbieter zu nehmen, um den Bias abzuschwächen.
+  
+

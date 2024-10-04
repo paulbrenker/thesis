@@ -16,6 +16,7 @@ from plot import (
     clusterprioritizedscatter,
     violationsonazureexcluded,
     multitriggerboxplot,
+    ruleseverityreassignments,
 )
 from table import (
     singletriggermean,
@@ -53,3 +54,4 @@ violationsonazureexcluded.create_plot()
 violationpartitionazure.create_report()
 multitriggerboxplot.create_plot()
 findnoviolations.create_report()
+ruleseverityreassignments.create_plot()

@@ -11,3 +11,4 @@ from .totalspecsthatthrow import *
 from .clusterprioritizedscatter import *
 from .violationsonazureexcluded import *
 from .multitriggerboxplot import *
+from .ruleseverityreassignments import *
