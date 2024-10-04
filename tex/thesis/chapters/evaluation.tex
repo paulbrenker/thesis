@@ -1,6 +1,19 @@
 \section{Evaluation}
+
+Das folgende Kapitel widmet sich der Interpretation der gewonnenen Erkenntnisse. Dabei sollen diese eingeordnet werden und die Gültigkeit kritisch hinterfragt werden. Ziel ist es, die Bedeutung der Resultate für die Forschungsfragen herauszuarbeiten. Außerdem widmet sich dieses Kapitel möglichen Limitationen der Arbeit und auch möglichen Implikationen für zukünftige Forschungsfragen. 
+
 \subsection{Interpretation der Ergebnisse}
+Das Ziel der Explorativen Datenanalyse ist es, die Daten zugänglich zu machen und deren Charakteristiken zu zeigen. In Abbildung \ref{fig:totalspecthrownbarplot} wird sichtbar, dass für verschiedene Regeln die Größenordnung der Anzahl der geworfenen Linterregeln stark variiert. Es existieren Regeln die nie geworfen werden und Regeln, von denen über 100.000 Linterfehler aufgezeichnet wurden. Diese Differenzen machen es schwer, die Regeln zu vergleichen.
+
+Wir können zudem beobachten, dass der Datensatz deutlich durch die OpenAPI Spezifikationen von azure.com beeinflusst ist. Bei den Regeln, die im azure.com Datensatz nicht ignoriert wurden, ist der Anteil von ausgelösten Fehlern von azure.com OpenAPI Spezifikationen deutlich geringer. Dies bedeutet, dass die Linterfehler einen Bias zu den Azure OpenAPI Richtlinien hat.
+
+Der Ansatz zur Invertierung der Linterergebnisse war nur bedingt erfolgreich. Da der implementierte Code nur für Single Trigger und Multi Trigger Regeln gültig ist, lässt sich kein Priorisierungsmaß von den Invertierungen ableiten. Trotzdem konnte die Linterergebnisse mit den Invertierungen näher beleuchtet werden.
+
+Die Priorisierungsmaße verwenden beide ausschließlich die Wahrheitswerte hat eine Spezifikation eine Regel ausgelöst? Trotz dieser Limitation konnten aussagekräftige Ergebnisse erzeugt werden. In Tabelle \ref{tab:combinedweighedprioritized} lassen sich diese Ergebnisse ablesen. An der Neuverteilung der Schweregrade lässt sich  erkennen, dass die große Mehrheit der Regeln sich um ein Level verschoben hat. So sind die meisten Regeln nicht mehr auf dem Schweregrad \texttt{warn}. 
+
 \subsection{Abgleich mit Methode}
+
+
 \subsection{Validität des Verfahrens}
   Trotz des sorgsamen Entwurfs der Methodik dieser Arbeit, gibt es Risiken, die die Validität des Verfahrens potenziell einschränken.
 
@@ -11,3 +24,6 @@
   Die Koeffizienten der Kombination der Priorisierungsmaße sind nicht optimiert. Sie sind aufgrund der gezeigten Ungleichgewichte im Datensatz manuell ausgewählt und stellen eine Einschätzung des Autors dar. In der Zukunft wäre es möglich diese Koeffizienten besser zu gewichten.
 
   Die Qualitätsanforderungen an die Software \textbf{QR-1} - \textbf{QR-6} wurden in der Entwicklung des Softwaretools implementiert. Dies trägt im Nachhinein zur Konfidenz in das Tool und der Funktionalitäten bei.
+
+\subsection{Zusammenfassung}
+\subsection{Ausblick}
