@@ -13,15 +13,15 @@ def assign_color(reassignment):
     """
     if reassignment in ["hint -> hint", "warn -> warn", "error -> error"]:
         return "#8BC34A"
-    elif reassignment in [
+    if reassignment in [
         "hint -> warn",
         "warn -> hint",
         "warn -> error",
         "error -> warn",
     ]:
         return "skyblue"
-    else:
-        return "#FF6F61"
+
+    return "#FF6F61"
 
 
 def create_plot():
