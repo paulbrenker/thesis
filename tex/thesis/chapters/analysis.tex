@@ -2,13 +2,44 @@
 Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst.
 In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestellt und der Versuch einer datengetriebenen Priorisierung der Regeln wird unternommen.
 
+Die Analyse ist in zwei Teile unterteilt. In der explorativen Datenanalyse (EDA) wird der Datensatz visualisiert. Es werden Verteilungen der Linterfehler über die Linterregeln untersucht und erläutert. Außerdem soll die Beinflussung des Datensatzes durch den Anbieter Azure.com evaluiert werden. Anschließend werden die Linterregeln nach den beschriebenen Priorisierungsmaßen bewertet und ein Clustering zur Zugehörigkeit zu Schweregraden wird erstellt. 
+
 \subsection{Explorative Analyse}
+In Abbildung \ref{fig:totalspecthrownbarplot} wird die Anzahl aller geworfenen Linterfehler pro Linterregel gezeigt. Die y-Achse des Säulendiagrammes ist logarithmisch skaliert. Es kann abgelesen werden, dass die Anzahl der geworfen Linterfehler pro Regel zwischen 1 und mehreren 100.000 Auslösungen variieren. Die durchschnittliche Anzahl von 225 Linterfehlern pro Spezifikation bestätigt die Hypothese der Problemstellung, dass bei Verwendung des Standardregelwerkes viele Fehler auftreten.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/totalspecthrownbarplot.png}
   \caption{Absolute Anzahl, wie viele Spezifikationen eine Linterregel ausgelöst haben}
   \label{fig:totalspecthrownbarplot}
 \end{figure}
+
+
+\subsubsection{Verzerrung des Datensatzes}
+Wie in Abbildung \ref{fig:Operations} dargestellt, werden 45 \% der Spezifikationen durch den Cloudanbieter Azure.com ausgemacht. Im folgenden Abschnitt soll untersucht werden, ob es durch diese Spezifikationen eine Verzerrung im Datensatz gibt. Da wir wissen, welche Regeln aus dem Spectral OAS Regelwerk der Cloudanbieter zum Linten seiner eigenen OpenAPI Spezifikationen nimmt (siehe Tabelle \ref{tab:DeactivatedRules}). Können wir hier vermuten, dass die Proportion der auf von Azure.com verwendeten Linterregeln geworfenen Linterfehler niedriger ist als die aller anderen Spezifikationen.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\linewidth]{img/azurespecthrownbarplot.png}
+  \caption{Anteil der von Azure Spezifikationen ausgelösten Fehler an allen Linterfehlern. Ausschließlich Regeln die im Azure Spectral Regelwerk ignoriert werden.}
+  \label{fig:azurespecthrownbarplot}
+\end{figure}
+In Abbildung \ref{fig:azurespecthrownbarplot} lässt sich erkennen, dass für die Linterregeln, die im Azure.com Spectral Regelwerk ignoriert werden, machen Linterfehler die auf Azure.com Spezifikationen geworfen wurden einen bedeutenden Teil der aller Fehler aus. An den Anteilen der Azure.com Linterfehler für die restlichen Regeln kann man gut sehen, dass dort die Azure Regeln einen deutlich kleineren Teil der Fehler ausmachen.
+
+\footnotesize
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{|>{\centering\arraybackslash}p{2.8cm}|*{33}{>{\centering\arraybackslash}p{1.8cm}|}}
+        \hline
+        & \rotatebox{45}{operation-success-response} & \rotatebox{45}{operation-operationId-unique} & \rotatebox{45}{operation-parameters} & \rotatebox{45}{path-params} & \rotatebox{45}{contact-properties} & \rotatebox{45}{duplicated-entry-in-enum} & \rotatebox{45}{info-description} & \rotatebox{45}{info-license} & \rotatebox{45}{license-url} & \rotatebox{45}{no-eval-in-markdown} & \rotatebox{45}{no-script-tags-in-markdown} & \rotatebox{45}{openapi-tags-alphabetical} & \rotatebox{45}{openapi-tags-uniqueness} & \rotatebox{45}{operation-operationId} & \rotatebox{45}{operation-operationId-valid-in-url} & \rotatebox{45}{operation-singular-tag} & \rotatebox{45}{path-declarations-must-exist} & \rotatebox{45}{path-keys-no-trailing-slash} & \rotatebox{45}{path-not-include-query} & \rotatebox{45}{tag-description} & \rotatebox{45}{array-items} & \rotatebox{45}{typed-enum} & \rotatebox{45}{oas3-api-servers} & \rotatebox{45}{oas3-examples-value-or-externalValue} & \rotatebox{45}{oas3-operation-security-defined} & \rotatebox{45}{oas3-parameter-description} & \rotatebox{45}{oas3-server-not-example.com} & \rotatebox{45}{oas3-server-trailing-slash} & \rotatebox{45}{oas3-valid-media-example} & \rotatebox{45}{oas3-valid-schema-example} & \rotatebox{45}{oas3-schema} & \rotatebox{45}{oas3-unused-component} & \rotatebox{45}{oas3-server-variables} & \rotatebox{45}{oas3-callbacks-in-callbacks} \\
+        \hline
+        azure & 5 & 0 & 0 & 7 & 0 & 0 & 256 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 6 & 0 & 0 & 80 & 1 & 0 & 35 & 8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+        total & 774 & 0 & 0 & 152 & 0 & 69 & 484 & 0 & 0 & 2 & 3 & 0 & 0 & 8840 & 706 & 0 & 0 & 1999 & 113 & 0 & 61 & 677950 & 45 & 169 & 0 & 0 & 0 & 535 & 9501 & 29275 & 23 & 17948 & 11 & 0 \\
+        percentage & 0.6 & 0.0 & 0.0 & 4.6 & 0.0 & 0.0 & 52.9 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.8 & 0.0 & 0.0 & 4.0 & 0.9 & 0.0 & 57.4 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+        \hline
+    \end{tabular}
+    \caption{Azure, Total, and Percentage for Different Operations}
+\end{table}
+
+\subsubsection{Auswertung der Invertierung}
 
 \begin{longtable}{|l|l|}
   \caption{Arithmetisches Mittel der Regeln, die höchstens ein Mal pro Spezifikation ausgelöst werden können.}
@@ -26,16 +57,6 @@ In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestel
   oas3-server-not-example.com & 0.000000 \\ \hline
 \end{longtable}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=1\linewidth]{img/azurespecthrownbarplot.png}
-  \caption{Anteil der von Azure Spezifikationen ausgelösten Fehler an allen Linterfehlern. Ausschließlich Regeln die im Azure Spectral Regelwerk ignoriert werden.}
-  \label{fig:azurespecthrownbarplot}
-\end{figure}
-Das liefert keine Indikation, dass die Azure Spezifikationen einen Bias für den Datensatz liefern.
-
-
-\subsection{Auswertung der Invertierung}
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/multitriggerbarplot.png}

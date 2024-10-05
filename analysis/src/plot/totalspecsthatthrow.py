@@ -18,7 +18,7 @@ def create_plot():
     """
 
     df_was_thrown = get_linter_results(cell_mapper=DataFrameMappers.map_to_thrown)
-    fig, ax = plt.subplots(figsize=(10, 12))
+    fig, ax = plt.subplots(figsize=(10, 6))
     ax.bar(
         df_was_thrown.columns,
         pd.DataFrame.sum(df_was_thrown),

@@ -20,7 +20,7 @@ def create_report():
     limiter = [
         rule
         for rule in ruleconfig.keys()
-        if (ruleconfig[rule] not in ColumnLimiters.get_azure_excluded())
+        if (rule not in ColumnLimiters.get_azure_excluded())
         and (ruleconfig[rule]["status"] != "OPENAPI_2_X")
     ]
 
@@ -40,6 +40,7 @@ def create_report():
         .rename(columns={0: "azure"})
         .assign(total=df_total)
         .assign(percentage=((df_azure / df_total) * 100).round(decimals=1))
+        .fillna({"percentage": 0})
     )
 
     logger.info(
