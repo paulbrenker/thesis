@@ -29,7 +29,6 @@ def create_plot():
     )
     ax.set_xticklabels(df_transformed.columns, rotation=45, ha="right")
     ax.grid(True, which="both", linestyle="--", linewidth=0.7)
-    ax.set_yscale("log")
     ax.set_title("Hierarchical Clustering Dendrogram")
     ax.set_xlabel("Linterregeln")
     ax.set_ylabel("Tanimoto / Jaccards Distanz")
