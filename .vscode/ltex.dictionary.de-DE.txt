@@ -156,3 +156,4 @@ npm
 tsc
 python
 poetry
+Lintern
