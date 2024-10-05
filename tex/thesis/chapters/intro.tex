@@ -4,8 +4,28 @@
 Softwarequalität mit automatischen Tools zu testen, ist im modernen Software-Engineering weit verbreitet \parencite{tomasdottir_adoption_2018}. Statische Code Analyse ist dabei eine Möglichkeit Software Qualitätskriterien zu verifizieren. Um die Qualität von OpenAPI Spezifikationen zu testen, kann man den Spectral API Linter\footnote{\href{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview}{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview}} 
 verwenden. Mit dem Standard Spectral OAS Linter Regelwerk\footnote,{\href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}} kann es zu vielen Linterfehlern kommen\footnote{Diese Aussage beruht auf Erkenntnissen aus einem Praxisprojekt bei SAP LeanIX im Herbst 2023. Im Rahmen des Praxisprojekts wurden verschiedene OpenAPI Linting Tools evaluiert}.
 
+% Hier noch elaborieren
+
 \subsection{Forschungsfragen}
+Die Arbeit befasst sich mit dem Verhältnis von Linterregeln zu aktuellen, produktiven und öffentlichen OpenAPI Spezifikationen. Aktuell, produktiv und öffentlich werden als Qualitätskriterien für den Datensatz gewählt. Aktuell und produktiv bedeutet, dass die REST APIs Teil von genutzten Systemen im Internet sind. Nur die Dokumentation (OpenAPI Spezifikation) der API muss öffentlich sein. Öffentliche Verwendung der APIs ist kein Kriterium. Im Rahmen dieser Arbeit wird das Spectral OAS Regelwerk untersucht. Dies ist das vom Hersteller des Tools angebotene Standardregelwerk. Mit der Beantwortung der Forschungsfragen wird auch eine Lösung des Problems von vielen Linterfehlern bei initialer Benutzung des Linters angeboten werden. Es ergeben sich folgende Teilfragen, um Wissenschaftlichkeit des Vorgehens zu verifizieren.
+\begin{itemize}
+  \item Nach welchen Kriterien werden OpenAPI Spezifikationen in öffentlichem Datensatz ausgewählt?
+  \item Welche Parameter sind wichtig, um die Relevanz einer Linterregel zu bestimmen?
+\end{itemize}
+
+Die Arbeit soll die folgenden Forschungsfragen beantworten:
+
+\begin{itemize}
+  \label{req:rq1}
+  \item \textbf{RQ-1} Wie können Linterregeln für OpenAPI Spezifikationen nach Relevanz bewertet werden?
+  \label{req:rq2}
+  \item \textbf{RQ-2} Wie können die Linterregeln priorisiert werden?
+  \label{req:rq3}
+  \item \textbf{RQ-3} Welche Linterregeln können aufgrund der gewonnenen Erkenntnisse empfohlen werden?
+\end{itemize}
 
 \subsection{Motiv}
+% hier die Motivation von LeanIX und Praxisprojekt erwähnen.
 
 \subsection{Struktur}
+Die Arbeit ist in vier wesentliche Abschnitte unterteilt. Zuerst wird der wissenschaftliche Hintergrund des Themas ausführlich erläutert. Die verwendeten Daten und das Lintertool sowie der Regelsatz werden eingeführt. Anschließend wird die Methodik der Arbeit vorgestellt. Mithilfe systematische Methoden des Softwareengineerings wird eine Architektur implementiert. Anschließend werden die Ergebnisse der Datenanalyse vorgestellt und die Forschungsfragen beantwortet. Letztendlich werden die Ergebnisse kritisch betrachtet und interpretiert.
