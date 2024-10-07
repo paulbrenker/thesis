@@ -18,7 +18,7 @@ def create_report():
     create the report with the Groups that emerge from clustering
     """
 
-    df_clustered = create_clustering()
+    df_clustered, _ = create_clustering()
 
     logger.info(
         "Kmeans Clustered Rules according to prio:\n%s",
@@ -63,4 +63,4 @@ def create_clustering():
         + df_prioritization_renamed_weighed["diversity"]
     ).assign(group=grouping)
 
-    return df_clustered
+    return df_clustered, kmeans

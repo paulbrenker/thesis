@@ -1,8 +1,11 @@
 \section{Ergebnisse und Analyse}
-Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst.
+Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst. Die absolute Anzahl der geworfenen Linterfehler ist sichtbar in Abbildung Z. Diese Abbildung repräsentiert somit auch die Rohdaten dieser Arbeit.
 In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestellt und der Versuch einer datengetriebenen Priorisierung der Regeln wird unternommen.
 
+Die Analyse ist in zwei Teile unterteilt. In der explorativen Datenanalyse (EDA) wird der Datensatz visualisiert. Es werden Verteilungen der Linterfehler über die Linterregeln untersucht und erläutert. Außerdem soll die Beeinflussung des Datensatzes durch den Anbieter Azure.com evaluiert werden. Anschließend werden die Linterregeln nach den beschriebenen Priorisierungsmaßen bewertet und ein Clustering zur Zugehörigkeit zu Schweregraden wird erstellt. 
+
 \subsection{Explorative Analyse}
+In Abbildung \ref{fig:totalspecthrownbarplot} wird die Anzahl aller geworfenen Linterfehler pro Linterregel gezeigt. Die y-Achse des Säulendiagramms ist logarithmisch skaliert. Es kann abgelesen werden, dass die Anzahl der geworfen Linterfehler pro Regel zwischen 1 und mehreren 100.000 Auslösungen variieren. Die durchschnittliche Anzahl von 225 Linterfehlern pro Spezifikation bestätigt die Hypothese der Problemstellung, dass bei Verwendung des Standardregelwerkes viele Fehler auftreten.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/totalspecthrownbarplot.png}
@@ -10,8 +13,49 @@ In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestel
   \label{fig:totalspecthrownbarplot}
 \end{figure}
 
+
+\subsubsection{Verzerrung des Datensatzes}
+Wie in Abbildung \ref{fig:Operations} dargestellt, werden 45 \% der Spezifikationen durch den Cloudanbieter Azure.com ausgemacht. Im folgenden Abschnitt soll untersucht werden, ob es durch diese Spezifikationen eine Verzerrung im Datensatz gibt. Da wir wissen, welche Regeln aus dem Spectral OAS Regelwerk der Cloudanbieter zum Linten seiner eigenen OpenAPI Spezifikationen nimmt (siehe Tabelle \ref{tab:DeactivatedRules}). Können wir hier vermuten, dass die Proportion der auf von Azure.com verwendeten Linterregeln geworfenen Linterfehler niedriger ist als die aller anderen Spezifikationen.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\linewidth]{img/azurespecthrownbarplot.png}
+  \caption{Anteil der von Azure Spezifikationen ausgelösten Fehler an allen Linterfehlern. Ausschließlich Regeln die im Azure Spectral Regelwerk ignoriert werden.}
+  \label{fig:azurespecthrownbarplot}
+\end{figure}
+In Abbildung \ref{fig:azurespecthrownbarplot} lässt sich erkennen, dass für die Linterregeln, die im Azure.com Spectral Regelwerk ignoriert werden, machen Linterfehler die auf Azure.com Spezifikationen geworfen wurden einen bedeutenden Teil der aller Fehler ausmacht. Es soll die statistische Signifikanz der Azure.com Spezifikationen auf alle Linterfehler gezeigt werden. Wir nehmen an, dass der Anteil der Azure.com Linterfehler an allen Linterfehlern normal verteilt ist. Der Mittelwert sollte dem Anteil der Azure.com Spezifikationen an allen Spezifikationen also 0.45 entsprechen. Es wird ein studentischer t-Test gemacht für unabhängige Stichproben gemacht \parencite{mittag_statistik_2023}. Es wird gezeigt, dass der Azure.com Anteil der geworfenen Linterfehler abhängig davon ist, ob Azure.com diese Regel im Azure.com Spectral Ruleset deaktiviert.
+
+\begin{itemize}
+  \item \textbf{Gruppe 1:} Anteil an Azure.com Linterfehlern, wenn Azure die Linterregel anwendet
+  \item \textbf{Gruppe 2:} Anteil an Azure.com Linterfehlern, wenn Azure die Linterregel deaktiviert
+\end{itemize}
+
+
+Unsere Hypothesen für die Gruppen sind:
+
+\begin{itemize}
+  \item \textbf{Nullhypothese} ($H_0$): Der durchschnittliche Anteil an Azure.com Linterfehlern unterscheidet sich nicht in beiden Gruppen  $\mu_1 = \mu_2$
+  \item \textbf{Alternativhypothese} ($H_1$): Der durchschnittliche Anteil an Azure.com Linterfehlern ist niedriger, wenn Azure.com die Regel anwendet $\mu_1 < \mu_2$
+\end{itemize}
+
+Wobei $\mu_1$ und $\mu_2$ die Mittelwerte der Gesamtpopulationen repräsentieren.
+
+Die t-Statistik wird durch folgende Formel berechnet:
+
+\[
+t=\frac{\overline{x}_1-\overline{x}_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}
+\]
+
+Wobei $\overline{x}_1$ und $\overline{x}_2$ dir Mittelwerte der Gruppen 1 und 2 darstellen, $s_1^2$ und $s_2^2$ die Varianzen der Fehler und $n_1$ und $n_2$ die Größen der Gruppen sind.
+Mit einem p-Wert von 0.0416, kleiner dem Signifikanzniveau $\alpha = 0.05$ ist, kann die Nullhypothese $H_0$ abgelehnt werden. Dies bedeutet, dass die Anwendung der Spectral Regeln von Azure.com sich wie erwartet signifikant auf die Anteile der geworfenen Linterregeln auswirkt. Dies zeigt eine Verzerrung der Linterergebnisse dadurch, dass Azure.com den Spectral API Linter anwendet. Diese Eigenschaft der Linterergebnisse wird in der Priorisierung der Ergebnisse wieder aufgegriffen.
+
+
+\subsubsection{Auswertung der Invertierung}
+Die Invertierung zeigt uns das Verhältnis der geworfenen Linterregeln im Verhältnis zu den Stellen an denen eine Regel geworfen werden könnte. Um mit der großen Varianz, der Linterfehler pro Regel umzugehen, hilft diese Strategie bei der Normalisierung der Linterfehler. 
+In Tabelle \ref{tab:singletriggerinverts} wird der Mittelwert der Auslösungen für die Single Trigger Regeln gezeigt. Da die maximale Anzahl der Auslösungen für Single Trigger Regeln 1 ist, liegt der Mittelwert zwischen 0 und 1.  Die Regeln info-contact und info-description sehr häufig ausgelöst (in 57 \% bzw. 12 \% der Spezifikationen). Die Regel oas3-api-servers wird sehr selten ausgelöst (1 \% der Spezifikationen). Alle anderen Regeln werden nie ausgelöst. 
+
 \begin{longtable}{|l|l|}
   \caption{Arithmetisches Mittel der Regeln, die höchstens ein Mal pro Spezifikation ausgelöst werden können.}
+  \label{tab:singletriggerinverts}
   \endfirsthead
   \endhead
   \hline
@@ -26,16 +70,8 @@ In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestel
   oas3-server-not-example.com & 0.000000 \\ \hline
 \end{longtable}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=1\linewidth]{img/azurespecthrownbarplot.png}
-  \caption{Anteil der von Azure Spezifikationen ausgelösten Fehler an allen Linterfehlern. Ausschließlich Regeln die im Azure Spectral Regelwerk ignoriert werden.}
-  \label{fig:azurespecthrownbarplot}
-\end{figure}
-Das liefert keine Indikation, dass die Azure Spezifikationen einen Bias für den Datensatz liefern.
+Für Multi Trigger Regeln ist in Abbildung \ref{fig:multitriggerbarplot} der Mittelwert des Unterschieds zwischen geworfenen und möglichen Linterfehlern zu erkennen. Zusätzlich lässt sich an den Whiskers die Standardabweichung ablesen. An der Standardabweichung sehen wir, dass die Daten stark variieren. Bei jeder Regel ist die Standardabweichung größer als der Mittelwert (Dies lässt sich an den nach unten unbeschränkten Whiskers erkennen). Dieses Verhalten lässt sich jedoch auch damit begründen, dass keine der Regeln un der Mehrheit der Spezifikationen ausgelöst wird. Der Median jeder Regel im Datensatz ist 0. Wie auch bei den Single Trigger Regeln können wir ablesen, dass einige Regeln keinen einzigen Fehler ausgelöst haben. Das sind bei den Multi Trigger Regeln operation-operationId-unique, openapi-tags-uniqueness, openapi-tags, operation-singular-tags, path-declaration-must-exist, tag-description und oas3-parameter-description. Ein semantischer Zusammenhang dieser Regeln lässt sich nicht erkennen. In 14 / 15 Fällen ist der Mittelwert der geworfenen Linterregeln pro Spezifikation unter 1. Ausschließlich die Regel operation-tags wird im Schnitt mehr als ein Mal pro Spezifikation geworfen. 
 
-
-\subsection{Auswertung der Invertierung}
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/multitriggerbarplot.png}
@@ -44,6 +80,9 @@ Das liefert keine Indikation, dass die Azure Spezifikationen einen Bias für den
   \label{fig:multitriggerbarplot}
 \end{figure}
 
+Die Verteilung der Inversen Häufigkeit der geworfenen Linterfehler ist für alle Regeln, die mindestens einmal ausgelöst werden in Abbildung \ref{fig:boxplotcleanmultitrigger} gezeigt. Da der Median für alle Linterregeln gleich 0 ist und so Verteilungen nur schwer sichbar sind, werden in dieser Visualisierung Spezifikationen, die nicht gegen eine Regel verstoßen herausgefiltert.
+ Gegen die Regeln no-eval-in-markdown und no-script-tags-in-markdown, die semantisch sehr ähnlich sind, wird bei Linterfehlern nur in geringen Anteilen gegen die Regel verstoßen. Die Percentilen, Whiskers und der Median sind nahe bei Null. Due Regeln operation-success-response, duplicated-entry-in enum und array-items zeigen eine weitere Verteilung und damit eine höhere Abweichung der relativen Verstöße. Dies deutet darauf hin, dass diese Regeln auch innerhalb von einzelnen Spezifikationen nicht konsistent eingehalten werden. Die Regeln operation-operationId-valid, operation-tags und oas3-server-trailing-slash tendieren alle zu einem Median von 1. Dies zeigt, dass wenn gegen die Regel verstoßen wird, dieser Verstoß kosistent in der gesamten Spezifikation zu sehen ist. Bei der Regel operation-tags ist das so eindeutig, dass Percentilen der Verteilung visuell nicht zu erkennen sind. Lediglich Ausreißer sind hier zu erkennen.
+
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/boxplotcleanmultitrigger.png}
@@ -51,6 +90,7 @@ Das liefert keine Indikation, dass die Azure Spezifikationen einen Bias für den
   \label{fig:boxplotcleanmultitrigger}
 \end{figure}
 
+Aus den Invertierungen lassen sich viele Informationen ablesen, die direkte Implikationen zu der Relevanz einer Regel für die Spezifikationen zulassen. Dies geschieht kann zum Beispiel in Abbildung \ref{fig:boxplotcleanmultitrigger} anhand der beobachteten Konsitenz innerhalb der Spezifikationen gemacht werden. Die Invertierung lässt sich mit der Implementierung dieser Arbeit jedoch nur für Single Trigger und Multi Trigger Regeln durchführen. Für die Multi Message Regeln lassen sich diese Werte nicht ermitteln. Um trotzdem Aussagen zur Priorisierung des Spectral OAS Regelwerks zu machen, wird in folgendem Abschnitt nur die Boolsche Matrix über Regeln und Spezifikationen betrachtet, die aussagt, ob eine Spezifikation eine Regel ausgelöst hat. Die Anzahl der Auslösungen spielt dort keine Rolle. Diese Methode ist auch unspezifisch gegenüber der Größe der Spezifikationen und lässt keinen Verzerrung in Richtung großer oder kleiner Spezifikationen zu.
 
 \subsection{Priorisierung}
 
@@ -79,7 +119,7 @@ Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:c
   \endfirsthead
   \endhead
   \hline
-  \textbf{Regel} & \textbf{$\text{I}_\text{Frequenz}$} & \textbf{$\text{I}_\text{Diversität}$} & \ \textbf{Kombiniert} & \textbf{OAS} & \textbf{Cluster} \\ \hline \hline
+  \textbf{Regel} & \textbf{$\text{R}_\text{Frequenz}$} & \textbf{$\text{R}_\text{Diversität}$} & \ \textbf{Kombiniert} & \textbf{OAS} & \textbf{Cluster} \\ \hline \hline
 
   operation-operationId-unique & 1 &  0.375 & 0.875 & hint & error \\ 
   operation-parameters & 1 &  0.375 & 0.875 & warn & error \\ 
@@ -124,13 +164,8 @@ Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:c
 \end{longtable}
 }
 
-% 1x hint->error, 13x warn -> error, 1x error -> error, 4x warn -> warn, 3x hint -> warn, 12 x warn -> hint, 4x hint -> hint
-
 \subsection{Gruppierung}
-
-
-Nach der Berechnung der Cluster kann man folgende Zuordnung der Regeln zu Spectral Schweregraden machen:
-
+Bereits in Tabelle \ref{tab:combinedweighedprioritized} kann man die Angehörigkeit der Regeln zu Clustern, die Linter Schweregraden zugeordnet werden sehen. In Abbildung \ref{fig:clusterprioscatter} werden die Priorisierung der Linterregeln auf einem Scatterplot gezeigt. Zusätzlich werden auf dem Scatterplot Voronoi Regionen gezeigt, die visualisieren, welche Regionen einem Cluster zugeordnet werden können \parencite{klein_algorithmische_2022}. Da die Daten dicht beieinanderliegen, kann mit dieser Methode die Verteilung der Cluster über den gesamten Priorisierungsraum gezeigt werden.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/clusterprioscatter.png}

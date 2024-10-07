@@ -52,6 +52,5 @@ def create_plot():
     ax.set_xlabel("Linterregeln, die von Azure Spectral Regelwerk ignoriert werden")
     ax.set_ylabel("Anzahl Spezifikationen")
     ax.legend()
-    ax.set_title("Kumulativ Azure Spezifikationen, die Linterfehler")
     fig.tight_layout()
     save_plot_to_thesis_dir(filename="azurespecthrownbarplot", fig=fig)
