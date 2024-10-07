@@ -49,12 +49,13 @@ Wobei $\overline{x}_1$ und $\overline{x}_2$ dir Mittelwerte der Gruppen 1 und 2 
 Mit einem p-Wert von 0.0416, kleiner dem Signifikanzniveau $\alpha = 0.05$ ist, kann die Nullhypothese $H_0$ abgelehnt werden. Dies bedeutet, dass die Anwendung der Spectral Regeln von Azure.com sich wie erwartet signifikant auf die Anteile der geworfenen Linterregeln auswirkt. Dies zeigt eine Verzerrung der Linterergebnisse dadurch, dass Azure.com den Spectral API Linter anwendet. Diese Eigenschaft der Linterergebnisse wird in der Priorisierung der Ergebnisse wieder aufgegriffen.
 
 
-
-
 \subsubsection{Auswertung der Invertierung}
+Die Invertierung zeigt uns das Verhältnis der geworfenen Linterregeln im Verhältnis zu den Stellen an denen eine Regel geworfen werden könnte. Um mit der großen Varianz, der Linterfehler pro Regel umzugehen, hilft diese Strategie bei der Normalisierung der Linterfehler. 
+In Tabelle \ref{tab:singletriggerinverts} wird der Mittelwert der Auslösungen für die Single Trigger Regeln gezeigt. Da die maximale Anzahl der Auslösungen für Single Trigger Regeln 1 ist, liegt der Mittelwert zwischen 0 und 1.  Die Regeln info-contact und info-description sehr häufig ausgelöst (in 57 \% bzw. 12 \% der Spezifikationen). Die Regel oas3-api-servers wird sehr selten ausgelöst (1 \% der Spezifikationen). Alle anderen Regeln werden nie ausgelöst. 
 
 \begin{longtable}{|l|l|}
   \caption{Arithmetisches Mittel der Regeln, die höchstens ein Mal pro Spezifikation ausgelöst werden können.}
+  \label{tab:singletriggerinverts}
   \endfirsthead
   \endhead
   \hline
@@ -69,6 +70,8 @@ Mit einem p-Wert von 0.0416, kleiner dem Signifikanzniveau $\alpha = 0.05$ ist, 
   oas3-server-not-example.com & 0.000000 \\ \hline
 \end{longtable}
 
+Für Multi Trigger Regeln ist in Abbildung \ref{fig:multitriggerbarplot} der Mittelwert des Unterschieds zwischen geworfenen und möglichen Linterfehlern zu erkennen. Zusätzlich lässt sich an den Whiskers die Standardabweichung ablesen. An der Standardabweichung sehen wir, dass die Daten stark variieren. Bei jeder Regel ist die Standardabweichung größer als der Mittelwert (Dies lässt sich an den nach unten unbeschränkten Whiskers erkennen). Dieses Verhalten lässt sich jedoch auch damit begründen, dass keine der Regeln un der Mehrheit der Spezifikationen ausgelöst wird. Der Median jeder Regel im Datensatz ist 0. Wie auch bei den Single Trigger Regeln können wir ablesen, dass einige Regeln keinen einzigen Fehler ausgelöst haben. Das sind bei den Multi Trigger Regeln operation-operationId-unique, openapi-tags-uniqueness, openapi-tags, operation-singular-tags, path-declaration-must-exist, tag-description und oas3-parameter-description. Ein semantischer Zusammenhang dieser Regeln lässt sich nicht erkennen. In 14 / 15 Fällen ist der Mittelwert der geworfenen Linterregeln pro Spezifikation unter 1. Ausschließlich die Regel operation-tags wird im Schnitt mehr als ein Mal pro Spezifikation geworfen. 
+
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/multitriggerbarplot.png}
@@ -77,6 +80,9 @@ Mit einem p-Wert von 0.0416, kleiner dem Signifikanzniveau $\alpha = 0.05$ ist, 
   \label{fig:multitriggerbarplot}
 \end{figure}
 
+Die Verteilung der Inversen Häufigkeit der geworfenen Linterfehler ist für alle Regeln, die mindestens einmal ausgelöst werden in Abbildung \ref{fig:boxplotcleanmultitrigger} gezeigt. Da der Median für alle Linterregeln gleich 0 ist und so Verteilungen nur schwer sichbar sind, werden in dieser Visualisierung Spezifikationen, die nicht gegen eine Regel verstoßen herausgefiltert.
+ Gegen die Regeln no-eval-in-markdown und no-script-tags-in-markdown, die semantisch sehr ähnlich sind, wird bei Linterfehlern nur in geringen Anteilen gegen die Regel verstoßen. Die Percentilen, Whiskers und der Median sind nahe bei Null. Due Regeln operation-success-response, duplicated-entry-in enum und array-items zeigen eine weitere Verteilung und damit eine höhere Abweichung der relativen Verstöße. Dies deutet darauf hin, dass diese Regeln auch innerhalb von einzelnen Spezifikationen nicht konsistent eingehalten werden. Die Regeln operation-operationId-valid, operation-tags und oas3-server-trailing-slash tendieren alle zu einem Median von 1. Dies zeigt, dass wenn gegen die Regel verstoßen wird, dieser Verstoß kosistent in der gesamten Spezifikation zu sehen ist. Bei der Regel operation-tags ist das so eindeutig, dass Percentilen der Verteilung visuell nicht zu erkennen sind. Lediglich Ausreißer sind hier zu erkennen.
+
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/boxplotcleanmultitrigger.png}
@@ -84,6 +90,7 @@ Mit einem p-Wert von 0.0416, kleiner dem Signifikanzniveau $\alpha = 0.05$ ist, 
   \label{fig:boxplotcleanmultitrigger}
 \end{figure}
 
+Aus den Invertierungen lassen sich viele Informationen ablesen, die direkte Implikationen zu der Relevanz einer Regel für die Spezifikationen zulassen. Dies geschieht kann zum Beispiel in Abbildung \ref{fig:boxplotcleanmultitrigger} anhand der beobachteten Konsitenz innerhalb der Spezifikationen gemacht werden. Die Invertierung lässt sich mit der Implementierung dieser Arbeit jedoch nur für Single Trigger und Multi Trigger Regeln durchführen. Für die Multi Message Regeln lassen sich diese Werte nicht ermitteln. Um trotzdem Aussagen zur Priorisierung des Spectral OAS Regelwerks zu machen, wird in folgendem Abschnitt nur die Boolsche Matrix über Regeln und Spezifikationen betrachtet, die aussagt, ob eine Spezifikation eine Regel ausgelöst hat. Die Anzahl der Auslösungen spielt dort keine Rolle. Diese Methode ist auch unspezifisch gegenüber der Größe der Spezifikationen und lässt keinen Verzerrung in Richtung großer oder kleiner Spezifikationen zu.
 
 \subsection{Priorisierung}
 
@@ -158,10 +165,7 @@ Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:c
 }
 
 \subsection{Gruppierung}
-
-
-Nach der Berechnung der Cluster kann man folgende Zuordnung der Regeln zu Spectral Schweregraden machen:
-
+Bereits in Tabelle \ref{tab:combinedweighedprioritized} kann man die Angehörigkeit der Regeln zu Clustern, die Linter Schweregraden zugeordnet werden sehen. In Abbildung \ref{fig:clusterprioscatter} werden die Priorisierung der Linterregeln auf einem Scatterplot gezeigt. Zusätzlich werden auf dem Scatterplot Voronoi Regionen gezeigt, die visualisieren, welche Regionen einem Cluster zugeordnet werden können \parencite{klein_algorithmische_2022}. Da die Daten dicht beieinanderliegen, kann mit dieser Methode die Verteilung der Cluster über den gesamten Priorisierungsraum gezeigt werden.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/clusterprioscatter.png}
