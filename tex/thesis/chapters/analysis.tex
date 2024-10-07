@@ -22,24 +22,30 @@ Wie in Abbildung \ref{fig:Operations} dargestellt, werden 45 \% der Spezifikatio
   \caption{Anteil der von Azure Spezifikationen ausgelösten Fehler an allen Linterfehlern. Ausschließlich Regeln die im Azure Spectral Regelwerk ignoriert werden.}
   \label{fig:azurespecthrownbarplot}
 \end{figure}
-In Abbildung \ref{fig:azurespecthrownbarplot} lässt sich erkennen, dass für die Linterregeln, die im Azure.com Spectral Regelwerk ignoriert werden, machen Linterfehler die auf Azure.com Spezifikationen geworfen wurden einen bedeutenden Teil der aller Fehler ausmacht. Es soll die statistische Signifikanz der Azure.com Spezifikationen auf alle Linterfehler gezeigt werden. Dazu wird ein studentischer t-Test gemacht für unabhängige Stichproben gemacht \parencite{mittag_statistik_2023}. Es wird gezeigt, dass der Azure.com Anteil der geworfenen Linterfehler abhängig davon ist, ob Azure.com diese Regel im Azure.com Spectral Ruleset deaktiviert.
+In Abbildung \ref{fig:azurespecthrownbarplot} lässt sich erkennen, dass für die Linterregeln, die im Azure.com Spectral Regelwerk ignoriert werden, machen Linterfehler die auf Azure.com Spezifikationen geworfen wurden einen bedeutenden Teil der aller Fehler ausmacht. Es soll die statistische Signifikanz der Azure.com Spezifikationen auf alle Linterfehler gezeigt werden. Wir nehmen an, dass der Anteil der Azure.com Linterfehler an allen Linterfehlern normal verteilt ist. Der Mittelwert sollte dem Anteil der Azure.com Spezifikationen an allen Spezifikationen also 0.45 entsprechen. Es wird ein studentischer t-Test gemacht für unabhängige Stichproben gemacht \parencite{mittag_statistik_2023}. Es wird gezeigt, dass der Azure.com Anteil der geworfenen Linterfehler abhängig davon ist, ob Azure.com diese Regel im Azure.com Spectral Ruleset deaktiviert.
 
-\[
-\text{Gruppe 1:} 
-\]]
-\[
-\text{Gruppe 2:} 
-\]]
+\centering{
+  \textbf{Gruppe 1:} Anteil an Azure.com Linterfehlern, wenn Azure die Linterregel anwendet\\
+  \textbf{Gruppe 2:} Anteil an Azure.com Linterfehlern, wenn Azure die Linterregel deaktiviert
+  }
 
 Unsere Hypothesen für die Gruppen sind:
 
+\centering{
+  \textbf{Nullhypothese ($H_0$):}  Die durchschnittliche Anteil an Azure.com Linterfehlern unterscheidet sich nicht in beiden Gruppen  $\mu_1 = \mu_2$\\
+  \textbf{Alternativhypothese ($H_1$):} Die durchschnittliche Anteil an Azure.com Linterfehlern ist niedriger, wenn Azure.com die Regel anwendet $\mu_1 < \mu_2$
+  }
+
+Die t-Statistik wirddurch folgende Formel berechnet:
+
 \[
-\text{H}_\text{0}\text{:} \text{Die durchschnittliche Anteil an Spezifikationen werfen unterscheidet sich nicht in beiden Gruppen } \mu_1 = \mu_2
+t=\frac{\overline{x}_1-\overline{x}_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}
 \]
-\[
-\text{H}_\text{1}\text{:} \text{Die durchschnittliche Anzahl an Spezifikationen werfen niedriger, wenn Azure.com die Regel anwendet } \mu_1 < \mu_2
-\]
-Die t-Statistik wird berechnet:
+
+wobei $\overline{x}_1$ und $\overline{x}_2$ dir Mittelwerte der Gruppen 1 und 2 darstellen, $s_1^2$ und $s_2^2$ die Varianzen der Fehler und $n_1$ und $n_2$ die Größen der Gruppen sind.
+Mit einem p-Wert von 0.0416, kleiner dem Signifikanzniveau $\alpha = 0.05$ ist, kann die Nullhypothese $H_0$ abgelehnt werden. Dies bedeutet, dass die Anwendung der Spectral Regeln von Azure.com sich wie erwartet signifikant auf die Anteile der geworfenen Linterregeln auswirkt. Dies zeigt eine Verzerrung der Linterergebnisse dadurch, dass Azure.com den Spectral API Linter anwendet.
+
+
 
 
 \subsubsection{Auswertung der Invertierung}
