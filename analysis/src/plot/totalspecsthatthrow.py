@@ -31,6 +31,5 @@ def create_plot():
     ax.set_xlabel("Linterregeln")
     ax.set_ylabel("Anzahl Spezifikationen")
     ax.legend()
-    ax.set_title("Kumulativ Spezifikationen, die Linterfehler ausgelöst haben")
     fig.tight_layout()
     save_plot_to_thesis_dir(filename="totalspecthrownbarplot", fig=fig)

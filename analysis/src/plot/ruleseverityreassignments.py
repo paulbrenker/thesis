@@ -49,7 +49,6 @@ def create_plot():
 
     ax.set_xlabel("Anzahl")
     ax.set_ylabel("Reassignments")
-    ax.set_title("Linterregel Schweregrad Reassignments")
     ax.grid(True)
 
     save_plot_to_thesis_dir("ruleseverityreassignmentbarplot", fig=fig)

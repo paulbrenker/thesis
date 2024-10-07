@@ -29,7 +29,6 @@ def create_plot():
     )
     ax.set_xticklabels(df_transformed.columns, rotation=45, ha="right")
     ax.grid(True, which="both", linestyle="--", linewidth=0.7)
-    ax.set_title("Hierarchical Clustering Dendrogram")
     ax.set_xlabel("Linterregeln")
-    ax.set_ylabel("Tanimoto / Jaccards Distanz")
+    ax.set_ylabel("Jaccard Distanz")
     save_plot_to_thesis_dir(filename="hierarchicalclusteronbinary", fig=fig)

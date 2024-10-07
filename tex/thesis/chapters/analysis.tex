@@ -5,7 +5,7 @@ In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestel
 Die Analyse ist in zwei Teile unterteilt. In der explorativen Datenanalyse (EDA) wird der Datensatz visualisiert. Es werden Verteilungen der Linterfehler über die Linterregeln untersucht und erläutert. Außerdem soll die Beinflussung des Datensatzes durch den Anbieter Azure.com evaluiert werden. Anschließend werden die Linterregeln nach den beschriebenen Priorisierungsmaßen bewertet und ein Clustering zur Zugehörigkeit zu Schweregraden wird erstellt. 
 
 \subsection{Explorative Analyse}
-In Abbildung \ref{fig:totalspecthrownbarplot} wird die Anzahl aller geworfenen Linterfehler pro Linterregel gezeigt. Die y-Achse des Säulendiagrammes ist logarithmisch skaliert. Es kann abgelesen werden, dass die Anzahl der geworfen Linterfehler pro Regel zwischen 1 und mehreren 100.000 Auslösungen variieren. Die durchschnittliche Anzahl von 225 Linterfehlern pro Spezifikation bestätigt die Hypothese der Problemstellung, dass bei Verwendung des Standardregelwerkes viele Fehler auftreten.
+In Abbildung \ref{fig:totalspecthrownbarplot} wird die Anzahl aller geworfenen Linterfehler pro Linterregel gezeigt. Die y-Achse des Säulendiagramms ist logarithmisch skaliert. Es kann abgelesen werden, dass die Anzahl der geworfen Linterfehler pro Regel zwischen 1 und mehreren 100.000 Auslösungen variieren. Die durchschnittliche Anzahl von 225 Linterfehlern pro Spezifikation bestätigt die Hypothese der Problemstellung, dass bei Verwendung des Standardregelwerkes viele Fehler auftreten.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/totalspecthrownbarplot.png}
@@ -22,22 +22,8 @@ Wie in Abbildung \ref{fig:Operations} dargestellt, werden 45 \% der Spezifikatio
   \caption{Anteil der von Azure Spezifikationen ausgelösten Fehler an allen Linterfehlern. Ausschließlich Regeln die im Azure Spectral Regelwerk ignoriert werden.}
   \label{fig:azurespecthrownbarplot}
 \end{figure}
-In Abbildung \ref{fig:azurespecthrownbarplot} lässt sich erkennen, dass für die Linterregeln, die im Azure.com Spectral Regelwerk ignoriert werden, machen Linterfehler die auf Azure.com Spezifikationen geworfen wurden einen bedeutenden Teil der aller Fehler aus. An den Anteilen der Azure.com Linterfehler für die restlichen Regeln kann man gut sehen, dass dort die Azure Regeln einen deutlich kleineren Teil der Fehler ausmachen.
+In Abbildung \ref{fig:azurespecthrownbarplot} lässt sich erkennen, dass für die Linterregeln, die im Azure.com Spectral Regelwerk ignoriert werden, machen Linterfehler die auf Azure.com Spezifikationen geworfen wurden einen bedeutenden Teil der aller Fehler aus. An den Anteilen der Azure.com Linterfehler für die restlichen Regeln kann man gut sehen, dass dort die Azure Regeln einen deutlich kleineren Teil der Fehler ausmachen. Der durchschnittliche Anteil der Azure.com Linterfehlern an den gesamt Linterfehlern liegt bei X, wenn die Regel von Azure.com ignoriert wurde und bei Y wenn sie von Azure.com angewendet wurde. 
 
-\footnotesize
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{|>{\centering\arraybackslash}p{2.8cm}|*{33}{>{\centering\arraybackslash}p{1.8cm}|}}
-        \hline
-        & \rotatebox{45}{operation-success-response} & \rotatebox{45}{operation-operationId-unique} & \rotatebox{45}{operation-parameters} & \rotatebox{45}{path-params} & \rotatebox{45}{contact-properties} & \rotatebox{45}{duplicated-entry-in-enum} & \rotatebox{45}{info-description} & \rotatebox{45}{info-license} & \rotatebox{45}{license-url} & \rotatebox{45}{no-eval-in-markdown} & \rotatebox{45}{no-script-tags-in-markdown} & \rotatebox{45}{openapi-tags-alphabetical} & \rotatebox{45}{openapi-tags-uniqueness} & \rotatebox{45}{operation-operationId} & \rotatebox{45}{operation-operationId-valid-in-url} & \rotatebox{45}{operation-singular-tag} & \rotatebox{45}{path-declarations-must-exist} & \rotatebox{45}{path-keys-no-trailing-slash} & \rotatebox{45}{path-not-include-query} & \rotatebox{45}{tag-description} & \rotatebox{45}{array-items} & \rotatebox{45}{typed-enum} & \rotatebox{45}{oas3-api-servers} & \rotatebox{45}{oas3-examples-value-or-externalValue} & \rotatebox{45}{oas3-operation-security-defined} & \rotatebox{45}{oas3-parameter-description} & \rotatebox{45}{oas3-server-not-example.com} & \rotatebox{45}{oas3-server-trailing-slash} & \rotatebox{45}{oas3-valid-media-example} & \rotatebox{45}{oas3-valid-schema-example} & \rotatebox{45}{oas3-schema} & \rotatebox{45}{oas3-unused-component} & \rotatebox{45}{oas3-server-variables} & \rotatebox{45}{oas3-callbacks-in-callbacks} \\
-        \hline
-        azure & 5 & 0 & 0 & 7 & 0 & 0 & 256 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 6 & 0 & 0 & 80 & 1 & 0 & 35 & 8 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-        total & 774 & 0 & 0 & 152 & 0 & 69 & 484 & 0 & 0 & 2 & 3 & 0 & 0 & 8840 & 706 & 0 & 0 & 1999 & 113 & 0 & 61 & 677950 & 45 & 169 & 0 & 0 & 0 & 535 & 9501 & 29275 & 23 & 17948 & 11 & 0 \\
-        percentage & 0.6 & 0.0 & 0.0 & 4.6 & 0.0 & 0.0 & 52.9 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.8 & 0.0 & 0.0 & 4.0 & 0.9 & 0.0 & 57.4 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
-        \hline
-    \end{tabular}
-    \caption{Azure, Total, and Percentage for Different Operations}
-\end{table}
 
 \subsubsection{Auswertung der Invertierung}
 
@@ -100,7 +86,7 @@ Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:c
   \endfirsthead
   \endhead
   \hline
-  \textbf{Regel} & \textbf{$\text{I}_\text{Frequenz}$} & \textbf{$\text{I}_\text{Diversität}$} & \ \textbf{Kombiniert} & \textbf{OAS} & \textbf{Cluster} \\ \hline \hline
+  \textbf{Regel} & \textbf{$\text{R}_\text{Frequenz}$} & \textbf{$\text{R}_\text{Diversität}$} & \ \textbf{Kombiniert} & \textbf{OAS} & \textbf{Cluster} \\ \hline \hline
 
   operation-operationId-unique & 1 &  0.375 & 0.875 & hint & error \\ 
   operation-parameters & 1 &  0.375 & 0.875 & warn & error \\ 
@@ -144,8 +130,6 @@ Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:c
   oas3-server-trailing-slash & 0.001927 &  0.043539 & 0.010249 & warn &  hint \\ \hline
 \end{longtable}
 }
-
-% 1x hint->error, 13x warn -> error, 1x error -> error, 4x warn -> warn, 3x hint -> warn, 12 x warn -> hint, 4x hint -> hint
 
 \subsection{Gruppierung}
 

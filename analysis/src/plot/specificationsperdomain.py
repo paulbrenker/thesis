@@ -36,9 +36,9 @@ def create_plot():
         value for value in spec_counts.values() if 10 <= value <= 100
     )
 
-    spec_counts_by_name["1 Specification"] = spec_counts_1
-    spec_counts_by_name["2 - 9 Specifications"] = spec_counts_2_to_9
-    spec_counts_by_name["10 - 100 Specifications"] = spec_counts_10_to_100
+    spec_counts_by_name["1 Spezifikation"] = spec_counts_1
+    spec_counts_by_name["2 - 9 Spezifikationen"] = spec_counts_2_to_9
+    spec_counts_by_name["10 - 100 Spezifikationen"] = spec_counts_10_to_100
 
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.pie(

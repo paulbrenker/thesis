@@ -49,8 +49,8 @@ def create_plot():
     )
     ax.grid(True, which="both", linestyle="--", linewidth=0.7)
 
-    ax.set_xlabel("IDF Prioritization")
-    ax.set_ylabel("Diversity Prioritization")
+    ax.set_xlabel("Relevanz Frequenz")
+    ax.set_ylabel("Relevanz Diversität")
     ax.legend()
 
     save_plot_to_thesis_dir("clusterprioscatter", fig=fig)
