@@ -1,8 +1,8 @@
 \section{Ergebnisse und Analyse}
-Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst.
+Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst. Die absolute Anzahl der geworfenen Linterfehler ist sichtbar in Abbildung Z. Diese Abbildung repräsentiert somit auch die Rohdaten dieser Arbeit.
 In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestellt und der Versuch einer datengetriebenen Priorisierung der Regeln wird unternommen.
 
-Die Analyse ist in zwei Teile unterteilt. In der explorativen Datenanalyse (EDA) wird der Datensatz visualisiert. Es werden Verteilungen der Linterfehler über die Linterregeln untersucht und erläutert. Außerdem soll die Beinflussung des Datensatzes durch den Anbieter Azure.com evaluiert werden. Anschließend werden die Linterregeln nach den beschriebenen Priorisierungsmaßen bewertet und ein Clustering zur Zugehörigkeit zu Schweregraden wird erstellt. 
+Die Analyse ist in zwei Teile unterteilt. In der explorativen Datenanalyse (EDA) wird der Datensatz visualisiert. Es werden Verteilungen der Linterfehler über die Linterregeln untersucht und erläutert. Außerdem soll die Beeinflussung des Datensatzes durch den Anbieter Azure.com evaluiert werden. Anschließend werden die Linterregeln nach den beschriebenen Priorisierungsmaßen bewertet und ein Clustering zur Zugehörigkeit zu Schweregraden wird erstellt. 
 
 \subsection{Explorative Analyse}
 In Abbildung \ref{fig:totalspecthrownbarplot} wird die Anzahl aller geworfenen Linterfehler pro Linterregel gezeigt. Die y-Achse des Säulendiagramms ist logarithmisch skaliert. Es kann abgelesen werden, dass die Anzahl der geworfen Linterfehler pro Regel zwischen 1 und mehreren 100.000 Auslösungen variieren. Die durchschnittliche Anzahl von 225 Linterfehlern pro Spezifikation bestätigt die Hypothese der Problemstellung, dass bei Verwendung des Standardregelwerkes viele Fehler auftreten.
@@ -22,7 +22,24 @@ Wie in Abbildung \ref{fig:Operations} dargestellt, werden 45 \% der Spezifikatio
   \caption{Anteil der von Azure Spezifikationen ausgelösten Fehler an allen Linterfehlern. Ausschließlich Regeln die im Azure Spectral Regelwerk ignoriert werden.}
   \label{fig:azurespecthrownbarplot}
 \end{figure}
-In Abbildung \ref{fig:azurespecthrownbarplot} lässt sich erkennen, dass für die Linterregeln, die im Azure.com Spectral Regelwerk ignoriert werden, machen Linterfehler die auf Azure.com Spezifikationen geworfen wurden einen bedeutenden Teil der aller Fehler aus. An den Anteilen der Azure.com Linterfehler für die restlichen Regeln kann man gut sehen, dass dort die Azure Regeln einen deutlich kleineren Teil der Fehler ausmachen. Der durchschnittliche Anteil der Azure.com Linterfehlern an den gesamt Linterfehlern liegt bei X, wenn die Regel von Azure.com ignoriert wurde und bei Y wenn sie von Azure.com angewendet wurde. 
+In Abbildung \ref{fig:azurespecthrownbarplot} lässt sich erkennen, dass für die Linterregeln, die im Azure.com Spectral Regelwerk ignoriert werden, machen Linterfehler die auf Azure.com Spezifikationen geworfen wurden einen bedeutenden Teil der aller Fehler ausmacht. Es soll die statistische Signifikanz der Azure.com Spezifikationen auf alle Linterfehler gezeigt werden. Dazu wird ein studentischer t-Test gemacht für unabhängige Stichproben gemacht \parencite{mittag_statistik_2023}. Es wird gezeigt, dass der Azure.com Anteil der geworfenen Linterfehler abhängig davon ist, ob Azure.com diese Regel im Azure.com Spectral Ruleset deaktiviert.
+
+\[
+\text{Gruppe 1:} 
+\]]
+\[
+\text{Gruppe 2:} 
+\]]
+
+Unsere Hypothesen für die Gruppen sind:
+
+\[
+\text{H}_\text{0}\text{:} \text{Die durchschnittliche Anteil an Spezifikationen werfen unterscheidet sich nicht in beiden Gruppen } \mu_1 = \mu_2
+\]
+\[
+\text{H}_\text{1}\text{:} \text{Die durchschnittliche Anzahl an Spezifikationen werfen niedriger, wenn Azure.com die Regel anwendet } \mu_1 < \mu_2
+\]
+Die t-Statistik wird berechnet:
 
 
 \subsubsection{Auswertung der Invertierung}
