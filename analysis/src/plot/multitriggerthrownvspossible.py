@@ -30,7 +30,7 @@ def create_plot():
         column_limiter=column_limiter, cell_mapper=DataFrameMappers.map_to_possible
     )
 
-    fig, ax = plt.subplots(figsize=(10, 12))
+    fig, ax = plt.subplots(figsize=(10, 9))
     bar_width = 0.3
     index = np.arange(len(df_possible.columns))
 

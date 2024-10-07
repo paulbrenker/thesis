@@ -18,7 +18,7 @@ def create_plot():
     distance_matrix = pdist(df_transformed.T, metric="jaccard")
     linked = linkage(distance_matrix, method="complete")
 
-    fig, ax = plt.subplots(figsize=(10, 14))
+    fig, ax = plt.subplots(figsize=(10, 10))
     dendrogram(
         linked,
         orientation="top",
@@ -31,4 +31,5 @@ def create_plot():
     ax.grid(True, which="both", linestyle="--", linewidth=0.7)
     ax.set_xlabel("Linterregeln")
     ax.set_ylabel("Jaccard Distanz")
+    fig.tight_layout()
     save_plot_to_thesis_dir(filename="hierarchicalclusteronbinary", fig=fig)

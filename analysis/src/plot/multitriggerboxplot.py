@@ -35,7 +35,7 @@ def create_plot():
         if len(df_inverse.loc[df_inverse[column] != 0][column]) > 0
     ]
 
-    fig, ax = plt.subplots(figsize=(10, 9))
+    fig, ax = plt.subplots(figsize=(10, 7))
     bplot = ax.boxplot(x=[data[1] for data in box_columns], patch_artist=True)
     ax.set_xticklabels([data[0] for data in box_columns], rotation=45, ha="right")
     ax.grid(True, which="both", linestyle="--", linewidth=0.5)
