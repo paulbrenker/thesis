@@ -120,28 +120,28 @@ Regeln, die durch das $\text{Relevanz}_\text{Frequenz}$ sehr niedrig priorisiert
 
 {\footnotesize
 \begin{longtable}{lccccc}
-  \caption{}
+  \caption{$\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, OAS Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern}
   \label{tab:combinedweighedprioritized}
   \endfirsthead
   \endhead
   \hline
   \textbf{Regel} & \textbf{$\text{R}_\text{Frequenz}$} & \textbf{$\text{R}_\text{Diversität}$} & \ \textbf{Kombiniert} & \textbf{OAS} & \textbf{Cluster} \\ \hline \hline
 
-  operation-operationId-unique & 1 &  0.375 & 0.875 & hint & error \\ 
-  operation-parameters & 1 &  0.375 & 0.875 & warn & error \\ 
-  contact-properties & 1 &  0.375 & 0.875 & warn & error \\ 
-  openapi-tags & 1 &  0.375 & 0.875 & warn & error \\ 
-  openapi-tags-alphabetical &  1 &  0.375 & 0.875 & warn & error \\ 
-  openapi-tags-uniqueness &  1 &  0.375 & 0.875 & error & error \\ 
-  license-url &  1 &  0.375 & 0.875 & warn & error \\ 
-  info-license & 1 &  0.375 & 0.875 & warn & error \\ 
-  oas3-server-not-example.com &  1 &  0.375 & 0.875 & warn & error \\ 
-  oas3-operation-security-defined &  1 &  0.375 & 0.875 & warn & error \\ 
-  oas3-parameter-description & 1 & 0.375 & 0.875 & warn & error \\ 
-  oas3-callbacks-in-callbacks &  1 &  0.375 & 0.875 & warn & error \\ 
-  path-declarations-must-exist & 1 &  0.375 & 0.875 & warn & error \\ 
-  operation-singular-tag & 1 &  0.375 & 0.875 & warn & error \\ 
-  tag-description &  1 &  0.375 & 0.875 & warn & error \\ 
+  operation-operationId-unique* & 1 &  0.375 & 0.875 & hint & error \\ 
+  operation-parameters* & 1 &  0.375 & 0.875 & warn & error \\ 
+  contact-properties* & 1 &  0.375 & 0.875 & warn & error \\ 
+  openapi-tags* & 1 &  0.375 & 0.875 & warn & error \\ 
+  openapi-tags-alphabetical* &  1 &  0.375 & 0.875 & warn & error* \\ 
+  openapi-tags-uniqueness* &  1 &  0.375 & 0.875 & error & error \\ 
+  license-url* &  1 &  0.375 & 0.875 & warn & error \\ 
+  info-license* & 1 &  0.375 & 0.875 & warn & error \\ 
+  oas3-server-not-example.com* &  1 &  0.375 & 0.875 & warn & error \\ 
+  oas3-operation-security-defined* &  1 &  0.375 & 0.875 & warn & error \\ 
+  oas3-parameter-description* & 1 & 0.375 & 0.875 & warn & error \\ 
+  oas3-callbacks-in-callbacks* &  1 &  0.375 & 0.875 & warn & error \\ 
+  path-declarations-must-exist* & 1 &  0.375 & 0.875 & warn & error \\ 
+  operation-singular-tag* & 1 &  0.375 & 0.875 & warn & error \\ 
+  tag-description* &  1 &  0.375 & 0.875 & warn & error \\ 
   no-eval-in-markdown &  1 &  0.025194 & 0.805039 & warn & error \\ \hline
   no-script-tags-in-markdown & 0.333333 &  0.026171 & 0.271901 & warn &  warn \\ 
   duplicated-entry-in-enum & 0.166667 &  0.028361 & 0.139006 & warn &  warn \\ 
