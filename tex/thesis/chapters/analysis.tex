@@ -1,5 +1,24 @@
 \section{Ergebnisse und Analyse}
 Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst. Die absolute Anzahl der geworfenen Linterfehler ist sichtbar in Abbildung Z. Diese Abbildung repräsentiert somit auch die Rohdaten dieser Arbeit.
+Die Rohdaten der Linterergebnisse wurden in einer CSV Datei gespeichert. Ein Beispiel für das Speicherformat ist in Code \ref{code:rawdataexample} abgebildet.
+
+\begin{verbbox}
+  specs;operation-success-response
+  ../data/openapi-directory/APIs/azure.com/\
+  logic/2016-06-01/swagger.yaml;\
+  {"thrownMessages":1,"possibleMessages":97,\
+  "inverseStatus":"MULTI_TRIGGER",\
+  "spectralMessages":[{...}]};
+\end{verbbox}
+\label{code:rawdataexample}
+\footnotesize{
+  {\centering 
+    \captionof{Quellcode}{Auszug aus dem Datensatz der Linterergebnisse}\par
+    \theverbbox
+    \vspace{0.3cm}
+  }
+}
+
 In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestellt und der Versuch einer datengetriebenen Priorisierung der Regeln wird unternommen. Ein Lauf der Datenanalyse Pipeline dauert ca. 3 min.
 
 Die Analyse ist in zwei Teile unterteilt. In der explorativen Datenanalyse (EDA) wird der Datensatz visualisiert. Es werden Verteilungen der Linterfehler über die Linterregeln untersucht und erläutert. Außerdem soll die Beeinflussung des Datensatzes durch den Anbieter Azure.com evaluiert werden. Anschließend werden die Linterregeln nach den beschriebenen Priorisierungsmaßen bewertet und ein Clustering zur Zugehörigkeit zu Schweregraden wird erstellt. 
