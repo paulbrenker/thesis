@@ -103,6 +103,26 @@ Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig 
   \label{fig:UC2}
 \end{figure}
 
+Zusätzlich zum Use Case soll für die Ermittlung aller möglichen Stellen an denen Linterfehler in einer OpenAPI Spezifikation als Pseudocode angegeben werden. Dies verdeutlicht die Funktionalität dieses Aspektes der Software.
+
+\floatname{algorithm}{Algorithmus}
+\begin{algorithm}
+  \label{alg:invert}
+  \caption{Ermitteln der möglichen Stellen für Linterfehler}
+  \textbf{Eingabe:} OpenAPI Spezifikation, Linterregel \\
+  \textbf{Ausgabe:} Anzahl möglicher Stellen
+\begin{algorithmic}[1]
+    \State \textit{summe}: Int := 0
+    \State given: List(JSONPath) := Linterregel.given
+    \For{each \textit{element}: JSONPath in \textit{given}}
+        \State \textit{pfade}: Liste := JSONPath.apply(Document, \textit{element})
+        \State \textit{länge}: Int := \textit{pfade}.length()
+        \State \textit{summe} += \textit{länge}
+    \EndFor
+    \State \Return \textit{summe}
+\end{algorithmic}
+\end{algorithm}
+
 \subsubsection{Analyse}
 Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den in UC1 und UC2 beschriebenen Interaktionen statt. Zweck dieser Interaktion ist es, die ermittelten Linterfehler und die Metadaten in ein Menschenlesbares Format zu bringen und sie zu beschreiben (Deskriptive Datenanalyse). 
 
