@@ -28,6 +28,7 @@ from table import (
     groupedprioritizedrules,
     violationpartitionazure,
     findnoviolations,
+    totalthrownrules,
 )
 
 logging.basicConfig(
@@ -55,3 +56,4 @@ violationpartitionazure.create_report()
 multitriggerboxplot.create_plot()
 findnoviolations.create_report()
 ruleseverityreassignments.create_plot()
+totalthrownrules.create_report()
