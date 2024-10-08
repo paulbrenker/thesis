@@ -50,3 +50,54 @@
 \end{longtable}
 }
 
+{\footnotesize
+\begin{longtable}{lccccc}
+  \caption{$\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, OAS Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern. Für die Berechnung der Daten in dieser Tabelle wurden die Azure Spezifikationen nicht beachtet.}
+  \label{tab:combinedweighedpriononazure}
+  \endfirsthead
+  \endhead
+  \hline
+  \textbf{Regel} & \textbf{$\text{R}_\text{Frequenz}$} & \textbf{$\text{R}_\text{Diversität}$} & \ \textbf{Kombiniert} & \textbf{OAS} & \textbf{Cluster} \\ \hline \hline
+operation-operationId-unique* & 1.000000 &  0.375000 & 0.875000 & \texttt{hint} & \texttt{error} \\
+operation-parameters* & 1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+contact-properties* & 1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+openapi-tags* & 1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+openapi-tags-alphabetical* &  1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+openapi-tags-uniqueness* &  1.000000 &  0.375000 & 0.875000 & \texttt{error} & \texttt{error} \\
+license-url* &  1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+info-license* & 1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+oas3-server-not-example.com* &  1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+oas3-operation-security-defined* &  1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+oas3-parameter-description* & 1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+oas3-callbacks-in-callbacks* &  1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+path-declarations-must-exist* & 1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+operation-singular-tag* & 1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+tag-description* &  1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
+no-eval-in-markdown &  1.000000 &  0.025257 & 0.805051 & \texttt{warn} & \texttt{error} \\ \hline
+no-script-tags-in-markdown & 0.333333 &  0.026510 & 0.271969 & \texttt{warn} & \texttt{warn} \\
+array-items &  0.250000 &  0.031184 & 0.206237 & \texttt{hint} & \texttt{warn} \\
+duplicated-entry-in-enum & 0.166667 &  0.029562 & 0.139246 & \texttt{warn} & \texttt{warn} \\
+oas3-schema &  0.142857 &  0.029624 & 0.120210 & \texttt{hint} & \texttt{warn} \\ \hline
+path-not-include-query & 0.100000 &  0.035991 & 0.087198 & \texttt{warn} & \texttt{hint} \\
+oas3-server-variables &  0.090909 &  0.027702 & 0.078268 & \texttt{hint} & \texttt{hint} \\
+oas3-examples-value-or-externalValue & 0.083333 &  0.032618 & 0.073190 & \texttt{warn} & \texttt{hint} \\
+operation-operationId-valid-in-url & 0.026316 &  0.037727 & 0.028598 & \texttt{warn} & \texttt{hint} \\
+typed-enum & 0.023256 &  0.038561 & 0.026317 & \texttt{warn} & \texttt{hint} \\
+oas3-api-servers & 0.022222 &  0.033748 & 0.024527 & \texttt{warn} & \texttt{hint} \\
+operation-success-response & 0.018868 &  0.041006 & 0.023295 & \texttt{warn} & \texttt{hint} \\
+path-params &  0.013514 &  0.043720 & 0.019555 & \texttt{hint} & \texttt{hint} \\
+path-keys-no-trailing-slash &  0.008772 &  0.046169 & 0.016251 & \texttt{warn} & \texttt{hint} \\
+operation-tag-defined &  0.001531 &  0.074348 & 0.016095 & \texttt{warn} & \texttt{hint} \\
+info-contact & 0.001838 &  0.073019 & 0.016074 & \texttt{warn} & \texttt{hint} \\
+oas3-valid-media-example & 0.006289 &  0.053536 & 0.015739 & \texttt{hint} & \texttt{hint} \\
+operation-description &  0.001818 &  0.070216 & 0.015498 & \texttt{warn} & \texttt{hint} \\
+oas3-valid-schema-example &  0.002347 &  0.067253 & 0.015329 & \texttt{hint} & \texttt{hint} \\
+oas3-unused-component &  0.000992 &  0.070194 & 0.014833 & \texttt{warn} & \texttt{hint} \\
+operation-operationId &  0.002632 &  0.061736 & 0.014452 & \texttt{warn} & \texttt{hint} \\
+info-description & 0.004386 &  0.052927 & 0.014094 & \texttt{warn} & \texttt{hint} \\
+no-\$ref-siblings &  0.001563 &  0.059900 & 0.013230 & \texttt{hint} & \texttt{hint} \\
+oas3-server-trailing-slash & 0.001927 &  0.054978 & 0.012537 & \texttt{warn} & \texttt{hint} \\
+operation-tags & 0.001592 &  0.046619 & 0.010598 & \texttt{warn} & \texttt{hint} \\ \hline
+\end{longtable}
+}
+

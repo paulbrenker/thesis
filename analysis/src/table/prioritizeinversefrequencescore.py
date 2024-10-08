@@ -23,11 +23,16 @@ def create_report():
     )
 
 
-def create_inverse_frequence_score():
+def create_inverse_frequence_score(no_azure_specs=False):
     """
     create a prioritization set using inverse frequency score
     """
     df = get_linter_results(cell_mapper=DataFrameMappers.map_to_was_thrown)
+
+    if no_azure_specs:
+        df = get_linter_results(
+            index_excluder="azure.com", cell_mapper=DataFrameMappers.map_to_was_thrown
+        )
 
     df_sum = df.sum()
     for key, value in df_sum.items():

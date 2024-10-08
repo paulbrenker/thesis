@@ -25,16 +25,27 @@ def create_report():
         df_clustered.sort_values(ascending=False, by="weighed").to_string(),
     )
 
+    df_clustered_no_azure, _ = create_clustering(no_azure_specs=True)
 
-def create_clustering():
+    logger.info(
+        "Kmeans Clustered Rules not considering any azure specification:\n%s",
+        df_clustered_no_azure.sort_values(ascending=False, by="weighed").to_string(),
+    )
+
+
+def create_clustering(no_azure_specs=False):
     """
     create the 3 means clustering
     """
     alpha = 0.8
     beta = 0.2
 
-    inverse_frequence_series = create_inverse_frequence_score()
-    trigger_diversity_series = create_jaccard_inverted_score()
+    inverse_frequence_series = create_inverse_frequence_score(
+        no_azure_specs=no_azure_specs
+    )
+    trigger_diversity_series = create_jaccard_inverted_score(
+        no_azure_specs=no_azure_specs
+    )
 
     df_prioritization = inverse_frequence_series.to_frame().assign(
         diversity=trigger_diversity_series.values
