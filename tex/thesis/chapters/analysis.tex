@@ -72,20 +72,20 @@ In \parencite{bogner_restruler_2024} ist die Größe des OpenAPI Repositories mi
 Die Invertierung zeigt uns das Verhältnis der geworfenen Linterregeln im Verhältnis zu den Stellen an denen eine Regel geworfen werden könnte. Um mit der großen Varianz, der Linterfehler pro Regel umzugehen, hilft diese Strategie bei der Normalisierung der Linterfehler. 
 In Tabelle \ref{tab:singletriggerinverts} wird der Mittelwert der Auslösungen für die Single Trigger Regeln gezeigt. Da die maximale Anzahl der Auslösungen für Single Trigger Regeln 1 ist, liegt der Mittelwert zwischen 0 und 1.  Die Regeln info-contact und info-description sehr häufig ausgelöst (in 57 \% bzw. 12 \% der Spezifikationen). Die Regel oas3-api-servers wird sehr selten ausgelöst (1 \% der Spezifikationen). Alle anderen Regeln werden nie ausgelöst. 
 
-\begin{longtable}{|l|l|}
+\begin{longtable}{ll}
   \caption{Arithmetisches Mittel der Regeln, die höchstens ein Mal pro Spezifikation ausgelöst werden können.}
   \label{tab:singletriggerinverts}
   \endfirsthead
   \endhead
   \hline
-  \textbf{Regel Name} & \textbf{Arithmetisches Mittel} \\ \hline
-  contact-properties & 0.000000 \\ \hline
-  info-contact & 0.570358 \\ \hline
-  info-description & 0.117021 \\ \hline
-  info-license & 0.000000 \\ \hline
-  license-url & 0.000000 \\ \hline
-  openapi-tags-alphabetical & 0.000000 \\ \hline
-  oas3-api-servers & 0.010880 \\ \hline
+  \textbf{Regel Name} & \textbf{Arithmetisches Mittel} \\ \hline\hline
+  contact-properties & 0.000000 \\ 
+  info-contact & 0.570358 \\ 
+  info-description & 0.117021 \\ 
+  info-license & 0.000000 \\ 
+  license-url & 0.000000 \\ 
+  openapi-tags-alphabetical & 0.000000 \\ 
+  oas3-api-servers & 0.010880 \\ 
   oas3-server-not-example.com & 0.000000 \\ \hline
 \end{longtable}
 

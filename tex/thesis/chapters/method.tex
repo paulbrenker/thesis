@@ -109,13 +109,13 @@ Zusätzlich zum Use Case soll für die Ermittlung aller möglichen Stellen an de
 \begin{algorithm}
   \label{alg:invert}
   \caption{Ermitteln der möglichen Stellen für Linterfehler}
-  \textbf{Eingabe:} OpenAPI Spezifikation, Linterregel \\
+  \textbf{Eingabe:} Spezifikation, Linterregel \\
   \textbf{Ausgabe:} Anzahl möglicher Stellen
 \begin{algorithmic}[1]
     \State \textit{summe}: Int := 0
-    \State given: List(JSONPath) := Linterregel.given
+    \State \textit{given}: List(JSONPath) := Linterregel.\textit{given}
     \For{each \textit{element}: JSONPath in \textit{given}}
-        \State \textit{pfade}: Liste := JSONPath.apply(Document, \textit{element})
+        \State \textit{pfade}: Liste := JSONPath.apply(Spezifikation, \textit{element})
         \State \textit{länge}: Int := \textit{pfade}.length()
         \State \textit{summe} += \textit{länge}
     \EndFor
