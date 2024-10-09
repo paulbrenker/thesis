@@ -57,6 +57,9 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
+% in Place tables
+\usepackage{longtable}
+
 % simple code environments
 \usepackage{verbatimbox,caption,float,lipsum}
 \newfloat{Quellcode}
@@ -75,10 +78,7 @@ url=false,
 %maxeditornames=2,
 ]{biblatex}
 \addbibresource{references.bib} 
-%\setlength\bibitemsep{1.5\itemsep}
 
-%\usepackage{helvet} % non-serif explicit
-%\renewcommand{\familydefault}{\sfdefault}
 
 \clubpenalty=10000 
 \widowpenalty=10000 
@@ -98,7 +98,7 @@ url=false,
 \titleformat{\section}[block]{\bfseries}{\thesection.}{1em}{} 
 
 \usepackage{sectsty}
-\allsectionsfont{\normalfont\sffamily\bfseries\normalsize}
+\allsectionsfont{\normalfont\bfseries\normalsize}
 
 % header and footer default
 \usepackage{lastpage}
@@ -131,22 +131,11 @@ url=false,
 }
 
 
-% config for usage of source code
-%\usepackage{listingsutf8}
-\usepackage{listings}
-\definecolor{light-gray}{gray}{0.80}
-\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt,showstringspaces=false}
-\lstset{basicstyle=\ttfamily\small,commentstyle=\itshape,backgroundcolor=\color{light-gray}}
-\lstset{captionpos=b,extendedchars=true,inputencoding=utf8,breaklines=true,language=C++}
-
 
 % no tolerance for breaking block formatting
 \tolerance 9999
 
-
-%%%%%%%%
 %Makros
-%%%%%%%%
 
 % figure item, caption
 \newcommand{\fhbrsfigure}[2]{%
@@ -166,7 +155,7 @@ url=false,
   \end{figure}
 }
 
-\usepackage{longtable}
+
 
 % pos, caption, columns
  \newenvironment{fhbrstable}[3]{%

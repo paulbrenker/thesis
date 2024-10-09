@@ -1,4 +1,3 @@
-% Head                                        %
 \PassOptionsToPackage{usenames, dvipsnames}{color}
 \documentclass[a4paper,11pt,headsepline,titlepage]{article}
 \input{meta}
@@ -7,50 +6,39 @@
 \begin{document}
 \begin{spacing}{1}
   \pagenumbering{roman}
-
-  % Title
   \pagestyle{empty}
+
   \include{chapters/titlepage}
 
-  % Abbreviations
-  \include{chapters/abbreviations}
-
-  % Table of Contents
+  \pagestyle{bisHauptteil}
   \tableofcontents 
   \newpage 
 
-  %\pagestyle{empty}
+  \include{chapters/abbreviations}
 
-  % Introduction 
   \pagestyle{Hauptteil}
   \setcounter{page}{1}
   \pagenumbering{arabic} 
+
+
   \include{chapters/intro} 
 
-  % Related Works
   \include{chapters/research}
 
-  % Method 
   \include{chapters/method}
 
-  % Analysis
   \include{chapters/analysis}
 
-  % Evaluation
   \include{chapters/evaluation}
 
-  % Literature
-  \section{Literaturverzeichnis}
+  \addcontentsline{toc}{section}{Literaturverzeichnis}
+  \section*{Literaturverzeichnis}
   \renewcommand\refname{}
   \printbibliography
 
-  % Appendix
   \include{chapters/appendix}
 
-
-  % Declaration
   \include{chapters/declaration}
-
-% Footer     
+ 
 \end{spacing}
 \end{document}
