@@ -1,10 +1,10 @@
 <mxfile host="65bd71144e" pages="2">
     <diagram id="tOvIlw2dGiQsY80hTphs" name="Page-1">
-        <mxGraphModel dx="2216" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1334" dy="579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="vM8dWAwFw00lHUug8C4h-1" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=default;strokeWidth=0;" parent="1" vertex="1">
+                <mxCell id="vM8dWAwFw00lHUug8C4h-1" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=none;strokeWidth=0;" parent="1" vertex="1">
                     <mxGeometry x="-100" y="170" width="750" height="590" as="geometry"/>
                 </mxCell>
                 <mxCell id="eqvdFO0q0iVMyHEjIzmP-2" value="Softwaretool" style="shape=folder;fontStyle=1;tabWidth=110;tabHeight=30;tabPosition=left;html=1;boundedLbl=1;labelInHeader=1;container=1;collapsible=0;whiteSpace=wrap;" parent="1" vertex="1">
@@ -84,7 +84,7 @@
                 <mxCell id="hcRgJmqzmXn8Qf8jfycX-1" value="Benutzer&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="-70" y="240" width="30" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="VDQMt3jfyJp0ozxELBkX-1" value="OpenAPI Spezifikationen" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.001;entryY=0.933;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="2MzTFwtWSAKG9iAWT7ZW-1" edge="1" target="eqvdFO0q0iVMyHEjIzmP-2">
+                <mxCell id="VDQMt3jfyJp0ozxELBkX-1" value="OpenAPI Spezifikationen" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.001;entryY=0.933;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="2MzTFwtWSAKG9iAWT7ZW-1" target="eqvdFO0q0iVMyHEjIzmP-2" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="460" y="400" as="sourcePoint"/>
                         <mxPoint x="239" y="405" as="targetPoint"/>
@@ -162,7 +162,7 @@
                         <mxPoint x="320" y="640" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="2" style="edgeStyle=none;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="CNWz6FatBaFtdHYnqpDM-22">
+                <mxCell id="2" style="edgeStyle=none;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="CNWz6FatBaFtdHYnqpDM-22" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="140" y="530" as="targetPoint"/>
                     </mxGeometry>
