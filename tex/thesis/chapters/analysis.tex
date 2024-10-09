@@ -1,6 +1,6 @@
 \section{Ergebnisse und Analyse}
-Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst. Die absolute Anzahl der geworfenen Linterfehler ist sichtbar in Abbildung Z. Diese Abbildung repräsentiert somit auch die Rohdaten dieser Arbeit.
-Die Rohdaten der Linterergebnisse wurden in einer CSV Datei gespeichert. Ein Beispiel für das Speicherformat ist in Code \ref{code:rawdataexample} abgebildet.
+Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst. Die absolute Anzahl der geworfenen Linterfehler ist sichtbar in Abbildung \ref{tab:totalthrownerrors}. Diese Abbildung repräsentiert somit auch die Rohdaten dieser Arbeit.
+Die Rohdaten der Linterergebnisse wurden in einer \acs{CSV} Datei gespeichert. Ein Beispiel für das Speicherformat ist in Code \ref{code:rawdataexample} abgebildet.
 
 \begin{verbbox}
   specs;operation-success-response
@@ -18,8 +18,7 @@ Die Rohdaten der Linterergebnisse wurden in einer CSV Datei gespeichert. Ein Bei
   }
 
 In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestellt und der Versuch einer datengetriebenen Priorisierung der Regeln wird unternommen. Ein Lauf der Datenanalyse Pipeline dauert ca. 3 min.
-
-Die Analyse ist in zwei Teile unterteilt. In der explorativen Datenanalyse (EDA) wird der Datensatz visualisiert. Es werden Verteilungen der Linterfehler über die Linterregeln untersucht und erläutert. Außerdem soll die Beeinflussung des Datensatzes durch den Anbieter Azure.com evaluiert werden. Anschließend werden die Linterregeln nach den beschriebenen Priorisierungsmaßen bewertet und ein Clustering zur Zugehörigkeit zu Schweregraden wird erstellt. 
+Die Analyse ist in zwei Teile unterteilt. Um die Linterergebnisse zu visualisieren wird eine \acf{EDA} vorgenommen. Es werden Verteilungen der Linterfehler über die Linterregeln untersucht und erläutert. Außerdem soll die Beeinflussung des Datensatzes durch den Anbieter Azure.com evaluiert werden. Anschließend werden die Linterregeln nach den beschriebenen Priorisierungsmaßen bewertet und ein Clustering zur Zugehörigkeit zu Schweregraden wird erstellt. 
 
 \subsection{Explorative Analyse}
 In Abbildung \ref{fig:totalspecthrownbarplot} wird die Anzahl aller geworfenen Linterfehler pro Linterregel gezeigt. Die y-Achse des Säulendiagramms ist logarithmisch skaliert. Es kann abgelesen werden, dass die Anzahl der geworfen Linterfehler pro Regel zwischen 1 und mehreren 100.000 Auslösungen variieren. Die durchschnittliche Anzahl von 225 Linterfehlern pro Spezifikation bestätigt die Hypothese der Problemstellung, dass bei Verwendung des Standardregelwerkes viele Fehler auftreten.
@@ -32,7 +31,7 @@ In Abbildung \ref{fig:totalspecthrownbarplot} wird die Anzahl aller geworfenen L
 
 
 \subsubsection{Verzerrung des Datensatzes}
-Wie in Abbildung \ref{fig:Operations} dargestellt, werden 45 \% der Spezifikationen durch den Cloudanbieter Azure.com ausgemacht. Im folgenden Abschnitt soll untersucht werden, ob es durch diese Spezifikationen eine Verzerrung im Datensatz gibt. Da wir wissen, welche Regeln aus dem Spectral OAS Regelwerk der Cloudanbieter zum Linten seiner eigenen OpenAPI Spezifikationen nimmt (siehe Tabelle \ref{tab:DeactivatedRules}). Können wir hier vermuten, dass die Proportion der auf von Azure.com verwendeten Linterregeln geworfenen Linterfehler niedriger ist als die aller anderen Spezifikationen.
+Wie in Abbildung \ref{fig:Operations} dargestellt, werden 45 \% der Spezifikationen durch den Cloudanbieter Azure.com ausgemacht. Im folgenden Abschnitt soll untersucht werden, ob es durch diese Spezifikationen eine Verzerrung im Datensatz gibt. Da wir wissen, welche Regeln aus dem Spectral \acs{OAS} Regelwerk der Cloudanbieter zum Linten seiner eigenen OpenAPI Spezifikationen nimmt (siehe Tabelle \ref{tab:DeactivatedRules}). Können wir hier vermuten, dass die Proportion der auf von Azure.com verwendeten Linterregeln geworfenen Linterfehler niedriger ist als die aller anderen Spezifikationen.
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/azurespecthrownbarplot.png}
@@ -63,7 +62,7 @@ t=\frac{\overline{x}_1-\overline{x}_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}
 \]
 
 Wobei $\overline{x}_1$ und $\overline{x}_2$ dir Mittelwerte der Gruppen 1 und 2 darstellen, $s_1^2$ und $s_2^2$ die Varianzen der Fehler und $n_1$ und $n_2$ die Größen der Gruppen sind.
-Mit einem p-Wert von 0.0416, kleiner dem Signifikanzniveau $\alpha = 0.05$ ist, kann die Nullhypothese $H_0$ abgelehnt werden. Dies bedeutet, dass die Anwendung der Spectral Regeln von Azure.com sich wie erwartet signifikant auf die Anteile der geworfenen Linterregeln auswirkt. Dies zeigt eine Verzerrung der Linterergebnisse dadurch, dass Azure.com den Spectral API Linter anwendet. Diese Eigenschaft der Linterergebnisse wird in der Priorisierung der Ergebnisse wieder aufgegriffen. 
+Mit einem p-Wert von 0.0416, kleiner dem Signifikanzniveau $\alpha = 0.05$ ist, kann die Nullhypothese $H_0$ abgelehnt werden. Dies bedeutet, dass die Anwendung der Spectral Regeln von Azure.com sich wie erwartet signifikant auf die Anteile der geworfenen Linterregeln auswirkt. Dies zeigt eine Verzerrung der Linterergebnisse dadurch, dass Azure.com den Spectral \acs{API} Linter anwendet. Diese Eigenschaft der Linterergebnisse wird in der Priorisierung der Ergebnisse wieder aufgegriffen. 
 
 In \parencite{bogner_restruler_2024} ist die Größe des OpenAPI Repositories mit 2331 Spezifikationen deutlich geringer als in dieser Analyse. Anhand der Einblicke, die in dem Paper über den Datensatz gemacht werden, kann gefolgert werden, dass zu dem Zeitpunkt die Azure.com Spezifikationen noch nicht Teil des OpenAPI Directory waren. Trotz des großen Anteils der Azure.com Spezifikationen und der Verzerrung der Linterergebnisse dadurch werden hier alle Spezifikationen aus dem OpenAPI Directory als Eingabe für die Ermittlung der Linterergebnisse verwendet. Eine alternative Berechnung der Priorisierung und des Clusterings der Daten, in der Azure.com Spezifikationen nicht berücksichtigt werden findet sich im Anhang in Tabelle \ref{tab:combinedweighedpriononazure}.
 
@@ -109,12 +108,12 @@ Die Verteilung der Inversen Häufigkeit der geworfenen Linterfehler ist für all
   \label{fig:boxplotcleanmultitrigger}
 \end{figure}
 
-Aus den Invertierungen lassen sich viele Informationen ablesen, die direkte Implikationen zu der Relevanz einer Regel für die Spezifikationen zulassen. Dies geschieht kann zum Beispiel in Abbildung \ref{fig:boxplotcleanmultitrigger} anhand der beobachteten Konsitenz innerhalb der Spezifikationen gemacht werden. Die Invertierung lässt sich mit der Implementierung dieser Arbeit jedoch nur für Single Trigger und Multi Trigger Regeln durchführen. Für die Multi Message Regeln lassen sich diese Werte nicht ermitteln. Um trotzdem Aussagen zur Priorisierung des Spectral OAS Regelwerks zu machen, wird in folgendem Abschnitt nur die Boolsche Matrix über Regeln und Spezifikationen betrachtet, die aussagt, ob eine Spezifikation eine Regel ausgelöst hat. Die Anzahl der Auslösungen spielt dort keine Rolle. Diese Methode ist auch unspezifisch gegenüber der Größe der Spezifikationen und lässt keinen Verzerrung in Richtung großer oder kleiner Spezifikationen zu. Außerdem ist die Methode indifferent gegenüber der Regelart. Single Trigger, Multi Trigger und Multi Message Regeln können auf diese Repräsentation abgebildet werden.
+Aus den Invertierungen lassen sich viele Informationen ablesen, die direkte Implikationen zu der Relevanz einer Regel für die Spezifikationen zulassen. Dies geschieht kann zum Beispiel in Abbildung \ref{fig:boxplotcleanmultitrigger} anhand der beobachteten Konsitenz innerhalb der Spezifikationen gemacht werden. Die Invertierung lässt sich mit der Implementierung dieser Arbeit jedoch nur für Single Trigger und Multi Trigger Regeln durchführen. Für die Multi Message Regeln lassen sich diese Werte nicht ermitteln. Um trotzdem Aussagen zur Priorisierung des Spectral \acs{OAS} Regelwerks zu machen, wird in folgendem Abschnitt nur die Boolean Matrix über Regeln und Spezifikationen betrachtet, die aussagt, ob eine Spezifikation eine Regel ausgelöst hat. Die Anzahl der Auslösungen spielt dort keine Rolle. Diese Methode ist auch unspezifisch gegenüber der Größe der Spezifikationen und lässt keinen Verzerrung in Richtung großer oder kleiner Spezifikationen zu. Außerdem ist die Methode indifferent gegenüber der Regelart. Single Trigger, Multi Trigger und Multi Message Regeln können auf diese Repräsentation abgebildet werden.
 
 \subsection{Priorisierung}
 Im diesem Kapitel werden die Ergebnisse der Priorisierung vorgestellt. Die Ausgangsdaten für die Priorisierungen sind ausschließlich Wahrheitswerte. Erste manuelle Priorisierungen konnten bereits in der Auswertung der Invertierung gesehen werden. 
 \subsubsection{Inverses Frequenz Scoring}
-Das Scoring der Relevanz nach Inverse Document Frequency ist in Tabelle \ref{tab:combinedweighedprioritized} in der Spalte $R_\text{Frequenz}$ abgebildet. Der Graph der $\text{Relevanz}_\text{Frequenz}(r)$ Funktion hat eine hyperbelähnliche Form. Regeln die null Mal oder ein Mal ausgelöst werden, werden beide auf die Priorität 1 abgebildet. Dieses Verhalten lässt sich bei der Regel no-eval-in-markdown beobachten. Insgesamt werden 16 Regeln mit 1 priorisiert. Vier Regeln werden mit 0,1 - 0.4 bewertet, 8 Regeln mit jeweils Acht Regeln fallen auf die Größenordnungen 0.01 - 0.1, 0.001 - 0.01, 0.0001 - 0.001.
+Das Scoring der Relevanz nach \acl{IDF} ist in Tabelle \ref{tab:combinedweighedprioritized} in der Spalte $R_\text{Frequenz}$ abgebildet. Der Graph der $\text{Relevanz}_\text{Frequenz}(r)$ Funktion hat eine hyperbelähnliche Form. Regeln die null oder ein Mal ausgelöst werden, werden beide auf die Priorität 1 abgebildet. Dieses Verhalten lässt sich bei der Regel no-eval-in-markdown beobachten. Insgesamt werden 16 Regeln mit 1 priorisiert. Vier Regeln werden mit 0,1 - 0.4 bewertet, 8 Regeln mit jeweils Acht Regeln fallen auf die Größenordnungen 0.01 - 0.1, 0.001 - 0.01, 0.0001 - 0.001.
 \subsubsection{Diversität der Trigger}
 Eine Visualisierung der jeweils minimalen Jaccard Ähnlichkeiten und ein Hierarchisches Clustering der Regeln ist in Abbildung \ref{fig:hierarchicalclusteronbinary} dargestellt. In dieser Abbildungen lassen sich die Regeln, die nie ausgelöst wurden gut als Cluster erkennen. Ein zweites Cluster wird durch die Regeln no-eval-in-markdown, no-script-tags-in-markdown und openapi-tags-uniqueness gebildet. Dies zeigt, dass diese Regeln von den gleichen Spezifikationen missachtet wurden. Durch die Ähnlichkeit des Auslösemusters der Regeln, die in Markdown eingebetteten Code erkennen, liegt nahe, dass diese eventuell gezielt herbeigeführt wurden. Die verbleibenden 22 Regeln werden im Dendrogramm in ein großes Cluster eingeteilt. Wir können erkennen, dass diese in der Regel bei Jaccard Ähnlichkeiten größer 0,8 zusammengeführt werden. Für den Datensatz bedeuted dies, dass weiteren Trends zum Missachten bestimmter Regeln vorliegen. 
 
@@ -139,7 +138,7 @@ Regeln, die durch das $\text{Relevanz}_\text{Frequenz}$ sehr niedrig priorisiert
 
 {\footnotesize
 \begin{longtable}{lccccc}
-  \caption{$\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, OAS Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern}
+  \caption{$\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, \acs{OAS} Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern}
   \label{tab:combinedweighedprioritized}
   \endfirsthead
   \endhead
@@ -200,20 +199,20 @@ In Tabelle \ref{tab:combinedweighedprioritized} kann man die Angehörigkeit der 
 
 Nach der Neuverteilung der Linter Schweregrade durch das k-means Clustering haben viele der Linterregeln eine Zuordnung zu einem anderem Schweregrad als in der Zuordnung durch das Spectral OAS Regelwerk. Die Neuverteilungen werden in Tabelle \ref{tab:severityreassignments} gezeigt. Nur in einem Fall (operation-operationId-unique) werden zwei Linter Schweregrade übersprungen. Diese Regel wurde nie ausgelöst. Die größten Verschiebungen finden zwischen \texttt{warn} und \texttt{error} bzw. \texttt{error} statt. Der Schweregrad \texttt{warn} wird durch den Spectral Linter standardisiert zugewiesen, wenn keine explizite Einteilung durch das Regelwerk vorgenommen wurde. Die Neueinteilung hilft dabei, die Regeln auf der Zwischenstufe deutlich zu reduzieren.
 
-\begin{longtable}{lc}
+\begin{longtable}{lcc}
   \caption{Neuverteilungen der Linter Schweregrade}
   \label{tab:severityreassignments}
   \endfirsthead
   \endhead
   \hline
-  \textbf{Schweregrad Wechsel} & \textbf{Anzahl} \\ \hline \hline
-  \texttt{hint} -> \texttt{hint} & 4 \\
-  \texttt{warn} -> \texttt{warn} & 4 \\
-  \texttt{error} -> \texttt{error} & 1 \\
-  \texttt{warn} -> \texttt{error} & 13 \\
-  \texttt{warn} -> \texttt{hint} & 12 \\
-  \texttt{hint} -> \texttt{warn} & 3 \\
-  \texttt{hint} -> \texttt{error} & 1 \\
+  \textbf{Schweregrad \acs{OAS}} & \textbf{Schweregrad Cluster} & \textbf{Anzahl} \\ \hline \hline
+  \texttt{hint} & \texttt{hint} & 4 \\
+  \texttt{warn} & \texttt{warn} & 4 \\
+  \texttt{error} & \texttt{error} & 1 \\
+  \texttt{warn} & \texttt{error} & 13 \\
+  \texttt{warn} & \texttt{hint} & 12 \\
+  \texttt{hint} & \texttt{warn} & 3 \\
+  \texttt{hint} & \texttt{error} & 1 \\
   \hline
 \end{longtable}
 
