@@ -52,6 +52,15 @@
 \usepackage[paper=a4paper,left=30mm,right=30mm,top=25mm,bottom=20mm]{geometry}
 \setlength{\footskip}{6mm} % distance pagenumber and text
 
+% algorithm environment
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+% simple code environments
+\usepackage{verbatimbox,caption,float,lipsum}
+\newfloat{Quellcode}
+\captionsetup{Quellcode}
 
 % config literature
 \usepackage[
@@ -66,7 +75,7 @@ url=false,
 %maxeditornames=2,
 ]{biblatex}
 \addbibresource{references.bib} 
-\setlength\bibitemsep{1.5\itemsep}
+%\setlength\bibitemsep{1.5\itemsep}
 
 %\usepackage{helvet} % non-serif explicit
 %\renewcommand{\familydefault}{\sfdefault}

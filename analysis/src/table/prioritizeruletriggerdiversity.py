@@ -22,11 +22,15 @@ def create_report():
     logger.info("Diversity ranked prioritization:\n%s", sorted_df.to_string())
 
 
-def create_jaccard_inverted_score():
+def create_jaccard_inverted_score(no_azure_specs=False):
     """
     get the mean of jaccard distance between rule vectors
     """
     df = get_linter_results(cell_mapper=DataFrameMappers.map_to_was_thrown)
+    if no_azure_specs:
+        df = get_linter_results(
+            index_excluder="azure.com", cell_mapper=DataFrameMappers.map_to_was_thrown
+        )
     jaccard_distances = pdist(df.T, metric="jaccard")
     jaccard_distance_matrix = squareform(jaccard_distances)
     jaccard_df = pd.DataFrame(

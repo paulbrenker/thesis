@@ -11,6 +11,7 @@ def get_linter_results(
     column_limiter: list = None,
     cell_mapper: callable = None,
     index_limiter=None,
+    index_excluder=None,
     cell_value_exclude: tuple = None,
 ):
     """
@@ -41,14 +42,22 @@ def get_linter_results(
                 lambda index: domain_name_matcher(index, index_limiter)
             )
         ]
+    if index_excluder is not None:
+        df = df.loc[
+            df.index.to_series().apply(
+                lambda index: domain_name_matcher(index, index_excluder, invert=True)
+            )
+        ]
     return df
 
 
-def domain_name_matcher(file_path: str, matcher: str) -> str:
+def domain_name_matcher(file_path: str, matcher: str, invert=False) -> bool:
     """
     Match if the domain name is a given value
     """
     domain = file_path.split("/")[4]
+    if invert:
+        return domain != matcher
     return domain == matcher
 
 

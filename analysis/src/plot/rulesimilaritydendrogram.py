@@ -30,6 +30,6 @@ def create_plot():
     ax.set_xticklabels(df_transformed.columns, rotation=45, ha="right")
     ax.grid(True, which="both", linestyle="--", linewidth=0.7)
     ax.set_xlabel("Linterregeln")
-    ax.set_ylabel("Jaccard Distanz")
+    ax.set_ylabel("Jaccard Ähnlichkeit")
     fig.tight_layout()
     save_plot_to_thesis_dir(filename="hierarchicalclusteronbinary", fig=fig)

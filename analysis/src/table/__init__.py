@@ -12,3 +12,4 @@ from .prioritizeruletriggerdiversity import *
 from .groupedprioritizedrules import *
 from .violationpartitionazure import *
 from .findnoviolations import *
+from .totalthrownrules import *

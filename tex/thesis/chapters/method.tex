@@ -103,6 +103,26 @@ Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig 
   \label{fig:UC2}
 \end{figure}
 
+Zusätzlich zum Use Case soll für die Ermittlung aller möglichen Stellen an denen Linterfehler in einer OpenAPI Spezifikation als Pseudocode angegeben werden. Dies verdeutlicht die Funktionalität dieses Aspektes der Software.
+
+\floatname{algorithm}{Algorithmus}
+\begin{algorithm}
+  \label{alg:invert}
+  \caption{Ermitteln der möglichen Stellen für Linterfehler}
+  \textbf{Eingabe:} Spezifikation, Linterregel \\
+  \textbf{Ausgabe:} Anzahl möglicher Stellen
+\begin{algorithmic}[1]
+    \State \textit{summe}: Int := 0
+    \State \textit{given}: List(JSONPath) := Linterregel.\textit{given}
+    \For{each \textit{element}: JSONPath in \textit{given}}
+        \State \textit{pfade}: Liste := JSONPath.apply(Spezifikation, \textit{element})
+        \State \textit{länge}: Int := \textit{pfade}.length()
+        \State \textit{summe} += \textit{länge}
+    \EndFor
+    \State \Return \textit{summe}
+\end{algorithmic}
+\end{algorithm}
+
 \subsubsection{Analyse}
 Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den in UC1 und UC2 beschriebenen Interaktionen statt. Zweck dieser Interaktion ist es, die ermittelten Linterfehler und die Metadaten in ein Menschenlesbares Format zu bringen und sie zu beschreiben (Deskriptive Datenanalyse). 
 
@@ -292,7 +312,7 @@ Im Rahmen des Information Retrievals und des Natural Language Processing (NLP) i
 
 \subsubsection{Diversitäts-Scoring}
 Das zweite Priosierungsmaß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Ergebnisse beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität über alle Regeln hinweg viele Fehler auslösen. Damit beeinflussen diese die Relevanz des Inversen Frequenz Scoring.
-Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Die Spalten des Datensatzes, die das Vorkommen (\textit{occurences}) der Regeln dokumentieren können als Binärvektoren interpretiert werden. Zur Bestimmung der Ähnlichkeit von Binärvektoren kann das \textit{Jaccards} Ähnlichkeitsmaß verwendet werden \parencite{mehrotra_anomaly_2017}.
+Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Die Spalten des Datensatzes, die das Vorkommen (\textit{occurences}) der Regeln dokumentieren können als Binärvektoren interpretiert werden. Zur Bestimmung der Ähnlichkeit von Binärvektoren kann das \textit{Jaccard} Ähnlichkeitsmaß verwendet werden \parencite{mehrotra_anomaly_2017}.
 
 \[
 Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
