@@ -138,20 +138,21 @@ def create_plot():
         0.010249,
     ]
 
-    fig, ax = plt.subplots(figsize=(8, 5))
-    ax.hist(freq, bins=15, color="magenta", alpha=0.7, label="Relevanz Frequenz")
-    ax.hist(div, bins=15, color="yellow", alpha=0.7, label="Relevanz Diversität")
-    ax.hist(comb, bins=15, color="cyan", alpha=0.7, label="Relevanz Kombiniert")
+    fig, ax = plt.subplots(figsize=(7, 5))
+    ax.hist(
+        [freq, div, comb],
+        bins=14,
+        alpha=0.7,
+        label=["Relevanz Frequenz", "Relevanz Diversität", "Relevanz Kombiniert"],
+        range=[0, 1],
+    )
 
-    plt.axvline(1, color="black", linestyle="-", linewidth=2, label="Max R Frequenz")
     plt.axvline(
-        0.375, color="black", linestyle=":", linewidth=2, label="Max R Diversität"
+        0.395, color="black", linestyle=":", linewidth=2, label="Max R Diversität"
     )
-    plt.axvline(
-        0.875, color="black", linestyle="--", linewidth=2, label="Max R Kombiniert"
-    )
+
     ax.set_xlabel("Relevanz")
     ax.set_ylabel("Anzahl der Regeln")
     ax.grid(True)
-    ax.legend()
+    ax.legend(loc="upper center")
     save_plot_to_thesis_dir("priodistrhist", fig)
