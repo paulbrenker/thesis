@@ -312,7 +312,10 @@ Im Rahmen des Information Retrievals und des \acs{NLP} ist die \acf{TF} - \acf{I
 
 \subsubsection{Diversitäts-Scoring}
 Das zweite Priosierungsmaß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Ergebnisse beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität über alle Regeln hinweg viele Fehler auslösen. Damit beeinflussen diese die Relevanz der \acl{IDF}.
-Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Die Spalten des Datensatzes, die das Vorkommen der Regeln dokumentieren können als Binärvektoren interpretiert werden. Zur Bestimmung der Ähnlichkeit von Binärvektoren kann das \textit{Jaccard} Ähnlichkeitsmaß verwendet werden \parencite{mehrotra_anomaly_2017}.
+
+Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Mit \acs{IDF} werden vertikal in der Matrix über Spezifikationen x Linterregeln einzigartige Fehler hoch priorisiert. Um auch horizontal in der Matrix einzigartige Fehler zu identifizieren, wird eine zweite Methode verwendet. Mit dieser Methodik soll die Diversität des Auslösemusters einer Regel eingefasst und in ein Priorisierungsmaß eingebettet werden.
+
+Um solche Diversität der Regeln zu berechnen, kann die Ähnlichkeit des Auslösemusters zwischen Regeln berechnet werden. Die Spalten des Datensatzes, die das Vorkommen der Regeln dokumentieren können als Binärvektoren interpretiert werden. Zur Bestimmung der Ähnlichkeit von Binärvektoren kann das \textit{Jaccard} Ähnlichkeitsmaß verwendet werden \parencite{mehrotra_anomaly_2017}.
 
 \[
 Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
@@ -344,7 +347,7 @@ In diesem Kapitel wurde die Methode vorgestellt, mit der die Forschungsfragen di
 Die Methodik zur Beantwortung der Forschungsfragen in dieser Arbeit geht von einer hohen Qualität der Daten im OpenAPI Directory von APIs.guru aus. Diese Annahme kann aufgrund der Verwendung des OpenAPI Directory in mehreren wissenschaftlichen Quellen \parencite{bogner_restruler_2024} \parencite{serbout_apistic_2024} gemacht werden. Die Qualität des OpenAPI Directory wird dort spezifisch erwähnt. "Aufgrund des kuratierten Inhalts enthält es hochqualitative, valide und einzigartige Spezifikationen, da nicht verlässliche Quellen herausgefiltert werden"\footnote{Übersetzt aus dem Englischen} \parencite{serbout_apistic_2024}. "Diese Definitionen variierten stark in der Größe und deckten eine große Anzahl an Themen ab. Von offiziellen Cloudanbieter \acs{API}s von Firmen wie Amazon und Microsoft bis zu Museums und Regierungs \acs{API}s. Nur in wenigen Fällen lagen mehrere Versionen der gleichen \acs{API} vor, was zur Variation beiträgt. Die Dokumente nutzen OpenAPI Konzepte wie Components oder Responses sehr unterschiedlich, was sie sehr verschieden macht. Dies qualifiziert sie als ideale Testbasis für unsere Implementierung ..."\footnote{Übersetzt aus dem Englischen} \parencite{bogner_restruler_2024}.
 
 Die \acl{IDF} wird als Priorisierungsmaß verwendet, da Linterregeln, die auf Spezifikationen hoher Qualität häufig ausgelöst werden keinen Einfluss auf die Qualität des Dokumentes haben.
-Mit Daten schlechter Qualität kann ist diese Bedingung für die Nutzung von acs{IDF} als Priorisierung nicht mehr gegeben.
+Mit Daten schlechter Qualität kann ist diese Bedingung für die Nutzung von \acs{IDF} als Priorisierung nicht mehr gegeben.
 
 Um dieses Risiko abzumildern wird mit der Diversität der triggernden Spezifikationen ein zweites Priorisierungsmaß eingeführt. Dies soll den Effekt von Spezifikationen schlechter Qualität auf die Gesamtpriorisierung abmildern.
 
