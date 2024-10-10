@@ -68,6 +68,31 @@ In \parencite{bogner_restruler_2024} ist die Größe des OpenAPI Repositories mi
 
 \subsubsection{Auswertung der Invertierung}
 Die Invertierung zeigt uns das Verhältnis der geworfenen Linterregeln im Verhältnis zu den Stellen an denen eine Regel geworfen werden könnte. Um mit der großen Varianz, der Linterfehler pro Regel umzugehen, hilft diese Strategie bei der Normalisierung der Linterfehler. 
+
+Mithilfe einer manuellen Analyse des Spectral \acs{OAS} Regelwerks wurden als erstes die Zugehörigkeiten der Regeln zu den Klassen Inkompatibel, Single Trigger, Multi Trigger und Multi Message ermittelt. Diese wurden in einer Datei gesammelt, die als Konfiguration für das Software Tool und für die Datenanalyse Pipeline funktioniert. Die Konfiguration einer Regel für das Softwaretool enthält nicht alle Attribute einer Linterregel, wie im \acs{OAS} Regelwerk. Das \acs{OAS} Regelwerk liegt ist Laufzeit des Softwaretools ein eingebundenes Node Modul. Hierraus lassen sich nicht alle notwendigen Informationen für die Invertierung automatisiert extrahieren. Die Konfiguration die für die Invertierung einer Regel vorliegt ist in Code \ref{lst:inversionconfigexample} beispielhaft dargestellt.
+
+\begin{lstlisting}[
+  gobble=0,
+  frame=none,
+  captionpos=b,
+  basicstyle=\footnotesize\ttfamily,,
+  caption={Beispiel einer Regelkonfiguration für die Invertierung},
+  label={lst:inversionconfigexample},
+]
+{
+  'operation-operationId-unique': {
+    formats: [],
+    description: 'Every operation must have unique "operationId".',
+    recommended: true,
+    severity: 0,
+    given: ['$.paths'],
+    status: InverseStatus.MULTI_TRIGGER
+  }
+}
+\end{lstlisting}
+
+Der in \ref{alg:invert} angegebene Algorithmus zur berechnung der Summe an Selektionen eines JSONPaths wurde für jede Regel und jede Spezifikation unabhängig der Klassifizierung der Regel ausgeführt. Die Berechnung des Inversen erfolgt als Feld Mapping innerhalb der Analysepipeline. 
+
 In Tabelle \ref{tab:singletriggerinverts} wird der Mittelwert der Auslösungen für die Single Trigger Regeln gezeigt. Da die maximale Anzahl der Auslösungen für Single Trigger Regeln 1 ist, liegt der Mittelwert zwischen 0 und 1.  Die Regeln info-contact und info-description sehr häufig ausgelöst (in 57 \% bzw. 12 \% der Spezifikationen). Die Regel oas3-api-servers wird sehr selten ausgelöst (1 \% der Spezifikationen). Alle anderen Regeln werden nie ausgelöst. 
 
 \begin{longtable}{ll}
@@ -92,13 +117,14 @@ Für Multi Trigger Regeln ist in Abbildung \ref{fig:multitriggerbarplot} der Mit
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/multitriggerbarplot.png}
-  \caption{Säulendiagramm
-   zeigt arithmetische Mittel der tatsächlich geworfenen Linterfehler und möglicher Linterfehler pro Multi Trigger Regel.}
+  \caption{Mittelwerte der tatsächlich geworfenen Linterfehler und möglicher Linterfehler pro Multi-Trigger Regel.}
   \label{fig:multitriggerbarplot}
 \end{figure}
 
 Die Verteilung der Inversen Häufigkeit der geworfenen Linterfehler ist für alle Regeln, die mindestens einmal ausgelöst werden in Abbildung \ref{fig:boxplotcleanmultitrigger} gezeigt. Da der Median für alle Linterregeln gleich 0 ist und so Verteilungen nur schwer sichbar sind, werden in dieser Visualisierung Spezifikationen, die nicht gegen eine Regel verstoßen herausgefiltert.
- Gegen die Regeln no-eval-in-markdown und no-script-tags-in-markdown, die semantisch sehr ähnlich sind, wird bei Linterfehlern nur in geringen Anteilen gegen die Regel verstoßen. Die Percentilen, Whiskers und der Median sind nahe bei Null. Due Regeln operation-success-response, duplicated-entry-in enum und array-items zeigen eine weitere Verteilung und damit eine höhere Abweichung der relativen Verstöße. Dies deutet darauf hin, dass diese Regeln auch innerhalb von einzelnen Spezifikationen nicht konsistent eingehalten werden. Die Regeln operation-operationId-valid, operation-tags und oas3-server-trailing-slash tendieren alle zu einem Median von 1. Dies zeigt, dass wenn gegen die Regel verstoßen wird, dieser Verstoß kosistent in der gesamten Spezifikation zu sehen ist. Bei der Regel operation-tags ist das so eindeutig, dass Percentilen der Verteilung visuell nicht zu erkennen sind. Lediglich Ausreißer sind hier zu erkennen.
+Gegen die Regeln no-eval-in-markdown und no-script-tags-in-markdown, die semantisch sehr ähnlich sind, wird bei Linterfehlern nur in geringen Anteilen gegen die Regel verstoßen. Die Percentilen, Whiskers und der Median sind nahe bei Null. Due Regeln operation-success-response, duplicated-entry-in enum und array-items zeigen eine weitere Verteilung und damit eine höhere Abweichung der relativen Verstöße. Dies deutet darauf hin, dass diese Regeln auch innerhalb von einzelnen Spezifikationen nicht konsistent eingehalten werden. Die Regeln operation-operationId-valid, operation-tags und oas3-server-trailing-slash tendieren alle zu einem Median von 1. Dies zeigt, dass wenn gegen die Regel verstoßen wird, dieser Verstoß kosistent in der gesamten Spezifikation zu sehen ist. Bei der Regel operation-tags ist das so eindeutig, dass Percentilen der Verteilung visuell nicht zu erkennen sind. Lediglich Ausreißer sind hier zu erkennen.
+
+Für Multi-Message Regeln war es nicht möglich mit dem gewählten generalisierenden Ansatz Inverse zu berechnen. Die Anzahl der pro JSONPath Selektion möglicher Linterfehler ist teilweise abhängig von der Größe der OpenAPI Spezifikation oder von weiteren eingebundenen Softwarebibliotheken\footnote{Dies ist bei der Regel oas3-schema der Fall, in der eine Drittanbieter Bibliothem eingebunden wirft, die die Validität des Schemas mit der OpenAPI Spezifikation validiert. Die Anzahl der möglichen Fehler zu ermitteln ist nicht möglich.} ab. Dies erforderte eine aufwendige Regelspezifische Invertierung, die im Rahmen dieser Arbeit nicht möglich ist.
 
 \begin{figure}[htbp]
   \centering
@@ -113,7 +139,7 @@ Aus den Invertierungen lassen sich viele Informationen ablesen, die direkte Impl
 Im diesem Kapitel werden die Ergebnisse der Priorisierung vorgestellt. Die Ausgangsdaten für die Priorisierungen sind ausschließlich Wahrheitswerte. Erste manuelle Priorisierungen konnten bereits in der Auswertung der Invertierung gesehen werden. 
 \subsubsection{Inverses Frequenz Scoring}
 Das Scoring der Relevanz nach \acl{IDF} ist in Tabelle \ref{tab:combinedweighedprioritized} in der Spalte $R_\text{Frequenz}$ abgebildet. Der Graph der $\text{Relevanz}_\text{Frequenz}(r)$ Funktion hat eine hyperbelähnliche Form. Regeln die null oder ein Mal ausgelöst werden, werden beide auf die Priorität 1 abgebildet. Dieses Verhalten lässt sich bei der Regel no-eval-in-markdown beobachten. Insgesamt werden 16 Regeln mit 1 priorisiert. Vier Regeln werden mit 0,1 - 0.4 bewertet, 8 Regeln mit jeweils Acht Regeln fallen auf die Größenordnungen 0.01 - 0.1, 0.001 - 0.01, 0.0001 - 0.001.
-\subsubsection{Diversität der Trigger}
+\subsubsection{Diversitäts Scoring}
 Eine Visualisierung der jeweils minimalen Jaccard Ähnlichkeiten und ein Hierarchisches Clustering der Regeln ist in Abbildung \ref{fig:hierarchicalclusteronbinary} dargestellt. In dieser Abbildungen lassen sich die Regeln, die nie ausgelöst wurden gut als Cluster erkennen. Ein zweites Cluster wird durch die Regeln no-eval-in-markdown, no-script-tags-in-markdown und openapi-tags-uniqueness gebildet. Dies zeigt, dass diese Regeln von den gleichen Spezifikationen missachtet wurden. Durch die Ähnlichkeit des Auslösemusters der Regeln, die in Markdown eingebetteten Code erkennen, liegt nahe, dass diese eventuell gezielt herbeigeführt wurden. Die verbleibenden 22 Regeln werden im Dendrogramm in ein großes Cluster eingeteilt. Wir können erkennen, dass diese in der Regel bei Jaccard Ähnlichkeiten größer 0,8 zusammengeführt werden. Für den Datensatz bedeuted dies, dass weiteren Trends zum Missachten bestimmter Regeln vorliegen. 
 
 In Tabelle \ref{tab:combinedweighedprioritized} wird die Gewichtung der $\text{Relevanz}_\text{Diversität}(r)$ in Spalte $R_\text{Diversität}$ gezeigt. Auch in diesem Priorisierungsmaß werden die Regeln, die nie getriggert werden mit 0,375 am höchsten bewertet. Alle anderen Regeln sind mit einem Wert zwischen 0,02 und 0,07 bewertet.
