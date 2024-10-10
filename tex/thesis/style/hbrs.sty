@@ -60,10 +60,11 @@
 % in Place tables
 \usepackage{longtable}
 
-% simple code environments
-\usepackage{verbatimbox,caption,float,lipsum}
-\newfloat{Quellcode}
-\captionsetup{Quellcode}
+% code environments
+\usepackage{listings}
+\renewcommand*{\lstlistingname}{Quellcode}
+\lstset{basicstyle=\fontfamily{pcr}\footnotesize,breaklines=true}
+
 
 % config literature
 \usepackage[
