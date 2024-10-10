@@ -182,13 +182,20 @@ Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:c
 \alpha = 0,8 ; \beta = 0,2
 \]
 
-Tabelle \ref{tab:combinedweighedprioritized} bildet das Kernstück der Datenanalyse der Arbeit. An den Werten der gewichteten Kombination kann erkannt werden, dass in den meisten Fällen, die $\text{Relevanz}_\text{Frequenz}$ ausschlaggebend für die Position in der Priorisierung ist. 
+Tabelle \ref{tab:combinedweighedprioritized} bildet das Kernstück der Datenanalyse der Arbeit. Die Tabelle aggregiert Informationen zur Priorisierung der $\text{Relevanz}_\text{Frequenz}$ und der $\text{Relevanz}_\text{Diversität}$ sowie die gewichtete Kombination der Maße und der Einteilung basierend auf der Relevanz der Regeln in Cluster zu neuen Linterschweregraden. Dies sind alle Werte die im Rahmen der Priorisierung der Linterregeln ermittelt werden. Die mit der Tabelle visualisierten Daten beantworten die Forschungsfragen \textbf{RQ-2} und \textbf{RQ-3}.
 
-Regeln, die durch das $\text{Relevanz}_\text{Frequenz}$ sehr niedrig priorisiert wurden, werden durch die $\text{Relevanz}_\text{Diversität}$ Priorisierung teilweise aufgewertet. Die Kombination der Priorisierungsmaße gibt eine datengetriebene Antwort auf die Forschungsfrage \textbf{RQ-2}.
+An den Werten der gewichteten Kombination kann erkannt werden, dass in den meisten Fällen, die $\text{Relevanz}_\text{Frequenz}$ ausschlaggebend für die Position in der Priorisierung ist. Regeln, die durch das $\text{Relevanz}_\text{Frequenz}$ sehr niedrig priorisiert wurden, werden durch die $\text{Relevanz}_\text{Diversität}$ Priorisierung teilweise aufgewertet. Die Verteilung der Relevanzen neigt stark zu den Rändern. Dies bedeutet, dass Regeln entweder hoch priorisiert werden oder sehr niedrig priorisiert werden. Um dies zu verdeutlichen ist in Abbildung \ref{fig:priodistrhist} ein Histogram abgebildet, dass die Verteilung der Priorisierungen nach den verschiedenen Maßen abbildet. Man kann erkennen, dass die niedrig priorisierten Regeln graduell ansteigen. Die hoch priorisierten Regeln sind eng beieinanderliegend, da dies die Regeln umfasst, die nie ausgelöst wurden. Diese werden nach beiden Priorisierungsmaßen immer gleich bewertet. Zwischen den Randakkululationen werden einige Regeln im mittleren Bereich des Spektrums angesiedelt. Diese Informationen werden in der Neubewertung der Linter Schweregrade weiterverwendet und sind für das Clustering ausschlaggebend.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=1\linewidth]{img/priodistrhist.png}
+  \caption{Histogram Verteilung der Priorisierungen nach Relevanz Maßen}
+  \label{fig:priodistrhist}
+\end{figure}
 
 {\footnotesize
 \begin{longtable}{lccccc}
-  \caption{\normalsize $\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, \acs{OAS} Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern}
+  \caption{\normalsize $\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, \acs{OAS} Schweregrade und Schweregrade nach Neuzuweisung. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern}
   \label{tab:combinedweighedprioritized}
   \endfirsthead
   \endhead
