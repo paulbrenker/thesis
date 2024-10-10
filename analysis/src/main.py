@@ -17,6 +17,7 @@ from plot import (
     violationsonazureexcluded,
     multitriggerboxplot,
     ruleseverityreassignments,
+    priodistrhist,
 )
 from table import (
     singletriggermean,
@@ -57,3 +58,4 @@ multitriggerboxplot.create_plot()
 findnoviolations.create_report()
 ruleseverityreassignments.create_plot()
 totalthrownrules.create_report()
+priodistrhist.create_plot()
