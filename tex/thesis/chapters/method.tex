@@ -103,7 +103,7 @@ Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig 
   \label{fig:UC2}
 \end{figure}
 
-Zusätzlich zum Use Case soll für die Ermittlung aller möglichen Stellen an denen Linterfehler in einer OpenAPI Spezifikation als Pseudocode angegeben werden. Dies verdeutlicht die Funktionalität dieses Aspektes der Software.
+Zusätzlich zum Use Case soll für die Ermittlung aller möglichen Stellen an denen Linterfehler in einer OpenAPI Spezifikation als Pseudocode angegeben werden. Dies verdeutlicht die Funktionalität dieses Aspektes der Software. Aus dem given Objekt einer Spectral Regel werden die JSONPath\footnote{JSONPath ist eine deklarative Abfragesprache, \acs{JSON} Werte und Objekte zu selektieren und zu extrahieren \parencite{friesen_extracting_2019}} Objekte gelesen. Das Ergebnis einer Anwendung eines JSONPath auf ein \acs{JSON} Objekt ist ein Array an selektierten Teilobjekten. Die Länge dieses Arrays entspricht den möglichen Selektionen des JSONPaths und damit den möglichen Linterfehlern. Die Länge aller JSONPaths einer Linterregel werden aufsummiert und zurückgegeben.
 
 \floatname{algorithm}{Algorithmus}
 \begin{algorithm}
