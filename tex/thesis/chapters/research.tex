@@ -59,22 +59,26 @@ Regeln für konsistentes Design von \acs{REST} \acs{API}s werden auch in der Ind
 
 
 \subsection{OpenAPI Spezifikation}
-Eine API Spezifikation stellt Informationen über die Schnittstelle und deren Funktionalität zur Verfügung \parencite{sommerville_software_2018}. Die OpenAPI Spezifikation ist ein programmiersprachenunabhängiger Standard für die Beschreibung von \acs{HTTP} Schnittstellen\footnote{OpenAPI Spezifikation: \href{https://spec.openapis.org/oas/latest.html}{https://spec.openapis.org/oas/latest.html}} \parencite{noauthor_openapi_2024}. Die OpenAPI Initiative wurde als Industriekonsortium unter der Schirmherrschaft der Linux Foundation angestoßen\footnote{https://www.openapis.org/about}. Der Standard OpenAPI beruht auf der Swagger Spezifikation. Die Spezifikation ist sowohl Menschen als auch Maschinenlesbar und ermöglicht eine Minimierung des Aufwands zum Implementieren von Clients, um auf die Schnittstelle zuzugreifen. 
+Eine API Spezifikation stellt Informationen über die Schnittstelle und deren Funktionalität zur Verfügung \parencite{sommerville_software_2018}. Die OpenAPI Spezifikation ist ein programmiersprachenunabhängiger Standard für die Beschreibung von \acs{HTTP} Schnittstellen\footnote{OpenAPI Spezifikation: \href{https://spec.openapis.org/oas/latest.html}{https://spec.openapis.org/oas/latest.html}} \parencite{noauthor_openapi_2024}. Die OpenAPI Initiative wurde als Industriekonsortium unter der Schirmherrschaft der Linux Foundation angestoßen\footnote{https://www.openapis.org/about}. Der OpenAPI Standard beruht auf der Swagger Spezifikation. Die Spezifikation ist sowohl Menschen- als auch Maschinenlesbar und ermöglicht eine Minimierung des Aufwands zum Implementieren von Clients, um auf die Schnittstelle zuzugreifen. 
 
-Die OpenAPI Spezifikation wird als \acf{JSON} Schema bereitgestellt. Implementierungen von OpenAPI dokumentierten Schnittstellen, stellen entweder eine \acs{JSON} oder eine YAML Datei zur Verfügung, die dem Schema entspricht. Diese Datei kann Maschinen-generiert sein oder von menschlichen Akteuren geschrieben werden. OpenAPI ist als Dokumentationsstandard für \acs{REST} \acs{API}s weit verbreitet. Abweichungen in der Qualität der Implementierung von \acs{REST} \acs{API}s sind jedoch auch innerhalb der OpenAPI Spezifikation ersichtlich \parencite{vaziri_generating_2017}. Um diese Qualitätsabweichungen festzustellen, eignen sich Tools zur statischen Codeanalyse, die im Softwareengineering häufig Linter genannt werden \parencite{tomasdottir_adoption_2018}.
+Die OpenAPI Spezifikation wird als \acf{JSON} Schema bereitgestellt. Implementierungen von OpenAPI dokumentierten Schnittstellen, stellen entweder eine \acs{JSON} oder eine \acf{YAML} Datei zur Verfügung, die dem Schema entspricht. Diese Datei kann Maschinen-generiert sein oder von menschlichen Akteuren geschrieben werden. 
+
+Eine OpenAPI Spezifikation besteht mindestens aus den erforderlichen Objekten openapi und info. Um Operationen für eine \acs{HTTP} \acs{API} zu spezifizieren ist das path Objekt notwendig. Das servers Objekt gibt Informationen zur Konnektiviät und Addresse der \acs{API} an \parencite{noauthor_openapi_2024}. Eine Beispiel Implementierung einer OpenAPI Spezifikation ist in Quellcode \ref{lst:exampleopenapi} abgebildet.
+
+OpenAPI ist als Dokumentationsstandard für \acs{REST} \acs{API}s weit verbreitet. Abweichungen in der Qualität der Implementierung von \acs{REST} \acs{API}s sind jedoch auch innerhalb der OpenAPI Spezifikation ersichtlich \parencite{vaziri_generating_2017}. Um diese Qualitätsabweichungen festzustellen, eignen sich Tools zur statischen Codeanalyse, die im Softwareengineering häufig Linter genannt werden \parencite{tomasdottir_adoption_2018}.
 
 \subsection{API Linter}
 Es gibt mehrere Tools zur statischen Codeanalyse, die für die Verwendung mit Implementierungen der OpenAPI Spezifikation ausgelegt sind.
 
 Zally ist ein Open-Source API Linter, der von der Firma Zalando entwickelt wird\footnote{Dokumentation des Tools :\href{http://opensource.zalando.com/zally/}{http://opensource.zalando.com/zally/}}. Es besteht aus einem in Kotlin implementierten \acf{CLI} und einem Webfrontend. Regelwerke lassen sich nicht zu Laufzeit parsen, sondern werden mit dem Tool kompiliert und ausgeführt.
 
-In \parencite{bogner_restruler_2024} entwerfen die Autoren ein eigenes Tool zur statischen Codeanalyse. Auch dieses Tool besteht aus Regeln mit einer standardisierten Schnittstelle. Es liest OpenAPI Dateien im \acs{JSON} oder YAML Format und gibt eine Liste an Linterfehlern zurück. Das Regelwerk dieses Tools ist speziell entwickelt, um ausgewählte \acs{REST} Design Regeln von Massé \parencite{masse_rest_2011} zu implementieren. Dabei greifen die Regeln von Kotstein und Bogner auch auf \acf{NLP} zurück, um linguistische Qualitätsattribute zu extrahieren.
+In \parencite{bogner_restruler_2024} entwerfen die Autoren ein eigenes Tool zur statischen Codeanalyse. Auch dieses Tool besteht aus Regeln mit einer standardisierten Schnittstelle. Es liest OpenAPI Dateien im \acs{JSON} oder \acs{YAML} Format und gibt eine Liste an Linterfehlern zurück. Das Regelwerk dieses Tools ist speziell entwickelt, um ausgewählte \acs{REST} Design Regeln von Massé \parencite{masse_rest_2011} zu implementieren. Dabei greifen die Regeln von Kotstein und Bogner auch auf \acf{NLP} zurück, um linguistische Qualitätsattribute zu extrahieren.
 
 
 \subsubsection{Spectral}
 Spectral ist ein von der Softwarefirma Stoplight entworfener Open-Source \acs{API} Linter, der sich großer Beliebtheit erfreut \parencite{bogner_restruler_2024}. Spectral wird für die Analysen in dieser Bachelorarbeit verwendet. Der Grund dafür ist, dass Stoplight neben dem Tool auch ein Regelwerk veröffentlicht, das unabhängig von anwenderspezifischen \acs{REST} Guidelines einen Qualitätsstandard für die Implementation von OpenAPI Dokumenten durchsetzt\footnote{Das \acs{OAS} Ruleset von Spectral: \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}}.
 
-Regeln für das Spectral Tool werden deklarativ in \acs{JSON}, YAML oder JavaScript Syntax formuliert. Alternativ können Regeln auch als benutzerdefinierte JavaScript Funktionen angegeben werden \parencite{bogner_restruler_2024}. Regeln lassen sich mit dem \texttt{format} Tag auf eine Version der OpenAPI Spezifikation festlegen. Zudem gibt es einen Schweregrad für Regelverstöße, der über das \texttt{severity} Attribut gesetzt werden kann.
+Regeln für das Spectral Tool werden deklarativ in \acs{JSON}, \acs{YAML} oder JavaScript Syntax formuliert. Alternativ können Regeln auch als benutzerdefinierte JavaScript Funktionen angegeben werden \parencite{bogner_restruler_2024}. Regeln lassen sich mit dem \texttt{format} Tag auf eine Version der OpenAPI Spezifikation festlegen. Zudem gibt es einen Schweregrad für Regelverstöße, der über das \texttt{severity} Attribut gesetzt werden kann.
 
 \subsubsection{OAS Regelwerk}
 
@@ -83,7 +87,7 @@ Das Spectral Standard Regelwerk OAS Regelwerk enthält Regeln für \texttt{2.x.x
 Die im Verlauf der Arbeit relevanten Regeln werden hier eingeführt\footnote{Regeln, die nur auf OpenAPI 2.x  oder OpenAPI Version größer gleich 3.1 angewendet werden können, sind im Rahmen dieser Arbeit nicht relevant, da im verwendeten Datensatz alle Spezifikationen dem Standard OpenAPI 3.0 entsprechen.}
 {\footnotesize 
   \begin{longtable}{lp{0.4\linewidth}c}
-    \caption{ \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{Spectral OAS Regeln:}}
+    \caption{\normalsize \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{Spectral OAS Regeln}}
     \label{tab:OASRules}
     \endfirsthead
     \endhead
