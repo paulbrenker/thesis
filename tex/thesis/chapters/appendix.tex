@@ -1,9 +1,78 @@
 \addcontentsline{toc}{section}{Anhang}
 \section*{Anhang}
 
+\begin{lstlisting}[
+  gobble=0,
+  frame=none,
+  captionpos=b,
+  basicstyle=\footnotesize\ttfamily,
+  caption={Beispiel für eine OpenAPI Spezifikation},
+  label={lst:exampleopenapi},
+]
+openapi: 3.0.0
+info:
+  title: Student API
+  version: 1.0.0
+paths:
+  /students:
+    post:
+      summary: Create a new student
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '201':
+          description: Student created
+  /students/{id}:
+    get:
+      summary: Get a student by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Student found
+    put:
+      summary: Update a student by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Student'
+      responses:
+        '200':
+          description: Student updated
+components:
+  schemas:
+    Student:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        age:
+          type: integer
+        grade:
+          type: string
+\end{lstlisting}
+
 {\footnotesize
 \begin{longtable}{lc}
-  \caption{Summe der ausgelösten Linterfehler pro Regel}
+  \caption{\normalsize Summe der ausgelösten Linterfehler pro Regel}
   \label{tab:totalthrownerrors}
   \endfirsthead
   \endhead
@@ -53,7 +122,7 @@
 
 {\footnotesize
 \begin{longtable}{lccccc}
-  \caption{$\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, OAS Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern. Für die Berechnung der Daten in dieser Tabelle wurden die Azure Spezifikationen nicht beachtet.}
+  \caption{\normalsize $\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, OAS Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern. Für die Berechnung der Daten in dieser Tabelle wurden die Azure Spezifikationen nicht beachtet.}
   \label{tab:combinedweighedpriononazure}
   \endfirsthead
   \endhead

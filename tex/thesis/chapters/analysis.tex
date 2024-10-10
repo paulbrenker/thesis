@@ -1,21 +1,20 @@
 \section{Ergebnisse und Analyse}
 Die Generation der Linterfehler und der Invertierungen dauert ungefähr 5 Stunden. Dabei wurden 929.699 Spectral Linterfehler ausgelöst. Insgesamt wurden 7.778.972 Stellen identifiziert an denen ein oder mehrere Linterfehler ausgelöst werden könnten. 128 von 4136 Spezifikationen haben keinen einzigen Linterfehler ausgelöst. 15 der 40 untersuchten Regeln wurden nie ausgelöst. Die absolute Anzahl der geworfenen Linterfehler ist sichtbar in Abbildung \ref{tab:totalthrownerrors}. Diese Abbildung repräsentiert somit auch die Rohdaten dieser Arbeit.
-Die Rohdaten der Linterergebnisse wurden in einer \acs{CSV} Datei gespeichert. Ein Beispiel für das Speicherformat ist in Code \ref{code:rawdataexample} abgebildet.
+Die Rohdaten der Linterergebnisse wurden in einer \acs{CSV} Datei gespeichert. Ein Beispiel für das Speicherformat ist in Code \ref{lst:rawdataexample} abgebildet.
 
-\begin{verbbox}
+  \begin{lstlisting}[
+    gobble=0,
+    frame=none,
+    captionpos=b,
+    basicstyle=\footnotesize\ttfamily,,
+    caption={Auszug aus dem Datensatz der Linterergebnisse},
+    label={lst:rawdataexample},
+  ]
   specs;operation-success-response
-  ../data/openapi-directory/APIs/azure.com/\
-  logic/2016-06-01/swagger.yaml;\
-  {"thrownMessages":1,"possibleMessages":97,\
-  "inverseStatus":"MULTI_TRIGGER",\
+  ../data/openapi-directory/APIs/azure.com/logic/2016-06-01/swagger.yaml;\
+  {"thrownMessages":1,"possibleMessages":97,"inverseStatus":"MULTI_TRIGGER",\
   "spectralMessages":[{...}]};
-\end{verbbox}
-\label{code:rawdataexample}
-  {\centering 
-    \captionof{Quellcode}{Auszug aus dem Datensatz der Linterergebnisse}\par
-    \theverbbox
-    \vspace{0.3cm}
-  }
+  \end{lstlisting}
 
 In diesem Kapitel werden die Ergebnisse aus verschiedenen Perspektiven vorgestellt und der Versuch einer datengetriebenen Priorisierung der Regeln wird unternommen. Ein Lauf der Datenanalyse Pipeline dauert ca. 3 min.
 Die Analyse ist in zwei Teile unterteilt. Um die Linterergebnisse zu visualisieren wird eine \acf{EDA} vorgenommen. Es werden Verteilungen der Linterfehler über die Linterregeln untersucht und erläutert. Außerdem soll die Beeinflussung des Datensatzes durch den Anbieter Azure.com evaluiert werden. Anschließend werden die Linterregeln nach den beschriebenen Priorisierungsmaßen bewertet und ein Clustering zur Zugehörigkeit zu Schweregraden wird erstellt. 
@@ -138,7 +137,7 @@ Regeln, die durch das $\text{Relevanz}_\text{Frequenz}$ sehr niedrig priorisiert
 
 {\footnotesize
 \begin{longtable}{lccccc}
-  \caption{$\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, \acs{OAS} Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern}
+  \caption{\normalsize $\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, \acs{OAS} Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern}
   \label{tab:combinedweighedprioritized}
   \endfirsthead
   \endhead
