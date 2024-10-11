@@ -52,6 +52,16 @@ Die Neuzuordnung der Linter Schweregrade zu den Regeln, hilft die große Anzahl 
     \item \textbf{RQ-3(Future):} Wie sieht eine Priorisierung der Linterregeln aus, die Anzahl der geworfenen Fehler anhand Spezifikationsgröße normalisiert?
   \end{itemize}
 
-  Weitere Möglichkeiten der Verbesserung der Ergebnisse, wäre es, den Bias im OpenAPI Directory durch die Große Anzahl von Azure.com OpenAPI Spezifikationen zu reduzieren. Eine Strategie könnte das Verwenden von Stichprobensets der häufig vertretenen Anbieter zu nehmen, um den Bias abzuschwächen.
-  
+  Wie in Abschnitt \ref{sec:verzerrungdesdatensatzes} gezeigt, liegt eine Verzerrung des Datensatzes in Richtung der Azure.com Spezifikationen und den dort aktivierten Regeln des Spectral \acs{OAS} Regelwerks vor. Diese Verzerrung und mögliche weitere Verzerrungen durch Anbieter, die im APIs.guru OpenAPI Directory viele Spezifikationen zur Verfügung stellen sollten reduziert werden. In der Zukunft können für vergleichbare Studien Verfahren zum Datenvorverarbeitung wir Random Undersampling \parencite{hasanin_effects_2018} in die Datenanalyse Pipeline eingebracht werden. Random Undersampling könnte im Anwendungsbeispiel dieser Arbeit dazu beitragen, die Spezifikationen der größten Anbieter zu verwenden ohne, dass sich diese signifikanten Einfluss auf die Linterergebnisse haben. 
 
+  \begin{itemize}
+    \item \textbf{RQ-4(Future):} Wie kann die Verzerrung des APIs.guru OpenAPI Directory abgemildert werden ohne Anbieter auszuschließen?
+  \end{itemize}
+
+  Ziel dieser Arbeit ist es, Entwicklern eine Empfehlung für eine Strategie der statischen Codeanalyse für OpenAPI Spezifikationen aufzuzeigen. Das nach empirischer Relevanz neu zugeordneten Regelwerk für tasächliche Codeanalyse von OpenAPI Spezifikationen zu verwenden ist Teil zukünftiger Arbeiten. Die OpenAPI Spezifikationen der Firma SAP LeanIX sind frei im Internet verfügbar \footnote{Die Entwicklerdokumentation für das SAP LeanIX \acf{EAM} Tool umfasst OpenAPI Spezifikationen, die mithilfe der SwaggerUI öffentlich zur Verfügung stehen \href{https://eu.leanix.net/openapi-explorer/}{https://eu.leanix.net/openapi-explorer/}.}. DIe dort verfügbaren Spezifikationen sind nicht im APIs.guru OpenAPI Directory eingetragen und bieten daher die Möglichkeit die Klassifikation der Linterregeln auf Schweregrade zu verifizieren.
+  
+  \begin{itemize}
+    \item \textbf{RQ-5(Future):} Sind die Ergebnisse der Priorisierung anwendbar auf die OpenAPI Spezifikationen der Firma SAP LeanIX?
+  \end{itemize}
+
+  Mit den zukünftigen Forschungsfragen \textbf{RQ-1(Future) - RQ-4(Future)} kann die Methodik dieser Arbeit verfeinert werden. \textbf{RQ-5(Future)} fokussiert sich auf die Anwendung der Ergebnisse dieser Arbeit auf Beispiele aus der Praxis. Diese Ansätze können die Ergebnisse dieser Arbeit in der Zukunft ergänzen und verbessern.
