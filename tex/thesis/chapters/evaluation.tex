@@ -2,7 +2,7 @@
 
 Das folgende Kapitel widmet sich der Interpretation der gewonnenen Erkenntnisse. Dabei sollen diese eingeordnet werden und die Gültigkeit kritisch hinterfragt werden. Ziel ist es, die Bedeutung der Resultate für die Forschungsfragen herauszuarbeiten. Außerdem widmet sich dieses Kapitel möglichen Limitationen der Arbeit und auch möglichen Implikationen für zukünftige Forschungsfragen. 
 
-\subsection{Interpretation der Ergebnisse}
+\subsection{Interpretation der Ergebnisse} \label{sec:interpretationderergebnisse}
 Das Ziel der \acs{EDA} ist es, die Daten zugänglich zu machen und deren Charakteristiken zu zeigen. In Abbildung \ref{fig:totalspecthrownbarplot} wird sichtbar, dass für verschiedene Regeln die Größenordnung der Anzahl der geworfenen Linterregeln stark variiert. Es existieren Regeln die nie geworfen werden und Regeln, von denen über 100.000 Linterfehler aufgezeichnet wurden. Diese Differenzen machen es schwer, die Regeln anhand absoluter Zahlen zu vergleichen.
 
 Wir können zudem beobachten, dass der Datensatz deutlich durch die OpenAPI Spezifikationen von azure.com beeinflusst ist. Bei den Regeln, die im azure.com Datensatz nicht ignoriert wurden, ist der Anteil von ausgelösten Fehlern von azure.com OpenAPI Spezifikationen signifikant geringer. Dies bedeutet, dass die Linterregeln, die von Azure.com aktiviert sind insgesamt weniger ausgelöst werden. Dies hat einen Einfluss auf die Gewichtung der Relevanz anhand der $\text{Relevenz}_\text{Frequenz}$ Priorisierung.
@@ -37,9 +37,20 @@ Die Neuzuordnung der Linter Schweregrade zu den Regeln, hilft die große Anzahl 
 \subsection{Ausblick}
   Die datengetriebene Untersuchung von Linterregeln hat sich als vielversprechend erwiesen. An einigen Punkten hinterlässt diese Arbeit auch offene Enden.
 
-  Zunächst ist die Invertierung aller Regeln ein Problem, das hier noch nicht gelöst wurde. Der Ansatz die Regeln aufgrund der JSONPath Objekte zu invertieren war nicht überall erfolgreich. Das Lösen dieses Problems für alle Regeln würde bedeuten, dass nicht nur das Auftreten von Linterfehlern, sondern auch die Anzahl der Linterfehler objektiv eingeordnet werden könnte.
+  Zunächst ist die Invertierung aller Regeln ein Problem, das hier noch nicht gelöst wurde. Der Ansatz die Regeln aufgrund der JSONPath Objekte zu invertieren war nicht für alle Regeln erfolgreich. Das Lösen dieses Problems für alle Regeln würde bedeuten, dass nicht nur das Auftreten von Linterfehlern, sondern auch die Anzahl der Linterfehler objektiv eingeordnet werden könnte.
 
-  Eine andere Möglichkeit die Anzahl der Linterfehler einzuordnen, wäre diese an Größenkennziffern der OpenAPI Spezifikation zu messen. Größenkennziffern können zum Beispiel Pfad Objekte oder \acs{API} Operationen sein (Ein Pfad Objekt enthält bis zu 6 API Operationen entsprechend der Http Methoden, die auf ein Pfad Objekt angewandt werden können). In Abbildung \ref{fig:Operations} werden \acs{API} Operationen als Referenzgröße verwendet. Dies wäre eine Möglichkeit, zufünftige Studien zu verfeinern.
+  In der Diskussion der Ergebnisse der Invertierungen in Abschnitt \ref{sec:interpretationderergebnisse} wird ein Unterschied zwischen den angewendeten Priorisierungsmaßen und Einschätzungen der Invertierungsbasierten Priorisierung gezeigt. Die Invertierungsbasierten Priorisierungen können Spezifikationsgrößen normalisieren und die Konsitenz der Einhaltung der Regeln vergleichen. Dies böte für weitergehende Forschung ein großes Potential, um die in dieser Arbeit erzeugten Ergebnisse zu verfeinern. Weitergehende Forschungsfragen in diese Richtung könnten wie folgt lauten:
+
+  \begin{itemize}
+    \item \textbf{RQ-1(Future):} Wie können Multi-Message Regeln invertiert werden?
+    \item \textbf{RQ-2(Future):} Wie trägt Inkonsistenz der Einhaltung von Multi-Trigger und Multi-Message Regeln zur Relevanz der Linterregel bei?
+  \end{itemize}
+
+  Eine andere Möglichkeit die Größe der Spezifikation zu normalisieren, wäre diese an Größenkennziffern der OpenAPI Spezifikation zu messen. Größenkennziffern können zum Beispiel Pfad Objekte oder \acs{API} Operationen sein (Ein Pfad Objekt enthält bis zu 6 API Operationen entsprechend der Http Methoden, die auf ein Pfad Objekt angewandt werden können). In Abbildung \ref{fig:Operations} werden \acs{API} Operationen als Referenzgröße verwendet. Die Pfad bzw. Operations Objekte beschreiben die zentrale Funktionalität von OpernAPI Spezifikationen. Multi-Trigger und Multi-Message Regeln betreffen daher immer ein multiples Vielfaches der Größe der OpenAPI Spezifikation. Die Normalisierung wäre daher nicht global für alle Regeln, sondern ausschließlich für Ergebnisse der gleichen Regel. Hierfür bieten isch ebenfalls weitere Forschungsfragen an:
+
+  \begin{itemize}
+    \item \textbf{RQ-3(Future):} Wie sieht eine Priorisierung der Linterregeln aus, die Anzahl der geworfenen Fehler anhand Spezifikationsgröße normalisiert?
+  \end{itemize}
 
   Weitere Möglichkeiten der Verbesserung der Ergebnisse, wäre es, den Bias im OpenAPI Directory durch die Große Anzahl von Azure.com OpenAPI Spezifikationen zu reduzieren. Eine Strategie könnte das Verwenden von Stichprobensets der häufig vertretenen Anbieter zu nehmen, um den Bias abzuschwächen.
   
