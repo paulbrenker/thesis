@@ -33,6 +33,7 @@ jobs:
   build_thesis:
     name: Build LaTeX
     runs-on: ubuntu-latest
+    timeout-minutes: 6
     needs: labeler
     if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
     strategy:
@@ -69,6 +70,7 @@ jobs:
 
   build_python:
     name: Format, Lint, Test Python
+    timeout-minutes: 3
     permissions:
       contents: read
     needs: labeler
@@ -109,6 +111,7 @@ jobs:
   build_typescript:
     name: Format, Lint, Test, Build TypeScript
     needs: labeler
+    timeout-minutes: 3
     if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'tool-change')
     runs-on: ubuntu-latest
 
@@ -146,6 +149,7 @@ jobs:
 
   release:
     if: github.ref == 'refs/heads/main'
+    timeout-minutes: 10
     needs:
       - build_thesis
       - build_typescript
