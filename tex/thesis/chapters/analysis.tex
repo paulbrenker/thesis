@@ -71,7 +71,7 @@ Mit einem p-Wert von 0.0416, kleiner dem Signifikanzniveau $\alpha = 0.05$ ist, 
 In \parencite{bogner_restruler_2024} ist die Größe des OpenAPI Repositories mit 2331 Spezifikationen deutlich geringer als in dieser Analyse. Anhand der Einblicke, die in dem Paper über den Datensatz gemacht werden, kann gefolgert werden, dass zu dem Zeitpunkt die Azure.com Spezifikationen noch nicht Teil des OpenAPI Directory waren. Trotz des großen Anteils der Azure.com Spezifikationen und der Verzerrung der Linterergebnisse dadurch werden hier alle Spezifikationen aus dem OpenAPI Directory als Eingabe für die Ermittlung der Linterergebnisse verwendet. Eine alternative Berechnung der Priorisierung und des Clusterings der Daten, in der Azure.com Spezifikationen nicht berücksichtigt werden findet sich im Anhang in Tabelle \ref{tab:combinedweighedpriononazure}.
 
 
-\subsubsection{Auswertung der Invertierung}
+\subsubsection{Auswertung der Invertierung} \label{sec:auswertungderinvertierung}
 Die Invertierung zeigt uns das Verhältnis der geworfenen Linterregeln im Verhältnis zu den Stellen an denen eine Regel geworfen werden könnte. Um mit der großen Varianz, der Linterfehler pro Regel umzugehen, hilft diese Strategie bei der Normalisierung der Linterfehler. 
 
 Mithilfe einer manuellen Analyse des Spectral \acs{OAS} Regelwerks wurden als erstes die Zugehörigkeiten der Regeln zu den Klassen Inkompatibel, Single Trigger, Multi Trigger und Multi Message ermittelt. Diese wurden in einer Datei gesammelt, die als Konfiguration für das Software Tool und für die Datenanalyse Pipeline funktioniert. Die Konfiguration einer Regel für das Softwaretool enthält nicht alle Attribute einer Linterregel, wie im \acs{OAS} Regelwerk. Das \acs{OAS} Regelwerk liegt ist Laufzeit des Softwaretools ein eingebundenes Node Modul. Hierraus lassen sich nicht alle notwendigen Informationen für die Invertierung automatisiert extrahieren. Die Konfiguration die für die Invertierung einer Regel vorliegt ist in Code \ref{lst:inversionconfigexample} beispielhaft dargestellt.
@@ -96,7 +96,7 @@ Mithilfe einer manuellen Analyse des Spectral \acs{OAS} Regelwerks wurden als er
 }
 \end{lstlisting}
 
-Der in \ref{alg:invert} angegebene Algorithmus zur berechnung der Summe an Selektionen eines JSONPaths wurde für jede Regel und jede Spezifikation unabhängig der Klassifizierung der Regel ausgeführt. Die Berechnung des Inversen erfolgt als Feld Mapping innerhalb der Analysepipeline. Das erzeugte Datenobjekt in den Linterergebnissen ist wie in Code \ref{lst:linterresultexample} strukturiert. Abgesehen von den gezeigten Daten im Objekt werden auch die tatsächlichen Nachrichten der Linterfehler gespeichert.
+Der in \ref{alg:invert} angegebene Algorithmus zur Berechnung der Summe an Selektionen eines JSONPaths wurde für jede Regel und jede Spezifikation unabhängig der Klassifizierung der Regel ausgeführt. Die Berechnung des Inversen erfolgt als Feld Mapping innerhalb der Analysepipeline. Das erzeugte Datenobjekt in den Linterergebnissen ist wie in Code \ref{lst:linterresultexample} strukturiert. Abgesehen von den gezeigten Daten im Objekt werden auch die tatsächlichen Nachrichten der Linterfehler gespeichert.
 
 \begin{lstlisting}[
   gobble=0,
