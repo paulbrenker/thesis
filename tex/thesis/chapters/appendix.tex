@@ -1,6 +1,7 @@
 \addcontentsline{toc}{section}{Anhang}
 \section*{Anhang}
 
+\lstset{language=none}
 \begin{lstlisting}[
   gobble=0,
   frame=none,
@@ -69,6 +70,32 @@ components:
         grade:
           type: string
 \end{lstlisting}
+
+\lstset{language=JavaScript}
+\begin{lstlisting}[
+  gobble=0,
+  frame=none,
+  captionpos=b,
+  basicstyle=\footnotesize\ttfamily,
+  caption={Beispiel für Spectral Regel},
+  label={lst:examplespectralrule},
+]
+export default {
+  rules: {
+    'path-casing': {
+      description: 'Returns path casing info or inconsitency error',
+      message: '{{ property }} is in a specific case',
+      given: '$.paths[*]~',
+      then: {
+        function: checkPathCasing
+      },
+      severity: DiagnosticSeverity.Information
+    }
+  }
+}
+\end{lstlisting}
+
+
 
 {\footnotesize
 \begin{longtable}{lc}
