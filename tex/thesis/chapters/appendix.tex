@@ -1,6 +1,7 @@
 \addcontentsline{toc}{section}{Anhang}
 \section*{Anhang}
 
+\subsection*{Beispiele Forschungsstand}
 \lstset{language=none}
 \begin{lstlisting}[
   gobble=0,
@@ -118,63 +119,67 @@ warning  operation-operationId  Operation must have "operationId".
 warning  operation-tags         Operation must have non-empty "tags" array.                    
 \end{lstlisting}
 
-{\footnotesize
-\begin{longtable}{lc}
-  \caption{\normalsize Summe der ausgelösten Linterfehler pro Regel}
+\newpage
+\subsection*{Linterergebnisse Datentabellen}
+
+{\tiny
+\begin{longtable}{lrrrrrrrr}
+  \caption{\normalsize Charakteristische Daten für ausgelöste Fehler (F.) und mögliche Auslösungen (M.)}
   \label{tab:totalthrownerrors}
   \endfirsthead
   \endhead
-  \hline
-  \textbf{Regel}  &  \textbf{Anzahl Linterfehler total}\\ \hline\hline
-  operation-success-response & 0\\
-  operation-parameters  & 0\\
-  operation-tag-defined  &  49708\\
-  path-params &   152\\
-  contact-properties & 0\\
-  duplicated-entry-in-enum  &  69\\
-  info-contact   &  2359\\
-  info-description   &  484\\
-  info-license  &   0\\
-  license-url & 2\\
-  no-script-tags-in-markdown  & 3\\
-  openapi-tags-alphabetical &   0\\
-  openapi-tags-uniqueness &  0\\
-  openapi-tags & 0\\
-  operation-description &   27529\\
-  operation-operationId & 8840\\
-  operation-operationId-valid-in-url   &  706\\
-  operation-singular-tag   & 0\\
-  operation-tags & 24385\\
-  path-declarations-must-exist  &  0\\
-  path-keys-no-trailing-slash   &  1999\\
-  path-not-include-query  &   113\\
-  tag-description   &  0\\
-  no-\$ref-siblings  & 66933\\
-  array-items & 61\\
-  typed-enum   &  677950\\
-  oas3-api-servers &  45\\
-  oas3-examples-value-or-externalValue   &   169\\
-  oas3-operation-security-defined  &  0\\
-  oas3-parameter-description &  0\\
-  oas3-server-not-example.com   &  0\\
-  oas3-server-trailing-slash &   535\\
-  oas3-valid-media-example   &  9501\\
-  oas3-valid-schema-example  & 29275\\
-  oas3-schema & 23\\
-  oas3-unused-component   & 17948\\
-  oas3-server-variables   & 11\\
-  oas3-callbacks-in-callbacks   &  0\\
-  \hline
+  \textbf{Regel}  &  \textbf{F. Total} & \textbf{F. Mean} & \textbf{F. Median} & \textbf{F. Std} & \textbf{M. Total} & \textbf{M. Mean} & \textbf{M. Median} & \textbf{M. Std}\\ \hline\hline
+  operation-success-response & 774 & 0.19 & 0.0 &  4.43 &  135207 & 32.69 & 10.0 &  199.36 \\
+  operation-operationId-unique & 0 & 0.00 & 0.0 &  0.00 & 4127 &  1.00 &  1.0 & 0.05 \\
+  operation-parameters & 0 & 0.00 & 0.0 &  0.00 &  117991 & 28.53 &  9.0 &  138.99 \\
+  operation-tag-defined & 49708 & 12.02 & 1.0 & 62.75 & 4136 & 1.00 & 1.0 & 0.00 \\
+  path-params & 152 & 0.04 & 0.0 & 0.39 & 4127 & 1.00 & 1.0 & 0.05 \\
+  contact-properties & 0 & 0.00 & 0.0 & 0.00 & 1777 & 0.43 & 0.0 & 0.50 \\
+  duplicated-entry-in-enum & 69 & 0.02 & 0.0 & 0.61 & 128356 & 31.03 & 6.0 & 235.96 \\
+  info-contact & 2359 & 0.57 & 1.0 & 0.50 & 4136 & 1.00 & 1.0 & 0.00 \\
+  info-description & 484 & 0.12 & 0.0 & 0.32 & 4136 & 1.00 & 1.0 & 0.00 \\
+  info-license & 0 & 0.00 & 0.0 & 0.00 & 4136 & 1.00 & 1.0 & 0.00 \\
+  license-url & 0 & 0.00 & 0.0 & 0.00 & 4136 & 1.00 & 1.0 & 0.00 \\
+  no-eval-in-markdown & 2 & 0.00 & 0.0 & 0.03 & 2014057 & 486.96 & 149.0 & 1875.07 \\
+  no-script-tags-in-markdown & 3 & 0.00 & 0.0 & 0.03 & 2014057 & 486.96 & 149.0 & 1875.07 \\
+  openapi-tags-alphabetical & 0 & 0.00 & 0.0 & 0.00 & 4136 & 1.00 & 1.0 & 0.00 \\
+  openapi-tags-uniqueness & 0 & 0.00 & 0.0 & 0.00 & 1239 & 0.30 & 0.0 & 0.46 \\
+  openapi-tags & 0 & 0.00 & 0.0 & 0.00 & 4136 & 1.00 & 1.0 & 0.00 \\
+  operation-description & 27529 & 6.66 & 0.0 & 112.34 & 135207 & 32.69 & 10.0 & 199.36 \\
+  operation-operationId & 8840 & 2.14 & 0.0 & 14.57 & 135207 & 32.69 & 10.0 & 199.36 \\
+  operation-operationId-valid-in-url & 706 & 0.17 & 0.0 & 4.18 & 135207 & 32.69 & 10.0 & 199.36 \\
+  operation-singular-tag & 0 & 0.00 & 0.0 & 0.00 & 135207 & 32.69 & 10.0 & 199.36 \\
+  operation-tags & 24385 & 5.90 & 0.0 & 36.48 & 135207 & 32.69 & 10.0 & 199.36 \\
+  path-declarations-must-exist & 0 & 0.00 & 0.0 & 0.00 & 4127 & 1.00 & 1.0 & 0.05 \\
+  path-keys-no-trailing-slash & 1999 & 0.48 & 0.0 & 7.15 & 4127 & 1.00 & 1.0 & 0.05 \\
+  path-not-include-query & 113 & 0.03 & 0.0 & 0.87 & 4127 & 1.00 & 1.0 & 0.05 \\
+  tag-description & 0 & 0.00 & 0.0 & 0.00 & 8748 & 2.12 & 0.0 & 12.54 \\
+  no-\$ref-siblings & 66933 & 16.18 & 1.0 & 80.96 & 1029699 & 248.96 & 46.0 & 1054.69 \\
+  array-items & 61 & 0.01 & 0.0 & 0.43 & 140758 & 34.03 & 8.0 & 207.45 \\
+  typed-enum & 677950 & 163.91 & 0.0 & 10334.01 & 126466 & 30.58 & 6.0 & 235.77 \\
+  oas3-api-servers & 45 & 0.01 & 0.0 & 0.10 & 4136 & 1.00 & 1.0 & 0.00 \\
+  oas3-examples-value-or-externalValue & 169 & 0.04 & 0.0 & 1.90 & 49900 & 12.06 & 0.0 & 124.03 \\
+  oas3-operation-security-defined & 0 & 0.00 & 0.0 & 0.00 & 43121 & 10.43 & 1.0 & 67.81 \\
+  oas3-parameter-description & 0 & 0.00 & 0.0 & 0.00 & 327037 & 79.07 & 20.0 & 549.70 \\
+  oas3-server-not-example.com & 0 & 0.00 & 0.0 & 0.00 & 3312 & 0.80 & 0.0 & 1.21 \\
+  oas3-server-trailing-slash & 535 & 0.13 & 0.0 & 0.37 & 3312 & 0.80 & 0.0 & 1.21 \\
+  oas3-valid-media-example & 9501 & 2.30 & 0.0 & 30.04 & 54270 & 13.12 & 0.0 & 133.37 \\
+  oas3-valid-schema-example & 29275 & 7.08 & 0.0 & 170.04 & 171743 & 41.52 & 0.0 & 485.25 \\
+  oas3-schema & 23 & 0.01 & 0.0 & 0.24 & 4136 & 1.00 & 1.0 & 0.00 \\
+  oas3-unused-component & 17948 & 4.34 & 0.0 & 36.57 & 4136 & 1.00 & 1.0 & 0.00 \\
+  oas3-server-variables & 11 & 0.00 & 0.0 & 0.05 & 4500 & 1.09 & 0.0 & 3.78 \\
+  oas3-callbacks-in-callbacks & 0 & 0.00 & 0.0 & 0.00 & 0 & 0.00 & 0.0 & 0.00 \\
+  \hline\hline
 \end{longtable}
 }
 
+\newpage
 {\footnotesize
-\begin{longtable}{lccccc}
+\begin{longtable}{lrrrrr}
   \caption{\normalsize $\text{Relevanz}_\text{Frequenz}$, $\text{Relevanz}_\text{Diversität}$, gewichtete Kombination der Priorisierungen, OAS Verteilung der Schweregrade und neue Verteilung der Schweregrade durch k-means Clustering. Mit * markierte Regeln wurden nie ausgelöst. Horizontale Linien zeigen Grenzen zwischen Clustern. Für die Berechnung der Daten in dieser Tabelle wurden die Azure Spezifikationen nicht beachtet.}
   \label{tab:combinedweighedpriononazure}
   \endfirsthead
   \endhead
-  \hline
   \textbf{Regel} & \textbf{$\text{R}_\text{Frequenz}$} & \textbf{$\text{R}_\text{Diversität}$} & \ \textbf{Kombiniert} & \textbf{OAS} & \textbf{Cluster} \\ \hline \hline
 operation-operationId-unique* & 1.000000 &  0.375000 & 0.875000 & \texttt{hint} & \texttt{error} \\
 operation-parameters* & 1.000000 &  0.375000 & 0.875000 & \texttt{warn} & \texttt{error} \\
@@ -215,7 +220,8 @@ operation-operationId &  0.002632 &  0.061736 & 0.014452 & \texttt{warn} & \text
 info-description & 0.004386 &  0.052927 & 0.014094 & \texttt{warn} & \texttt{hint} \\
 no-\$ref-siblings &  0.001563 &  0.059900 & 0.013230 & \texttt{hint} & \texttt{hint} \\
 oas3-server-trailing-slash & 0.001927 &  0.054978 & 0.012537 & \texttt{warn} & \texttt{hint} \\
-operation-tags & 0.001592 &  0.046619 & 0.010598 & \texttt{warn} & \texttt{hint} \\ \hline
+operation-tags & 0.001592 &  0.046619 & 0.010598 & \texttt{warn} & \texttt{hint} \\ 
+\hline\hline
 \end{longtable}
 }
 
