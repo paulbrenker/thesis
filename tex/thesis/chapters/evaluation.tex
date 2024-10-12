@@ -1,4 +1,4 @@
-\section{Evaluation}
+\section{Evaluation} \label{sec:evaluation}
 
 Das folgende Kapitel widmet sich der Interpretation der gewonnenen Erkenntnisse. Dabei sollen diese eingeordnet werden und die Gültigkeit kritisch hinterfragt werden. Ziel ist es, die Bedeutung der Resultate für die Forschungsfragen herauszuarbeiten. Außerdem widmet sich dieses Kapitel möglichen Limitationen der Arbeit und auch möglichen Implikationen für zukünftige Forschungsfragen. 
 
@@ -22,7 +22,7 @@ Mit dem Clustering wurde eine Neuverteilung der Schweregrade \texttt{error}, \te
 
 Die Neuzuordnung der Linter Schweregrade zu den Regeln beantwortet \textbf{RQ-3} und hilft die große Anzahl der Regeln mit dem Schweregrad \texttt{warn} zu verringern. Dies reduziert Komplexität und gibt eine klare Vorstellung davon welche Regeln wichtig sind. Als Entwickler lässt sich mithilfe dieser Neuzuordnung eine Strategie entwickeln, um ein Linting von OpenAPI Spezifikationen mit dem Spectral API Linter für bestehende Projekte zu starten. Eine Strategie könnte sein, dass in einem ersten Schritt nur Linterfehler mit dem Schweregrad \texttt{error} zum Fehlschlagen einer Pipeline zur statischen Codeanalyse führen. In weiteren Schritten kann die Akzeptanz des Spectral \acs{API} Linters verringert werden und auch Linterfehler mit dem Schweregrad \texttt{warn} und \texttt {hint} führen zu einem fehlgeschlagenen Linting Prozess. Die vorgschlagene Neuverteilung der Linter Schweregrade kann Entwicklern auch Vertrauen in die Linterregeln geben. Dies sind Regeln, die in den meisten der Spezifikationen des OpenAPI Directories eingehalten wurden. Im OpenAPI Directory sind OpenAPI Spezifikationen von den größten Cloud Anbietern und vielen anderen großen Tech Unternehmen. Letztendlich ist die Adoption einer Linting Praxis aber ein individueller Prozess, der von den spezifischen Anforderungen eines Projektes sowie der Vorlieben der Entwickler abhängt.
 
-\subsection{Validität des Verfahrens}
+\subsection{Validität des Verfahrens} \label{sec:validitätdesverfahrens}
   Trotz des sorgsamen Entwurfs der Methodik dieser Arbeit, gibt es Risiken, die die Validität des Verfahrens potenziell einschränken.
 
   Ein Risiko ist die Hürde der Invertierung der Regeln. Ein Maß aufzustellen, das geworfene Fehler und mögliche Fehler für alle Regeln vergleichen kann, könnte einen großen Mehrwert bringen. Dieses Maß ist in für Single Trigger und Multi Trigger Regeln gut zu messen. Für komplexere Regeln, insbesondere Regeln, die Spectral benutzerdefinierte JavaScript Funktionen nutzen, ist dies nicht messbar. Aufgrund mangelnder Vergleichbarkeit aller Regeln können diese ermittelten Zahlen nicht in die Priorisierung mit einfließen.
@@ -33,10 +33,10 @@ Die Neuzuordnung der Linter Schweregrade zu den Regeln beantwortet \textbf{RQ-3}
 
   Die Qualitätsanforderungen an die Software \textbf{QR-1} - \textbf{QR-6} wurden in der Entwicklung des Softwaretools implementiert. Dies trägt im Nachhinein zur Konfidenz in das Tool und der Funktionalitäten bei.
 
-\subsection{Zusammenfassung}
+\subsection{Zusammenfassung} \label{sec:zusammenfassung}
   In dieser Arbeit wurden 4136 in der Praxis verwendete OpenAPI Spezifikationen mit dem Spectral API Linter und dem Standard Spectral OAS Regelwerk analysiert. Die Linterfehler wurde empirisch ausgewertet, um die Relevanz der Linterregel für die Praxis der Softwareentwicklung herauszufinden. Wir haben die Regeln priorisiert und mithilfe von Methoden für unüberwachtes Lernen eine Neuverteilung der Linter Schweregrade erreicht. Dabei wurde festgestellt, dass die Linterergebnisse durch die Spezifikationen von Azure.com im Datensatz ein Bias besteht. Azure benutzt intern den Spectral Linter und das Spectral \acs{OAS} Regelwerk. Dies zieht den Anteil der Azure.com Linterfehler deutlich nach unten. Da Azure.com Spezifikationen 45 \% des OpenAPI Directory ausmachen, beinflussen diese die Gesamtwerte. Beim Versuch die geworfenen Linterregeln zu invertieren und die Anzahl der True Negatives zu finden ist die gewählte Methodik für einen Teil der Regeln erfolgreich. Die Relevanz der Linterregeln wurde mit zwei Priorisierungsmaßen, die sich auf die Existenz von Linterfehlern für eine Spezifikation beschränken bewertet. Das erste Maß lehnt sich an die \acl{IDF} an. Das zweite Maß bewertet, ob sich Spezifikationen die Linterregeln auslösen überschneiden. Aus den Priorisierungen wurde eine gewichtete Kombination berechnet. Erstere wurde dabei mit 0,8 viermal so hoch wie die Zweite 0,2 gewichtet. Abschließend wurde anhand der Priorisierungen ein Clustering berechnet, das eine Neuverteilung von Linterschweregraden basierend auf der Relevanz der Regel repräsentiert. Die Aussagekraft der Neubelegung sowie Szenarien der Anwendung der Ergebnisse auf Praxisbeispiele wurden in der Interpretation diskutiert.
 
-\subsection{Ausblick}
+\subsection{Ausblick} \label{sec:ausblick}
   Die datengetriebene Untersuchung von Linterregeln hat sich als vielversprechend erwiesen. An einigen Punkten hinterlässt diese Arbeit auch offene Enden.
 
   Zunächst ist die Invertierung aller Regeln ein Problem, das hier noch nicht gelöst wurde. Der Ansatz die Regeln aufgrund der JSONPath Objekte zu invertieren war nicht für alle Regeln erfolgreich. Das Lösen dieses Problems für alle Regeln würde bedeuten, dass nicht nur das Auftreten von Linterfehlern, sondern auch die Anzahl der Linterfehler objektiv eingeordnet werden könnte.

@@ -1,14 +1,14 @@
-\section{Herleitung der Methode}
+\section{Herleitung der Methode} \label{sec:herleitungdermethode}
 Um herauszufinden welche Linterregeln aus dem Spectral \acs{OAS} Regelwerk relevant sind möchten wir ein Softwaretool erstellen, das zuverlässig und reproduzierbar Linterfehler für die gegebenen OpenAPI Spezifikationen generiert und analysiert. In Teilen kann dabei auf die Methodik der vergleichbaren Studien zurückgegriffen werden. Es wird zur Erhebung der Anforderungen die Methodik von \parencite{bergsmann_requirements_2023} verwendet. Zur Planung und Dokumentation der Softwarearchitektur wird die Methodik von \parencite{starke_effektive_2020} verwendet. Technische Komponenten werden dokumentiert und visualisiert. Der vollständige Quellcode dieser Arbeit steht zur Verfügung\footnote{Siehe den Quellcode auf Github unter \href{https://www.github.com/paulbrenker/thesis}{https://www.github.com/paulbrenker/thesis}}. In diesem Kapitel wird beschrieben, wie das System konzipiert, entworfen und entwickelt wurde.
 
 
-\subsection{Use Cases}
+\subsection{Use Cases} \label{sec:usecases}
 Im ersten Schritt wird modelliert, wie das System aus Benutzersicht bedient wird. Für die Benutzung des entworfenen Systems ist lediglich eine Nutzerkategorie notwendig, die das System und die Komponenten triggert. Alle Use Cases werden textuell \parencite{bergsmann_requirements_2023} und mithilfe der \acf{UML} Use Case Diagramme dokumentiert \parencite{rupp_uml_2012}.
 
 Diese Interaktionen werden in den folgenden Unterkaptieln nach der Methodik von \parencite{bergsmann_requirements_2023} zerlegt.
 
 
-\subsubsection{Linting}
+\subsubsection{Linting} \label{linting}
 Den APIs.guru Datensatz mit dem Spectral \acs{OAS} Datensatz zu linten, ist die erste Benutzer Interaktion mit dem System.
 
 \begin{longtable}{lp{0.5\linewidth}}
@@ -56,7 +56,7 @@ Den APIs.guru Datensatz mit dem Spectral \acs{OAS} Datensatz zu linten, ist die 
 \end{figure}
 
 
-\subsubsection{Invertierung}
+\subsubsection{Invertierung} \label{sec:invertierung}
 Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig eine Regel geworfen werden könnte. Das Inverse definieren wir als die relative Anzahl der Fälle, in denen eine Regel eingehalten wurde. Es ist wichtig diese Werte zu berechnen, um Aussagen über die Relevanz treffen zu können. In diesem Use Case wird zwischen vier Klassen von Linterregeln unterschieden. Diese sollen die Größenordnung der möglichen Linterfehler anzeigen. Um die Linterregeln des \acs{OAS} Regelwerks zu klassifizieren, wird eine Analyse des Quellcodes des Regelwerkes vorgenommen.
 
 \begin{enumerate}
@@ -130,7 +130,7 @@ Zusätzlich zum Use Case soll für die Ermittlung aller möglichen Stellen an de
 \end{algorithm}
 
 
-\subsubsection{Analyse}
+\subsubsection{Analyse} \label{sec:analyse}
 Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den in UC1 und UC2 beschriebenen Interaktionen statt. Zweck dieser Interaktion ist es, die ermittelten Linterfehler und die Metadaten in ein Menschenlesbares Format zu bringen und sie zu beschreiben (Deskriptive Datenanalyse). 
 
 \begin{longtable}{lp{0.5\linewidth}}
@@ -177,13 +177,13 @@ Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den i
 \end{figure}
 
 
-\subsection{Anforderungen}
+\subsection{Anforderungen} \label{sec:anforderungen}
 Zusätzlich zu den vorgeschriebenen Interaktionen wird eine Menge an Anforderungen für das System formuliert. Die Formulierung von Anforderungen hilft dabei, alle relevanten Aspekte zu berücksichtigen \parencite{bergsmann_requirements_2023}.
 
 Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanforderungen und Einschränkungen. Anforderungen werden textuell formuliert nach dem Vorbild der Anforderungsschablonen aus dem SOPHIST Regelwerk \parencite{rupp_requirements-engineering_2014}.
 
 
-\subsubsection{Funktionale Anforderungen}
+\subsubsection{Funktionale Anforderungen} \label{sec:funktionaleanforderungen}
 \begin{itemize}
   \label{req:fr1}
   \item \textbf{FR-1} Die Software sollte eine kommandozeilenbasierte Interaktion für das Triggern des Tools und der Datenanalysepipeline bereitstellen
@@ -202,7 +202,7 @@ Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanfo
 \end{itemize}
 
 
-\subsubsection{Qualitätsanforderungen}
+\subsubsection{Qualitätsanforderungen} \label{sec:qualitätsanforderungen}
 \begin{itemize}
   \label{req:qr1}
   \item \textbf{QR-1} Das Softwaretool sollte während des Lintings und der Invertierung einen Fortschrittsbalken anzeigen (Benutzerfreundlichkeit)
@@ -219,7 +219,7 @@ Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanfo
 \end{itemize}
 
 
-\subsubsection{Einschränkungen}
+\subsubsection{Einschränkungen} \label{sec:einschränkungen}
 \begin{itemize}
   \label{req:c1}
   \item \textbf{C-1} Die Software für den Linting und Invertierungsprozess muss in JavaScript oder TypeScript entwickelt werden, um die volle Funktionalität der Spectral Bibliotheken und die gleiche Implementierung von JSONPath zu verwenden.
@@ -230,11 +230,11 @@ Die Anforderungen werden unterteilt in funktionale Anforderungen, Qualitätsanfo
 \end{itemize}
 
 
-\subsection{Software Architektur}
+\subsection{Software Architektur} \label{sec:softwarearchitektur}
 In diesem Abschnitt wird der Entwurfsprozess und die Entwurfsentscheidungen für die im Rahmen dieser Arbeit entwickelte Software dokumentiert. In diesem Prozess wurden die vorgegebenen Interaktionen und Anforderungen berücksichtigt. Die gezeigten vier Sichten nach \parencite{starke_effektive_2020} sollen die Softwarearchitektur effektiv und bedarfsgerecht beschreiben. Die Dokumentation enthält damit auch die Kernelemente der Architekturdokumentation nach der arc42 Vorlage\footnote{Arc42 ist eine Vorlage (Template) mit einer strukturierten Methode für die Dokumentation von Software und Systemarchitekturen. Arc42 wurde von P. Hruschka und G. Starke entwickelt und steht unter \href{https://www.arc42.de/}{https://www.arc42.de/} online zur Verfügung.} \parencite{starke_arc42_2024}.
 
 
-\subsubsection{Kontextsicht}
+\subsubsection{Kontextsicht} \label{sec:kontextsicht}
 Die Kontextsicht zeigt, wie ein System in seine Umgebung eingebettet ist und welche Schnittstellen zu Nachbarsystemen vorhanden sind \parencite{starke_effektive_2020}. Für das hier entwickelte Softwaresystem ist wichtigste Schnittstelle nach außen die Verwendung des OpenAPI Directory von APIs.guru. Eine weitere Schnittstelle, die für die Funktionalität des Systems wichtig ist, ist die Verwendung des Spectral \acs{API} Linters und des Spectral OAS Regelwerks, die hier als Software Bibliotheken eingebunden werden können. Weiterhin kann die Kontextsicht den Datenfluss zwischen den Softwarekomponenten zeigen. Die Analyse Pipeline und das Tool zum Linten der Spezifikationen werden als zwei unabhängige Komponenten entwickelt. Die Datenanalyse kann auf Ergebnisse des Linter Tools über das Dateisystem zugreifen.
 
 \begin{figure}[htbp]
@@ -245,7 +245,7 @@ Die Kontextsicht zeigt, wie ein System in seine Umgebung eingebettet ist und wel
 \end{figure}
 
 
-\subsubsection{Bausteinsicht}
+\subsubsection{Bausteinsicht} \label{sec:bausteinsicht}
 Die Bausteinsicht zeigt, wie ein System intern aufgebaut ist und wie das Code Repository strukturiert ist, \parencite{starke_effektive_2020}. Es wird Top Down dokumentiert, welche Bausteine auf den verschiedenen Levels zum Einsatz kommen. Die einzelnen Bausteine werden als Whiteboxes gezeigt, die die darunterliegende Struktur und damit auch die Paketzerlegung des Quellcodes verdeutlichen. Die Bausteine zeigen den Teil des Code Repositorys, der die funktionalen Anforderungen implementiert. In den Levels werden Bausteine des Systems aufgebrochen und im Detail beschrieben. Die Technologien, auf denen die Komponenten Lintertool und Datenanalyse aufbauen sind sichtbar. In der untersten Schicht sind Kern Abhängigkeiten erwähnt, die für Einhaltung der Anforderungen notwendig sind.
 
 Das Lintertool läuft in einer Node.js Umgebung und ist in TypeScript implementiert. Der Code wird mit dem tsc Compiler kompiliert und Module werden mit dem node package manager (npm) verwaltet. 
@@ -260,7 +260,7 @@ Die Datenanalysepipeline läuft in einer python3 Umgebung. Die eingebundenen Mod
 \end{figure}
 
 
-\subsubsection{Laufzeitsicht}
+\subsubsection{Laufzeitsicht} \label{sec:laufzeitsicht}
 Die Laufzeitsicht zeigt die Zusammenwirkung von wichtigen Bausteinen des Systems zur Laufzeit \parencite{starke_effektive_2020}. Hier wird die zeitliche Abfolge von Methodenaufrufen und dynamische Interaktion dokumentiert. Insbesondere ist hier zu sehen, wie die OpenAPI Spezifikationen iterativ verarbeitet werden und dabei in Folge mehrere Funktionsaufrufe gemacht werden. Insbesondere die iterative Verarbeitung der OpenAPI Spezifikationen in einer mit \texttt{loop} gekennzeichneten Schleife zeigt die Kernfunktionalität des Linter Tools.
 
 Eine Laufzeitsicht für die Datenanalyse liefert hier nur wenig Erkenntnisgewinn. Die Methodik zur Datenanalyse ist im Kapitel \ref{chapter:dataanalysis} Datenanalyse beschrieben.
@@ -273,7 +273,7 @@ Eine Laufzeitsicht für die Datenanalyse liefert hier nur wenig Erkenntnisgewinn
 \end{figure}
 
 
-\subsubsection{Verteilungssicht}
+\subsubsection{Verteilungssicht} \label{sec:verteilungssicht}
 Die Verteilungssicht beschreibt die Laufzeitumgebung des Systems und deren Hardwarekomponenten \parencite{starke_effektive_2020}. Zudem werden hier die Laufzeitumgebungen der Software Komponenten dokumentiert, sowie Datenquellen und Datensenken definiert. 
 
 Die Software, die in dieser Arbeit entwickelt wird, wird zu einem Großteil auch in der lokalen Entwicklungsumgebung ausgeführt. Als Ausnahme hier zählt die unabhängige Datenquelle von APIs.guru, die als Git Submodul\footnote{Software Dokumentation zu Git Submodulen: \href{https://git-scm.com/book/en/v2/Git-Tools-Submodules}{https://git-scm.com/book/en/v2/Git-Tools-Submodules}} eingebunden ist.
@@ -287,7 +287,7 @@ Software Tests und Qualitätsprüfungen wie Linter und Format Checks werden zude
 \end{figure}
 
 
-\subsection{Datenanalyse}
+\subsection{Datenanalyse} \label{sec:datenanalyse}
 \label{chapter:dataanalysis}
 Die Datenanalyse ist Teil der Software die im Rahmen dieser Arbeit entwickelt wird. Das Ziel der Datenanalyse ist es, eine datengetriebene Antwort auf die Forschungsfragen zu geben. Dazu werden statistische Methoden und Methoden des maschinellen Lernens verwendet.
 
@@ -307,11 +307,11 @@ In einer explorativen Analyse werden die Hauptcharakteristiken des Datensatzes a
 In einem weiteren Schritt soll die Invertierung der Regeln ausgewertet werden. Hierbei werden die Daten der geworfenen Linterfehler und der möglichen Linterfehler pro Regel verglichen. Für geeignete Regeln wird ein Boxplot über die Häufigkeit der geworfenen Regeln gezeigt.
 
 
-\subsection{Priorisierung}
+\subsection{Priorisierung} \label{sec:priorisierung}
 Es werden mehrere Maße verwendet, um aus den geworfenen Linterfehlern Hinweise zu einer möglichen Gewichtung der Regeln abzuleiten. Diese Verfahren ergeben jeweils ein Scoring, zwischen 0 und 1. 1 bedeutet unabhängig vom verwendeten Maß die höchste Priorisierung (Relevanz) und 0 die niedrigste.  Am Ende werden die Werte gewichtet verrechnet, um eine Gesamtpriorisierung zu erhalten. Die Gesamtpriorisierung wird dann anschließend mit Datengetriebenen Methoden in mehrere Gruppen aufgeteilt. Dieser Abschnitt beantwortet \textbf{RQ-1}: Wie können die Linterregeln priorisiert werden.
 
 
-\subsubsection{Inverse Document Frequency}
+\subsubsection{Inverse Document Frequency} \label{sec:inversedocumentfrequency}
 Im Rahmen des Information Retrievals und des \acs{NLP} ist die \acf{TF} - \acf{IDF} Gewichtung ein verbreiteter Score \parencite{manning_introduction_2008}. Das Maß kombiniert die \acl{TF} und die \acl{IDF}. Angewandt auf die Linterfehler, kann die \acs{TF}-\acs{IDF} Gewichtung dabei die Relevanz einer bestimmten Regel für eine Spezifikation zu finden. Um allgemein gültige Aussagen zur Relevanz der Regeln zu machen, eignet sich das kombinierte Maß nicht. Die \acl{IDF} eignet sich alleinstehend als Priorisierungsmaß für Linterfehler. Wir definieren für unseren Datensatz ein Dokument als Menge an Fehlern, die zu einer Spezifikation geworfen wurden oder auch eine Zeile in der \acs{CSV} Datei mit den Linterergebnissen. Der berechnete Score basiert auf der Annahme, dass je häufiger eine Regel auf dem APIs.guru Datensatz ausgelöst wurde, desto weniger beeinflusst das Einhalten dieser Regel die Qualität der OpenAPI Spezifikation\footnote{Grundlage hierfür ist die angenommene hohe Qualität des APIs.guru Datensatzes.}. Die \acl{IDF} ist definiert durch die Anzahl an Dokumenten in einer Kollektion, die einen Term enthalten \parencite{manning_introduction_2008}. Um hier die eine Abbildung auf die Priorisierung zu erzielen, wird die Relevanz basierend auf der \acl{IDF} definiert:
 
 \[
@@ -331,7 +331,7 @@ Im Rahmen des Information Retrievals und des \acs{NLP} ist die \acf{TF} - \acf{I
 \]
 
 
-\subsubsection{Diversitäts-Scoring}
+\subsubsection{Diversitäts-Scoring} \label{sec:diveritätsscoring}
 Das zweite Priosierungsmaß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Ergebnisse beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität über alle Regeln hinweg viele Fehler auslösen. Damit beeinflussen diese die Relevanz der \acl{IDF}.
 
 Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Mit \acs{IDF} werden vertikal in der Matrix über Spezifikationen und Linterregeln einzigartige Fehler hoch priorisiert. Um auch horizontal in der Matrix einzigartige Fehler zu identifizieren, wird eine zweite Methode verwendet. Mit dieser Methodik soll die Diversität des Auslösemusters einer Regel eingefasst und in ein Priorisierungsmaß eingebettet werden.
@@ -348,7 +348,7 @@ Je weniger das Auslösemuster einer Regel dem der anderen Ähnelt, desto höher 
 \text{Relevanz}_\text{Diversität}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
 \]
 
-\subsubsection{Kombination der Priorisierungen}
+\subsubsection{Kombination der Priorisierungen} \label{sec:kombinationderpriorisierungen}
 Um die Werte der beiden Priorisierungsmaße zu vereinigen wird eine gewichtete Summe verwendet. Es wird davon ausgegangen, dass die Einordnung der Regeln in Schweregrade \texttt{hint}, \texttt{warn} und \texttt{error} eine Entwicklereinschätzung der Relevanz der Regeln abbildet. Um diese Einschätzung zu berücksichtigen, wird versucht die Koeffizienten $\alpha$ und $\beta$ so zu setzen, dass Regeln, die im Spectral \acs{OAS} Regelwerk den Schweregrad \texttt{error} haben eine hohe Priorisierung (nahe 1) und jene mit dem Schweregrad \texttt{hint} eine niedrige Priorisierung (nahe 0) haben.
 
 \[
@@ -358,11 +358,11 @@ Um die Werte der beiden Priorisierungsmaße zu vereinigen wird eine gewichtete S
 Die berechneten Werte geben Antwort auf \textbf{RQ-2} (Wie können relevante Linterregeln priorisiert werden).
 
 
-\subsubsection{Clustering}
+\subsubsection{Clustering} \label{sec:clustering}
 Spectral verwendet drei Schweregrad Level für die Regeln des Spectral \acs{OAS} Datensatzes (\texttt{hint}, \texttt{warn}, \texttt{error}) siehe auch Abbildung \ref{tab:OASRules}. Zur Beantwortung von \textbf{RQ-3} (Welche Linterregeln können empfohlen werden) soll ein Clustering der Regeln in drei Relevanzklassen erfolgen, die den Schweregraden des Spectral Linters entsprechen. Die Regeln sollen anhand ihrer Priorisierung in drei Partitionen eingeteilt werden. Dafür eignet sich der kmeans Clustering Algorithmus \parencite{bishop_pattern_2006}. Hierfür wird die mit Koeffizienten gewichteten priorisierten Werte als Vektoren verwendet. Die zwei verwendeten Priorisierungsmaße sind Dimensionen für die Gruppenidentifizierung. Für die Implementierung des Algorithmus wird die Pythonbibliothek \texttt{sklearn} verwendet. Für die zufällige Initialisierung der drei Cluster Centroiden wird ein Festgeschriebener random state spezifiziert, um Reproduzierbarkeit zu garantieren.
 
 
-\subsection{Validität der Methode}
+\subsection{Validität der Methode} \label{sec:validitätdermethode}
 In diesem Kapitel wurde die Methode vorgestellt, mit der die Forschungsfragen dieser Arbeit beantwortet werden. Abschließend wird hier erläutert, welche Einschränkungen die Anwendung dieser Methode hat.
 
 Die Methodik zur Beantwortung der Forschungsfragen in dieser Arbeit geht von einer hohen Qualität der Daten im OpenAPI Directory von APIs.guru aus. Diese Annahme kann aufgrund der Verwendung des OpenAPI Directory in mehreren wissenschaftlichen Quellen \parencite{bogner_restruler_2024} \parencite{serbout_apistic_2024} gemacht werden. Die Qualität des OpenAPI Directory wird dort spezifisch erwähnt. "Aufgrund des kuratierten Inhalts enthält es hochqualitative, valide und einzigartige Spezifikationen, da nicht verlässliche Quellen herausgefiltert werden"\footnote{Übersetzt aus dem Englischen} \parencite{serbout_apistic_2024}. "Diese Definitionen variierten stark in der Größe und deckten eine große Anzahl an Themen ab. Von offiziellen Cloudanbieter \acs{API}s von Firmen wie Amazon und Microsoft bis zu Museums und Regierungs \acs{API}s. Nur in wenigen Fällen lagen mehrere Versionen der gleichen \acs{API} vor, was zur Variation beiträgt. Die Dokumente nutzen OpenAPI Konzepte wie Components oder Responses sehr unterschiedlich, was sie sehr verschieden macht. Dies qualifiziert sie als ideale Testbasis für unsere Implementierung ..."\footnote{Übersetzt aus dem Englischen} \parencite{bogner_restruler_2024}.

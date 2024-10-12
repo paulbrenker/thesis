@@ -1,4 +1,4 @@
-\section{Forschungsstand}
+\section{Forschungsstand} \label{sec:forschungsstand}
 
 
 In diesem Kapitel wird der wissenschaftliche Kontext des Themas erläutert und eine Verbindung zu den relevanten Anwendungen in der Industrie aufgezeigt.
@@ -10,7 +10,7 @@ Um die Funktion von Software in verteilten Systemen nutzbar zu machen sind stand
 
 Für das im Internet weitverbreitete Architekturprinzip \acf{REST} ist die OpenAPI Spezifikation eine standardisierte Schnittstellendokumentation, die von der \acf{OAI} entwickelt und gewartet wird. Die Testbarkeit der Qualität von OpenAPI Spezifikationen ist die Richtung, in der das Thema dieser Arbeit einzuordnen ist.
 
-\subsection{REST}
+\subsection{REST} \label{sec:rest}
 Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architectural_2000}. In seiner Dissertation definiert Roy Fielding die grundlegenden Prinzipien des Modells für verteilte Systeme. \acs{REST} steht für \textit{Representational State Transfer}. Der Zustandsübergang (State Transfer) erfolgt durch Datentransfer, der den Folgezustand eines Systems repräsentiert. Fielding definiert sechs Prinzipien für \acs{REST}.
 \begin{enumerate}
   \item \textit{Client-Server}: Der Server stellt Ressourcen bereit und der Client ruft diese ab. Der Client ruft Daten mit Anfragen ab und kann diese manipulieren. Benutzer Interfaces müssen von Datensicherung getrennt werden.
@@ -28,7 +28,7 @@ Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architec
 \end{enumerate}
 Das \acs{REST} Architekturmodell ist sehr populär und die Anwendungen, die \acs{REST} verwenden werden immer diverser und komplexer \parencite{kotstein_which_2021}. Da \acs{REST} kein technischer Standard ist, wird die Art der Umsetzung der Prinzipien häufig in der Literatur behandelt u.a. in \parencite{richardson_restful_2007}\parencite{masse_rest_2011}\parencite{webber_rest_2010}\parencite{renzel_todays_2012}.
 
-\subsection{Qualitätskriterien}
+\subsection{Qualitätskriterien} \label{sec:qualitätskriterien}
 Für die korrekte Umsetzung der \acs{REST} Prinzipien wurden Möglichkeiten der Qualitätssicherung von \acs{REST} \acs{API}s geschaffen. Dies reicht von Regeln, Qualitätsattributen, Best Practices zu Reifegradmodellen und automatischen Tests von Schnittstellen \parencite{kotstein_which_2021}. Der folgende Abschnitt beschäftigt sich mit diesen unterschiedlichen Arbeiten und versucht eine Einführung in das Thema zu bieten.
 
 Ein Rahmenwerk um den Qualitätsgrad einer \acs{REST} \acs{API} zu beurteilen ist das Richardson Reifegradmodell \parencite{richardson_restful_2007}. Dieses Modell unterscheidet zwischen vier Stufen, die \acs{REST} \acs{API}s erreichen können\footnote{Siehe auch die visuelle Beschreibung des Reifegradmodells auf dem Blog von Martin Fowler \href{https://martinfowler.com/articles/richardsonMaturityModel.html}{https://martinfowler.com/articles/richardsonMaturityModel.html}}\parencite{pautasso_restful_2014}:
@@ -58,7 +58,7 @@ Der geringe Grad der Einhaltung von REST Guidelines ist Subjekt mehrerer Analyse
 Regeln für konsistentes Design von \acs{REST} \acs{API}s werden auch in der Industrie erstellt. Einige große Firmen stellen Ihre Regeln öffentlich zur Verfügung \footnote{Eine Kollektion von solchen Regelwerken findet sich auf der Seite des Herstellers des API Linting Tools Spectral: \href{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview\#-real-world-rulesets}{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview\#-real-world-rulesets}} \parencite{stoplight_spectral_2024-2}
 
 
-\subsection{OpenAPI Spezifikation}
+\subsection{OpenAPI Spezifikation} \label{sec: openapisepzifikation}
 Eine API Spezifikation stellt Informationen über die Schnittstelle und deren Funktionalität zur Verfügung \parencite{sommerville_software_2018}. Die OpenAPI Spezifikation ist ein programmiersprachenunabhängiger Standard für die Beschreibung von \acs{HTTP} Schnittstellen\footnote{OpenAPI Spezifikation: \href{https://spec.openapis.org/oas/latest.html}{https://spec.openapis.org/oas/latest.html}} \parencite{noauthor_openapi_2024}. Die OpenAPI Initiative wurde als Industriekonsortium unter der Schirmherrschaft der Linux Foundation angestoßen\footnote{https://www.openapis.org/about}. Der OpenAPI Standard beruht auf der Swagger Spezifikation. Die Spezifikation ist sowohl Menschen- als auch Maschinenlesbar und ermöglicht eine Minimierung des Aufwands zum Implementieren von Clients, um auf die Schnittstelle zuzugreifen. 
 
 Die OpenAPI Spezifikation wird als \acf{JSON} Schema bereitgestellt. Implementierungen von OpenAPI dokumentierten Schnittstellen, stellen entweder eine \acs{JSON} oder eine \acf{YAML} Datei zur Verfügung, die dem Schema entspricht. Diese Datei kann Maschinen-generiert sein oder von menschlichen Akteuren geschrieben werden. 
@@ -67,7 +67,7 @@ Eine OpenAPI Spezifikation besteht mindestens aus den erforderlichen Objekten op
 
 OpenAPI ist als Dokumentationsstandard für \acs{REST} \acs{API}s weit verbreitet. Abweichungen in der Qualität der Implementierung von \acs{REST} \acs{API}s sind jedoch auch innerhalb der OpenAPI Spezifikation ersichtlich \parencite{vaziri_generating_2017}. Um diese Qualitätsabweichungen festzustellen, eignen sich Tools zur statischen Codeanalyse, die im Softwareengineering häufig Linter genannt werden \parencite{tomasdottir_adoption_2018}.
 
-\subsection{API Linter}
+\subsection{API Linter} \label{sec:apilinter}
 Es gibt mehrere Tools zur statischen Codeanalyse, die für die Verwendung mit Implementierungen der OpenAPI Spezifikation ausgelegt sind.
 
 Zally ist ein Open-Source API Linter, der von der Firma Zalando entwickelt wird\footnote{Dokumentation des Tools :\href{http://opensource.zalando.com/zally/}{http://opensource.zalando.com/zally/}}. Es besteht aus einem in Kotlin implementierten \acf{CLI} und einem Webfrontend. Regelwerke lassen sich nicht zu Laufzeit parsen, sondern werden mit dem Tool kompiliert und ausgeführt.
@@ -75,14 +75,14 @@ Zally ist ein Open-Source API Linter, der von der Firma Zalando entwickelt wird\
 In \parencite{bogner_restruler_2024} entwerfen die Autoren ein eigenes Tool zur statischen Codeanalyse. Auch dieses Tool besteht aus Regeln mit einer standardisierten Schnittstelle. Es liest OpenAPI Dateien im \acs{JSON} oder \acs{YAML} Format und gibt eine Liste an Linterfehlern zurück. Das Regelwerk dieses Tools ist speziell entwickelt, um ausgewählte \acs{REST} Design Regeln von Massé \parencite{masse_rest_2011} zu implementieren. Dabei greifen die Regeln von Kotstein und Bogner auch auf \acf{NLP} zurück, um linguistische Qualitätsattribute zu extrahieren.
 
 
-\subsubsection{Spectral}
+\subsubsection{Spectral} \label{sec:spectral}
 Spectral ist ein von der Softwarefirma Stoplight entworfener Open-Source \acs{API} Linter, der sich großer Beliebtheit erfreut \parencite{bogner_restruler_2024}. Spectral wird für die Analysen in dieser Bachelorarbeit verwendet. Der Grund dafür ist, dass Stoplight neben dem Tool auch ein Regelwerk veröffentlicht, das unabhängig von anwenderspezifischen \acs{REST} Guidelines einen Qualitätsstandard für die Implementation von OpenAPI Dokumenten durchsetzt\footnote{Das \acs{OAS} Ruleset von Spectral: \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}}.
 
 Regeln für das Spectral Tool werden deklarativ in \acs{JSON}, \acs{YAML} oder JavaScript Syntax formuliert. Alternativ können Regeln auch als benutzerdefinierte JavaScript Funktionen angegeben werden \parencite{bogner_restruler_2024}. Ein Beispiel für eine in JavaScript Syntax formulierte Regel mit einer Funktions Referenz auf eine Benutzerdefinierte Regel ist in Code \ref{lst:examplespectralrule} abgebildet. In Code \ref{lst:examplespectralerrors} sind beispielhaft Fehlermeldungen des Spectral CLI Tools für die in \ref{lst:exampleopenapi} definierte OpenAPI Spezifikation mit dem \acs{OAS} Regelwerk gezeigt.
 
 Regeln lassen sich mit dem \texttt{format} Tag auf eine Version der OpenAPI Spezifikation festlegen. Zudem gibt es einen Schweregrad für Regelverstöße, der über das \texttt{severity} Attribut gesetzt werden kann. Für die Schweregrade der Linterfehler werden drei Levels festgelegt: \texttt{hint}, \text{warn} und \texttt{error}.
 
-\subsubsection{OAS Regelwerk}
+\subsubsection{OAS Regelwerk} \label{sec:oasregelwerk}
 
 Das Spectral Standard Regelwerk OAS Regelwerk enthält Regeln für \texttt{2.x.x} und \texttt{3.x.x} Versionen der OpenAPI Spezifikation \parencite{stoplight_spectral_2024}. Die genaue Zielsetzung der Regeln ist dabei nicht von Stoplight dokumentiert. Die Regeln beziehen sich jedoch nicht auf die Formale Korrektheit der OpenAPI Implementation, sondern auf inhaltliche Schwächen und Inkonsistenzen. Das Regelwerk enthält 28 allgemein gültige Regeln. Zusätzlich sind 13 Regeln ausschließlich für Spezifikationen der Versionen \texttt{2.x.x} und 14 Regeln für die Versionen \texttt{3.x.x} enthalten.
 
@@ -156,7 +156,7 @@ Von Stoplight Referenzierte industriell genutzte Spectral Regelwerke verwenden a
   \end{longtable}
 
 
-\subsection{APIs Guru}
+\subsection{APIs Guru} \label{sec:apisguru}
 APIs Guru ist ein populäres Open-Source-Projekt, das eine kuratierte Sammlung an OpenAPI Spezifikationen zur Verfügung stellt\footnote{APIs.guru Internetseite: \href{https://apis.guru/}{https://apis.guru/}}. Die Daten stehen in einem Repository auf der Plattform GitHub bereit und können von Entwicklern und Wissenschaftlern frei verwendet werden \parencite{serbout_apistic_2024}. Wegen des kuratierten Inhalts enthält es Daten von hoher Qualität. Nach Angaben der Entwickler werden nicht verlässliche (\textit{non reliable}) Spezifikationen herausgefiltert. Zudem werden alle zur Verfügung stehenden Spezifikationen in das Format OpenAPI 3.0 konvertiert. Sollten die Spezifikationen syntaktische Fehler enthalten, werden diese korrigiert\footnote{Dies sind die Angaben der Entwickler der Seite apis.guru. Diese lassen sich nicht verifizieren. Aufgrund mehrerer Erwähnungen und Verwendungen des Repository von APIs.guru in wissenschaftlicher Fachliteratur (z.B.: \parencite{serbout_apistic_2024}, \parencite{bogner_restruler_2024}) kann trotzdem von hoher Qualität der Daten ausgegangen werden.} \parencite{apisguru_apisguru_2024}. Die letzten Commits in dem APIs.guru Repository stammen von März 2024. Davor wurden zu jedem Werktag relevante Änderungen vorgenommen. In den Meldungen auf der Internetseite von APIs.guru finden sich keine Hinweise zu den Wartungsstopps im GitHub Repository.
 
 Im OpenAPI Directory sind insgesamt 4136 OpenAPI Spezifikationen von 700 Anbietern hinterlegt. Dabei  haben Anbieter unterschiedlich viele Spezifikationen hinterlegt. Die meisten Spezifikationen stammen von Microsoft Azure, Google und Amazon (siehe: \ref{fig:Specifications}).
@@ -175,7 +175,7 @@ Die Größe einer Spezifikation lässt sich durch die beschriebenen \acs{API} Op
   \label{fig:Operations}
 \end{figure}
 
-\subsection{Vergleichbare Studien}
+\subsection{Vergleichbare Studien} \label{sec:vergleichbarestudien}
 Mehrere Arbeiten untersuchen bereits die genannten Themen, Konzepten, Technologien und Daten.
 In \parencite{palma_semantic_2017} entwickeln Palma et al. eine Methode um automatisiert linguistische Antipatterns in Web \acs{API}s zu detektieren. Diese Methode wird in \parencite{palma_specification_2014} mit dem Namen \textit{Service-Oriented Framework for Antipatterns (SOFA)} implementiert.
 
