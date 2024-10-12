@@ -88,12 +88,11 @@ Das Spectral Standard Regelwerk OAS Regelwerk enthält Regeln für \texttt{2.x.x
 
 Die im Verlauf der Arbeit relevanten Regeln werden hier eingeführt\footnote{Regeln, die nur auf OpenAPI 2.x  oder OpenAPI Version größer gleich 3.1 angewendet werden können, sind im Rahmen dieser Arbeit nicht relevant, da im verwendeten Datensatz alle Spezifikationen dem Standard OpenAPI 3.0 entsprechen.}
 {\footnotesize 
-  \begin{longtable}{lp{0.4\linewidth}c}
+  \begin{longtable}{lp{0.4\linewidth}r}
     \caption{\normalsize \href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{Spectral OAS Regeln}}
     \label{tab:OASRules}
     \endfirsthead
     \endhead
-    \hline
     \textbf{Regel Name} & \textbf{Regel Beschreibung} & \textbf{Schweregrad} \\ \hline \hline
     % ---------- GENERAL RULES -----------
     contact-properties & Die drei Subattribute \texttt{name}, \texttt{url}, \texttt{email} des \texttt{info.contact}  Attributes müssen existieren & \texttt{warn} \\
@@ -136,7 +135,7 @@ Die im Verlauf der Arbeit relevanten Regeln werden hier eingeführt\footnote{Reg
     oas3-valid-media-example & Definierte Beispiele müssen anhand der definierten Schemas valide sein & \texttt{hint}\\
     oas3-valid-schema-example & Definierte Beispiele in Schema Deklarationen müssen valide sein & \texttt{hint}\\
     oas3-server-variables & Server Variablen müssen, wenn definiert existent sein & \texttt{hint}\\
-    oas3-callbacks-in-callbacks & Callbacks dürfen nicht verschachtelt werden & \texttt{warn}\\ \hline
+    oas3-callbacks-in-callbacks & Callbacks dürfen nicht verschachtelt werden & \texttt{warn}\\ \hline\hline
   \end{longtable}
 }
 Das in Tabelle \ref{tab:OASRules} vorgestellte Attribute Schweregrad (\textit{severity}) ist Teil des Spectral \acs{OAS} Regelwerks. Die Ausgabe des Regelwerks lässt sich so konfigurieren, dass nur Linterfehler ab einem bestimmten Schweregrad zur Laufzeit einen Fehler werfen. Für die Abbildung der Regeln auf ihre Relevanz kann es interessant sein die Ergebnisse mit den vorkonfigurierten Schweregraden der Regeln zu vergleichen.
@@ -147,14 +146,13 @@ Von Stoplight Referenzierte industriell genutzte Spectral Regelwerke verwenden a
     \label{tab:DeactivatedRules}
     \endfirsthead
     \endhead
-    \hline
     \textbf{Adidas} & \textbf{Azure} & \textbf{Box} \\ \hline \hline
     operation-tags & operation-tags & tag-description \\ 
     operation-operationId & no-\$ref-siblings & example-value-or-externalValue \\ 
     operation-2xx-response & openapi-tags &  oas3-unused-components-schema \\ 
     & operation-description &  oas3-valid-oas-content-example \\ 
     & info-contact & \\ 
-    & operation-tag-defined & \\ \hline
+    & operation-tag-defined & \\ \hline\hline
   \end{longtable}
 
 
