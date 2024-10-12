@@ -58,7 +58,7 @@ export class Inversion {
   }
 }
 
-function readSpecFile(filepath: string) {
+export function readSpecFile(filepath: string) {
   const ext = path.extname(filepath)
   const data = fs.readFileSync(filepath, 'utf8')
   if (ext === '.yaml' || ext === '.yml') {
@@ -68,7 +68,7 @@ function readSpecFile(filepath: string) {
   }
 }
 
-function countPossibleErrors(rule: string, path: string) {
+export function countPossibleErrors(rule: string, path: string) {
   const specString = readSpecFile(path)
   return uncompiledRules[rule].given
     .map(jsonPath => JSONPath({ path: jsonPath, json: specString }).length)
