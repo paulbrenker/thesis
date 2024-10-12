@@ -95,7 +95,28 @@ export default {
 }
 \end{lstlisting}
 
-
+\lstset{language=SpectralOutput}
+\begin{lstlisting}[
+  gobble=0,
+  frame=none,
+  captionpos=b,
+  basicstyle=\footnotesize\ttfamily,
+  caption={Beispiel für Spectral CLI Fehlermeldungen},
+  label={lst:examplespectralerrors},
+]
+warning  oas3-api-servers       OpenAPI "servers" must be present.
+warning  info-contact           Info object must have "contact" object.                        
+warning  info-description       Info "description" must be present.       
+warning  operation-description  Operation "description" must be present.  
+warning  operation-operationId  Operation must have "operationId".                             
+warning  operation-tags         Operation must have non-empty "tags" array.                    
+warning  operation-description  Operation "description" must be present.  
+warning  operation-operationId  Operation must have "operationId".                             
+warning  operation-tags         Operation must have non-empty "tags" array.                    
+warning  operation-description  Operation "description" must be present.  
+warning  operation-operationId  Operation must have "operationId".                             
+warning  operation-tags         Operation must have non-empty "tags" array.                    
+\end{lstlisting}
 
 {\footnotesize
 \begin{longtable}{lc}
