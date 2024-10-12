@@ -18,7 +18,7 @@ Das REST Architekturmodell stammt aus dem Jahr 2000 \parencite{fielding_architec
   \item \textit{Cachable}: Server Antworten können als Cachable markiert werden, um Skalierbarkeit zu verbessern.
   \item \textit{Uniform Interface}: Prinzip, das einfache Schnittstellen Nutzung garantiert. Besteht aus vier Eigenschaften:
         \begin{enumerate}
-          \item \textbf{Resource addressability}: Ein \acs{REST} Service hat eines \acf{URI} als eindeutige Adresse. Diese identifiziert eine Ressource. Das standardisiert den Zugriff auf den Service.
+          \item \textbf{Resource addressability}: Ein \acs{REST} Service hat eines \acf{URI} als eindeutige Adresse. Diese identifiziert eine Ressource. Das standardisiert den Zugriff auf den Service\footnote{Die generische Syntax für \acs{URI}s wird in \parencite{berners-lee_uniform_2005} festgelegt.}.
           \item \textbf{Manipulation of resources through representations}: Wenn der Client Zugriff auf eine Repräsentation einer Resource hat, kann er diese auch manipulieren. Dies geschieht, indem die manipulierte Repräsentation an den Server gesendet wird.
           \item \textbf{Self descriptive messages}: Anfragen und Antworten müssen selbsterklärend sein.
           \item \textbf{\acf{HATEOAS}}: Server Antworten verfügen über Informationen zu möglichen Folgeoperationen als Hyperlink. Diese informieren den Client über Aktionen basierend auf dessen Zustand, was eine Navigation über die Schnittstelle selbst ermöglicht.
