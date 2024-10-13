@@ -31,7 +31,7 @@ In Abbildung \ref{fig:totalspecthrownbarplot} wird die Anzahl aller geworfenen L
 \end{figure}
 
 
-\subsubsection{Verzerrung des Datensatzes} \label{sec:verzerrungdesdatensatzes}
+\subsubsection{Verzerrung der Linterergebnisse} \label{sec:verzerrungdesdatensatzes}
 Wie in Abbildung \ref{fig:Operations} dargestellt, werden 45 \% der Spezifikationen durch den Cloudanbieter Azure.com ausgemacht. In diesem Abschnitt wird untersucht, ob es durch diese Spezifikationen eine Verzerrung im Datensatz gibt. Da wir wissen, welche Regeln aus dem Spectral \acs{OAS} Regelwerk der Cloudanbieter zum Linten seiner eigenen OpenAPI Spezifikationen nimmt (siehe Tabelle \ref{tab:DeactivatedRules})kann vermutet werden, dass die Proportion der auf von Azure.com verwendeten Linterregeln geworfenen Linterfehler niedriger ist als die aller anderen Spezifikationen.
 
 \begin{figure}[htbp]
@@ -160,11 +160,11 @@ Aus den Invertierungen lassen sich viele Informationen ablesen, die direkte Impl
 Im diesem Kapitel werden die Ergebnisse der Priorisierung vorgestellt. Die Ausgangsdaten für die Priorisierungen sind ausschließlich Wahrheitswerte. Erste manuelle Priorisierungen konnten bereits in der Auswertung der Invertierung gesehen werden. 
 
 
-\subsubsection{Inverses Frequenz Scoring} \label{sec:iversesfrequenzscoring}
+\subsubsection{Relevanz Frequenz} \label{sec:iversesfrequenzscoring}
 Das Scoring der Relevanz nach \acl{IDF} ist in Tabelle \ref{tab:combinedweighedprioritized} in der Spalte $R_\text{Frequenz}$ abgebildet. Der Graph der $\text{Relevanz}_\text{Frequenz}(r)$ Funktion hat eine hyperbelähnliche Form. Regeln die null oder ein Mal ausgelöst werden, werden beide auf die Priorität 1 abgebildet. Dieses Verhalten lässt sich bei der Regel no-eval-in-markdown beobachten. Insgesamt werden 16 Regeln mit 1 priorisiert. Vier Regeln werden mit 0,1 - 0.4 bewertet, 8 Regeln mit jeweils Acht Regeln fallen auf die Größenordnungen 0.01 - 0.1, 0.001 - 0.01, 0.0001 - 0.001.
 
 
-\subsubsection{Diversitäts Scoring} \label{sec:diversitätsscoring}
+\subsubsection{Relevanz Diversität} \label{sec:diversitätsscoring}
 Eine Visualisierung der jeweils minimalen Jaccard Ähnlichkeiten und ein Hierarchisches Clustering der Regeln ist in Abbildung \ref{fig:hierarchicalclusteronbinary} dargestellt. Die Priorisierung nach $\text{Relevanz}_\text{Diversität}$ ergibt sich indirekt aus den Werten, die durch das Dendrogram visualisiert werden. Das Dendrogram eignet sich, um die Motivation der des $\text{Relevanz}_\text{Diversität}$ zu verdeutlichen.
 
 In dieser Abbildungen lassen sich die Regeln, die nie ausgelöst wurden gut als Cluster erkennen. Ein zweites Cluster wird durch die Regeln no-eval-in-markdown, no-script-tags-in-markdown und openapi-tags-uniqueness gebildet. Dies zeigt, dass diese Regeln von den gleichen Spezifikationen missachtet wurden. Durch die Ähnlichkeit des Auslösemusters der Regeln, die in Markdown eingebetteten Code erkennen, liegt nahe, dass diese eventuell gezielt herbeigeführt wurden. Die verbleibenden 22 Regeln werden im Dendrogramm in ein großes Cluster eingeteilt. Wir können erkennen, dass diese in der Regel bei Jaccard Ähnlichkeiten größer 0,8 zusammengeführt werden. Für den Datensatz bedeuted dies, dass weiteren Trends zum Missachten bestimmter Regeln vorliegen. 

@@ -311,7 +311,7 @@ In einem weiteren Schritt soll die Invertierung der Regeln ausgewertet werden. H
 Es werden mehrere Maße verwendet, um aus den geworfenen Linterfehlern Hinweise zu einer möglichen Gewichtung der Regeln abzuleiten. Diese Verfahren ergeben jeweils ein Scoring, zwischen 0 und 1. 1 bedeutet unabhängig vom verwendeten Maß die höchste Priorisierung (Relevanz) und 0 die niedrigste.  Am Ende werden die Werte gewichtet verrechnet, um eine Gesamtpriorisierung zu erhalten. Die Gesamtpriorisierung wird dann anschließend mit Datengetriebenen Methoden in mehrere Gruppen aufgeteilt. Dieser Abschnitt beantwortet \textbf{RQ-1}: Wie können die Linterregeln priorisiert werden.
 
 
-\subsubsection{Inverse Document Frequency} \label{sec:inversedocumentfrequency}
+\subsubsection{Relevanz Frequenz} \label{sec:inversedocumentfrequency}
 Im Rahmen des Information Retrievals und des \acs{NLP} ist die \acf{TF} - \acf{IDF} Gewichtung ein verbreiteter Score \parencite{manning_introduction_2008}. Das Maß kombiniert die \acl{TF} und die \acl{IDF}. Angewandt auf die Linterfehler, kann die \acs{TF}-\acs{IDF} Gewichtung dabei die Relevanz einer bestimmten Regel für eine Spezifikation zu finden. Um allgemein gültige Aussagen zur Relevanz der Regeln zu machen, eignet sich das kombinierte Maß nicht. Die \acl{IDF} eignet sich alleinstehend als Priorisierungsmaß für Linterfehler. Wir definieren für unseren Datensatz ein Dokument als Menge an Fehlern, die zu einer Spezifikation geworfen wurden oder auch eine Zeile in der \acs{CSV} Datei mit den Linterergebnissen. Der berechnete Score basiert auf der Annahme, dass je häufiger eine Regel auf dem APIs.guru Datensatz ausgelöst wurde, desto weniger beeinflusst das Einhalten dieser Regel die Qualität der OpenAPI Spezifikation\footnote{Grundlage hierfür ist die angenommene hohe Qualität des APIs.guru Datensatzes.}. Die \acl{IDF} ist definiert durch die Anzahl an Dokumenten in einer Kollektion, die einen Term enthalten \parencite{manning_introduction_2008}. Um hier die eine Abbildung auf die Priorisierung zu erzielen, wird die Relevanz basierend auf der \acl{IDF} definiert:
 
 \[
@@ -331,7 +331,7 @@ Im Rahmen des Information Retrievals und des \acs{NLP} ist die \acf{TF} - \acf{I
 \]
 
 
-\subsubsection{Diversitäts-Scoring} \label{sec:diveritätsscoring}
+\subsubsection{Relevanz Diversität} \label{sec:diveritätsscoring}
 Das zweite Priosierungsmaß soll ausschließen, dass Spezifikationen mit niedriger Qualität die Ergebnisse beeinflussen. Die Annahme ist, dass Spezifikationen mit niedriger Qualität über alle Regeln hinweg viele Fehler auslösen. Damit beeinflussen diese die Relevanz der \acl{IDF}.
 
 Es wird davon ausgegangen, dass nicht intendierte Linterfehler einzigartig sind. Mit \acs{IDF} werden vertikal in der Matrix über Spezifikationen und Linterregeln einzigartige Fehler hoch priorisiert. Um auch horizontal in der Matrix einzigartige Fehler zu identifizieren, wird eine zweite Methode verwendet. Mit dieser Methodik soll die Diversität des Auslösemusters einer Regel eingefasst und in ein Priorisierungsmaß eingebettet werden.
