@@ -6,11 +6,10 @@
 \begin{document}
 \begin{spacing}{1}
   \pagenumbering{roman}
-  \pagestyle{empty}
+  \pagestyle{bisHauptteil}
 
   \include{chapters/titlepage}
 
-  \pagestyle{bisHauptteil}
   \tableofcontents 
   \newpage 
 
@@ -31,8 +30,9 @@
 
   \include{chapters/evaluation}
 
-  \addcontentsline{toc}{section}{Literaturverzeichnis}
   \section*{Literaturverzeichnis}
+  \addcontentsline{toc}{section}{Literaturverzeichnis}
+
   \renewcommand\refname{}
   \vspace{-0.8cm}
   \printbibliography
