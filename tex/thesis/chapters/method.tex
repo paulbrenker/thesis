@@ -111,6 +111,7 @@ Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig 
   \label{fig:UC2}
 \end{figure}
 
+\newpage
 Es wird eine Strategie verwendet, die für alle Regeln mögliche Selektionen ermittelt, an denen die Regel ausgelöst werden könnte. Der Algorithmus für die Strategie ist in Algorithmus \ref{alg:invert} als Pseudocode angegeben. Dies verdeutlicht die Funktionalität dieses Aspektes der Software. Aus dem given Objekt einer Spectral Regel werden die JSONPath\footnote{JSONPath ist eine deklarative Abfragesprache, \acs{JSON} Werte und Objekte zu selektieren und zu extrahieren \parencite{friesen_extracting_2019}} Objekte gelesen. Das Ergebnis einer Anwendung eines JSONPath auf ein \acs{JSON} Objekt ist ein Array an selektierten Teilobjekten. Die Länge dieses Arrays entspricht den möglichen Selektionen des JSONPaths und damit den möglichen Linterfehlern. Die Länge aller JSONPaths einer Linterregel werden aufsummiert und zurückgegeben.
 
 \begin{algorithm}
@@ -231,7 +232,7 @@ Die Kontextsicht zeigt, wie ein System in seine Umgebung eingebettet ist und wel
   \label{fig:Kontextsicht}
 \end{figure}
 
-
+\newpage
 \subsubsection{Bausteinsicht} \label{sec:bausteinsicht}
 Die Bausteinsicht zeigt, wie ein System intern aufgebaut ist und wie das Code Repository strukturiert ist, \parencite{starke_effektive_2024}. Es wird Top Down dokumentiert, welche Bausteine auf den verschiedenen Levels zum Einsatz kommen. Die einzelnen Bausteine werden als Whiteboxes gezeigt, die die darunterliegende Struktur und damit auch die Paketzerlegung des Quellcodes verdeutlichen. Die Bausteine zeigen den Teil des Code Repositorys, der die funktionalen Anforderungen implementiert. In den Levels werden Bausteine des Systems aufgebrochen und im Detail beschrieben. Die Technologien, auf denen die Komponenten Lintertool und Datenanalyse aufbauen, sind sichtbar. In der untersten Schicht sind Schlüssel Abhängigkeiten erwähnt, die für die Anforderungen notwendig sind.
 
@@ -267,6 +268,7 @@ Die Software, die in dieser Arbeit entwickelt wird, wird zu einem Großteil in d
 
 Software Tests und Qualitätsprüfungen wie Linter und Format Checks werden zudem in einer Integrationspipeline mithilfe von GitHub Actions\footnote{GitHub Actions: \href{https://github.com/features/actions}{https://github.com/features/actions}} auf einem Remote Server ausgeführt. Da dies keinen Einfluss auf die Funktionalität der Software hat, ist dieser Schritt nicht in der Verteilungssicht modelliert.
 
+\newpage
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/deploymentview.png} \caption{Verteilungssicht des Systems}

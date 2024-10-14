@@ -41,6 +41,8 @@ Ein Rahmenwerk um den Qualitätsgrad einer \acs{REST} \acs{API} zu beurteilen is
 
 Konkrete Regeln, um diese abstrakten Levels zu erreichen, finden sich in dem Buch \textit{REST API Design Rulebook} \parencite{masse_rest_2011}.
 Massé stellt 82 Regeln auf, die für ein Design von \acs{REST} Prinzipien konformen \acs{API}s eingehalten werden sollen. Diese Regeln sind in fünf Kategorien unterteilt:
+
+\newpage
 \begin{enumerate}
   \item \textbf{Identifier Design with \acs{URI}s}
   \item \textbf{Interaction Design with \acs{HTTP}}
@@ -167,7 +169,10 @@ Im OpenAPI Directory sind insgesamt 4136 OpenAPI Spezifikationen von 700 Anbiete
   \label{fig:Specifications}
 \end{figure}
 
-Die Größe einer Spezifikation lässt sich durch die Anzahl der \acs{API} Operationen beschreiben. Die Größe einer OpenAPI Spezifikationen kann auch mit dem path Objekt gemessen werden \parencite{bogner_restruler_2024}. Jedes path Objekt enthält API Operationen für die darauf definierten \acs{HTTP} Methoden. Die tatsächliche Anzahl der Endpunkte einer OpenAPI Spezifikation entspricht daher einem multiplikativem Vielfachen der Anzahl der path Objekte. Daher werden in dieser Arbeit API Operationen als Kennzahl der Größe einer OpenAPI Spezifikation verwendet.
+\newpage
+Die Größe einer Spezifikation lässt sich durch die Anzahl der \acs{API} Operationen beschreiben. Die Größe einer OpenAPI Spezifikationen kann auch mit dem path Objekt gemessen werden \parencite{bogner_restruler_2024}. Jedes path Objekt enthält API Operationen für die darauf definierten \acs{HTTP} Methoden. 
+
+Die tatsächliche Anzahl der Endpunkte einer OpenAPI Spezifikation entspricht daher einem multiplikativem Vielfachen der Anzahl der path Objekte. Daher werden in dieser Arbeit API Operationen als Kennzahl der Größe einer OpenAPI Spezifikation verwendet.
 Spezifikationen im OpenAPI Directory variieren stark (siehe Abbildung \ref{fig:Operations}) in ihrer Größe. Die größte Spezifikation ist die microsoft.com/graph Spezifikation mit 11422 Operationen. Die kleinste ist die 1forge.com Spezifikation mit 2 Operationen.
 \begin{figure}[htbp]
   \centering
