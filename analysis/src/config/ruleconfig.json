@@ -45,7 +45,7 @@
     "recommended": true,
     "given": ["$"],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "path-params": {
     "formats": [],
@@ -165,7 +165,7 @@
     "recommended": true,
     "given": ["$.paths[*][get,put,post,delete,options,head,patch,trace]"],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "operation-operationId": {
     "formats": [],
@@ -174,7 +174,7 @@
     "recommended": true,
     "given": ["$.paths[*][get,put,post,delete,options,head,patch,trace]"],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "operation-operationId-valid-in-url": {
     "formats": [],
@@ -222,7 +222,7 @@
     "recommended": true,
     "given": ["$.paths"],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "path-not-include-query": {
     "formats": [],
@@ -231,7 +231,7 @@
     "recommended": true,
     "given": ["$.paths"],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "tag-description": {
     "formats": [],
@@ -250,7 +250,7 @@
     "recommended": true,
     "given": ["$..[?(@property === '$ref')]"],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "array-items": {
     "formats": [],
@@ -270,7 +270,7 @@
     "recommended": true,
     "given": ["$..[?(@ && @.enum && @.type)]"],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "oas2-api-host": {
     "description": "OpenAPI \"host\" must be present and non-empty string.",
@@ -484,7 +484,7 @@
       "$..parameters..[?(@ && @.schema && (@.example !== void 0 || @.examples))]"
     ],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "oas3-valid-schema-example": {
     "description": "Examples must be valid against their defined schema.",
@@ -499,7 +499,7 @@
       "$..parameters..[?(@property !== 'properties' && @ && (@ && @.example !== void 0 || @.default !== void 0) && (@.enum || @.type || @.format || @.$ref || @.properties || @.items))]"
     ],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "oas3-schema": {
     "description": "Validate structure of OpenAPI v3 specification.",
@@ -509,7 +509,7 @@
     "recommended": true,
     "given": ["$"],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "oas3-unused-component": {
     "description": "Potentially unused component has been detected.",
@@ -519,7 +519,7 @@
     "formats": ["oas3"],
     "given": ["$"],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "oas3-server-variables": {
     "formats": ["oas3"],
@@ -548,7 +548,7 @@
       "$.paths[*][get,put,post,delete,options,head,patch,trace].callbacks[*][*][*].callbacks"
     ],
     "triggers": -1,
-    "status": "MULTI_TRIGGER"
+    "status": "MULTI_MESSAGE"
   },
   "oas3_1-servers-in-webhook": {
     "description": "Servers should not be defined in a webhook.",
