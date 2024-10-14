@@ -1,22 +1,22 @@
 \section{Herleitung der Methode} \label{sec:herleitungdermethode}
-Um herauszufinden welche Linterregeln aus dem Spectral \acs{OAS} Regelwerk relevant sind möchten wir ein Softwaretool erstellen, das zuverlässig und reproduzierbar Linterfehler für die gegebenen OpenAPI Spezifikationen generiert und analysiert. In Teilen kann dabei auf die Methodik der vergleichbaren Studien zurückgegriffen werden. Es wird zur Erhebung der Anforderungen die Methodik von \parencite{bergsmann_requirements_2023} verwendet. Zur Planung und Dokumentation der Softwarearchitektur wird die Methodik von \parencite{starke_effektive_2020} verwendet. Technische Komponenten werden dokumentiert und visualisiert. Der vollständige Quellcode dieser Arbeit steht zur Verfügung\footnote{Siehe den Quellcode auf Github unter \href{https://www.github.com/paulbrenker/thesis}{https://www.github.com/paulbrenker/thesis}}. In diesem Kapitel wird beschrieben, wie das System konzipiert, entworfen und entwickelt wurde.
+Um herauszufinden, welche Linterregeln aus dem Spectral \acs{OAS} Regelwerk relevant sind, soll ein Softwaretool erstellt werden, das zuverlässig und reproduzierbar Linterfehler für die gegebenen OpenAPI Spezifikationen generiert und analysiert. In Teilen kann dabei auf die Methodik der vergleichbaren Studien zurückgegriffen werden. Zur Erhebung der Anforderungen wird die Methodik von \parencite{bergsmann_requirements_2023} verwendet. Zur Planung und Dokumentation der Softwarearchitektur wird die Methodik von \parencite{starke_effektive_2020} verwendet. Der vollständige Quellcode dieser Arbeit steht zur Verfügung\footnote{Siehe den Quellcode auf Github unter \href{https://www.github.com/paulbrenker/thesis}{https://www.github.com/paulbrenker/thesis} oder auf der beiliegenden CD.}. In diesem Kapitel wird beschrieben, wie das System konzipiert, entworfen und entwickelt wurde.
 
 
 \subsection{Use Cases} \label{sec:usecases}
-Im ersten Schritt wird modelliert, wie das System aus Benutzersicht bedient wird. Für die Benutzung des entworfenen Systems ist lediglich eine Nutzerkategorie notwendig, die das System und die Komponenten triggert. Alle Use Cases werden textuell \parencite{bergsmann_requirements_2023} und mithilfe der \acf{UML} Use Case Diagramme dokumentiert \parencite{rupp_uml_2012}.
+Im ersten Schritt wird modelliert, wie mit dem System aus Benutzersicht interagiert wird. Für die Benutzung des entworfenen Systems ist lediglich eine Nutzerkategorie notwendig, die das System und die Komponenten triggert. Alle Use Cases werden textuell \parencite{bergsmann_requirements_2023} und mithilfe von \acf{UML} Use Case Diagrammen dokumentiert \parencite{rupp_uml_2012}.
 
-Diese Interaktionen werden in den folgenden Unterkaptieln nach der Methodik von \parencite{bergsmann_requirements_2023} zerlegt.
+Diese Interaktionen werden in den folgenden Unterkaptieln gezeigt.
 
 
 \subsubsection{Linting} \label{linting}
 Den APIs.guru Datensatz mit dem Spectral \acs{OAS} Datensatz zu linten, ist die erste Benutzer Interaktion mit dem System.
 
 \begin{longtable}{lp{0.5\linewidth}}
-  \caption{Use Case 1: Linting textuell.}
+  \caption{\textbf{UC-1} Linting textuell.}
   \endfirsthead
   \endhead
   \hline\hline
-  \textbf{Use Case} & UC1 \\
+  \textbf{Use Case} & \textbf{UC-1} \\
   \textbf{Use Case Name} & Linting \\
   \textbf{Ziel (Kundennutzen)} & Ermitteln der Linterfehler die auf allen OpenAPI Spezifikationen in im OpenAPI Directory von APIs.guru geworfen werden. \\
   \textbf{Kategorien} & Interaktion mit externen Systemen,  \\
@@ -51,7 +51,7 @@ Den APIs.guru Datensatz mit dem Spectral \acs{OAS} Datensatz zu linten, ist die 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/linting.png}
-  \caption{Use Case 1: Linting Use Case Diagramm.}
+  \caption{\textbf{UC-1} Linting Use Case Diagramm.}
   \label{fig:UC1}
 \end{figure}
 
@@ -67,11 +67,11 @@ Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig 
 \end{enumerate} 
 
 \begin{longtable}{lp{0.5\linewidth}}
-  \caption{Use Case 2: Invertierung textuell.}
+  \caption{\textbf{UC-2} Invertierung textuell.}
   \endfirsthead
   \endhead
   \hline\hline
-  \textbf{Use Case} & UC2 \\ 
+  \textbf{Use Case} & \textbf{UC-2} \\ 
   \textbf{Use Case Name} & Invertierung \\
   \textbf{Ziel (Kundennutzen)} & Ermitteln der Anzahl der Linterfehler, die pro Linterregel auf einer Spezifikation ausgelöst werden könnten. \\
   \textbf{Kategorien} & Erstellen von Metadaten \\
@@ -105,7 +105,7 @@ Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/invert.png}
-  \caption{Use Case 2: beschreibt Invertierung von Linterfehlern}
+  \caption{\textbf{UC-2} beschreibt Invertierung von Linterfehlern}
   \label{fig:UC2}
 \end{figure}
 
@@ -134,11 +134,11 @@ Zusätzlich zum Use Case soll für die Ermittlung aller möglichen Stellen an de
 Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den in UC1 und UC2 beschriebenen Interaktionen statt. Zweck dieser Interaktion ist es, die ermittelten Linterfehler und die Metadaten in ein Menschenlesbares Format zu bringen und sie zu beschreiben (Deskriptive Datenanalyse). 
 
 \begin{longtable}{lp{0.5\linewidth}}
-  \caption{Use Case 3: Analyse textuell.}
+  \caption{\textbf{UC-3} Analyse textuell.}
   \endfirsthead
   \endhead
   \hline\hline
-  \textbf{Use Case} & UC3 \\ 
+  \textbf{Use Case} & \textbf{UC-3} \\ 
   \textbf{Use Case Name} & Analyse \\
   \textbf{Ziel (Kundennutzen)} & Deskriptive und Clusteranalyse der Linter- und Invertierungsdaten. \\
   \textbf{Kategorien} & Datenvisualisierung \\
@@ -172,7 +172,7 @@ Die Benutzerinteraktion mit der Datenanalyse Software Pipeline findet nach den i
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/describe.png}
-  \caption{Use Case 3: beschreibt Analyse der ermittelten Daten}
+  \caption{\textbf{UC-3} beschreibt Analyse der ermittelten Daten}
   \label{fig:UC3}
 \end{figure}
 
