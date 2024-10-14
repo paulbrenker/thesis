@@ -175,5 +175,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v0.${{ github.run_number }}
-          name: "Release v0.${{ github.run_number }}"
+          name: "Release v1.${{ github.run_number }}"
           files: main.pdf

@@ -152,31 +152,19 @@ class TestImportDataFrame(unittest.TestCase):
         expected = [
             "operation-success-response",
             "operation-operationId-unique",
-            "operation-tag-defined",
             "duplicated-entry-in-enum",
             "no-eval-in-markdown",
             "no-script-tags-in-markdown",
             "openapi-tags-uniqueness",
             "openapi-tags",
-            "operation-description",
-            "operation-operationId",
             "operation-operationId-valid-in-url",
             "operation-singular-tag",
             "operation-tags",
             "path-declarations-must-exist",
-            "path-keys-no-trailing-slash",
-            "path-not-include-query",
             "tag-description",
-            "no-$ref-siblings",
             "array-items",
-            "typed-enum",
             "oas3-parameter-description",
             "oas3-server-trailing-slash",
-            "oas3-valid-media-example",
-            "oas3-valid-schema-example",
-            "oas3-schema",
-            "oas3-unused-component",
-            "oas3-callbacks-in-callbacks",
         ]
         actual = ColumnLimiters.get_multi_trigger()
 
@@ -188,10 +176,22 @@ class TestImportDataFrame(unittest.TestCase):
         """
         expected = [
             "operation-parameters",
+            "operation-tag-defined",
             "path-params",
+            "operation-description",
+            "operation-operationId",
+            "path-keys-no-trailing-slash",
+            "path-not-include-query",
+            "no-$ref-siblings",
+            "typed-enum",
             "oas3-examples-value-or-externalValue",
             "oas3-operation-security-defined",
+            "oas3-valid-media-example",
+            "oas3-valid-schema-example",
+            "oas3-schema",
+            "oas3-unused-component",
             "oas3-server-variables",
+            "oas3-callbacks-in-callbacks",
         ]
         actual = ColumnLimiters.get_multi_message()
         print(actual)

@@ -43,7 +43,7 @@ def create_plot():
         index + bar_width / 2,
         pd.DataFrame.sum(df_else),
         bar_width - 0.05,
-        label="Andere Linterfehler",
+        label="Alle Linterfehler",
     )
     ax.set_xticks(index)
     ax.set_xticklabels(df_azure.columns, rotation=45, ha="right")

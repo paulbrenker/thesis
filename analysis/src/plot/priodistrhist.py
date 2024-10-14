@@ -148,7 +148,11 @@ def create_plot():
     )
 
     plt.axvline(
-        0.395, color="black", linestyle=":", linewidth=2, label="Max R Diversität"
+        0.395,
+        color="black",
+        linestyle=":",
+        linewidth=2,
+        label="Max. Relevanz Diversität",
     )
 
     ax.set_xlabel("Relevanz")
