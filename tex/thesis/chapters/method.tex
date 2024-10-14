@@ -5,7 +5,7 @@ Um herauszufinden, welche Linterregeln aus dem Spectral \acs{OAS} Regelwerk rele
 \subsection{Use Cases} \label{sec:usecases}
 Im ersten Schritt wird modelliert, wie mit dem System aus Benutzersicht interagiert wird. Für die Benutzung des entworfenen Systems ist lediglich eine Nutzerkategorie notwendig, die das System und die Komponenten triggert. Alle Use Cases werden textuell \parencite{bergsmann_requirements_2023} und mithilfe von \acf{UML} Use Case Diagrammen dokumentiert \parencite{rupp_uml_2012}.
 
-Diese Interaktionen werden in den folgenden Unterkaptieln gezeigt.
+Diese Interaktionen werden in den folgenden Unterkapiteln gezeigt.
 
 
 \subsubsection{Linting} \label{linting}
@@ -111,7 +111,7 @@ Die geworfenen Linterfehler zu invertieren bedeutet, herauszufinden wie häufig 
   \label{fig:UC2}
 \end{figure}
 
-Es wird eine Strategie verwendet, die für alle Regeln mögliche Selektionen ermittelt an denen die Regel ausgelöst werden könnte. Der Algorithmus für die Strategie ist in Algorithmus \ref{alg:invert} als Pseudocode angegeben. Dies verdeutlicht die Funktionalität dieses Aspektes der Software. Aus dem given Objekt einer Spectral Regel werden die JSONPath\footnote{JSONPath ist eine deklarative Abfragesprache, \acs{JSON} Werte und Objekte zu selektieren und zu extrahieren \parencite{friesen_extracting_2019}} Objekte gelesen. Das Ergebnis einer Anwendung eines JSONPath auf ein \acs{JSON} Objekt ist ein Array an selektierten Teilobjekten. Die Länge dieses Arrays entspricht den möglichen Selektionen des JSONPaths und damit den möglichen Linterfehlern. Die Länge aller JSONPaths einer Linterregel werden aufsummiert und zurückgegeben.
+Es wird eine Strategie verwendet, die für alle Regeln mögliche Selektionen ermittelt, an denen die Regel ausgelöst werden könnte. Der Algorithmus für die Strategie ist in Algorithmus \ref{alg:invert} als Pseudocode angegeben. Dies verdeutlicht die Funktionalität dieses Aspektes der Software. Aus dem given Objekt einer Spectral Regel werden die JSONPath\footnote{JSONPath ist eine deklarative Abfragesprache, \acs{JSON} Werte und Objekte zu selektieren und zu extrahieren \parencite{friesen_extracting_2019}} Objekte gelesen. Das Ergebnis einer Anwendung eines JSONPath auf ein \acs{JSON} Objekt ist ein Array an selektierten Teilobjekten. Die Länge dieses Arrays entspricht den möglichen Selektionen des JSONPaths und damit den möglichen Linterfehlern. Die Länge aller JSONPaths einer Linterregel werden aufsummiert und zurückgegeben.
 
 \begin{algorithm}
   \caption{Ermitteln der möglichen Stellen für Linterfehler}
@@ -310,7 +310,7 @@ Wir definieren für unseren Datensatz ein Dokument als Menge von Fehlern, die zu
 \end{cases}
 \]
 
-Die Relevanz einer Regel die nie ausgelöst wird wird hoch priorisiert. Die Relevanz einer Regel, die nie ausgelöst wird und einer Regel, die ein Mal ausgelöst wird ist gleich 1.
+Die Relevanz einer Regel die nie ausgelöst wird, wird hoch priorisiert. Die Relevanz einer Regel, die nie ausgelöst wird und einer Regel, die ein Mal ausgelöst wird, ist gleich 1.
 
 \[
 vorkommen(r, s) = 
@@ -368,4 +368,4 @@ Mit Daten schlechter Qualität ist diese Bedingung für die Nutzung von \acs{IDF
 
 Um dieses Risiko abzumildern wird mit der Diversität der triggernden Spezifikationen ein zweites Priorisierungsmaß eingeführt. Dies soll den Effekt von Spezifikationen schlechter Qualität auf die Gesamtpriorisierung abmildern.
 
-Um Risiken durch in der Funktionalität fehlerhafte Software zu minimieren wird der Code, der im Rahmen dieser Arbeit entwickelt wurde, mit Unit Tests getestet und es wird ein Coverage Gate von 80 \% Funktionsabdeckung technisch sichergestellt. Dennoch kann so die Korrektheit des Programmcodes nicht nachgewiesen werden. \glqq Das Testen von Programmen kann die Existenz von Fehlern zeigen, aber niemals deren Nichtvorhandensein\grqq{} \parencite{dijkstra_notes_1970}.
+Um Risiken durch in der Funktionalität fehlerhafte Software zu minimieren wird der Code, der im Rahmen dieser Arbeit entwickelt wurde, mit Unit-Tests getestet und es wird ein Coverage Gate von 80 \% Funktionsabdeckung technisch sichergestellt. Dennoch kann so die Korrektheit des Programmcodes nicht nachgewiesen werden. \glqq Das Testen von Programmen kann die Existenz von Fehlern zeigen, aber niemals deren Nichtvorhandensein\grqq{} \parencite{dijkstra_notes_1970}.

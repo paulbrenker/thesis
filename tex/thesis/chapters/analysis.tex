@@ -73,9 +73,9 @@ In \parencite{bogner_restruler_2024} ist die Größe des OpenAPI Repositories mi
 
 
 \subsubsection{Auswertung der Invertierung} \label{sec:auswertungderinvertierung}
-Die Invertierung zeigt das Verhältnis der geworfenen Linterregeln zu den Stellen an denen eine Regel geworfen werden könnte. Um mit der Varianz, der Linterfehler pro Regel umzugehen, hilft diese Strategie bei der Normalisierung der Linterfehler. 
+Die Invertierung zeigt das Verhältnis der geworfenen Linterregeln zu den Stellen, an denen eine Regel geworfen werden könnte. Um mit der Varianz, der Linterfehler pro Regel umzugehen, hilft diese Strategie bei der Normalisierung der Linterfehler. 
 
-Mithilfe einer manuellen Analyse des Spectral \acs{OAS} Regelwerks wurden als erstes die Zugehörigkeiten der Regeln zu den Klassen Inkompatibel, Single Trigger, Multi Trigger und Multi Message ermittelt. Die Zugehörigkeiten zu den Klassen Single Trigger, Multi Trigger und Multi Message werden in Tabelle \ref{tab:ruleclasses} aufgelistet.
+Mithilfe einer manuellen Analyse des Spectral \acs{OAS} Regelwerks wurden als Erstes die Zugehörigkeiten der Regeln zu den Klassen Inkompatibel, Single Trigger, Multi Trigger und Multi Message ermittelt. Die Zugehörigkeiten zu den Klassen Single Trigger, Multi Trigger und Multi Message werden in Tabelle \ref{tab:ruleclasses} aufgelistet.
 {\footnotesize
 \begin{longtable}{lll}
   \caption{\normalsize Klassifikation der Regeln}
@@ -87,8 +87,8 @@ Mithilfe einer manuellen Analyse des Spectral \acs{OAS} Regelwerks wurden als er
   contact-properties & operation-success-response & operation-parameters\\
   info-contact & operation-operationId-unique & operation-tag-defined\\
   info-description & duplicated-entry-in-enum & path-params\\
-  info-license & no-eval-in-markdown & operation-description\\
-  license-url & no-script-tags-in-markdown & operation-operationId\\
+  info-licence & no-eval-in-markdown & operation-description\\
+  licence-url & no-script-tags-in-markdown & operation-operationId\\
   openapi-tags-alphabetical & openapi-tags-uniqueness & path-keys-no-trailing-slash\\
   oas3-api-servers & openapi-tags & path-not-include-query\\
   oas3-server-not-example.com & operation-operationId-valid-in-url & no-\$ref-siblings\\
@@ -105,7 +105,7 @@ Mithilfe einer manuellen Analyse des Spectral \acs{OAS} Regelwerks wurden als er
 \end{longtable}
 }
 
-Diese wurden in einer Datei gesammelt, die als Konfiguration für das Software Tool und für die Datenanalyse Pipeline agiert. Die Konfiguration einer Regel für das Softwaretool enthält nicht alle Attribute einer Linterregel, wie im \acs{OAS} Regelwerk. Das \acs{OAS} Regelwerk liegt zur Laufzeit des Softwaretools als eingebundenes Node Modul vor. Hierraus lassen sich nicht alle notwendigen Informationen für die Invertierung automatisiert extrahieren. Die Konfiguration die für die Invertierung einer Regel ermittelt wurde ist in Quellcode \ref{lst:inversionconfigexample} beispielhaft dargestellt.
+Diese wurden in einer Datei gesammelt, die als Konfiguration für das Softwaretool und für die Datenanalyse Pipeline agiert. Die Konfiguration einer Regel für das Softwaretool enthält nicht alle Attribute einer Linterregel, wie im \acs{OAS} Regelwerk. Das \acs{OAS} Regelwerk liegt zur Laufzeit des Softwaretools als eingebundenes Node Modul vor. Hieraus lassen sich nicht alle notwendigen Informationen für die Invertierung automatisiert extrahieren. Die Konfiguration, die für die Invertierung einer Regel ermittelt wurde, ist in Quellcode \ref{lst:inversionconfigexample} beispielhaft dargestellt.
 
 \lstset{language=JavaScript}
 \begin{lstlisting}[
@@ -156,14 +156,14 @@ In Tabelle \ref{tab:singletriggerinverts} wird der Mittelwert der Auslösungen f
   contact-properties & 0.000000 \\ 
   info-contact & 0.570358 \\ 
   info-description & 0.117021 \\ 
-  info-license & 0.000000 \\ 
-  license-url & 0.000000 \\ 
+  info-licence & 0.000000 \\ 
+  licence-url & 0.000000 \\ 
   openapi-tags-alphabetical & 0.000000 \\ 
   oas3-api-servers & 0.010880 \\ 
   oas3-server-not-example.com & 0.000000 \\ \hline\hline
 \end{longtable}
 
-Für Multi Trigger Regeln ist in Abbildung \ref{fig:multitriggerbarplot} der Mittelwert des Unterschieds zwischen geworfenen und möglichen Linterfehlern zu erkennen. Zusätzlich lässt sich an den Whiskers die Standardabweichung ablesen. An der Standardabweichung sehen wir, dass die Daten stark variieren. Bei jeder Regel ist die Standardabweichung größer als der Mittelwert (Dies lässt sich an den nach unten unbeschränkten Whiskers erkennen). Dieses Verhalten lässt sich damit begründen, dass keine der Regeln in der Mehrheit der Spezifikationen ausgelöst wird. Der Median aller Mulit Trigger Regeln ist 0 (siehe \ref{tab:totalthrownerrors}). Wie auch bei den Single Trigger Regeln können wir ablesen, dass einige Regeln keinen einzigen Fehler ausgelöst haben. Das sind bei den Multi Trigger Regeln operation-operationId-unique, openapi-tags-uniqueness, openapi-tags, operation-singular-tags, path-declaration-must-exist, tag-description und oas3-parameter-description. Ein semantischer Zusammenhang dieser Regeln lässt sich nicht erkennen. In 14 / 15 Fällen ist der Mittelwert der geworfenen Linterregeln pro Spezifikation unter 1. Ausschließlich die Regel operation-tags wird im Schnitt mehr als ein Mal pro Spezifikation geworfen. 
+Für Multi Trigger Regeln ist in Abbildung \ref{fig:multitriggerbarplot} der Mittelwert des Unterschieds zwischen geworfenen und möglichen Linterfehlern zu erkennen. Zusätzlich lässt sich an den Whiskers die Standardabweichung ablesen. An der Standardabweichung sehen wir, dass die Daten stark variieren. Bei jeder Regel ist die Standardabweichung größer als der Mittelwert (Dies lässt sich an den nach unten unbeschränkten Whiskers erkennen). Dieses Verhalten lässt sich damit begründen, dass keine der Regeln in der Mehrheit der Spezifikationen ausgelöst wird. Der Median aller Multi Trigger Regeln ist 0 (siehe \ref{tab:totalthrownerrors}). Wie auch bei den Single Trigger Regeln können wir ablesen, dass einige Regeln keinen einzigen Fehler ausgelöst haben. Das sind bei den Multi Trigger Regeln operation-operationId-unique, openapi-tags-uniqueness, openapi-tags, operation-singular-tags, path-declaration-must-exist, tag-description und oas3-parameter-description. Ein semantischer Zusammenhang dieser Regeln lässt sich nicht erkennen. In 14 / 15 Fällen ist der Mittelwert der geworfenen Linterregeln pro Spezifikation unter 1. Ausschließlich die Regel operation-tags wird im Schnitt mehr als ein Mal pro Spezifikation geworfen. 
 
 \begin{figure}[htbp]
   \centering
@@ -172,24 +172,24 @@ Für Multi Trigger Regeln ist in Abbildung \ref{fig:multitriggerbarplot} der Mit
   \label{fig:multitriggerbarplot}
 \end{figure}
 
-Die Verteilung der invertierten Häufigkeit der geworfenen Linterfehler ist für alle Regeln, die mindestens einmal ausgelöst werden, in Abbildung \ref{fig:boxplotcleanmultitrigger} gezeigt. Da der Median für diese Linterregeln gleich 0 ist und so Verteilungen nur schwer sichbar sind, werden in dieser Visualisierung Spezifikationen, die nicht gegen eine Regel verstoßen, herausgefiltert.
+Die Verteilung der invertierten Häufigkeit der geworfenen Linterfehler ist für alle Regeln, die mindestens einmal ausgelöst werden, in Abbildung \ref{fig:boxplotcleanmultitrigger} gezeigt. Da der Median für diese Linterregeln gleich 0 ist und so Verteilungen nur schwer sichtbar sind, werden in dieser Visualisierung Spezifikationen, die nicht gegen eine Regel verstoßen, herausgefiltert.
 
-Gegen die Regeln no-eval-in-markdown und no-script-tags-in-markdown, die semantisch sehr ähnlich sind, wird bei Linterfehlern nur in geringen Anteilen gegen die Regel verstoßen. Die Perzentile, Whiskers und der Median sind nahe bei Null. Die Regeln operation-success-response, duplicated-entry-in enum und array-items zeigen eine weitere Verteilung und damit eine höhere Abweichung der relativen Verstöße. Dies deutet darauf hin, dass diese Regeln auch innerhalb von einzelnen Spezifikationen nicht konsistent eingehalten werden. Die Regeln operation-operationId-valid, operation-tags und oas3-server-trailing-slash tendieren alle zu einem hohen Medianwert. Dies zeigt, dass wenn gegen die Regel verstoßen wird, dieser Verstoß kosistent in der gesamten Spezifikation zu sehen ist. Bei der Regel operation-tags ist das so eindeutig, dass Quartile der Verteilung visuell nicht zu erkennen sind. Lediglich Ausreißer sind sichtbar.
+Gegen die Regeln no-eval-in-markdown und no-script-tags-in-markdown, die semantisch sehr ähnlich sind, wird bei Linterfehlern nur in geringen Anteilen gegen die Regel verstoßen. Die Perzentile, Whiskers und der Median sind nahe bei null. Die Regeln operation-success-response, duplicated-entry-in-enum und array-items zeigen eine weitere Verteilung und damit eine höhere Abweichung der relativen Verstöße. Dies deutet darauf hin, dass diese Regeln auch innerhalb von einzelnen Spezifikationen nicht konsistent eingehalten werden. Die Regeln operation-operationId-valid, operation-tags und oas3-server-trailing-slash tendieren alle zu einem hohen Medianwert. Dies zeigt, dass wenn gegen die Regel verstoßen wird, dieser Verstoß konsistent in der gesamten Spezifikation zu sehen ist. Bei der Regel operation-tags ist das so eindeutig, dass Quartile der Verteilung visuell nicht zu erkennen sind. Lediglich Ausreißer sind sichtbar.
 
-Für Multi-Message Regeln war es nicht möglich mit dem gewählten generalisierenden Ansatz Invertierungen zu berechnen. Die Anzahl der pro JSONPath Selektion möglicher Linterfehler ist teilweise abhängig von der Größe der OpenAPI Spezifikation oder von weiteren eingebundenen Softwarebibliotheken\footnote{Dies ist bei der Regel oas3-schema der Fall, in der eine Drittanbieter Bibliothem eingebunden wirft, die die Validität des Schemas mit der OpenAPI Spezifikation validiert. Die Anzahl der möglichen Fehler zu ermitteln ist nicht möglich.}. Dies macht eine aufwendige regelspezifische Invertierung erforderlich, die im Rahmen dieser Arbeit nicht möglich ist.
+Für Multi-Message Regeln war es nicht möglich mit dem gewählten generalisierenden Ansatz Invertierungen zu berechnen. Die Anzahl der pro JSONPath Selektion möglicher Linterfehler ist teilweise abhängig von der Größe der OpenAPI Spezifikation oder von weiteren eingebundenen Softwarebibliotheken\footnote{Dies ist bei der Regel oas3-schema der Fall, in der eine Drittanbieter Bibliothek eingebunden wirft, die die Validität des Schemas mit der OpenAPI Spezifikation validiert. Die Anzahl der möglichen Fehler zu ermitteln ist nicht möglich.}. Dies macht eine aufwendige Regel spezifische Invertierung erforderlich, die im Rahmen dieser Arbeit nicht möglich ist.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/boxplotcleanmultitrigger.png}
-  \caption{Boxplot von Multi Trigger Regeln, wenn min. 1 Fehler geworfen wurde. Nicht triggernde Spezifikationenwurden  herausgefiltert.}
+  \caption{Boxplot von Multi Trigger Regeln, wenn min. 1 Fehler geworfen wurde. Nicht triggernde Spezifikationen wurden  herausgefiltert.}
   \label{fig:boxplotcleanmultitrigger}
 \end{figure}
 
-Aus den Invertierungen lassen sich viele Informationen ablesen, die direkte Implikationen zu der Relevanz einer Regel für die Spezifikationen zulassen. Dies kann zum Beispiel in Abbildung \ref{fig:boxplotcleanmultitrigger} anhand der Konsitenz innerhalb der Spezifikationen beobachtet werden. Die Invertierung lässt sich mit der Implementierung dieser Arbeit jedoch nur für Single Trigger und Multi Trigger Regeln durchführen. Für die Multi Message Regeln lassen sich diese Werte nicht ermitteln. Um trotzdem Aussagen zur Priorisierung des Spectral \acs{OAS} Regelwerks zu machen, wird in folgendem Abschnitt nur die Boolean Matrix über Vorkommnisse der Regeln und Spezifikationen betrachtet, die aussagt, ob eine Spezifikation eine Regel ausgelöst hat. Die Anzahl der Auslösungen spielt dort keine Rolle. Diese Methode ist auch unspezifisch gegenüber der Größe der Spezifikationen und lässt keine Verzerrung in Richtung großer oder kleiner Spezifikationen zu. Außerdem ist die Methode indifferent gegenüber der Regelart. Single Trigger, Multi Trigger und Multi Message Regeln können auf diese Repräsentation abgebildet werden.
+Aus den Invertierungen lassen sich viele Informationen ablesen, die direkte Implikationen zu der Relevanz einer Regel für die Spezifikationen zulassen. Dies kann zum Beispiel in Abbildung \ref{fig:boxplotcleanmultitrigger} anhand der Konsistenz innerhalb der Spezifikationen beobachtet werden. Die Invertierung lässt sich mit der Implementierung dieser Arbeit jedoch nur für Single Trigger und Multi Trigger Regeln durchführen. Für Multi Message Regeln lassen sich diese Werte nicht ermitteln. Um trotzdem Aussagen zur Priorisierung des Spectral \acs{OAS} Regelwerks zu machen, wird in folgendem Abschnitt nur die Boolean Matrix über Vorkommnisse der Regeln und Spezifikationen betrachtet, die aussagt, ob eine Spezifikation eine Regel ausgelöst hat. Die Anzahl der Auslösungen spielt dort keine Rolle. Diese Methode ist auch unspezifisch gegenüber der Größe der Spezifikationen und lässt keine Verzerrung in Richtung großer oder kleiner Spezifikationen zu. Außerdem ist die Methode indifferent gegenüber der Regelart. Single Trigger, Multi Trigger und Multi Message Regeln können auf diese Repräsentation abgebildet werden.
 
 
 \subsection{Priorisierung} \label{sec:priorisierung}
-Im diesem Kapitel werden die Ergebnisse der Priorisierung vorgestellt. Die Ausgangsdaten für die Priorisierungen sind ausschließlich Wahrheitswerte. Erste manuelle Einschätzungen der Relevanz konnten in der Auswertung der Invertierung gesehen werden. 
+In diesem Kapitel werden die Ergebnisse der Priorisierung vorgestellt. Die Ausgangsdaten für die Priorisierungen sind ausschließlich Wahrheitswerte. Erste manuelle Einschätzungen der Relevanz konnten in der Auswertung der Invertierung gesehen werden. 
 
 
 \subsubsection{Relevanz Frequenz} \label{sec:iversesfrequenzscoring}
@@ -197,7 +197,7 @@ Das Scoring der Relevanz nach \acl{IDF} ist in Tabelle \ref{tab:combinedweighedp
 
 
 \subsubsection{Relevanz Diversität} \label{sec:diversitätsscoring}
-Eine Visualisierung der jeweils minimalen Jaccard Ähnlichkeiten und ein Hierarchisches Clustering der Regeln ist in Abbildung \ref{fig:hierarchicalclusteronbinary} dargestellt. Die Priorisierung nach $\text{Relevanz}_\text{Diversität}$ ergibt sich indirekt aus den Werten, die durch das Dendrogram visualisiert werden. Das Dendrogram eignet sich, um die Motivation der des $\text{Relevanz}_\text{Diversität}$ zu verdeutlichen.
+Eine Visualisierung der jeweils minimalen Jaccard Ähnlichkeiten und ein Hierarchisches Clustering der Regeln ist in Abbildung \ref{fig:hierarchicalclusteronbinary} dargestellt. Die Priorisierung nach $\text{Relevanz}_\text{Diversität}$ ergibt sich indirekt aus den Werten, die durch das Dendrogramm visualisiert werden. Das Dendrogramm eignet sich, um die Motivation der des $\text{Relevanz}_\text{Diversität}$ zu verdeutlichen.
 
 In dieser Abbildung lassen sich die Regeln, die nie ausgelöst wurden, als Cluster erkennen. Ein zweites Cluster wird durch die Regeln no-eval-in-markdown, no-script-tags-in-markdown und openapi-tags-uniqueness gebildet. Dies zeigt, dass diese Regeln von den gleichen Spezifikationen missachtet wurden. Durch die Ähnlichkeit des Auslösemusters der Regeln, die in Markdown eingebetteten Code erkennen, liegt nahe, dass diese von den gleichen Spezifikationen ausgelöst wurden. Die Einbettung von Code in die Markdownfelder ist hier eventuell intendiertes Verhalten. Die verbleibenden 22 Regeln werden im Dendrogramm in ein großes Cluster eingeteilt. Wir können erkennen, dass diese in der Regel bei Jaccard Ähnlichkeiten größer 0,8 zusammengeführt werden. Für die Linterergebnisse bedeutet dies, dass keine weiteren Trends zum Missachten bestimmter Regeln vorliegen. 
 
@@ -206,7 +206,7 @@ In Tabelle \ref{tab:combinedweighedprioritized} wird die Gewichtung der $\text{R
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/hierarchicalclusteronbinary.png}
-  \caption{Dendrogram der Jaccard Ähnlichkeit der Regeln.}
+  \caption{Dendrogramm der Jaccard Ähnlichkeit der Regeln.}
   \label{fig:hierarchicalclusteronbinary}
 \end{figure}
 
@@ -220,12 +220,12 @@ Die gewichtete Kombination der Priorisierungsverfahren ist in Tabelle \ref{tab:c
 
 Tabelle \ref{tab:combinedweighedprioritized} bildet das Kernstück der Datenanalyse der Arbeit. Die Tabelle aggregiert Informationen zur Priorisierung der $\text{Relevanz}_\text{Frequenz}$ und der $\text{Relevanz}_\text{Diversität}$ sowie die gewichtete Kombination der Maße und der Einteilung, basierend auf der Relevanz der Regeln in Cluster zu neuen Linterschweregraden. Dies sind alle Werte, die im Rahmen der Priorisierung der Linterregeln ermittelt werden. Die mit der Tabelle visualisierten Daten beantworten die Forschungsfragen \textbf{RQ-2} und \textbf{RQ-3}.
 
-An den Werten der gewichteten Kombination kann erkannt werden, dass in den meisten Fällen, die $\text{Relevanz}_\text{Frequenz}$ ausschlaggebend für die Position in der Priorisierung ist. Regeln, die durch das $\text{Relevanz}_\text{Frequenz}$ sehr niedrig priorisiert wurden, werden durch die $\text{Relevanz}_\text{Diversität}$ Priorisierung teilweise aufgewertet. Die Verteilung der Relevanzen in beiden Maßen neigt stark zu den Rändern. Dies bedeutet, dass Regeln entweder hoch priorisiert werden oder sehr niedrig priorisiert werden. Um dies zu verdeutlichen ist in Abbildung \ref{fig:priodistrhist} ein Histogram abgebildet, das die Verteilung der Priorisierungen nach den verschiedenen Maßen abbildet. Man kann erkennen, dass die niedrig priorisierten Regeln in dem Bereich von einer Relevanz von 0 - 0,2 verteilt sind. Hoch priorisierte Regeln sind eng beieinanderliegend, da dies die Regeln umfasst, die nie ausgelöst wurden. Diese werden nach beiden Priorisierungsmaßen immer mit dem höchsten Wert bewertet. Zwischen den Randakkumulationen werden einige Regeln nach der $\text{Relevanz}_\text{Frequenz}$ im mittleren Bereich des Spektrums angesiedelt. Diese Informationen werden in der Neuverteilung der Linter Schweregrade weiterverwendet und sind für das Clustering ausschlaggebend.
+An den Werten der gewichteten Kombination kann erkannt werden, dass in den meisten Fällen, die $\text{Relevanz}_\text{Frequenz}$ ausschlaggebend für die Position in der Priorisierung ist. Regeln, die durch das $\text{Relevanz}_\text{Frequenz}$ sehr niedrig priorisiert wurden, werden durch die $\text{Relevanz}_\text{Diversität}$ Priorisierung teilweise aufgewertet. Die Verteilung der Relevanzen in beiden Maßen neigt stark zu den Rändern. Dies bedeutet, dass Regeln entweder hoch priorisiert werden oder sehr niedrig priorisiert werden. Um dies zu verdeutlichen ist in Abbildung \ref{fig:priodistrhist} ein Histogramm abgebildet, das die Verteilung der Priorisierungen nach den verschiedenen Maßen abbildet. Man kann erkennen, dass die niedrig priorisierten Regeln in dem Bereich von einer Relevanz von 0 bis 0,2 verteilt sind. Hoch priorisierte Regeln sind eng beieinanderliegend, da dies die Regeln umfasst, die nie ausgelöst wurden. Diese werden nach beiden Priorisierungsmaßen immer mit dem höchsten Wert bewertet. Zwischen den Randakkumulationen werden einige Regeln nach der $\text{Relevanz}_\text{Frequenz}$ im mittleren Bereich des Spektrums angesiedelt. Diese Informationen werden in der Neuverteilung der Linter Schweregrade weiterverwendet und sind für das Clustering ausschlaggebend.
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=1\linewidth]{img/priodistrhist.png}
-  \caption{Histogram Verteilung der Relevanz}
+  \caption{Histogramm Verteilung der Relevanz}
   \label{fig:priodistrhist}
 \end{figure}
 
@@ -243,8 +243,8 @@ An den Werten der gewichteten Kombination kann erkannt werden, dass in den meist
   openapi-tags* & 1 &  0.375 & 0.875 & \texttt{warn} & \texttt{error} \\ 
   openapi-tags-alphabetical* &  1 &  0.375 & 0.875 & \texttt{warn} & \texttt{error} \\ 
   openapi-tags-uniqueness* &  1 &  0.375 & 0.875 & \texttt{error} & \texttt{error} \\ 
-  license-url* &  1 &  0.375 & 0.875 & \texttt{warn} & \texttt{error} \\ 
-  info-license* & 1 &  0.375 & 0.875 & \texttt{warn} & \texttt{error} \\ 
+  licence-url* &  1 &  0.375 & 0.875 & \texttt{warn} & \texttt{error} \\ 
+  info-licence* & 1 &  0.375 & 0.875 & \texttt{warn} & \texttt{error} \\ 
   oas3-server-not-example.com* &  1 &  0.375 & 0.875 & \texttt{warn} & \texttt{error} \\ 
   oas3-operation-security-defined* &  1 &  0.375 & 0.875 & \texttt{warn} & \texttt{error} \\ 
   oas3-parameter-description* & 1 & 0.375 & 0.875 & \texttt{warn} & \texttt{error} \\ 
@@ -282,7 +282,7 @@ An den Werten der gewichteten Kombination kann erkannt werden, dass in den meist
 
 
 \subsubsection{Clustering} \label{sec:analclustering}
-In Tabelle \ref{tab:combinedweighedprioritized} kann man die Zugehörigkeit der Regeln zu Clustern, die Linter Schweregraden zugeordnet werden, sehen. Die Clusterzugehörigkeiten werden durch die Spalte Cluster und durch horizontale Linien in der Tabelle sichtbar. In Abbildung \ref{fig:clusterprioscatter} wird die Priorisierung der Linterregeln auf einem Scatterplot gezeigt. Für die Clusterzuordung wurde das k-means Verfahren verwendet. Ein Scatterplot eignet sich gut um diese Clusterzugehörigkeiten im Zweidimensionalen Raum visuell darzustellen. Die Priorisierungsmaße sind die Dimensionen.
+In Tabelle \ref{tab:combinedweighedprioritized} kann man die Zugehörigkeit der Regeln zu Clustern, die Linter Schweregraden zugeordnet werden, sehen. Die Clusterzugehörigkeiten werden durch die Spalte Cluster und durch horizontale Linien in der Tabelle sichtbar. In Abbildung \ref{fig:clusterprioscatter} wird die Priorisierung der Linterregeln auf einem Scatterplot gezeigt. Für die Clusterzuordung wurde das k-means Verfahren verwendet. Ein Scatterplot eignet sich gut, um diese Clusterzugehörigkeiten im Zweidimensionalen Raum visuell darzustellen. Die Priorisierungsmaße sind die Dimensionen.
 
 Zusätzlich werden auf dem Scatterplot Voronoi Regionen gezeigt, die visualisieren, welche Regionen einem Cluster zugeordnet werden können \parencite{klein_algorithmische_2022}. Da die Daten dicht beieinanderliegen, kann mit dieser Methode die Verteilung der Cluster über den gesamten Relevanzraum gezeigt werden. Es ist sichtbar, dass die Cluster auch ausschließlich auf dem $\text{Relevanz}_\text{Frequenz}$ Maß aufgestellt werden könnten. Die Cluster unterscheiden sich klar auf der in ihren $\text{Relevanz}_\text{Frequenz}$ Werten. Die $\text{Relevanz}_\text{Diversität}$ Werte befinden sich bis auf die Regeln, die nie ausgelöst werden sehr dicht beieinander. Die $\text{Relevanz}_\text{Diversität}$ Werte verursachen die Schräge der Grenzen der Voronoi Regionen. Diese teilen die Fläche der möglichen Priorisierungen in drei Regionen, die um die Clustermittelpunkte (Centroiden) angeordnet sind.
 
@@ -293,7 +293,7 @@ Zusätzlich werden auf dem Scatterplot Voronoi Regionen gezeigt, die visualisier
   \label{fig:clusterprioscatter}
 \end{figure}
 
-Nach der Neuverteilung der Linter Schweregrade durch das k-means Clustering haben viele der Linterregeln eine Zuordnung zu einem anderem Schweregrad als im Spectral OAS Regelwerk. Die Neuverteilungen werden in Tabelle \ref{tab:severityreassignments} gezeigt. Nur in einem Fall (operation-operationId-unique) werden zwei Linter Schweregrade übersprungen. Diese Regel wurde nie ausgelöst. Die größten Verschiebungen finden zwischen \texttt{warn} und \texttt{error} bzw. \texttt{error} statt. Der Schweregrad \texttt{warn} wird durch den Spectral Linter standardisiert zugewiesen, wenn keine explizite Einteilung durch das Regelwerk vorgenommen wurde. Seit Version 5.0 ist die Standardkonfiguration des Spectral \acs{API} Linters, dass nur Regeln mit dem Schweregrad \texttt{error} einen Laufzeitfehler mit einem Statuscode von 1 auslösen\footnote{Erwähnt in der Spectral CLI Dokumentation: \href{https://meta.stoplight.io/docs/spectral/9ffa04e052cc1-spectral-cli}{https://meta.stoplight.io/docs/spectral/9ffa04e052cc1-spectral-cli}}. Mit 15 Regeln, die durch das Clustering auf den Schweregrad  \texttt{error} gestellt werden, ist die Anzahl von Regeln, die den Linter mit Standardeinstellungen zum Fehlschlagen bringen, bedeutend höher. Im \acs{OAS} Regelwerk sind die meisten Regeln dem Schweregrad \texttt{warn} zugewiesen. Vier Regeln werden im \acs{OAS} Regelwerk mit \texttt{hint} bewertet, die in der Neuverteilung eine oder mehrere Schweregrade nach oben rutschen. Diese Regeln sollen in der Interpretation semantisch untersucht werden, ob es sich um Regeln handelt, die im \acs{OAS} Regelwerk falsch klassifisziert wurden oder, ob es sich um seltene Randfälle handelt, die im OpenAPIs.guru Datensatz nie vorgekommen sind. Im ersten Fall wäre die Einordung als \texttt{error} korrekt. Letzteres würde die Klassifizierung als \texttt{error} eher überflüssig erscheinen lassen.
+Nach der Neuverteilung der Linter Schweregrade durch das k-means Clustering haben viele der Linterregeln eine Zuordnung zu einem anderen Schweregrad als im Spectral OAS Regelwerk. Die Neuverteilungen werden in Tabelle \ref{tab:severityreassignments} gezeigt. Nur in einem Fall (operation-operationId-unique) werden zwei Linter Schweregrade übersprungen. Diese Regel wurde nie ausgelöst. Die größten Verschiebungen finden zwischen \texttt{warn} und \texttt{error} bzw. \texttt{error} statt. Der Schweregrad \texttt{warn} wird durch den Spectral Linter standardisiert zugewiesen, wenn keine explizite Einteilung durch das Regelwerk vorgenommen wurde. Seit Version 5.0 ist die Standardkonfiguration des Spectral \acs{API} Linters, dass nur Regeln mit dem Schweregrad \texttt{error} einen Laufzeitfehler mit einem Statuscode von 1 auslösen\footnote{Erwähnt in der Spectral CLI Dokumentation: \href{https://meta.stoplight.io/docs/spectral/9ffa04e052cc1-spectral-cli}{https://meta.stoplight.io/docs/spectral/9ffa04e052cc1-spectral-cli}}. Mit 15 Regeln, die durch das Clustering auf den Schweregrad  \texttt{error} gestellt werden, ist die Anzahl von Regeln, die den Linter mit Standardeinstellungen zum Fehlschlagen bringen, bedeutend höher. Im \acs{OAS} Regelwerk sind die meisten Regeln, dem Schweregrad \texttt{warn} zugewiesen. Vier Regeln werden im \acs{OAS} Regelwerk mit \texttt{hint} bewertet, die in der Neuverteilung eine oder mehrere Schweregrade nach oben rutschen. Diese Regeln sollen in der Interpretation semantisch untersucht werden, ob es sich um Regeln handelt, die im \acs{OAS} Regelwerk falsch klassifiziert wurden oder, ob es sich um seltene Randfälle handelt, die im APIs.guru Datensatz nie vorgekommen sind. Im ersten Fall wäre die Einordnung als \texttt{error} korrekt. Letzteres würde die Klassifizierung als \texttt{error} eher überflüssig erscheinen lassen.
 
 \begin{longtable}{llr}
   \caption{Neuverteilungen der Linter Schweregrade}
