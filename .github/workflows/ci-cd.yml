@@ -65,8 +65,8 @@ jobs:
       - name: Upload PDF as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.directory == 'tex/thesis' && 'thesis' || 'expose' }}
-          path: ${{ matrix.directory }}/main.pdf
+          name: ${{ matrix.directory }}
+          path: tex/${{ matrix.directory }}/main.pdf
 
   build_python:
     name: Format, Lint, Test Python
@@ -162,11 +162,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Download Artifact
+      - name: Download Expose
+        uses: actions/download-artifact@v4
+        with:
+          name: expose
+          path: expose.pdf
+
+      - name: Download Thesis
         uses: actions/download-artifact@v4
         with:
           name: thesis
           path: thesis.pdf
+
+      - name: Download Thesis
+        uses: actions/download-artifact@v4
+        with:
+          name: defense
+          path: defense.pdf
 
       - name: Create Release
         id: create_release
@@ -176,4 +188,7 @@ jobs:
         with:
           tag_name: v0.${{ github.run_number }}
           name: "Release v1.${{ github.run_number }}"
-          files: thesis.pdf
+          files: |
+            expose.pdf
+            thesis.pdf
+            defense.pdf
