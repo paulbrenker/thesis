@@ -30,15 +30,12 @@ jobs:
         if: github.ref != 'refs/heads/main'
         uses: snnaplab/get-labels-action@v1.0.1
 
-  build_thesis:
-    name: Build LaTeX
+  get_artifacts:
+    name: Get Artifacts
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 3
     needs: labeler
     if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
-    strategy:
-      matrix:
-        directory: ["tex/thesis", "tex/expose"]
     steps:
       - name: Check Out
         uses: actions/checkout@v4
@@ -55,18 +52,45 @@ jobs:
         run: |
           xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./script/export_diagrams.sh
 
+      - name: Upload Image Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: drawio
+          path: tex/thesis/img
+
+  build_latex:
+    name: Build LaTeX
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    needs:
+      - labeler
+      - get_artifacts
+    if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
+    strategy:
+      matrix:
+        directory: ["thesis", "expose", "defense"]
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v4
+
+      - name: Place Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: drawio
+          path: tex/thesis/img
+
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          working_directory: ${{ matrix.directory }}
+          working_directory: tex/${{ matrix.directory }}
           root_file: main.tex
           latexmk_use_xelatex: true
 
       - name: Upload PDF as Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.directory == 'tex/thesis' && 'thesis' || 'expose' }}
-          path: ${{ matrix.directory }}/main.pdf
+          name: ${{ matrix.directory }}
+          path: tex/${{ matrix.directory }}/main.pdf
 
   build_python:
     name: Format, Lint, Test Python
@@ -151,7 +175,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     timeout-minutes: 10
     needs:
-      - build_thesis
+      - build_latex
       - build_typescript
       - build_python
     runs-on: ubuntu-latest
@@ -162,11 +186,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Download Artifact
+      - name: Download Expose
+        uses: actions/download-artifact@v4
+        with:
+          name: expose
+          path: expose.pdf
+
+      - name: Download Thesis
         uses: actions/download-artifact@v4
         with:
           name: thesis
-          path: ./
+          path: thesis.pdf
+
+      - name: Download Thesis
+        uses: actions/download-artifact@v4
+        with:
+          name: defense
+          path: defense.pdf
 
       - name: Create Release
         id: create_release
@@ -176,4 +212,7 @@ jobs:
         with:
           tag_name: v0.${{ github.run_number }}
           name: "Release v1.${{ github.run_number }}"
-          files: main.pdf
+          files: |
+            expose.pdf
+            thesis.pdf
+            defense.pdf
