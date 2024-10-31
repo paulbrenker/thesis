@@ -30,7 +30,7 @@ jobs:
         if: github.ref != 'refs/heads/main'
         uses: snnaplab/get-labels-action@v1.0.1
 
-  build_thesis:
+  build_latex:
     name: Build LaTeX
     runs-on: ubuntu-latest
     timeout-minutes: 6
@@ -38,7 +38,7 @@ jobs:
     if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
     strategy:
       matrix:
-        directory: ["tex/thesis", "tex/expose"]
+        directory: ["thesis", "expose", "defense"]
     steps:
       - name: Check Out
         uses: actions/checkout@v4
@@ -58,7 +58,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          working_directory: ${{ matrix.directory }}
+          working_directory: tex/${{ matrix.directory }}
           root_file: main.tex
           latexmk_use_xelatex: true
 
@@ -151,7 +151,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     timeout-minutes: 10
     needs:
-      - build_thesis
+      - build_latex
       - build_typescript
       - build_python
     runs-on: ubuntu-latest
@@ -166,7 +166,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: thesis
-          path: ./
+          path: thesis.pdf
 
       - name: Create Release
         id: create_release
@@ -176,4 +176,4 @@ jobs:
         with:
           tag_name: v0.${{ github.run_number }}
           name: "Release v1.${{ github.run_number }}"
-          files: main.pdf
+          files: thesis.pdf
