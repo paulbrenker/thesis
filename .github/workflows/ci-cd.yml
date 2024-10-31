@@ -190,19 +190,28 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: expose
-          path: expose.pdf
+          path: ./expose
+
+      - name: Rename Expose to expose.pdf
+        run: mv ./expose/* ./expose.pdf
 
       - name: Download Thesis
         uses: actions/download-artifact@v4
         with:
           name: thesis
-          path: thesis.pdf
+          path: ./thesis
 
-      - name: Download Thesis
+      - name: Rename Thesis to thesis.pdf
+        run: mv ./thesis/* ./thesis.pdf
+
+      - name: Download Defense
         uses: actions/download-artifact@v4
         with:
           name: defense
-          path: defense.pdf
+          path: ./defense
+
+      - name: Rename Defense to defense.pdf
+        run: mv ./defense/* ./defense.pdf
 
       - name: Create Release
         id: create_release
