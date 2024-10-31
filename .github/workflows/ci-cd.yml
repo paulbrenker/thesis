@@ -58,6 +58,35 @@ jobs:
           name: drawio
           path: tex/thesis/img
 
+  set_matrix:
+    runs-on: ubuntu-latest
+    needs: labeler
+    timeout-minutes: 1
+    if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Matrix
+        id: set-matrix
+        run: |
+          labels="${{ needs.labeler.outputs.labels }}"
+          matrix="[]"
+
+          if [[ "$labels" == *"thesis-change"* ]]; then
+            matrix=$(jq -c '. += ["thesis"]' <<<"$matrix")
+          fi
+          if [[ "$labels" == *"defense-change"* ]]; then
+            matrix=$(jq -c '. += ["defense"]' <<<"$matrix")
+          fi
+          if [[ "$labels" == *"expose-change"* ]]; then
+            matrix=$(jq -c '. += ["expose"]' <<<"$matrix")
+          fi
+
+          echo "::set-output name=matrix::$matrix"
+
   build_latex:
     name: Build LaTeX
     runs-on: ubuntu-latest
@@ -65,10 +94,11 @@ jobs:
     needs:
       - labeler
       - get_artifacts
+      - set_matrix
     if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
     strategy:
       matrix:
-        directory: ["thesis", "expose", "defense"]
+        directory: ${{ fromJson(needs.set_matrix.outputs.matrix) }}
     steps:
       - name: Check Out
         uses: actions/checkout@v4
