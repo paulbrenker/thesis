@@ -30,15 +30,12 @@ jobs:
         if: github.ref != 'refs/heads/main'
         uses: snnaplab/get-labels-action@v1.0.1
 
-  build_latex:
-    name: Build LaTeX
+  get_artifacts:
+    name: Get Artifacts
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 3
     needs: labeler
     if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
-    strategy:
-      matrix:
-        directory: ["thesis", "expose", "defense"]
     steps:
       - name: Check Out
         uses: actions/checkout@v4
@@ -54,6 +51,33 @@ jobs:
       - name: Export Diagrams
         run: |
           xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./script/export_diagrams.sh
+
+      - name: Upload Image Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: drawio
+          path: tex/thesis/img
+
+  build_latex:
+    name: Build LaTeX
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    needs:
+      - labeler
+      - get_artifacts
+    if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
+    strategy:
+      matrix:
+        directory: ["thesis", "expose", "defense"]
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v4
+
+      - name: Place Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: drawio
+          path: tex/thesis/img
 
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
