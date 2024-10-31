@@ -86,6 +86,11 @@ jobs:
             matrix=$(jq -c '. += ["expose"]' <<<"$matrix")
           fi
 
+          # In Case of a Release all must be set
+          if [[ "$matrix" == "[]" ]]; then
+            matrix='["expose", "thesis", "defense"]'
+          fi
+
           echo "::set-output name=matrix::$matrix"
 
   build_latex:
