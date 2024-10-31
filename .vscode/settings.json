@@ -1,6 +1,8 @@
 {
   "editor.formatOnSave": true,
-  "latex-workshop.latex.outDir": "./out",
+  "latex-workshop.latex.outDir": "out",
+  "latex-workshop.latex.rootFile.useSubFile": true,
+  "latex-workshop.latex.rootFile.doNotPrompt": true,
   "latex-workshop.view.pdf.viewer": "tab",
   "latex-workshop.docker.enabled": true,
   "latex-workshop.docker.image.latex": "ghcr.io/xu-cheng/texlive-full",
