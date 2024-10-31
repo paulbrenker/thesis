@@ -15,6 +15,21 @@ text-change:
       - any-glob-to-any-file:
           - "tex/**"
 
+expose-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tex/expose**"
+
+thesis-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tex/thesis**"
+
+defense-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tex/defense**"
+
 requirements-change:
   - changed-files:
       - any-glob-to-any-file:

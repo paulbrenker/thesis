@@ -59,6 +59,7 @@ jobs:
           path: tex/thesis/img
 
   set_matrix:
+    name: Set Matrix
     runs-on: ubuntu-latest
     needs: labeler
     timeout-minutes: 1
@@ -202,6 +203,7 @@ jobs:
         run: npm run build
 
   release:
+    name: Release
     if: github.ref == 'refs/heads/main'
     timeout-minutes: 10
     needs:
