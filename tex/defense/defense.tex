@@ -1,43 +1,154 @@
 \section{Einleitung}
 
-\begin{frame}
-  \frametitle{REST}
-  Hello World!
+\begin{frame}{REST - Representational State Transfer}
+  \begin{itemize}
+      \item Architekturstil für verteilte Systeme
+      \item REST Schnittstellen sind im Internet über HTTP erreichbar
+      \item Implementierungsgrad kann variieren
+      \begin{itemize}
+        \item Best Practices
+        \item Reifegradmodell
+      \end{itemize}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{OpenAPI}
+  \begin{itemize}
+    \item Spezifikationsstandard für HTTP Schnittstellen
+  \end{itemize}
+  \lstset{language=none}
+  \begin{lstlisting}[
+    gobble=0,
+    frame=none,
+    captionpos=b,
+    basicstyle=\footnotesize\ttfamily,,
+    caption={Auszug aus dem Datensatz der Linterergebnisse},
+    label={lst:rawdataexample},
+  ]
+  paths:
+  /pet:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+  \end{lstlisting}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Linting}
+  \frametitle{Linting OpenAPI}
+  \begin{itemize}
+    \item Erkennen möglicher Fehler mit statischer Code Analyse
+    \item Spectral ist beliebter Linter für OpenAPI
+    \item Standard Spectral Regelwerk für OpenAPI
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \centering{\textbf{Problemdemonstration}}
 \end{frame}
 
 \begin{frame}
   \frametitle{APIs.guru}
+  \begin{itemize}
+    \item Online Repository für OpenAPI Spezifikationen
+    \item Qualitative, praxisnahe und kuratierte Spezifikationen
+  \end{itemize}
+  \hspace{1cm}
+  \begin{columns}
+    \begin{column}{0.5 \textwidth}
+      \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=1\textwidth]{images/specificationsperdomainpie.png}
+        \caption{Anzahl der Spezifikationen pro Anbieter}
+        \label{fig:Specifications}
+      \end{figure}    
+    \end{column}
+    \begin{column}{0.5 \textwidth}
+      \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=1\textwidth]{images/operationsperspecificationpie.png}
+        \caption{Anzahl der API Operationen pro Spezifikation}
+        \label{fig:Operations}
+      \end{figure}    
+    \end{column}
+  \end{columns}
 \end{frame}
 
-\begin{frame}
-  Problemdemonstration
-\end{frame}
+
 
 
 \section{Methodik}
 
 \begin{frame}
-  \frametitle{Use Cases}
+  \frametitle{Linting}
+  \vspace{-0.5cm}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/linting.png}
+    \caption{\textbf{UC-1} Linting}
+    \label{fig:linting}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
   \frametitle{Invertierung}
+  \vspace{-0.5cm}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\linewidth]{images/invert.png}
+    \caption{\textbf{UC-2} Invertierung}
+    \label{fig:invert}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
   \frametitle{Softwarearchitektur}
+  \vspace{-0.5cm}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{images/contextview.png}
+    \caption{Kontextsicht des Systems}
+    \label{fig:Kontextsicht}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
   \frametitle{Priorisierung}
+    \begin{greyblock}{Relevanz Frequenz}
+      \scriptsize{
+        \[
+          \text{Relevanz}_\text{Frequenz}(r) = 
+          \begin{cases}
+          1&\text{, wenn } 0 = \sum_{i=1}^{n}vorkommen(r, i) \\
+          \frac{1}{\sum_{i=1}^{n}vorkommen(r, i)}&\text{, sonst}.
+          \end{cases}
+        \]
+        \[
+          vorkommen(r, s) = 
+          \begin{cases} 
+          1&\text{, wenn die Spezifikation } s \text{ die Regel } r \text{ ausgelöst hat}, \\
+          0&\text{, sonst}.
+          \end{cases}
+        \]
+      }
+    \end{greyblock}
+    \begin{greyblock}{Relevanz Diversität}
+      \scriptsize{
+        \[
+          \text{Relevanz}_\text{Diversität}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
+        \]
+        \[
+          Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
+        \]
+      }      
+    \end{greyblock}
 \end{frame}
 
 \section{Analyse}
@@ -63,5 +174,5 @@
 \end{frame}
 
 \begin{frame}
-  Demonstration der Ergebnisse
+  \centering{\textbf{Demonstration der Ergebnisse}}
 \end{frame}

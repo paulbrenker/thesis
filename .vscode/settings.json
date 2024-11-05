@@ -7,6 +7,10 @@
   "latex-workshop.docker.enabled": true,
   "latex-workshop.docker.image.latex": "ghcr.io/xu-cheng/texlive-full",
   "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+  "latex-workshop.message.latexlog.exclude": [
+    "Overfull \\\\hbox",
+    "Overfull \\\\vbox"
+  ],
   "ltex.language": "de-DE",
   "pylint.cwd": "${workspaceFolder}/analysis",
   "black-formatter.cwd": "${workspaceFolder}/analysis",

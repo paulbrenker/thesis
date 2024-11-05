@@ -75,23 +75,22 @@ jobs:
         run: |
           labels="${{ needs.labeler.outputs.labels }}"
           matrix="[]"
+          default='["expose", "thesis", "defense"]'
 
+          if [[ "$labels" == *"expose-change"* ]]; then
+            matrix=$(jq -c '. += ["expose"]' <<<"$matrix")
+          fi
           if [[ "$labels" == *"thesis-change"* ]]; then
             matrix=$(jq -c '. += ["thesis"]' <<<"$matrix")
           fi
           if [[ "$labels" == *"defense-change"* ]]; then
             matrix=$(jq -c '. += ["defense"]' <<<"$matrix")
           fi
-          if [[ "$labels" == *"expose-change"* ]]; then
-            matrix=$(jq -c '. += ["expose"]' <<<"$matrix")
-          fi
-
-          # In Case of a Release all must be set
           if [[ "$matrix" == "[]" ]]; then
-            matrix='["expose", "thesis", "defense"]'
+            matrix=$default
           fi
 
-          echo "::set-output name=matrix::$matrix"
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
 
   build_latex:
     name: Build LaTeX
