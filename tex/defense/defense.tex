@@ -82,8 +82,6 @@
 \end{frame}
 
 
-
-
 \section{Methodik}
 
 \begin{frame}
@@ -151,26 +149,93 @@
     \end{greyblock}
 \end{frame}
 
+
 \section{Analyse}
 
 \begin{frame}
-  \frametitle{Azure.com Spezifikationen}
+  \frametitle{Ergebnisse}
+  \vspace{-0.4cm}
+  \begin{itemize}
+    \item 929.699 Linterfehler
+    \item 7.778.972 mögliche Stellen für Linterfehler
+  \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\linewidth]{images/totalspecthrownbarplot.png}
+    \caption{Übersicht aller geworfenen Linterfehler}
+    \label{fig:totalthrown}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Verzerrung des Datensatzes}
+  \begin{itemize}
+    \item \textbf{Frage:} Hat die Nutzung des Spectral Linters durch den Anbieter Azure.com einen Einfluss auf die Linterfehler?
+    \item \textbf{Methode:} t-Test für unabhängige Stichproben.
+    \item \textbf{Ergebnis:} Der durchschnittliche Anteil an Azure.com Linterfehlern ist niedriger, wenn Azure.com die Regel anwendet. 
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Ergebnisse der Invertierung}
+  \vspace{-0.4cm}
+  \begin{itemize}
+    \item Ansatz nur für Single Trigger und Multi Trigger gültig.
+    \item Invertierung vielversprechend für genauere Priorisierungen
+  \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\linewidth]{images/boxplotcleanmultitrigger.png}
+    \caption{Multi Trigger Regeln Auslösehäufigkeit}
+    \label{fig:boxplot}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Relevanz Frequenz}
-\end{frame}
-
-\begin{frame}
-  \frametitle{Relevanz Diversität}
+  \frametitle{Relevanz}
+  \vspace{-0.4cm}
+  \begin{itemize}
+    \item Beide Verfahren teilen Regeln in zwei Gruppen
+    \item Regeln, die nie ausgelöst  werden sind am relevantesten
+  \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.78\linewidth]{images/priodistrhist.png}
+    \caption{Relevanz der Regeln}
+    \label{fig:histogram}
+  \end{figure}
 \end{frame}
 
 \begin{frame}
   \frametitle{Clustering}
+  \vspace{-0.4cm}
+  \begin{itemize}
+    \item Neuzuordnung der Linterschweregrade mit k-means Clustering
+  \end{itemize}
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{images/clusterprioscatter.png}
+    \caption{Neuzuordnung mit Clustering}
+    \label{fig:clustering}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Umverteilung der Schweregrade}
+  \begin{longtable}{llr}
+    \label{tab:severityreassignments}
+    \endfirsthead
+    \endhead
+    \textbf{Schweregrad OAS} & \textbf{Schweregrad Cluster} & \textbf{Anzahl} \\ \hline
+    \texttt{hint} & \texttt{hint} & 4 \\
+    \texttt{warn} & \texttt{warn} & 4 \\
+    \texttt{error} & \texttt{error} & 1 \\
+    \texttt{warn} & \texttt{error} & 13 \\
+    \texttt{warn} & \texttt{hint} & 12 \\
+    \texttt{hint} & \texttt{warn} & 3 \\
+    \texttt{hint} & \texttt{error} & 1 \\
+  \caption{Neuverteilungen der Linter Schweregrade}
+  \end{longtable}
 \end{frame}
 
 \begin{frame}
