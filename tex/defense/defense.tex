@@ -1,13 +1,28 @@
-\section{Einleitung}
-
 \begin{frame}
-  \centering{\textbf{Problemdemonstration}}
+  \frametitle{Inhalt}
+  \tableofcontents
 \end{frame}
 
+\section{Motivation}
+\begin{frame}\frametitle{Motivation}
+  \begin{itemize}
+    \item \textbf{Problem:} Linting von OpenAPI Spezifikationen mit Spectral ist komplex.
+    \item \textbf{Ziel:}
+    \begin{itemize}
+      \item Linting von OpenAPI Spezifikationen vereinfachen.
+      \item Softwarequalität und Schnittstellenqualität verbessern.
+      \item Entwicklerzeit sparen.
+    \end{itemize}
+    \item \textbf{Methode:} Linterregeln priorisieren, sodass sie den Standards praxisnaher Schnittstellen entsprechen.
+  \end{itemize}
+\end{frame}
+
+\section{Einleitung}
+\subsection{Technologien}
 \begin{frame}[fragile]
   \frametitle{OpenAPI}
   \begin{itemize}
-    \item Spezifikationsstandard für HTTP Schnittstellen
+    \item Spezifikationsstandard für HTTP Schnittstellen.
   \end{itemize}
   \lstset{language=none}
   \begin{lstlisting}[
@@ -15,8 +30,8 @@
     frame=none,
     captionpos=b,
     basicstyle=\footnotesize\ttfamily,,
-    caption={Auszug aus dem Datensatz der Linterergebnisse},
-    label={lst:rawdataexample},
+    caption={Auszug aus Beispiel OpenAPI Spezifikation},
+    label={lst:openapi},
   ]
   paths:
   /pet:
@@ -33,21 +48,41 @@
   \end{lstlisting}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{Linting OpenAPI}
   \begin{itemize}
-    \item Erkennen möglicher Fehler mit statischer Code Analyse
-    \item Spectral ist beliebter Linter für OpenAPI
-    \item Standard Spectral Regelwerk für OpenAPI
+    \item Erkennen möglicher Fehler mit statischer Code Analyse.
+    \item Spectral ist beliebter Linter für OpenAPI.
+    \item Standard Spectral Regelwerk für OpenAPI.
   \end{itemize}
-  Noch etwas mehr über Spectral Regeln oder Ruleset?
+  \lstset{language=none}
+  \begin{lstlisting}[
+    gobble=0,
+    frame=none,
+    captionpos=b,
+    basicstyle=\footnotesize\ttfamily,,
+    caption={Beispiel Spectral Linterregel},
+    label={lst:spectralrule},
+  ]
+  'info-contact':
+    recommended: true
+    given: '$'
+    then:
+      field: 'info.contact'
+      function: truthy
+  \end{lstlisting}
+\end{frame}
+
+\subsection{Problemdemonstration}
+\begin{frame}
+  \centering{\textbf{Problemdemonstration}}
 \end{frame}
 
 \begin{frame}
   \frametitle{APIs.guru}
   \begin{itemize}
-    \item Online Repository für OpenAPI Spezifikationen
-    \item Qualitative, praxisnahe und kuratierte Spezifikationen
+    \item Online Repository für OpenAPI Spezifikationen.
+    \item Qualitative, praxisnahe und kuratierte Spezifikationen.
   \end{itemize}
   \hspace{1cm}
   \begin{columns}
@@ -72,7 +107,7 @@
 
 
 \section{Methodik}
-
+\subsection{Use Cases}
 \begin{frame}
   \frametitle{Linting}
   \vspace{-0.5cm}
@@ -86,15 +121,18 @@
 
 \begin{frame}
   \frametitle{Invertierung}
-  \vspace{-0.5cm}
-  \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.9\linewidth]{images/invert.png}
-    \caption{\textbf{UC-2} Invertierung}
-    \label{fig:invert}
-  \end{figure}
+  \begin{itemize}
+    \item Invertierung der Linterfehler ist definiert als Anteil ausgelöster Linterfehler an möglichen Linterfehlern.
+    \item Regelklassen:
+    \begin{enumerate}
+      \item \textbf{Single Trigger:} Regel kann ein Mal ausgelöst werden.
+      \item \textbf{Multi Trigger:} Regel kann mehrfach ausgelöst werden.
+      \item \textbf{Multi Message:} Regel kann mehrfach ausgelöst werden. An einer selektierten Stelle können Linterfehler mit unterschiedlichen Fehlermeldungen ausgelöst werden.
+    \end{enumerate}
+  \end{itemize}
 \end{frame}
 
+\subsection{Softwarearchitektur}
 \begin{frame}
   \frametitle{Softwarearchitektur}
   \vspace{-0.5cm}
@@ -106,47 +144,14 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Priorisierung}
-    \begin{greyblock}{Relevanz Frequenz}
-      \scriptsize{
-        \[
-          \text{Relevanz}_\text{Frequenz}(r) = 
-          \begin{cases}
-          1&\text{, wenn } 0 = \sum_{i=1}^{n}vorkommen(r, i) \\
-          \frac{1}{\sum_{i=1}^{n}vorkommen(r, i)}&\text{, sonst}.
-          \end{cases}
-        \]
-        \[
-          vorkommen(r, s) = 
-          \begin{cases} 
-          1&\text{, wenn die Spezifikation } s \text{ die Regel } r \text{ ausgelöst hat}, \\
-          0&\text{, sonst}.
-          \end{cases}
-        \]
-      }
-    \end{greyblock}
-    \begin{greyblock}{Relevanz Diversität}
-      \scriptsize{
-        \[
-          \text{Relevanz}_\text{Diversität}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
-        \]
-        \[
-          Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
-        \]
-      }      
-    \end{greyblock}
-\end{frame}
-
-
-\section{Analyse}
-
+\section{Ergebnisse}
+\subsection{Explorative Datenanalyse}
 \begin{frame}
   \frametitle{Ergebnisse}
   \vspace{-0.4cm}
   \begin{itemize}
-    \item 929.699 Linterfehler
-    \item 7.778.972 mögliche Stellen für Linterfehler
+    \item 929.699 Linterfehler.
+    \item 7.778.972 mögliche Stellen für Linterfehler.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
@@ -170,7 +175,7 @@
   \vspace{-0.4cm}
   \begin{itemize}
     \item Ansatz nur für Single Trigger und Multi Trigger gültig.
-    \item Invertierung vielversprechend für genauere Priorisierungen
+    \item Invertierung vielversprechend für genauere Priorisierungen.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
@@ -180,12 +185,66 @@
   \end{figure}
 \end{frame}
 
+\subsection{Priorisierung}
+\begin{frame}
+  \frametitle{$\text{Relevanz}_\text{Frequenz}$}
+  \begin{itemize}
+    \item Bewertung der Anzahl der Auslösungen einer Regel.
+    \item Regeln die häufig ausgelöst wurden, sind weniger relevant.
+  \end{itemize}
+  \begin{greyblock}{Berechnungsfunktion}
+    \scriptsize{
+      \[
+        \text{Relevanz}_\text{Frequenz}(r) = 
+        \begin{cases}
+        1&\text{, wenn } 0 =  summe(r)\\
+        \frac{1}{summe(r)}&\text{, sonst}.
+        \end{cases}
+      \]
+      \[
+        summe(r) = \sum_{i=1}^{n}vorkommen(r, i)
+      \]
+      \[
+        vorkommen(r, s) = 
+        \begin{cases} 
+        1&\text{, wenn die Spezifikation } s \text{ die Regel } r \text{ ausgelöst hat}, \\
+        0&\text{, sonst}.
+        \end{cases}
+      \]
+      \[
+        n = \vert Spezifikationen \vert
+      \]
+    }
+  \end{greyblock}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\text{Relevanz}_\text{Diversität}$}
+  \begin{itemize}
+    \item Bewertung der Ähnlichkeit des Auslösemusters einer Regel.
+    \item Regeln die ein einzigartiges Auslösemuster sind relevanter.
+  \end{itemize}
+  \begin{greyblock}{Berechnungsfunktion}
+    \scriptsize{
+      \[
+        \text{Relevanz}_\text{Diversität}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
+      \]
+      \[
+        Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
+      \]
+      \[
+      0 \leq Jaccard(A, B) \leq 1, \quad A, B \in \mathbb{B}^n, \quad n = | \text{Specifikationen} |
+      \]
+    }
+  \end{greyblock}
+\end{frame}  
+
 \begin{frame}
   \frametitle{Relevanz}
   \vspace{-0.4cm}
   \begin{itemize}
-    \item Beide Verfahren teilen Regeln in zwei Gruppen
-    \item Regeln, die nie ausgelöst  werden sind am relevantesten
+    \item Beide Verfahren teilen Regeln in zwei Gruppen.
+    \item Regeln, die nie ausgelöst  werden sind am relevantesten.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
@@ -195,11 +254,12 @@
   \end{figure}
 \end{frame}
 
+\subsection{Neuzuordnung der Schweregrade}
 \begin{frame}
   \frametitle{Clustering}
   \vspace{-0.4cm}
   \begin{itemize}
-    \item Neuzuordnung der Linterschweregrade mit k-means Clustering
+    \item Neuzuordnung der Linterschweregrade mit k-means Clustering.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
@@ -216,17 +276,18 @@
     \endfirsthead
     \endhead
     \textbf{Schweregrad OAS} & \textbf{Schweregrad Cluster} & \textbf{Anzahl} \\ \hline
-    \texttt{hint} & \texttt{hint} & 4 \\
-    \texttt{warn} & \texttt{warn} & 4 \\
-    \texttt{error} & \texttt{error} & 1 \\
-    \texttt{warn} & \texttt{error} & 13 \\
-    \texttt{warn} & \texttt{hint} & 12 \\
-    \texttt{hint} & \texttt{warn} & 3 \\
-    \texttt{hint} & \texttt{error} & 1 \\
+    \textcolor{blue}{\texttt{hint}} & \textcolor{blue}{\texttt{hint}} & 4 \\
+    \textcolor{orange}{\texttt{warn}} & \textcolor{orange}{\texttt{warn}} & 4 \\
+    \textcolor{red}{\texttt{error}} & \textcolor{red}{\texttt{error}} & 1 \\
+    \textcolor{orange}{\texttt{warn}} & \textcolor{red}{\texttt{error}} & 13 \\
+    \textcolor{orange}{\texttt{warn}} & \textcolor{blue}{\texttt{hint}} & 12 \\
+    \textcolor{blue}{\texttt{hint}} & \textcolor{orange}{\texttt{warn}} & 3 \\
+    \textcolor{blue}{\texttt{hint}} & \textcolor{red}{\texttt{error}} & 1 \\
   \caption{Neuverteilungen der Linter Schweregrade}
   \end{longtable}
 \end{frame}
 
+\subsection{Ergebnisdemonstration}
 \begin{frame}
-  \centering{\textbf{Demonstration der Ergebnisse}}
+  \centering{\textbf{Ergebnisdemonstration}}
 \end{frame}
