@@ -211,7 +211,13 @@
         \end{cases}
       \]
       \[
-        n = \vert Spezifikationen \vert
+        r \in R, \text{ wobei $R$ die Menge aller OAS Linterregeln ist.}
+      \]
+      \[
+       s \in S, \text{ wobei $S$ die Menge aller Spezifikationen aus dem OpenAPI Directory ist.}
+      \]
+      \[
+        n = \vert S \vert
       \]
     }
   \end{greyblock}
@@ -219,6 +225,7 @@
 
 \begin{frame}
   \frametitle{$\text{Relevanz}_\text{Diversität}$}
+  \vspace{-0.4cm}
   \begin{itemize}
     \item Bewertung der Ähnlichkeit des Auslösemusters einer Regel.
     \item Regeln mit einem einzigartigen Auslösemuster sind relevanter.
@@ -232,7 +239,7 @@
         Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
       \]
       \[
-      0 \leq Jaccard(A, B) \leq 1, \quad A, B \in \mathbb{B}^n, \quad n = | \text{Spezifikationen} |
+      0 \leq Jaccard(A, B) \leq 1, \quad A, B \in \mathbb{B}^n, \quad n = \vert \text{Spezifikationen} \vert
       \]
     }
   \end{greyblock}
@@ -289,4 +296,14 @@
 \subsection{Ergebnisdemonstration}
 \begin{frame}
   \centering{\textbf{Ergebnisdemonstration}}
+\end{frame}
+
+\section{Fazit}
+\begin{frame}
+  \frametitle{Fazit}
+  \begin{itemize}
+    \item Potenzial von Invertierungen konnte in Priorisierung der Regeln nicht ausgeschöpft werden.
+    \item Priorisierungen für die Linterregeln können dazu beitragen, die Ziele zu erreichen.
+    \item Subjektive Einschätzungen der Relevanz von Linterregeln sind weiterhin wichtig und lassen sich durch Methode nicht ersetzen.
+  \end{itemize}
 \end{frame}
