@@ -187,6 +187,7 @@
 \subsection{Priorisierung}
 \begin{frame}
   \frametitle{$\text{Relevanz}_\text{Frequenz}$}
+  \vspace{-0.4cm}
   \begin{itemize}
     \item Bewertung der Anzahl der Auslösungen einer Regel.
     \item Regeln, die häufig ausgelöst werden, sind weniger relevant.
@@ -201,7 +202,7 @@
         \end{cases}
       \]
       \[
-        summe(r) = \sum_{i=1}^{n}vorkommen(r, i)
+        summe(r) = \sum_{i=1, \: i \in S}^{n}vorkommen(r, i)
       \]
       \[
         vorkommen(r, s) = 
@@ -214,7 +215,7 @@
         r \in R, \text{ wobei $R$ die Menge aller OAS Linterregeln ist.}
       \]
       \[
-       s \in S, \text{ wobei $S$ die Menge aller Spezifikationen aus dem OpenAPI Directory ist.}
+       s \in S, \text{ wobei $S$ die Menge aller Spezifikationen im OpenAPI Directory ist.}
       \]
       \[
         n = \vert S \vert
@@ -225,7 +226,7 @@
 
 \begin{frame}
   \frametitle{$\text{Relevanz}_\text{Diversität}$}
-  \vspace{-0.4cm}
+  \vspace{-0.6cm}
   \begin{itemize}
     \item Bewertung der Ähnlichkeit des Auslösemusters einer Regel.
     \item Regeln mit einem einzigartigen Auslösemuster sind relevanter.
@@ -233,13 +234,19 @@
   \begin{greyblock}{Berechnungsfunktion}
     \scriptsize{
       \[
-        \text{Relevanz}_\text{Diversität}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
+        \text{Relevanz}_\text{Diversität}(r) = (\frac{1}{n} \sum_{i=1, \: i \in R}^{n} 1- Jaccard(r, r_i))
       \]
       \[
         Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
       \]
       \[
-      0 \leq Jaccard(A, B) \leq 1, \quad A, B \in \mathbb{B}^n, \quad n = \vert \text{Spezifikationen} \vert
+        r \in R, \text{ wobei $R$ die Menge aller OAS Linterregeln ist.}
+      \]
+      \[
+       S \text{ ist die Menge aller Spezifikationen im OpenAPI Directory.}
+      \]
+      \[
+      0 \leq Jaccard(A, B) \leq 1, \quad A, B \in \mathbb{B}^m, \quad n = \vert R \vert, \quad m = \vert S \vert
       \]
     }
   \end{greyblock}
