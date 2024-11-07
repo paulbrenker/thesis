@@ -314,3 +314,5 @@ includes
 own
 implementation
 structurebold
+Spezifikationsstandard
+Linterschweregrade

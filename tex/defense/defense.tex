@@ -53,7 +53,7 @@
   \begin{itemize}
     \item Erkennen möglicher Fehler mit statischer Code Analyse.
     \item Spectral ist beliebter Linter für OpenAPI.
-    \item Standard Spectral Regelwerk für OpenAPI.
+    \item Spectral Standard Regelwerk für OpenAPI.
   \end{itemize}
   \lstset{language=none}
   \begin{lstlisting}[
@@ -105,7 +105,6 @@
   \end{columns}
 \end{frame}
 
-
 \section{Methodik}
 \subsection{Use Cases}
 \begin{frame}
@@ -155,7 +154,7 @@
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.85\linewidth]{images/totalspecthrownbarplot.png}
+    \includegraphics[width=0.9\linewidth]{images/totalspecthrownbarplot.png}
     \caption{Übersicht aller geworfenen Linterfehler}
     \label{fig:totalthrown}
   \end{figure}
@@ -188,9 +187,10 @@
 \subsection{Priorisierung}
 \begin{frame}
   \frametitle{$\text{Relevanz}_\text{Frequenz}$}
+  \vspace{-0.4cm}
   \begin{itemize}
     \item Bewertung der Anzahl der Auslösungen einer Regel.
-    \item Regeln die häufig ausgelöst wurden, sind weniger relevant.
+    \item Regeln, die häufig ausgelöst werden, sind weniger relevant.
   \end{itemize}
   \begin{greyblock}{Berechnungsfunktion}
     \scriptsize{
@@ -202,7 +202,7 @@
         \end{cases}
       \]
       \[
-        summe(r) = \sum_{i=1}^{n}vorkommen(r, i)
+        summe(r) = \sum_{i=1, \: i \in S}^{n}vorkommen(r, i)
       \]
       \[
         vorkommen(r, s) = 
@@ -212,7 +212,13 @@
         \end{cases}
       \]
       \[
-        n = \vert Spezifikationen \vert
+        r \in R, \text{ wobei $R$ die Menge aller OAS Linterregeln ist.}
+      \]
+      \[
+       s \in S, \text{ wobei $S$ die Menge aller Spezifikationen im OpenAPI Directory ist.}
+      \]
+      \[
+        n = \vert S \vert
       \]
     }
   \end{greyblock}
@@ -220,20 +226,27 @@
 
 \begin{frame}
   \frametitle{$\text{Relevanz}_\text{Diversität}$}
+  \vspace{-0.6cm}
   \begin{itemize}
     \item Bewertung der Ähnlichkeit des Auslösemusters einer Regel.
-    \item Regeln die ein einzigartiges Auslösemuster sind relevanter.
+    \item Regeln mit einem einzigartigen Auslösemuster sind relevanter.
   \end{itemize}
   \begin{greyblock}{Berechnungsfunktion}
     \scriptsize{
       \[
-        \text{Relevanz}_\text{Diversität}(r) = (\frac{1}{n} \sum_{i=1}^{n} 1- Jaccard(r, r_i))
+        \text{Relevanz}_\text{Diversität}(r) = (\frac{1}{n} \sum_{i=1, \: i \in R}^{n} 1- Jaccard(r, r_i))
       \]
       \[
         Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
       \]
       \[
-      0 \leq Jaccard(A, B) \leq 1, \quad A, B \in \mathbb{B}^n, \quad n = | \text{Specifikationen} |
+        r \in R, \text{ wobei $R$ die Menge aller OAS Linterregeln ist.}
+      \]
+      \[
+       S \text{ ist die Menge aller Spezifikationen im OpenAPI Directory.}
+      \]
+      \[
+      0 \leq Jaccard(A, B) \leq 1, \quad A, B \in \mathbb{B}^m, \quad n = \vert R \vert, \quad m = \vert S \vert
       \]
     }
   \end{greyblock}
@@ -244,11 +257,11 @@
   \vspace{-0.4cm}
   \begin{itemize}
     \item Beide Verfahren teilen Regeln in zwei Gruppen.
-    \item Regeln, die nie ausgelöst  werden sind am relevantesten.
+    \item Regeln, die nie ausgelöst  werden, sind am relevantesten.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.78\linewidth]{images/priodistrhist.png}
+    \includegraphics[width=0.72\linewidth]{images/priodistrhist.png}
     \caption{Relevanz der Regeln}
     \label{fig:histogram}
   \end{figure}
@@ -259,11 +272,11 @@
   \frametitle{Clustering}
   \vspace{-0.4cm}
   \begin{itemize}
-    \item Neuzuordnung der Linterschweregrade mit k-means Clustering.
+    \item Neuzuordnung der Schweregrade mit k-means Clustering.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.8\linewidth]{images/clusterprioscatter.png}
+    \includegraphics[width=0.82\linewidth]{images/clusterprioscatter.png}
     \caption{Neuzuordnung mit Clustering}
     \label{fig:clustering}
   \end{figure}
@@ -290,4 +303,14 @@
 \subsection{Ergebnisdemonstration}
 \begin{frame}
   \centering{\textbf{Ergebnisdemonstration}}
+\end{frame}
+
+\section{Fazit}
+\begin{frame}
+  \frametitle{Fazit}
+  \begin{itemize}
+    \item Potenzial von Invertierungen konnte in Priorisierung der Regeln nicht ausgeschöpft werden.
+    \item Priorisierungen für die Linterregeln können dazu beitragen, die Ziele zu erreichen.
+    \item Subjektive Einschätzungen der Relevanz von Linterregeln sind wichtig und lassen sich durch die Methode nicht ersetzen.
+  \end{itemize}
 \end{frame}
