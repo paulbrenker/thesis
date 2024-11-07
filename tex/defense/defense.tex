@@ -53,7 +53,7 @@
   \begin{itemize}
     \item Erkennen möglicher Fehler mit statischer Code Analyse.
     \item Spectral ist beliebter Linter für OpenAPI.
-    \item Standard Spectral Regelwerk für OpenAPI.
+    \item Spectral Standard Regelwerk für OpenAPI.
   \end{itemize}
   \lstset{language=none}
   \begin{lstlisting}[
@@ -190,7 +190,7 @@
   \frametitle{$\text{Relevanz}_\text{Frequenz}$}
   \begin{itemize}
     \item Bewertung der Anzahl der Auslösungen einer Regel.
-    \item Regeln die häufig ausgelöst wurden, sind weniger relevant.
+    \item Regeln, die häufig ausgelöst werden, sind weniger relevant.
   \end{itemize}
   \begin{greyblock}{Berechnungsfunktion}
     \scriptsize{
@@ -222,7 +222,7 @@
   \frametitle{$\text{Relevanz}_\text{Diversität}$}
   \begin{itemize}
     \item Bewertung der Ähnlichkeit des Auslösemusters einer Regel.
-    \item Regeln die ein einzigartiges Auslösemuster sind relevanter.
+    \item Regeln mit einem einzigartigen Auslösemuster sind relevanter.
   \end{itemize}
   \begin{greyblock}{Berechnungsfunktion}
     \scriptsize{
@@ -233,7 +233,7 @@
         Jaccard(A,B)=\frac{\vert A \cap B \vert}{\vert A \vert + \vert B \vert - \vert A \cap B \vert}
       \]
       \[
-      0 \leq Jaccard(A, B) \leq 1, \quad A, B \in \mathbb{B}^n, \quad n = | \text{Specifikationen} |
+      0 \leq Jaccard(A, B) \leq 1, \quad A, B \in \mathbb{B}^n, \quad n = | \text{Spezifikationen} |
       \]
     }
   \end{greyblock}
@@ -244,11 +244,11 @@
   \vspace{-0.4cm}
   \begin{itemize}
     \item Beide Verfahren teilen Regeln in zwei Gruppen.
-    \item Regeln, die nie ausgelöst  werden sind am relevantesten.
+    \item Regeln, die nie ausgelöst  werden, sind am relevantesten.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.78\linewidth]{images/priodistrhist.png}
+    \includegraphics[width=0.65\linewidth]{images/priodistrhist.png}
     \caption{Relevanz der Regeln}
     \label{fig:histogram}
   \end{figure}
@@ -259,7 +259,7 @@
   \frametitle{Clustering}
   \vspace{-0.4cm}
   \begin{itemize}
-    \item Neuzuordnung der Linterschweregrade mit k-means Clustering.
+    \item Neuzuordnung der Schweregrade mit k-means Clustering.
   \end{itemize}
   \begin{figure}[htbp]
     \centering
