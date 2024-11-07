@@ -8,7 +8,7 @@ To walk through the demo open a terminal in the `tex/defense/demo` directory
 
 Execute the following steps:
 
-- `$ spectral lint petstore.yaml --ruleset .spectral.yaml`
+- `spectral lint petstore.yaml --ruleset .spectral.yaml`
 
 ## Result Demonstration
 
@@ -16,4 +16,4 @@ To walk through the demo open a terminal in the `tex/defense/demo` directory.
 
 Execute the following steps:
 
-- `$ spectral lint petstore.yaml --ruleset .spectral_reassigned.yaml`
+- `spectral lint petstore.yaml --ruleset .spectral_reassigned.yaml`
