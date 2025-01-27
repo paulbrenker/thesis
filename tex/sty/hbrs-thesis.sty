@@ -1,0 +1,235 @@
+\usepackage{ifpdf}
+\usepackage{datetime}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{enumitem}
+\usepackage{xltxtra}
+\usepackage{pgfgantt}
+\usepackage{csquotes}
+%\setmainfont[Mapping=tex-text]{Frutiger Linotype}
+\setlength{\headheight}{1.3\baselineskip} 
+
+\ifpdf
+\pdfinfo{
+    /Author (\ThesisAuthor)
+    /Title  (\ThesisTitle)
+    /Subject (\ThesisSubject)
+    /Keywords (\ThesisKeywords)
+}
+\fi
+
+% make links clickable
+\usepackage{hyperref}
+\usepackage[usenames]{color}
+\hypersetup{ 
+    colorlinks = true,
+    linkcolor = black,
+    urlcolor = black,
+    citecolor = black,
+    breaklinks = true,
+    pdftitle={\ThesisTitle \ThesisSubject},
+    pdfauthor={\ThesisAuthor},
+    pdfcreator={\ThesisAuthor},
+    pdfsubject={\ThesisTitle \ThesisSubject},
+    pdfkeywords={\ThesisKeywords}
+} 
+
+% glossary must be before ngerman
+%\usepackage[border=none, style=altlist, hypertoc=true, hyper=true, number=none, acronym=true]{glossary}
+%\renewcommand{\glossaryname}{Glossar}
+%\setacronymnamefmt{\gloshort}
+%\makeacronym
+%\makeglossary
+%\makeindex
+%\usepackage[style=long,acronym,toc]{glossaries}
+\usepackage[style=long,toc]{glossaries}
+\usepackage[printonlyused]{acronym}
+%usepackage[style=long]{glossaries}
+
+% German language package and and margins
+\usepackage[ngerman]{babel}
+\usepackage[paper=a4paper,left=30mm,right=30mm,top=25mm,bottom=20mm]{geometry}
+\setlength{\footskip}{6mm} % distance pagenumber and text
+
+% algorithm environment
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\floatname{algorithm}{Algorithmus}
+
+
+% in Place tables
+\usepackage{longtable}
+\usepackage[font=normalsize]{caption}
+
+% code environments
+\usepackage{listings}
+\renewcommand*{\lstlistingname}{Quellcode}
+\lstdefinelanguage{JavaScript}{
+  keywords={abstract, any, as, boolean, break, case, catch, class, console, 
+    const, continue, debugger, declare, default, delete, do, else, enum, export, 
+    extends, false, finally, for, from, function, get, if, implements, import, in, 
+    infer, instanceof, interface, keyof, let, module, namespace, never, new, null, 
+    number, object, package, private, protected, public, readonly, require, return, 
+    set, static, string, super, switch, symbol, this, throw, true, try, type, typeof, 
+    undefined, unique, unknown, var, void, while, with, yield}  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{purple}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{SpectralOutput}{
+  keywords={warning},
+  keywordstyle=\color{orange},
+  identifierstyle=\color{black},
+  sensitive=false,
+}
+
+\lstdefinelanguage{none}{
+  identifierstyle=
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{white},
+   extendedchars=true,
+   basicstyle=\fontfamily{pcr}\footnotesize,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+
+
+% config literature
+\usepackage[
+backend=biber,
+style=apa,
+natbib=true,
+isbn=false,
+doi=false,
+url=false,
+%maxbibnames=3, 
+%maxcitenames=1,
+%maxeditornames=2,
+]{biblatex}
+\addbibresource{references.bib} 
+
+
+\clubpenalty=10000 
+\widowpenalty=10000 
+
+\usepackage{setspace}
+
+%\onehalfspacing % row distance of one and a half
+\parskip0.5ex % parskip font/2
+\parindent0ex % no indentation on starting paragraph
+
+\usepackage{titlesec}
+\titlespacing{\section}{}{12pt}{5pt}
+\titlespacing{\subsection}{}{11pt}{5pt}
+\titlespacing{\subsubsection}{}{11pt}{5pt}
+\titlespacing{\paragraph}{}{11pt}{0pt}
+
+\titleformat{\section}[block]{\bfseries}{\thesection.}{1em}{} 
+
+\usepackage{sectsty}
+\allsectionsfont{\normalfont\bfseries\normalsize}
+
+% header and footer default
+\usepackage{lastpage}
+\usepackage[automark]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\clearmainofpairofpagestyles
+\addtokomafont{pageheadfoot}{\upshape}
+%\cfoot{Seite \pagemark\ von \pageref{LastPage}}
+%\ihead{\ThesisTitle}
+
+% header and footer definition for titlepage - main part
+\newpagestyle{bisHauptteil}{
+    {\hfill}
+    {\hfill}
+    {\ThesisTitle\hfill}}
+{
+    {\hfill}
+    {\hfill}
+    {\hfill\pagemark}
+}
+
+\newpagestyle{Hauptteil}{
+    {\hfill}
+    {\hfill}
+    {\ThesisTitle\hfill}}
+{
+    {\hfill}
+    {\hfill}
+    {\hfill\ \pagemark}
+}
+
+
+
+% no tolerance for breaking block formatting
+\tolerance 9999
+
+%Makros
+
+% figure item, caption
+\newcommand{\fhbrsfigure}[2]{%
+  \begin{figure}[h]
+    #1
+  \caption{#2}
+  \end{figure}%
+}
+
+% graphicsname, caption, width
+\newcommand{\fhbrsgraphics}[4]{%
+  \begin{figure}[h]
+  \begin{center}
+  \includegraphics[width=#3]{img/#1}
+  \end{center}
+  \caption{\label{#4}#2}
+  \end{figure}
+}
+
+
+
+% pos, caption, columns
+ \newenvironment{fhbrstable}[3]{%
+   \begin{table}[#1]
+   \caption{#3}
+    \begin{tabular*}{\textwidth}{#2}%
+ }{ %
+    \end{tabular*}
+  \end{table}%
+}
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\module}[1]{\texttt{#1}}
+
+\newcommand{\introterm}[1]{\emph{#1}}
+
+% name, comment
+\newcommand{\introglosterm}[2]{%
+\xglossary{name={#1},description={#2}}{\emph{#1}}%
+}
+
+\newcommand{\introglostermshort}[3]{%
+\xglossary{name={#1},description={#2. #3}}{#1 (\emph{#2})} %
+}
+
+
+

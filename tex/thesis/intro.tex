@@ -1,0 +1,39 @@
+\section{Einleitung} \label{sec:einleitung}
+\subsection{Problemstellung} \label{sec:problemstellung}
+Softwarequalität mit automatischen Tools zu testen, ist im modernen Software-Engineering weit verbreitet \parencite{tomasdottir_adoption_2018}\parencite{beller_analyzing_2016}. Statische Code Analyse ist dabei eine Möglichkeit Software Qualitätskriterien zu verifizieren. Um die Qualität von OpenAPI Spezifikationen zu testen, kann man den Spectral OpenAPI Linter\footnote{\href{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview}{https://docs.stoplight.io/docs/spectral/674b27b261c3c-overview}} \parencite{stoplight_spectral_2024-1}
+verwenden. Mit dem Standard Spectral \acf{OAS} Linter Regelwerk\footnote{\href{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}{https://docs.stoplight.io/docs/spectral/4dec24461f3af-open-api-rules}} \parencite{stoplight_spectral_2024} kann es zu unerwarteten Linterfehlern kommen\footnote{Diese Aussage beruht auf Erkenntnissen aus einem Praxisprojekt bei der Firma SAP LeanIX im Herbst 2023. Im Rahmen des Praxisprojekts wurden verschiedene OpenAPI Linting Tools evaluiert}.
+
+OpenAPI ist heute als Dokumentationsstandard für REST APIs weit verbreitet \parencite{bogner_restruler_2024}. Abweichungen in der Qualität der Implementierung der REST API sind auch in den OpenAPI Spezifikationen sichtbar \parencite{vaziri_generating_2017}. Zusätzlich kann auch die Qualität der OpenAPI Dokumente abweichen \parencite{eriksson_using_2023}. Für die automatische Verifizierung ist der Spectral API Linter ein weit verbreitetes, einfach zu nutzendes Softwaretool\footnote{Zu diesen Ergebnissen kommt die Analyse mehrerer Open Source API Linter in Praxisprojekt zur Evaluation von API Lintern.}. Mit dem Tool wird ein Standard Regelwerk für OpenAPI Dokumente ausgeliefert. Aufgrund von Erfahrungen wird davon ausgegangen, dass die Linterregeln auf theoretischen Erkenntnissen über Qualität und Validität von OpenAPI Dokumenten beruhen.
+
+Dies kann dazu führen, dass es eine Dissonanz zwischen in der Praxis verfolgten Qualitätsrichtlinien und den vorgeschlagenen Linterregeln gibt. Viele große Firmen wie Adidas, Microsoft Azure oder Zalando haben zusätzlich ihre eigenen Regelwerke für den Spectral Linter entwickelt und ausgewählte Linterregeln des \acs{OAS} Regelwerks deaktiviert \parencite{stoplight_spectral_2024-2}. Anhand verfügbarer Daten soll ermittelt werden, welche Linterregeln für die Praxis wichtig sind. Spezifisch bedeutet das, mit empirischen Methoden öffentlich zugängliche OpenAPI Spezifikationen zu analysieren und Faktoren für die Relevanz der Linterregeln zu extrahieren.
+
+\subsection{Forschungsfragen} \label{sec:forschungsfragen}
+Die Arbeit befasst sich mit dem Verhältnis von Linterregeln zu praxisrelevanten OpenAPI Spezifikationen. Nur die Dokumentation (OpenAPI Spezifikation) der API muss öffentlich sein. Öffentliche Verwendung der APIs ist kein Kriterium. Im Rahmen dieser Arbeit wird das Spectral \acs{OAS} Regelwerk untersucht. Dies ist das vom Hersteller des Tools angebotene Standardregelwerk. Mit der Beantwortung der Forschungsfragen wird auch eine Lösung des Problems von vielen Linterfehlern bei initialer Benutzung des Linters angeboten werden. Es ergeben sich folgende Teilfragen, um die Wissenschaftlichkeit des Vorgehens zu verifizieren.
+\begin{itemize}
+  \item Nach welchen Kriterien werden OpenAPI Spezifikationen in öffentlichem Datensatz ausgewählt?
+  \item Welche Parameter sind wichtig, um die Relevanz einer Linterregel zu bestimmen?
+\end{itemize}
+
+Die Arbeit soll die folgenden Forschungsfragen beantworten:
+
+\begin{itemize}
+  \item \textbf{RQ-1} Wie können Linterregeln für OpenAPI Spezifikationen nach Relevanz bewertet werden?
+  \item \textbf{RQ-2} Wie können die Linterregeln priorisiert werden?
+  \item \textbf{RQ-3} Welche Linterregeln können aufgrund der gewonnenen Erkenntnisse empfohlen werden?
+\end{itemize}
+
+\subsection{Ziele} \label{sec:ziele}
+Ziel der Arbeit ist eine empirische Analyse der im OpenAPI Directory von APIs.guru öffentlich verfügbaren OpenAPI Spezifikationen\footnote{Der Datensatz ist abrufbar unter \href{https://github.com/APIs-guru/openapi-directory}{https://github.com/APIs-guru/openapi-directory}} \parencite{apisguru_openapi_2024}. So sollen Daten gesammelt werden, die Information über die Relevanz von Linterregeln geben können.
+
+Dazu wird ein Softwaretool entwickelt, mit dessen Hilfe viele OpenAPI Spezifikationen anhand eingegebener Regelwerke gelintet werden können. Das Tool soll in der Lage sein, die OpenAPI Spezifikationen aus dem OpenAPI Directory mit dem Spectral Linter zu Linten und die Fehlermeldungen aufzuzeichnen. Zusätzlich soll das Softwaretool die Stellen in den OpenAPI Spezifikationen finden, an denen Linterregeln ausgelöst werden könnten, die Spezifikationen aber die Regeln eingehalten haben (True Negatives). Diese Funktionalität wird folgend Invertierung genannt.
+
+Letztendlich soll eine Empfehlung abgegeben werden, wie Linterregeln priorisiert und neu geordnet werden können. Durch die Priorisierung der Linterregeln können Entwickler die größten Qualitätsverbesserungen zuerst implementieren. Außerdem kann durch die Selektion der Regeln Entwicklerzeit gespart werden, indem eine datengetriebene Entscheidung zur Verfügung gestellt wird.
+
+\subsection{Motiv} \label{sec:motiv}
+Im Rahmen eines Praxisprojekts bei SAP LeanIX im Herbst 2023 wurde der Einsatz von OpenAPI Lintern untersucht. SAP LeanIX verwendet eine Mikroservicearchitektur, bei der Services unter anderem über REST Schnittstellen kommunizieren. Eine Möglichkeit Schnittstellendokumentation und Qualität zu verbessern ist der Einsatz von statischer Codeanalyse für OpenAPI Spezifikationen \parencite{bogner_restruler_2024}. Ein Ergebnis des Projekts war, dass mit dem Standardregelwerk des Spectral Linters häufig Linterfehler geworfen werden, die nicht als relevant eingeschätzt werden. Standard Linterregeln, die aus Entwicklerperspektive nicht notwendige Fehlernachrichten verursachen gehören nach \parencite{christakis_what_2016} zu den größten Hemmschwellen vor dem Einsatz von Tools zur statischen Codeanalyse. 
+
+\subsection{Struktur} \label{sec:struktur}
+Die Arbeit ist in vier wesentliche Abschnitte unterteilt. Zuerst wird der wissenschaftliche Hintergrund des Themas ausführlich erläutert. Die verwendeten Daten und das Lintertool sowie das Regelwerk werden eingeführt. Anschließend wird die Methodik der Arbeit vorgestellt. Mithilfe systematischer Methoden des Softwareengineerings werden Anforderungen und eine Architektur implementiert, die es ermöglicht eine große Menge an OpenAPI Spezifikationen mit dem Spectral API Linter und dem Spectral OAS Regelwerk zu linten und die Invertierungen zu ermitteln. Außerdem wird eine Methode entwickelt, die Linterregeln basierend auf geworfenen Linterfehlern priorisiert (\textbf{RQ-1}).
+Die Linterfehler sollen aufgezeichnet werden. Ziel der Arbeit ist eine empirische Analyse der öffentlich verfügbaren OpenAPI Spezifikationen aus dem APIs Directory von APIs.guru. Letztendlich soll eine Empfehlung abgegeben werden, wie Linterregeln priorisiert und neu  geordnet werden können (\textbf{RQ-2} und \textbf{RQ-3}). 
+
+Letztendlich werden die Ergebnisse kritisch betrachtet und auf Plausibilität untersucht. Implikationen für weiterführende Studien werden aufgezeigt.

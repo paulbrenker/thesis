@@ -1,0 +1,321 @@
+2024-10-12 14:08:54 - INFO - Plot saved to ../tex/thesis/img/specificationsperdomainpie
+2024-10-12 14:08:57 - INFO - Plot saved to ../tex/thesis/img/operationsperspecificationpie
+2024-10-12 14:09:00 - INFO - Mean of Single Trigger Rules:
+<bound method Series.to_string of contact-properties             0.000000
+info-contact                   0.570358
+info-description               0.117021
+info-license                   0.000000
+license-url                    0.000000
+openapi-tags-alphabetical      0.000000
+oas3-api-servers               0.010880
+oas3-server-not-example.com    0.000000
+dtype: float64>
+2024-10-12 14:09:08 - INFO - Plot saved to ../tex/thesis/img/multitriggerbarplot
+2024-10-12 14:09:16 - INFO - Plot saved to ../tex/thesis/img/totalspecthrownbarplot
+2024-10-12 14:09:23 - INFO - Plot saved to ../tex/thesis/img/hierarchicalclusteronbinary
+2024-10-12 14:09:26 - INFO - Mean of Properly inverted rules:
+contact-properties                    0.000000e+00
+info-contact                          5.703578e-01
+info-description                      1.170213e-01
+info-license                          0.000000e+00
+license-url                           0.000000e+00
+openapi-tags-alphabetical             0.000000e+00
+oas3-api-servers                      1.088008e-02
+oas3-server-not-example.com           0.000000e+00
+operation-success-response            3.902038e-03
+operation-operationId-unique          0.000000e+00
+duplicated-entry-in-enum              2.701972e-04
+no-eval-in-markdown                   2.429945e-07
+no-script-tags-in-markdown            1.723440e-06
+openapi-tags-uniqueness               0.000000e+00
+openapi-tags                          0.000000e+00
+operation-operationId-valid-in-url    6.856338e-03
+operation-singular-tag                0.000000e+00
+operation-tags                        1.981391e-01
+path-declarations-must-exist          0.000000e+00
+tag-description                       0.000000e+00
+array-items                           5.914474e-04
+oas3-parameter-description            0.000000e+00
+oas3-server-trailing-slash            1.232050e-01
+dtype: float64
+2024-10-12 14:09:37 - INFO - total thrown errors over all rules: 919574
+2024-10-12 14:09:37 - INFO - total possible errors over all rules: 7113580
+2024-10-12 14:09:43 - INFO - Inverse Frequency Prioritized Rules Sorted:
+operation-operationId-unique            1.000000
+operation-parameters                    1.000000
+contact-properties                      1.000000
+openapi-tags                            1.000000
+openapi-tags-alphabetical               1.000000
+no-eval-in-markdown                     1.000000
+license-url                             1.000000
+info-license                            1.000000
+oas3-server-not-example.com             1.000000
+oas3-operation-security-defined         1.000000
+oas3-parameter-description              1.000000
+oas3-callbacks-in-callbacks             1.000000
+tag-description                         1.000000
+openapi-tags-uniqueness                 1.000000
+path-declarations-must-exist            1.000000
+operation-singular-tag                  1.000000
+no-script-tags-in-markdown              0.333333
+duplicated-entry-in-enum                0.166667
+oas3-schema                             0.142857
+array-items                             0.111111
+path-not-include-query                  0.090909
+oas3-server-variables                   0.090909
+oas3-examples-value-or-externalValue    0.083333
+operation-operationId-valid-in-url      0.024390
+oas3-api-servers                        0.022222
+typed-enum                              0.022222
+operation-success-response              0.017241
+path-params                             0.012658
+path-keys-no-trailing-slash             0.006536
+oas3-valid-media-example                0.006289
+operation-operationId                   0.002632
+oas3-valid-schema-example               0.002347
+info-description                        0.002066
+oas3-server-trailing-slash              0.001927
+operation-description                   0.001669
+operation-tags                          0.001096
+oas3-unused-component                   0.000992
+no-$ref-siblings                        0.000457
+operation-tag-defined                   0.000435
+info-contact                            0.000424
+2024-10-12 14:09:48 - INFO - Diversity ranked prioritization:
+operation-operationId-unique            0.375000
+operation-parameters                    0.375000
+contact-properties                      0.375000
+openapi-tags                            0.375000
+openapi-tags-alphabetical               0.375000
+openapi-tags-uniqueness                 0.375000
+license-url                             0.375000
+info-license                            0.375000
+oas3-server-not-example.com             0.375000
+oas3-operation-security-defined         0.375000
+oas3-parameter-description              0.375000
+oas3-callbacks-in-callbacks             0.375000
+path-declarations-must-exist            0.375000
+operation-singular-tag                  0.375000
+tag-description                         0.375000
+info-contact                            0.074276
+operation-tag-defined                   0.073718
+no-$ref-siblings                        0.067871
+oas3-unused-component                   0.059835
+operation-description                   0.059269
+oas3-valid-schema-example               0.054599
+operation-operationId                   0.052863
+oas3-valid-media-example                0.049300
+info-description                        0.049029
+operation-tags                          0.046861
+oas3-server-trailing-slash              0.043539
+path-keys-no-trailing-slash             0.042196
+path-params                             0.040815
+operation-success-response              0.038016
+typed-enum                              0.036551
+operation-operationId-valid-in-url      0.035357
+path-not-include-query                  0.034471
+oas3-examples-value-or-externalValue    0.032167
+oas3-api-servers                        0.031494
+array-items                             0.029397
+oas3-schema                             0.029349
+duplicated-entry-in-enum                0.028361
+oas3-server-variables                   0.027007
+no-script-tags-in-markdown              0.026171
+no-eval-in-markdown                     0.025194
+2024-10-12 14:09:59 - INFO - Weighed Combination of Prioritization Methods:
+operation-operationId-unique            0.875000
+operation-parameters                    0.875000
+contact-properties                      0.875000
+openapi-tags                            0.875000
+openapi-tags-alphabetical               0.875000
+openapi-tags-uniqueness                 0.875000
+license-url                             0.875000
+info-license                            0.875000
+oas3-server-not-example.com             0.875000
+oas3-operation-security-defined         0.875000
+oas3-parameter-description              0.875000
+oas3-callbacks-in-callbacks             0.875000
+path-declarations-must-exist            0.875000
+operation-singular-tag                  0.875000
+tag-description                         0.875000
+no-eval-in-markdown                     0.805039
+no-script-tags-in-markdown              0.271901
+duplicated-entry-in-enum                0.139006
+oas3-schema                             0.120156
+array-items                             0.094768
+path-not-include-query                  0.079621
+oas3-server-variables                   0.078129
+oas3-examples-value-or-externalValue    0.073100
+operation-operationId-valid-in-url      0.026584
+typed-enum                              0.025088
+oas3-api-servers                        0.024077
+operation-success-response              0.021396
+path-params                             0.018290
+info-contact                            0.015194
+operation-tag-defined                   0.015092
+oas3-valid-media-example                0.014892
+no-$ref-siblings                        0.013940
+path-keys-no-trailing-slash             0.013668
+operation-description                   0.013189
+oas3-valid-schema-example               0.012798
+oas3-unused-component                   0.012761
+operation-operationId                   0.012678
+info-description                        0.011459
+operation-tags                          0.010249
+oas3-server-trailing-slash              0.010249
+2024-10-12 14:10:10 - INFO - Kmeans Clustered Rules according to prio:
+                                           idf  diversity   weighed  group
+operation-operationId-unique          1.000000   0.375000  0.875000  error
+operation-parameters                  1.000000   0.375000  0.875000  error
+contact-properties                    1.000000   0.375000  0.875000  error
+openapi-tags                          1.000000   0.375000  0.875000  error
+openapi-tags-alphabetical             1.000000   0.375000  0.875000  error
+openapi-tags-uniqueness               1.000000   0.375000  0.875000  error
+license-url                           1.000000   0.375000  0.875000  error
+info-license                          1.000000   0.375000  0.875000  error
+oas3-server-not-example.com           1.000000   0.375000  0.875000  error
+oas3-operation-security-defined       1.000000   0.375000  0.875000  error
+oas3-parameter-description            1.000000   0.375000  0.875000  error
+oas3-callbacks-in-callbacks           1.000000   0.375000  0.875000  error
+path-declarations-must-exist          1.000000   0.375000  0.875000  error
+operation-singular-tag                1.000000   0.375000  0.875000  error
+tag-description                       1.000000   0.375000  0.875000  error
+no-eval-in-markdown                   1.000000   0.025194  0.805039  error
+no-script-tags-in-markdown            0.333333   0.026171  0.271901   warn
+duplicated-entry-in-enum              0.166667   0.028361  0.139006   warn
+oas3-schema                           0.142857   0.029349  0.120156   warn
+array-items                           0.111111   0.029397  0.094768   warn
+path-not-include-query                0.090909   0.034471  0.079621   warn
+oas3-server-variables                 0.090909   0.027007  0.078129   warn
+oas3-examples-value-or-externalValue  0.083333   0.032167  0.073100   warn
+operation-operationId-valid-in-url    0.024390   0.035357  0.026584   hint
+typed-enum                            0.022222   0.036551  0.025088   hint
+oas3-api-servers                      0.022222   0.031494  0.024077   hint
+operation-success-response            0.017241   0.038016  0.021396   hint
+path-params                           0.012658   0.040815  0.018290   hint
+info-contact                          0.000424   0.074276  0.015194   hint
+operation-tag-defined                 0.000435   0.073718  0.015092   hint
+oas3-valid-media-example              0.006289   0.049300  0.014892   hint
+no-$ref-siblings                      0.000457   0.067871  0.013940   hint
+path-keys-no-trailing-slash           0.006536   0.042196  0.013668   hint
+operation-description                 0.001669   0.059269  0.013189   hint
+oas3-valid-schema-example             0.002347   0.054599  0.012798   hint
+oas3-unused-component                 0.000992   0.059835  0.012761   hint
+operation-operationId                 0.002632   0.052863  0.012678   hint
+info-description                      0.002066   0.049029  0.011459   hint
+operation-tags                        0.001096   0.046861  0.010249   hint
+oas3-server-trailing-slash            0.001927   0.043539  0.010249   hint
+2024-10-12 14:10:32 - INFO - Kmeans Clustered Rules not considering any azure specification:
+                                           idf  diversity   weighed  group
+operation-operationId-unique          1.000000   0.375000  0.875000  error
+operation-parameters                  1.000000   0.375000  0.875000  error
+contact-properties                    1.000000   0.375000  0.875000  error
+openapi-tags                          1.000000   0.375000  0.875000  error
+openapi-tags-alphabetical             1.000000   0.375000  0.875000  error
+openapi-tags-uniqueness               1.000000   0.375000  0.875000  error
+license-url                           1.000000   0.375000  0.875000  error
+info-license                          1.000000   0.375000  0.875000  error
+oas3-server-not-example.com           1.000000   0.375000  0.875000  error
+oas3-operation-security-defined       1.000000   0.375000  0.875000  error
+oas3-parameter-description            1.000000   0.375000  0.875000  error
+oas3-callbacks-in-callbacks           1.000000   0.375000  0.875000  error
+path-declarations-must-exist          1.000000   0.375000  0.875000  error
+operation-singular-tag                1.000000   0.375000  0.875000  error
+tag-description                       1.000000   0.375000  0.875000  error
+no-eval-in-markdown                   1.000000   0.025257  0.805051  error
+no-script-tags-in-markdown            0.333333   0.026510  0.271969   warn
+array-items                           0.250000   0.031184  0.206237   warn
+duplicated-entry-in-enum              0.166667   0.029562  0.139246   warn
+oas3-schema                           0.142857   0.029624  0.120210   warn
+path-not-include-query                0.100000   0.035991  0.087198   hint
+oas3-server-variables                 0.090909   0.027702  0.078268   hint
+oas3-examples-value-or-externalValue  0.083333   0.032618  0.073190   hint
+operation-operationId-valid-in-url    0.026316   0.037727  0.028598   hint
+typed-enum                            0.023256   0.038561  0.026317   hint
+oas3-api-servers                      0.022222   0.033748  0.024527   hint
+operation-success-response            0.018868   0.041006  0.023295   hint
+path-params                           0.013514   0.043720  0.019555   hint
+path-keys-no-trailing-slash           0.008772   0.046169  0.016251   hint
+operation-tag-defined                 0.001531   0.074348  0.016095   hint
+info-contact                          0.001838   0.073019  0.016074   hint
+oas3-valid-media-example              0.006289   0.053536  0.015739   hint
+operation-description                 0.001818   0.070216  0.015498   hint
+oas3-valid-schema-example             0.002347   0.067253  0.015329   hint
+oas3-unused-component                 0.000992   0.070194  0.014833   hint
+operation-operationId                 0.002632   0.061736  0.014452   hint
+info-description                      0.004386   0.052927  0.014094   hint
+no-$ref-siblings                      0.001563   0.059900  0.013230   hint
+oas3-server-trailing-slash            0.001927   0.054978  0.012537   hint
+operation-tags                        0.001592   0.046619  0.010598   hint
+2024-10-12 14:10:45 - INFO - Plot saved to ../tex/thesis/img/clusterprioscatter
+2024-10-12 14:10:52 - INFO - Plot saved to ../tex/thesis/img/azurespecthrownbarplot
+2024-10-12 14:11:03 - INFO - Azure Thrown Violations vs total thrown violations overview: 
+                                      azure   total  percentage
+operation-success-response                5     774         0.6
+path-params                               7     152         4.6
+duplicated-entry-in-enum                  0      69         0.0
+info-description                        256     484        52.9
+no-eval-in-markdown                       0       2         0.0
+no-script-tags-in-markdown                0       3         0.0
+operation-operationId                     0    8840         0.0
+operation-operationId-valid-in-url        6     706         0.8
+path-keys-no-trailing-slash              80    1999         4.0
+path-not-include-query                    1     113         0.9
+array-items                              35      61        57.4
+typed-enum                                8  677950         0.0
+oas3-api-servers                          0      45         0.0
+oas3-examples-value-or-externalValue      0     169         0.0
+oas3-server-trailing-slash                0     535         0.0
+oas3-valid-media-example                  0    9501         0.0
+oas3-valid-schema-example                 0   29275         0.0
+oas3-schema                               0      23         0.0
+oas3-unused-component                     0   17948         0.0
+oas3-server-variables                     0      11         0.0
+2024-10-12 14:11:08 - INFO - the t_statistic is -2, dependency of group 1 is statistically dependent: True
+2024-10-12 14:11:11 - INFO - Plot saved to ../tex/thesis/img/boxplotcleanmultitrigger
+2024-10-12 14:11:17 - INFO - Number of Specifications with no violations: 128
+2024-10-12 14:11:17 - INFO - Number of Rules that were not triggered by any Specification: 15
+2024-10-12 14:11:17 - INFO - Plot saved to ../tex/thesis/img/ruleseverityreassignmentbarplot
+2024-10-12 14:11:29 - INFO - Total Overview over thrown stuff: 
+                                      thrown_sum  thrown_mean  thrown_median  thrown_std  possible_sum  possible_mean  possible_median  possible_std
+operation-success-response                   774         0.19            0.0        4.43        135207          32.69             10.0        199.36
+operation-operationId-unique                   0         0.00            0.0        0.00          4127           1.00              1.0          0.05
+operation-parameters                           0         0.00            0.0        0.00        117991          28.53              9.0        138.99
+operation-tag-defined                      49708        12.02            1.0       62.75          4136           1.00              1.0          0.00
+path-params                                  152         0.04            0.0        0.39          4127           1.00              1.0          0.05
+contact-properties                             0         0.00            0.0        0.00          1777           0.43              0.0          0.50
+duplicated-entry-in-enum                      69         0.02            0.0        0.61        128356          31.03              6.0        235.96
+info-contact                                2359         0.57            1.0        0.50          4136           1.00              1.0          0.00
+info-description                             484         0.12            0.0        0.32          4136           1.00              1.0          0.00
+info-license                                   0         0.00            0.0        0.00          4136           1.00              1.0          0.00
+license-url                                    0         0.00            0.0        0.00          4136           1.00              1.0          0.00
+no-eval-in-markdown                            2         0.00            0.0        0.03       2014057         486.96            149.0       1875.07
+no-script-tags-in-markdown                     3         0.00            0.0        0.03       2014057         486.96            149.0       1875.07
+openapi-tags-alphabetical                      0         0.00            0.0        0.00          4136           1.00              1.0          0.00
+openapi-tags-uniqueness                        0         0.00            0.0        0.00          1239           0.30              0.0          0.46
+openapi-tags                                   0         0.00            0.0        0.00          4136           1.00              1.0          0.00
+operation-description                      27529         6.66            0.0      112.34        135207          32.69             10.0        199.36
+operation-operationId                       8840         2.14            0.0       14.57        135207          32.69             10.0        199.36
+operation-operationId-valid-in-url           706         0.17            0.0        4.18        135207          32.69             10.0        199.36
+operation-singular-tag                         0         0.00            0.0        0.00        135207          32.69             10.0        199.36
+operation-tags                             24385         5.90            0.0       36.48        135207          32.69             10.0        199.36
+path-declarations-must-exist                   0         0.00            0.0        0.00          4127           1.00              1.0          0.05
+path-keys-no-trailing-slash                 1999         0.48            0.0        7.15          4127           1.00              1.0          0.05
+path-not-include-query                       113         0.03            0.0        0.87          4127           1.00              1.0          0.05
+tag-description                                0         0.00            0.0        0.00          8748           2.12              0.0         12.54
+no-$ref-siblings                           66933        16.18            1.0       80.96       1029699         248.96             46.0       1054.69
+array-items                                   61         0.01            0.0        0.43        140758          34.03              8.0        207.45
+typed-enum                                677950       163.91            0.0    10334.01        126466          30.58              6.0        235.77
+oas3-api-servers                              45         0.01            0.0        0.10          4136           1.00              1.0          0.00
+oas3-examples-value-or-externalValue         169         0.04            0.0        1.90         49900          12.06              0.0        124.03
+oas3-operation-security-defined                0         0.00            0.0        0.00         43121          10.43              1.0         67.81
+oas3-parameter-description                     0         0.00            0.0        0.00        327037          79.07             20.0        549.70
+oas3-server-not-example.com                    0         0.00            0.0        0.00          3312           0.80              0.0          1.21
+oas3-server-trailing-slash                   535         0.13            0.0        0.37          3312           0.80              0.0          1.21
+oas3-valid-media-example                    9501         2.30            0.0       30.04         54270          13.12              0.0        133.37
+oas3-valid-schema-example                  29275         7.08            0.0      170.04        171743          41.52              0.0        485.25
+oas3-schema                                   23         0.01            0.0        0.24          4136           1.00              1.0          0.00
+oas3-unused-component                      17948         4.34            0.0       36.57          4136           1.00              1.0          0.00
+oas3-server-variables                         11         0.00            0.0        0.05          4500           1.09              0.0          3.78
+oas3-callbacks-in-callbacks                    0         0.00            0.0        0.00             0           0.00              0.0          0.00
+2024-10-12 14:11:30 - INFO - Plot saved to ../tex/thesis/img/priodistrhist

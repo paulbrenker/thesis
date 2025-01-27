@@ -1,0 +1,31 @@
+{
+  "editor.formatOnSave": true,
+  "latex-workshop.latex.outDir": "out",
+  "latex-workshop.latex.rootFile.useSubFile": true,
+  "latex-workshop.latex.rootFile.doNotPrompt": true,
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.docker.enabled": true,
+  "latex-workshop.docker.image.latex": "ghcr.io/xu-cheng/texlive-full",
+  "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+  "latex-workshop.message.latexlog.exclude": [
+    "Overfull \\\\hbox",
+    "Overfull \\\\vbox"
+  ],
+  "ltex.language": "de-DE",
+  "pylint.cwd": "${workspaceFolder}/analysis",
+  "black-formatter.cwd": "${workspaceFolder}/analysis",
+  "[latex]": {
+    "editor.wordWrap": "on",
+    "editor.tabSize": 2
+  },
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.wordWrap": "off",
+    "editor.tabSize": 4
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "off",
+    "editor.tabSize": 2
+  }
+}

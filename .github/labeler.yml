@@ -1,0 +1,49 @@
+github-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+          - ".gitignore"
+
+documentation-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "README.md"
+          - "*.md"
+
+text-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tex/**"
+
+expose-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tex/expose/**"
+          - "tex/expose.tex"
+
+thesis-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tex/thesis/**"
+          - "tex/thesis.tex"
+
+defense-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tex/defense/**"
+          - "tex/defense.tex"
+
+requirements-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "requirements/**"
+
+analysis-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "analysis/**"
+
+tool-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "tool/**"

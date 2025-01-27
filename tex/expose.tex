@@ -1,0 +1,26 @@
+\PassOptionsToPackage{usenames, dvipsnames}{color}
+
+\documentclass[a4paper,11pt,headsepline,titlepage]{article}
+\input{expose/meta}
+\usepackage{sty/hbrs-expose}
+\begin{document}
+\begin{spacing}{1}
+  \pagenumbering{roman}
+
+
+\pagestyle{empty}
+\include{expose/deckblatt}
+
+\tableofcontents 
+\newpage 
+
+\pagestyle{Hauptteil}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\include{expose/text} 
+
+\renewcommand\refname{Literaturverzeichnis}
+\printbibliography
+
+\end{spacing}
+\end{document}

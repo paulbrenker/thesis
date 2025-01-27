@@ -1,0 +1,130 @@
+<mxfile host="65bd71144e">
+    <diagram id="85emqcvf0JcZVEV2tqq7" name="Page-1">
+        <mxGraphModel dx="1334" dy="579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="30" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeWidth=0;strokeColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-170" y="130" width="800" height="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-120" y="150" width="620" height="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
+                    <mxGeometry x="-160" y="360" width="30" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="&lt;b&gt;Ext. Points&lt;/b&gt;&lt;br&gt;Regel entspricht Äquivalienzklasse n" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-90" y="340" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="endArrow=none;dashed=1;html=1;exitX=0;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" parent="1" source="4" target="4" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="480" as="sourcePoint"/>
+                        <mxPoint x="590" y="430" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6" value="Berechne Inverse zu&amp;nbsp; Linter Ergebnisse und OAS Regeln" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="-85" y="440" width="110" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Regel Äquivalenzklassen Matching" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="280" width="110" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Linter-results" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="390" width="110" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="endArrow=none;html=1;exitX=0.96;exitY=0.311;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=67.5;entryPerimeter=0;exitPerimeter=0;" parent="1" source="4" target="7" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="430" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="10" value="" style="endArrow=none;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="2" target="4" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="430" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="" style="endArrow=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.01;entryY=0.234;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="4" target="8" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="430" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="12" value="Invertiere als Boolean, ausgelöst oder nicht" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="170" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Invertieren ist nicht möglich" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="160" width="120" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Invertiere als relativen Anteil der Ausgelösten pro möglicher Message" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="560" width="140" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Invertiere als relativen Anteil aller ausgelösten von allen möglichen Auslösungen" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="580" width="200" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=classic;html=1;entryX=0.739;entryY=0.054;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0;exitY=1;exitDx=0;exitDy=0;dashed=1;" parent="1" source="12" target="4" edge="1">
+                    <mxGeometry x="-0.4009" width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="430" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="18" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=classic;html=1;exitX=0.418;exitY=0.988;exitDx=0;exitDy=0;entryX=0.696;entryY=0.008;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;dashed=1;" parent="1" source="13" target="4" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="430" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="19" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;dashed=1;" parent="1" source="15" target="4" edge="1">
+                    <mxGeometry x="-0.5695" y="-2" width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="430" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="20" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="endArrow=classic;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;exitX=0.239;exitY=0.065;exitDx=0;exitDy=0;exitPerimeter=0;dashed=1;" parent="1" source="14" target="4" edge="1">
+                    <mxGeometry x="0.2345" y="2" width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="430" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" value="&lt;b&gt;Condition:&lt;/b&gt; {Eine Regel kann mehrmals auf einer Spezifikation ausgelöst werden, dabei aber nur eine Art von Message werfen} Ext. Point: Regel entspricht Äquivalinzklasse 3" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-100" y="530" width="160" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; background-color: rgb(255, 255, 255); display: inline !important;&quot;&gt;&lt;font style=&quot;&quot; color=&quot;#330000&quot;&gt;&lt;b&gt;Condition:&lt;/b&gt; {Eine Regel kann genau einmal auf einer Spezifikation auslösen} Ext. Point: Regel entspricht Äquivalinzklasse 2&lt;/font&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="290" y="260" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="&lt;b&gt;Condition:&lt;/b&gt; {Eine Regel ist ausschließlich für OAS 2.x.x} Ext. Point: Regel entspricht Äquivalinzklasse 1" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-90" y="180" width="160" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; background-color: rgb(255, 255, 255); display: inline !important;&quot;&gt;&lt;font style=&quot;&quot; color=&quot;#330000&quot;&gt;&lt;b&gt;Condition:&lt;/b&gt; {Eine Regel kann mehrmals auf einer Spezifikation ausgelöst werden und dabei unterschiedliche Messages werden} Ext. Point: Regel entspricht Äquivalinzklasse 4&lt;/font&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="310" y="420" width="161" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="endArrow=none;dashed=1;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" target="24" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="250" y="510" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="" style="endArrow=none;dashed=1;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" target="21" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="140" y="510" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="27" value="" style="endArrow=none;dashed=1;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" parent="1" source="23" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="540" y="430" as="sourcePoint"/>
+                        <mxPoint x="100" y="270" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="28" value="" style="endArrow=none;dashed=1;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" parent="1" target="22" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="230" y="250" as="sourcePoint"/>
+                        <mxPoint x="590" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

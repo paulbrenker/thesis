@@ -1,0 +1,139 @@
+\usepackage[english, ngerman]{babel}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[beamer]{ragged2e}
+\usepackage[linguistics]{forest}
+\usepackage[normalem]{ulem} % for strike through with \sout
+\usepackage{hyperref} % for Hyperlinks to websited
+ \usepackage{xcolor} %  for color commands
+
+\usepackage{caption}
+\captionsetup{font=tiny,labelfont=bf}
+
+\usepackage{longtable}
+
+\definecolor{HBRSBlue}{RGB}{0,178,235}
+
+
+
+\newenvironment{hbrsblock}[1]{%
+  \setbeamercolor{block body}{bg=HBRSBlue!30!white,fg=black}
+  \setbeamercolor{block title}{bg=HBRSBlue!50!white,fg=black}
+  \begin{block}{#1}}{\end{block}}
+
+\newenvironment{greyblock}[1]{%
+  \setbeamercolor{block body}{bg=black!5!white,fg=black}
+  \setbeamercolor{block title}{bg=black!10!white,fg=black}
+  \begin{block}{#1}}{\end{block}}
+
+\setbeamercolor{item projected}{bg=HBRSBlue!70!white,fg=black}
+\setbeamercolor{item item}{fg=HBRSBlue!70!white,bg=white}
+
+\setbeamertemplate{enumerate items}[circle]
+\setbeamertemplate{itemize items}[circle]
+
+\setbeamertemplate{section in toc}[circle]
+\setbeamertemplate{subsection in toc}[cirlce]
+
+\setbeamertemplate{navigation symbols}{}    % remove the on slide navigation bar
+\setbeamertemplate{headline}{}              % remove the header navigation
+
+\setbeamertemplate{title page}{
+    \centering
+    \vspace{2em}
+    \textbf{\huge{\inserttitle}}\\[0.5cm]
+    \textbf{\large{\insertsubtitle}}\\[1cm]
+    {\scriptsize\insertinstitute}
+    \vspace{1cm}
+    \begin{center} 
+    \begin{tabular}{rl}
+        \large\textbf{Präsentation von:} & \large\insertauthor \\
+        \large\textbf{Datum:} & 08. November 2024
+    \end{tabular}
+    \end{center}
+}
+
+\setbeamertemplate{frametitle}{%
+    \usebeamerfont{frametitle}\insertframetitle%
+    \vphantom{g}\\[0.2cm]  % To avoid fluctuations per frame
+    \par  % <-- added
+    \hspace*{-\dimexpr0.425\paperwidth-0.4\textwidth}  % <-- calculation of left margin width
+    \color{gray}
+    \rule[0.5\baselineskip]{\paperwidth}{0.4pt} %
+}
+
+\setbeamertemplate{footline}{
+    \ifnum \theframenumber=1
+        % This is the title frame, do nothing
+    \else
+        \centering
+        \color{gray}
+        \hrulefill\\[0.2cm]
+        \begin{columns}
+            \begin{column}{0.5\linewidth}
+                \includegraphics[scale=.08]{img/fh_logo_full.png}\newline
+            \end{column}
+            \begin{column}{0.3\linewidth}
+                \color{gray}
+                \centering
+                \insertshortauthor\\
+                \insertsubtitle
+            \end{column}
+            \begin{column}{0.06\linewidth}
+                \color{gray}
+                \raggedleft
+                \insertpagenumber
+            \end{column}
+        \end{columns}
+    \fi
+}
+
+% code environments
+% code environments
+\usepackage{listings}
+\renewcommand*{\lstlistingname}{Quellcode}
+\lstdefinelanguage{JavaScript}{
+  keywords={abstract, any, as, boolean, break, case, catch, class, console, 
+    const, continue, debugger, declare, default, delete, do, else, enum, export, 
+    extends, false, finally, for, from, function, get, if, implements, import, in, 
+    infer, instanceof, interface, keyof, let, module, namespace, never, new, null, 
+    number, object, package, private, protected, public, readonly, require, return, 
+    set, static, string, super, switch, symbol, this, throw, true, try, type, typeof, 
+    undefined, unique, unknown, var, void, while, with, yield}  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{purple}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{SpectralOutput}{
+  keywords={warning},
+  keywordstyle=\color{orange},
+  identifierstyle=\color{black},
+  sensitive=false,
+}
+
+\lstdefinelanguage{none}{
+  identifierstyle=
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{white},
+   extendedchars=true,
+   basicstyle=\fontfamily{pcr}\footnotesize,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}

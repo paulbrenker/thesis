@@ -1,0 +1,4 @@
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QRelevanz\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\QFrequenz Bewertung der Anzahl der Auslösungen einer Regel.\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\QRelevanz \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\QFrequenz \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q , wenn \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q , sonst \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q , wenn die Spezifikation \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q die Regel \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q ausgelöst hat \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q , sonst \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"GERMAN_SPELLER_RULE","sentence":"^\\QRelevanz\\E(?:Dummy|Ina|Jimmy-)[0-9]+\\QDiversität Bewertung der Ähnlichkeit des Auslösemusters einer Regel.\\E$"}

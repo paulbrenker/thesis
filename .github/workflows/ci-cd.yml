@@ -1,0 +1,251 @@
+name: CICD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+env:
+  PROJECT: "thesis"
+  PROJECT_NAME: "Bachelor Thesis Paul Brenker: Relevance of Linter Rules"
+  ACTION_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+jobs:
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+    timeout-minutes: 1
+    name: label
+    runs-on: ubuntu-latest
+    outputs:
+      labels: ${{ steps.read-labels.outputs.labels }}
+    steps:
+      - uses: actions/labeler/@v5
+
+      - name: Read current labels
+        id: read-labels
+        if: github.ref != 'refs/heads/main'
+        uses: snnaplab/get-labels-action@v1.0.1
+
+  get_artifacts:
+    name: Get Artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    needs: labeler
+    if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v4
+
+      - name: Install Snap
+        run: sudo apt-get update && sudo apt-get install -y snapd
+
+      - name: Install Drawio
+        run: |
+          sudo snap install drawio
+          sudo apt-get install -y xvfb
+
+      - name: Export Diagrams
+        run: |
+          xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" ./script/export_diagrams.sh
+
+      - name: Upload Image Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: drawio
+          path: tex/img
+
+  set_matrix:
+    name: Set Matrix
+    runs-on: ubuntu-latest
+    needs: labeler
+    timeout-minutes: 1
+    if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Matrix
+        id: set-matrix
+        run: |
+          labels="${{ needs.labeler.outputs.labels }}"
+          matrix="[]"
+          default='["expose", "thesis", "defense"]'
+
+          if [[ "$labels" == *"expose-change"* ]]; then
+            matrix=$(jq -c '. += ["expose"]' <<<"$matrix")
+          fi
+          if [[ "$labels" == *"thesis-change"* ]]; then
+            matrix=$(jq -c '. += ["thesis"]' <<<"$matrix")
+          fi
+          if [[ "$labels" == *"defense-change"* ]]; then
+            matrix=$(jq -c '. += ["defense"]' <<<"$matrix")
+          fi
+          if [[ "$matrix" == "[]" ]]; then
+            matrix=$default
+          fi
+
+          echo "matrix=$matrix" >> $GITHUB_OUTPUT
+
+  build_latex:
+    name: Build LaTeX
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    needs:
+      - labeler
+      - get_artifacts
+      - set_matrix
+    if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'text-change')
+    strategy:
+      matrix:
+        directory: ${{ fromJson(needs.set_matrix.outputs.matrix) }}
+    steps:
+      - name: Check Out
+        uses: actions/checkout@v4
+
+      - name: Place Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: drawio
+          path: tex/img
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          working_directory: tex/
+          root_file: ${{ matrix.directory }}.tex
+          latexmk_use_xelatex: true
+
+      - name: Upload PDF as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.directory }}
+          path: tex/${{ matrix.directory }}.pdf
+
+  build_python:
+    name: Format, Lint, Test Python
+    timeout-minutes: 3
+    permissions:
+      contents: read
+    needs: labeler
+    if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'analysis-change')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: analysis/.python-version
+
+      - name: Install dependencies
+        working-directory: analysis
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --no-root
+
+      - name: Format Check
+        working-directory: analysis
+        run: |
+          poetry run black --check ./
+
+      - name: Lint Modules
+        working-directory: analysis
+        run: |
+          poetry run pylint src/
+
+      - name: Test Modules
+        working-directory: analysis
+        run: |
+          poetry run pytest --cache-clear --cov=src/communication test/ --cov-fail-under=80 --cov-report term-missing
+
+  build_typescript:
+    name: Format, Lint, Test, Build TypeScript
+    needs: labeler
+    timeout-minutes: 3
+    if: github.ref == 'refs/heads/main' || contains(needs.labeler.outputs.labels, 'tool-change')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: tool/.node-version
+          cache-dependency-path: tool/package-lock.json
+          cache: npm
+
+      - name: Install Dependencies
+        working-directory: tool
+        run: npm ci
+
+      - name: Format Check
+        working-directory: tool
+        run: npm run format:check
+
+      - name: Lint
+        working-directory: tool
+        run: npm run lint
+
+      - name: Test
+        working-directory: tool
+        run: npm run test:cov
+
+      - name: Build
+        working-directory: tool
+        run: npm run build
+
+  release:
+    name: Release
+    if: github.ref == 'refs/heads/main'
+    timeout-minutes: 10
+    needs:
+      - build_latex
+      - build_typescript
+      - build_python
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Download Expose
+        uses: actions/download-artifact@v4
+        with:
+          name: expose
+
+      - name: Download Thesis
+        uses: actions/download-artifact@v4
+        with:
+          name: thesis
+
+      - name: Download Defense
+        uses: actions/download-artifact@v4
+        with:
+          name: defense
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v2.${{ github.run_number }}
+          name: "Release v2.${{ github.run_number }}"
+          files: |
+            expose.pdf
+            thesis.pdf
+            defense.pdf

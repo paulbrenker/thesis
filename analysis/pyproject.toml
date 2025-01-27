@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "thesis"
+version = "0.1.0"
+description = "Data analysis pipeline to determine relevance of linter rules"
+authors = ["Paul Brenker <paul.brenker@leanix.net>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12.3"
+pytest-coverage = "^0.0"
+pandas = "^2.2.2"
+ipykernel = "^6.29.5"
+matplotlib = "^3.9.2"
+scipy = "^1.14.1"
+seaborn = "^0.13.2"
+logging = "^0.4.9.6"
+scikit-learn = "^1.5.2"
+
+[tool.poetry.dev-dependencies]
+pylint = "^3.2.5"
+pytest = "^8.2.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest-coverage = "^0.0"
+black = "^24.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = " --cache-clear --cov=src/communication test/ --cov-fail-under=80 --cov-report term-missing "
+
+[tool.pylint.main]
+init-hook="import sys; sys.path.append(\"src\")"
+
+[tool.pylint."MESSAGES CONTROL"]
+disable="too-few-public-methods"

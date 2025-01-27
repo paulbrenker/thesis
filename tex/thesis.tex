@@ -1,0 +1,44 @@
+\PassOptionsToPackage{usenames, dvipsnames}{color}
+\documentclass[a4paper,11pt,headsepline,titlepage]{article}
+\input{thesis/meta}
+\usepackage{sty/hbrs-thesis}
+
+\begin{document}
+\begin{spacing}{1}
+  \pagenumbering{roman}
+  \pagestyle{bisHauptteil}
+
+  \include{thesis/titlepage}
+
+  \tableofcontents 
+  \newpage 
+
+  \include{thesis/abbreviations}
+
+  \pagestyle{Hauptteil}
+  \setcounter{page}{1}
+  \pagenumbering{arabic} 
+
+  \include{thesis/intro} 
+
+  \include{thesis/research}
+
+  \include{thesis/method}
+
+  \include{thesis/analysis}
+
+  \include{thesis/evaluation}
+
+  \section*{Literaturverzeichnis}
+  \addcontentsline{toc}{section}{Literaturverzeichnis}
+
+  \renewcommand\refname{}
+  \vspace{-0.8cm}
+  \printbibliography
+
+  \include{thesis/appendix}
+
+  \include{thesis/declaration}
+ 
+\end{spacing}
+\end{document}

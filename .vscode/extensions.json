@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "james-yu.latex-workshop",
+    "valentjn.vscode-ltex",
+    "hediet.vscode-drawio",
+    "ms-python.python",
+    "ms-python.black-formatter",
+    "ms-python.pylint",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "firsttris.vscode-jest-runner"
+  ]
+}
