@@ -1,6 +1,6 @@
 <!-- LTeX: language=en -->
 
-# Relevanz von Linterregeln für die Qualität von OpenAPI Spezifikationen
+# Relevance of Linter Rules for the Quality of OpenAPI Specifications
 
 ![Cover](tex/img/cover.jpeg)
 
